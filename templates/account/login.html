@@ -1,10 +1,123 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EVE 로그인</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100..900;1,100..900&family=Prata&display=swap"
+      rel="stylesheet"
+    />
 
-</body>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css"
+    />
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Pretendard Variable";
+        background-color: white;
+      }
+
+      .login-container {
+        /* height: 100vh; */
+        margin-top: 10%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .title {
+        font-size: 32px;
+        font-weight: bold;
+        color: #b40103;
+        font-family: "Prata";
+        margin-bottom: 8px;
+      }
+
+      .subtitle {
+        font-size: 14px;
+        color: #b40103;
+        font-family: "Prata";
+        margin-bottom: 20%;
+      }
+
+      .login-button {
+        width: 380px;
+        height: 50px;
+        border: none;
+        border-radius: 24px;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 16px;
+        cursor: pointer;
+        box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .btn {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+      }
+
+      .login-button img {
+        width: 26px;
+        height: 26px;
+        left: 20px;
+        margin-right: auto;
+        margin-left: 20px;
+        position: absolute;
+      }
+
+      .login-button.google {
+        background-color: white;
+        border: 1px solid #ddd;
+      }
+
+      .login-button.kakao {
+        background-color: #fee500;
+        color: #3c1e1e;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-container">
+      <div class="title">EVE</div>
+      <div class="subtitle">In Her Name, I Wear My Body</div>
+
+      <button class="login-button google">
+        <div class="btn">
+          <img src="img/google.png" alt="Google Logo" />
+          <span>Google로 로그인</span>
+        </div>
+      </button>
+
+      <button class="login-button kakao">
+        <div class="btn">
+          <img src="img/kakao.png" alt="Kakao Logo" />
+          <span>KaKao로 로그인</span>
+        </div>
+      </button>
+    </div>
+
+    <script>
+      document.querySelector(".google").addEventListener("click", () => {
+        alert("Google 로그인은 현재 준비 중입니다.");
+      });
+
+      document.querySelector(".kakao").addEventListener("click", () => {
+        alert("Kakao 로그인은 현재 준비 중입니다.");
+      });
+    </script>
+  </body>
 </html>
