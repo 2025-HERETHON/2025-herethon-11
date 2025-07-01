@@ -1,3 +1,4 @@
+{% load socialaccount %}
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -95,19 +96,23 @@
       <div class="title">EVE</div>
       <div class="subtitle">In Her Name, I Wear My Body</div>
 
+      <a href="{% provider_login_url 'google' %}">
       <button class="login-button google">
         <div class="btn">
           <img src="img/google.png" alt="Google Logo" />
           <span>Google로 로그인</span>
         </div>
       </button>
+      </a>
 
+      <a href="{% provider_login_url 'kakao' %}">
       <button class="login-button kakao">
         <div class="btn">
           <img src="img/kakao.png" alt="Kakao Logo" />
           <span>KaKao로 로그인</span>
         </div>
       </button>
+      </a>
     </div>
 
     <script>

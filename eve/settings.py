@@ -37,6 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    #소셜 로그인을 위한 설정
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google', #구글
+    'allauth.socialaccount.providers.kakao', #카카오
 ]
 
 MIDDLEWARE = [
@@ -47,7 +55,26 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    #소셜 로그인을 위한 설정
+    "allauth.account.middleware.AccountMiddleware",
 ]
+
+#소셜 로그인을 위한 설정
+SITE_ID = 1
+
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    #`allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+SOCIALACCOUNT_LOGIN_ON_GET = True #소셜 로그인 url클릭시 바로 로그인
+LOGIN_REDIRECT_URL = '/' #로그인후 이동할 페이지
+# ACCOUNT_LOGOUT_REDIRECT_URL = 'index' #로그아웃 후 이동할 페이지
+ACCOUNT_LOGOUT_ON_GET = True #로그아웃시 GET요청만으로 로그아웃
 
 ROOT_URLCONF = 'eve.urls'
 
