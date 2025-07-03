@@ -73,17 +73,33 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-SOCIALACCOUNT_LOGIN_ON_GET = True #소셜 로그인 url클릭시 바로 로그인
-LOGIN_REDIRECT_URL = '/' #로그인후 이동할 페이지
-# ACCOUNT_LOGOUT_REDIRECT_URL = 'index' #로그아웃 후 이동할 페이지
-ACCOUNT_LOGOUT_ON_GET = True #로그아웃시 GET요청만으로 로그아웃
+#로그인 성공 후 이동할 페이지
+LOGIN_REDIRECT_URL = '/' 
+#로그아웃 후 이동할 페이지
+# ACCOUNT_LOGOUT_REDIRECT_URL = 'index' 
+#로그아웃시 GET요청만으로 로그아웃
+ACCOUNT_LOGOUT_ON_GET = True 
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE' : ['profile', 'email'], #사용자가 허용할 정보
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    },
+
+    'kakao' : {
+        'SCOPE' : ['profile_nickname'],
+    }
+}
 
 ROOT_URLCONF = 'eve.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        # 'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'], 
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -145,6 +161,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
