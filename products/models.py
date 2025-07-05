@@ -28,7 +28,7 @@ class Product(models.Model):
 
     # 상품명, 가격, 이미지 url, 상품 링크, 상점 이름
     title = models.CharField(max_length = 255)
-    price = models.CharField(max_length = 100)
+    price = models.IntegerField()
     image_url = models.URLField()
     link = models.URLField()
     shop = models.CharField(max_length = 100, null = True, blank = True)

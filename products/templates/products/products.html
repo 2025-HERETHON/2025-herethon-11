@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -93,8 +94,7 @@
       .search-icon {
         width: 18px;
         height: 18px;
-        background: url("/products/static/products/productimg/black.png")
-          center/contain no-repeat;
+        background: url("{% static 'products/productimg/black.png' %}") center/contain no-repeat;
         flex-shrink: 0;
         cursor: pointer;
       }
@@ -150,6 +150,8 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
+        position: relative;
+        z-index: 0;
       }
       .heart {
         position: absolute;
@@ -159,11 +161,11 @@
         height: 20px;
         cursor: pointer;
         font-size: 0;
-        background: url("/products/static/products/productimg/disabled%20heart.png")
-          center/contain no-repeat;
+        background: url("{% static 'products/productimg/disabled%20heart.png' %}") center/contain no-repeat;
+        z-index: 2;
       }
       .heart.liked {
-        background-image: url("/products/static/products/productimg/red%20heart.png");
+        background-image: url("{% static 'products/productimg/red%20heart.png' %}");
       }
       /* 착용 제품 표시 */
       .wear {
@@ -174,11 +176,11 @@
         height: 19px;
         cursor: pointer;
         font-size: 0;
-        background: url("/products/static/products/productimg/착용제품.png")
-          center/contain no-repeat;
+        background: url("{% static 'products/productimg/착용제품.png' %}") center/contain no-repeat;
+        z-index: 2;
       }
       .wear.checked {
-        background-image: url("/products/static/products/productimg/착용제품%20표시.png");
+        background-image: url("{% static 'products/productimg/착용제품%20표시.png' %}");
       }
       .item-info {
         margin-top: 6px;
@@ -254,12 +256,12 @@
         <span id="clock">--:--</span>
         <div class="status-icons">
           <img
-            src="/products/static/products/productimg/cellular.png"
+            src="{% static 'products/productimg/cellular.png' %}"
             class="icon"
             alt="cellular"
           /><img
             id="wifi"
-            src="/products/static/products/productimg/wi-fi.png"
+            src="{% static 'products/productimg/wi-fi.png' %}"
             class="icon"
             alt="wifi"
           />
@@ -280,24 +282,42 @@
       <div class="scroll-bar" id="recent-wrap"></div>
       <div class="divider"></div>
       <!-- 추천 -->
-      <div class="section-heading" style="margin-top: 20px">
-        <span id="user-name">User</span>님을 위한 추천 상품
+      <!-- 추천 -->
+<div class="section-heading" style="margin-top: 20px">
+  <span id="user-name">{{ user_name }}</span>님을 위한 추천 상품
+</div>
+<div class="recommend-grid" id="rec-wrap">
+  {% for product in rec_items %}
+    <div class="item-card">
+      <div class="item-img-wrap">
+        <img src="{{ product.image_url }}" alt="{{ product.title }}">
+        <span class="heart"></span>
+        <span class="wear"></span>
       </div>
-      <div class="recommend-grid" id="rec-wrap"></div>
+      <div class="item-info">
+        <div class="item-price">{{ product.price }}원</div>
+        <div class="item-brand">{{ product.shop }}</div>
+        <div class="item-desc">{{ product.title }}</div>
+      </div>
     </div>
+  {% empty %}
+    <p style="padding: 0 15px">추천 상품이 없습니다.</p>
+  {% endfor %}
+</div>
+
 
     <!-- 하단 네비 -->
     <nav class="bottom-nav">
       <a href="#" class="nav-item active"
-        ><img src="/products/static/products/productimg/home.png" alt="home"
+        ><img src="{% static 'products/productimg/home.png' %}" alt="home"
       /></a>
       <a href="#" class="nav-item"
         ><img
-          src="/products/static/products/productimg/review.png"
+          src="{% static 'products/productimg/review.png' %}"
           alt="review"
       /></a>
       <a href="#" class="nav-item"
-        ><img src="/products/static/products/productimg/user.png" alt="mypage"
+        ><img src="{% static 'products/productimg/user.png' %}" alt="mypage"
       /></a>
     </nav>
     <!-- 더미데이터 이용-->
@@ -325,22 +345,6 @@
           img: "https://placehold.co/200x200",
         },
       ];
-      const recItems = [
-        {
-          id: "A",
-          price: 19000,
-          brand: "리무브",
-          desc: "시그니처 에어 드로즈",
-          img: "https://placehold.co/200x200",
-        },
-        {
-          id: "B",
-          price: 23000,
-          brand: "더잠",
-          desc: "언제핏 스퀘어 브라탑 + 팬티 세트",
-          img: "https://placehold.co/200x200",
-        },
-      ];
       const makeCard = (p) =>
         `<div class="item-card"><div class="item-img-wrap"><img src="${
           p.img
@@ -352,14 +356,13 @@
       document.getElementById("recent-wrap").innerHTML = recentViewed
         .map(makeCard)
         .join("");
-      document.getElementById("rec-wrap").innerHTML = recItems
-        .map(makeCard)
-        .join("");
-      /* 하트 */ document
-        .querySelectorAll(".heart")
-        .forEach((h) =>
-          h.addEventListener("click", () => h.classList.toggle("liked"))
-        );
+      // 하트
+        document.addEventListener("DOMContentLoaded", function () {
+          document.querySelectorAll(".heart").forEach((h) =>
+            h.addEventListener("click", () => h.classList.toggle("liked"))
+          );
+        });
+
       /* 착용 제품 */ document
         .querySelectorAll(".wear")
         .forEach((w) =>
