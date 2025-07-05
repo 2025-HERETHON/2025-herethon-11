@@ -1,10 +1,383 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EVE – 홈</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Prata&display=swap"
+      rel="stylesheet"
+    />
+    <!--css-->
+    <style>
+      :root {
+        --eve-main: #b40103;
+        --grey-bg: #f5f5f5;
+        --text-main: #000;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Pretendard", sans-serif;
+        background: #fff;
+        width: 390px;
+        margin: 0 auto;
+        overflow-y: auto;
+      }
+      /* 상태바 */
+      .status-bar {
+        position: relative;
+        margin: 20px auto 0;
+        width: 308px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font: 600 14px/1 Pretendard;
+      }
+      .status-icons {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .battery {
+        position: relative;
+        width: 24px;
+        height: 12px;
+        border: 2px solid #000;
+        border-radius: 2px;
+      }
+      .battery::after {
+        content: "";
+        position: absolute;
+        right: -5px;
+        top: 3px;
+        width: 3px;
+        height: 6px;
+        background: #000;
+        border-radius: 1px;
+      }
+      .battery-level {
+        height: 100%;
+        background: #000;
+        width: 50%;
+        transition: width 0.3s;
+      }
+      /* 공통 */
+      .logo {
+        text-align: center;
+        font-family: "Prata", serif;
+        font-size: 20px;
+        color: var(--eve-main);
+        margin-top: 20px;
+      }
+      .search-wrap {
+        margin: 20px auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 365px;
+        height: 39px;
+        padding: 8px 13px;
+        border: 1px solid var(--eve-main);
+        border-radius: 100px;
+      }
+      .search-wrap input {
+        border: none;
+        flex: 1;
+        outline: none;
+        font-size: 14px;
+      }
+      .search-icon {
+        width: 18px;
+        height: 18px;
+        background: url("/products/static/products/productimg/black.png")
+          center/contain no-repeat;
+        flex-shrink: 0;
+        cursor: pointer;
+      }
+      .btn-rec {
+        display: block;
+        width: 76px;
+        height: 34px;
+        margin: 0 0 20px 15px;
+        border: none;
+        border-radius: 6px;
+        background: var(--eve-main);
+        color: #fff;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      .section-heading {
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--text-main);
+        margin: 0 0 0 15px;
+      }
+      .view-all {
+        float: right;
+        margin-right: 15px;
+        margin-top: -21px;
+        font-size: 14px;
+        cursor: pointer;
+      }
+      /* 가로 스크롤 */
+      .scroll-bar {
+        display: flex;
+        overflow-x: auto;
+        gap: 10px;
+        padding: 15px;
+        scroll-behavior: smooth;
+      }
+      .scroll-bar::-webkit-scrollbar {
+        display: none;
+      }
+      /* 카드 */
+      .item-card {
+        min-width: 140px;
+        flex: 0 0 auto;
+      }
+      .item-img-wrap {
+        position: relative;
+        width: 140px;
+        height: 140px;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      .item-img-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .heart {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        font-size: 0;
+        background: url("/products/static/products/productimg/disabled%20heart.png")
+          center/contain no-repeat;
+      }
+      .heart.liked {
+        background-image: url("/products/static/products/productimg/red%20heart.png");
+      }
+      /* 착용 제품 표시 */
+      .wear {
+        position: absolute;
+        left: 8px;
+        bottom: 8px;
+        width: 73px;
+        height: 19px;
+        cursor: pointer;
+        font-size: 0;
+        background: url("/products/static/products/productimg/착용제품.png")
+          center/contain no-repeat;
+      }
+      .wear.checked {
+        background-image: url("/products/static/products/productimg/착용제품%20표시.png");
+      }
+      .item-info {
+        margin-top: 6px;
+      }
+      .item-price {
+        font-weight: 600;
+        margin-bottom: 2px;
+      }
+      .item-brand {
+        font-size: 12px;
+        color: #666;
+      }
+      .item-desc {
+        font-size: 12px;
+        color: #333;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .divider {
+        width: 390px;
+        height: 7px;
+        background: var(--grey-bg);
+        margin: 20px auto;
+      }
+      .recommend-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        padding: 15px;
+      }
+      /* 하단 네비 */
+      .bottom-nav {
+        position: fixed;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 390px;
+        height: 70px;
+        background: #fff;
+        border-top: 1px solid #ddd;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        z-index: 999;
+      }
+      .nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 12px;
+        color: #000;
+        text-decoration: none;
+      }
+      .nav-item img {
+        width: 40px;
+        height: 40px;
+        margin-bottom: 4px;
+        object-fit: contain;
+      }
+      .nav-item.active {
+        color: var(--eve-main);
+      }
+      .page-content {
+        padding-bottom: 90px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-content">
+      <!-- 상태바 -->
+      <div class="status-bar">
+        <span id="clock">--:--</span>
+        <div class="status-icons">
+          <img
+            src="/products/static/products/productimg/cellular.png"
+            class="icon"
+            alt="cellular"
+          /><img
+            id="wifi"
+            src="/products/static/products/productimg/wi-fi.png"
+            class="icon"
+            alt="wifi"
+          />
+          <div class="battery">
+            <div class="battery-level" id="battery-level"></div>
+          </div>
+        </div>
+      </div>
+      <h1 class="logo">EVE</h1>
+      <div class="search-wrap">
+        <input type="text" placeholder="원하는 상품을 검색하세요" />
+        <div class="search-icon" aria-label="search"></div>
+      </div>
+      <button class="btn-rec">추천받기</button>
+      <!-- 최근 -->
+      <div class="section-heading">최근 열람한 상품</div>
+      <div class="view-all">전체보기 ›</div>
+      <div class="scroll-bar" id="recent-wrap"></div>
+      <div class="divider"></div>
+      <!-- 추천 -->
+      <div class="section-heading" style="margin-top: 20px">
+        <span id="user-name">User</span>님을 위한 추천 상품
+      </div>
+      <div class="recommend-grid" id="rec-wrap"></div>
+    </div>
 
-</body>
+    <!-- 하단 네비 -->
+    <nav class="bottom-nav">
+      <a href="#" class="nav-item active"
+        ><img src="/products/static/products/productimg/home.png" alt="home"
+      /></a>
+      <a href="#" class="nav-item"
+        ><img
+          src="/products/static/products/productimg/review.png"
+          alt="review"
+      /></a>
+      <a href="#" class="nav-item"
+        ><img src="/products/static/products/productimg/user.png" alt="mypage"
+      /></a>
+    </nav>
+    <!-- 더미데이터 이용-->
+    <script>
+      const recentViewed = [
+        {
+          id: 1,
+          price: 21000,
+          brand: "마론파이브",
+          desc: "날마다 브라탑 모달 곶지 유넥",
+          img: "https://placehold.co/200x200",
+        },
+        {
+          id: 2,
+          price: 12000,
+          brand: "리무브",
+          desc: "모달 멜로우 팬티",
+          img: "https://placehold.co/200x200",
+        },
+        {
+          id: 3,
+          price: 15000,
+          brand: "마론파이브",
+          desc: "쉬어 트렁크 모달 - 블랙",
+          img: "https://placehold.co/200x200",
+        },
+      ];
+      const recItems = [
+        {
+          id: "A",
+          price: 19000,
+          brand: "리무브",
+          desc: "시그니처 에어 드로즈",
+          img: "https://placehold.co/200x200",
+        },
+        {
+          id: "B",
+          price: 23000,
+          brand: "더잠",
+          desc: "언제핏 스퀘어 브라탑 + 팬티 세트",
+          img: "https://placehold.co/200x200",
+        },
+      ];
+      const makeCard = (p) =>
+        `<div class="item-card"><div class="item-img-wrap"><img src="${
+          p.img
+        }" alt="${
+          p.desc
+        }"><span class="heart"></span><span class="wear"></span></div><div class="item-info"><div class="item-price">${p.price.toLocaleString()}</div><div class="item-brand">${
+          p.brand
+        }</div><div class="item-desc">${p.desc}</div></div></div>`;
+      document.getElementById("recent-wrap").innerHTML = recentViewed
+        .map(makeCard)
+        .join("");
+      document.getElementById("rec-wrap").innerHTML = recItems
+        .map(makeCard)
+        .join("");
+      /* 하트 */ document
+        .querySelectorAll(".heart")
+        .forEach((h) =>
+          h.addEventListener("click", () => h.classList.toggle("liked"))
+        );
+      /* 착용 제품 */ document
+        .querySelectorAll(".wear")
+        .forEach((w) =>
+          w.addEventListener("click", () => w.classList.toggle("checked"))
+        );
+      /** 사용자 이름 삽입 */
+      const userName = "멋사"; // 서버나 로컬Storage 등에서 받아온 값
+      const nameSpan = document.getElementById("user-name");
+      if (nameSpan) nameSpan.textContent = userName;
+
+      /* 시계 */ function updateClock() {
+        const d = new Date();
+        document.getElementById("clock").textContent = d
+          .toTimeString()
+          .slice(0, 5);
+      }
+      updateClock();
+      setInterval(updateClock, 60000);
+    </script>
+  </body>
 </html>
