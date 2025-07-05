@@ -1,0 +1,512 @@
+[
+  {
+    "model": "products.product",
+    "pk": 1,
+    "fields": {
+      "external_id": "브래_001",
+      "title": "브래지어 더미 상품 1",
+      "price": "10000",
+      "image_url": "https://example.com/브래지어1.jpg",
+      "link": "https://example.com/브래지어/1",
+      "shop": "지그재그",
+      "source_keyword": "브래지어",
+      "color": "블랙",
+      "size": "M",
+      "material": "폴리에스터",
+      "created_at": "2025-07-04T00:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 2,
+    "fields": {
+      "external_id": "브래_002",
+      "title": "브래지어 더미 상품 2",
+      "price": "10100",
+      "image_url": "https://example.com/브래지어2.jpg",
+      "link": "https://example.com/브래지어/2",
+      "shop": "무신사",
+      "source_keyword": "브래지어",
+      "color": "화이트",
+      "size": "L",
+      "material": "스판덱스",
+      "created_at": "2025-07-04T00:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 3,
+    "fields": {
+      "external_id": "브래_003",
+      "title": "브래지어 더미 상품 3",
+      "price": "10200",
+      "image_url": "https://example.com/브래지어3.jpg",
+      "link": "https://example.com/브래지어/3",
+      "shop": "에이블리",
+      "source_keyword": "브래지어",
+      "color": "핑크",
+      "size": "XL",
+      "material": "나일론",
+      "created_at": "2025-07-04T00:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 4,
+    "fields": {
+      "external_id": "브래_004",
+      "title": "브래지어 더미 상품 4",
+      "price": "10300",
+      "image_url": "https://example.com/브래지어4.jpg",
+      "link": "https://example.com/브래지어/4",
+      "shop": "지그재그",
+      "source_keyword": "브래지어",
+      "color": "베이지",
+      "size": "S",
+      "material": "면",
+      "created_at": "2025-07-04T00:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 5,
+    "fields": {
+      "external_id": "브래_005",
+      "title": "브래지어 더미 상품 5",
+      "price": "10400",
+      "image_url": "https://example.com/브래지어5.jpg",
+      "link": "https://example.com/브래지어/5",
+      "shop": "무신사",
+      "source_keyword": "브래지어",
+      "color": "블랙",
+      "size": "M",
+      "material": "폴리에스터",
+      "created_at": "2025-07-04T00:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 6,
+    "fields": {
+      "external_id": "브래_006",
+      "title": "브래지어 더미 상품 6",
+      "price": "10500",
+      "image_url": "https://example.com/브래지어6.jpg",
+      "link": "https://example.com/브래지어/6",
+      "shop": "에이블리",
+      "source_keyword": "브래지어",
+      "color": "화이트",
+      "size": "L",
+      "material": "스판덱스",
+      "created_at": "2025-07-04T00:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 7,
+    "fields": {
+      "external_id": "브래_007",
+      "title": "브래지어 더미 상품 7",
+      "price": "10600",
+      "image_url": "https://example.com/브래지어7.jpg",
+      "link": "https://example.com/브래지어/7",
+      "shop": "지그재그",
+      "source_keyword": "브래지어",
+      "color": "핑크",
+      "size": "XL",
+      "material": "나일론",
+      "created_at": "2025-07-04T00:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 8,
+    "fields": {
+      "external_id": "브래_008",
+      "title": "브래지어 더미 상품 8",
+      "price": "10700",
+      "image_url": "https://example.com/브래지어8.jpg",
+      "link": "https://example.com/브래지어/8",
+      "shop": "무신사",
+      "source_keyword": "브래지어",
+      "color": "베이지",
+      "size": "S",
+      "material": "면",
+      "created_at": "2025-07-04T00:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 9,
+    "fields": {
+      "external_id": "브래_009",
+      "title": "브래지어 더미 상품 9",
+      "price": "10800",
+      "image_url": "https://example.com/브래지어9.jpg",
+      "link": "https://example.com/브래지어/9",
+      "shop": "에이블리",
+      "source_keyword": "브래지어",
+      "color": "블랙",
+      "size": "M",
+      "material": "폴리에스터",
+      "created_at": "2025-07-04T00:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 10,
+    "fields": {
+      "external_id": "브래_010",
+      "title": "브래지어 더미 상품 10",
+      "price": "10900",
+      "image_url": "https://example.com/브래지어10.jpg",
+      "link": "https://example.com/브래지어/10",
+      "shop": "지그재그",
+      "source_keyword": "브래지어",
+      "color": "화이트",
+      "size": "L",
+      "material": "스판덱스",
+      "created_at": "2025-07-04T00:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 11,
+    "fields": {
+      "external_id": "팬티_001",
+      "title": "팬티 더미 상품 1",
+      "price": "10000",
+      "image_url": "https://example.com/팬티1.jpg",
+      "link": "https://example.com/팬티/1",
+      "shop": "지그재그",
+      "source_keyword": "팬티",
+      "color": "블랙",
+      "size": "M",
+      "material": "폴리에스터",
+      "created_at": "2025-07-04T00:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 12,
+    "fields": {
+      "external_id": "팬티_002",
+      "title": "팬티 더미 상품 2",
+      "price": "10100",
+      "image_url": "https://example.com/팬티2.jpg",
+      "link": "https://example.com/팬티/2",
+      "shop": "무신사",
+      "source_keyword": "팬티",
+      "color": "화이트",
+      "size": "L",
+      "material": "스판덱스",
+      "created_at": "2025-07-04T00:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 13,
+    "fields": {
+      "external_id": "팬티_003",
+      "title": "팬티 더미 상품 3",
+      "price": "10200",
+      "image_url": "https://example.com/팬티3.jpg",
+      "link": "https://example.com/팬티/3",
+      "shop": "에이블리",
+      "source_keyword": "팬티",
+      "color": "핑크",
+      "size": "XL",
+      "material": "나일론",
+      "created_at": "2025-07-04T00:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 14,
+    "fields": {
+      "external_id": "팬티_004",
+      "title": "팬티 더미 상품 4",
+      "price": "10300",
+      "image_url": "https://example.com/팬티4.jpg",
+      "link": "https://example.com/팬티/4",
+      "shop": "지그재그",
+      "source_keyword": "팬티",
+      "color": "베이지",
+      "size": "S",
+      "material": "면",
+      "created_at": "2025-07-04T00:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 15,
+    "fields": {
+      "external_id": "팬티_005",
+      "title": "팬티 더미 상품 5",
+      "price": "10400",
+      "image_url": "https://example.com/팬티5.jpg",
+      "link": "https://example.com/팬티/5",
+      "shop": "무신사",
+      "source_keyword": "팬티",
+      "color": "블랙",
+      "size": "M",
+      "material": "폴리에스터",
+      "created_at": "2025-07-04T00:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 16,
+    "fields": {
+      "external_id": "팬티_006",
+      "title": "팬티 더미 상품 6",
+      "price": "10500",
+      "image_url": "https://example.com/팬티6.jpg",
+      "link": "https://example.com/팬티/6",
+      "shop": "에이블리",
+      "source_keyword": "팬티",
+      "color": "화이트",
+      "size": "L",
+      "material": "스판덱스",
+      "created_at": "2025-07-04T00:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 17,
+    "fields": {
+      "external_id": "팬티_007",
+      "title": "팬티 더미 상품 7",
+      "price": "10600",
+      "image_url": "https://example.com/팬티7.jpg",
+      "link": "https://example.com/팬티/7",
+      "shop": "지그재그",
+      "source_keyword": "팬티",
+      "color": "핑크",
+      "size": "XL",
+      "material": "나일론",
+      "created_at": "2025-07-04T00:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 18,
+    "fields": {
+      "external_id": "팬티_008",
+      "title": "팬티 더미 상품 8",
+      "price": "10700",
+      "image_url": "https://example.com/팬티8.jpg",
+      "link": "https://example.com/팬티/8",
+      "shop": "무신사",
+      "source_keyword": "팬티",
+      "color": "베이지",
+      "size": "S",
+      "material": "면",
+      "created_at": "2025-07-04T00:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 19,
+    "fields": {
+      "external_id": "팬티_009",
+      "title": "팬티 더미 상품 9",
+      "price": "10800",
+      "image_url": "https://example.com/팬티9.jpg",
+      "link": "https://example.com/팬티/9",
+      "shop": "에이블리",
+      "source_keyword": "팬티",
+      "color": "블랙",
+      "size": "M",
+      "material": "폴리에스터",
+      "created_at": "2025-07-04T00:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 20,
+    "fields": {
+      "external_id": "팬티_010",
+      "title": "팬티 더미 상품 10",
+      "price": "10900",
+      "image_url": "https://example.com/팬티10.jpg",
+      "link": "https://example.com/팬티/10",
+      "shop": "지그재그",
+      "source_keyword": "팬티",
+      "color": "화이트",
+      "size": "L",
+      "material": "스판덱스",
+      "created_at": "2025-07-04T00:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 21,
+    "fields": {
+      "external_id": "패치_001",
+      "title": "패치 더미 상품 1",
+      "price": "10000",
+      "image_url": "https://example.com/패치1.jpg",
+      "link": "https://example.com/패치/1",
+      "shop": "지그재그",
+      "source_keyword": "패치",
+      "color": "블랙",
+      "size": "M",
+      "material": "폴리에스터",
+      "created_at": "2025-07-04T00:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 22,
+    "fields": {
+      "external_id": "패치_002",
+      "title": "패치 더미 상품 2",
+      "price": "10100",
+      "image_url": "https://example.com/패치2.jpg",
+      "link": "https://example.com/패치/2",
+      "shop": "무신사",
+      "source_keyword": "패치",
+      "color": "화이트",
+      "size": "L",
+      "material": "스판덱스",
+      "created_at": "2025-07-04T00:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 23,
+    "fields": {
+      "external_id": "패치_003",
+      "title": "패치 더미 상품 3",
+      "price": "10200",
+      "image_url": "https://example.com/패치3.jpg",
+      "link": "https://example.com/패치/3",
+      "shop": "에이블리",
+      "source_keyword": "패치",
+      "color": "핑크",
+      "size": "XL",
+      "material": "나일론",
+      "created_at": "2025-07-04T00:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 24,
+    "fields": {
+      "external_id": "패치_004",
+      "title": "패치 더미 상품 4",
+      "price": "10300",
+      "image_url": "https://example.com/패치4.jpg",
+      "link": "https://example.com/패치/4",
+      "shop": "지그재그",
+      "source_keyword": "패치",
+      "color": "베이지",
+      "size": "S",
+      "material": "면",
+      "created_at": "2025-07-04T00:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 25,
+    "fields": {
+      "external_id": "패치_005",
+      "title": "패치 더미 상품 5",
+      "price": "10400",
+      "image_url": "https://example.com/패치5.jpg",
+      "link": "https://example.com/패치/5",
+      "shop": "무신사",
+      "source_keyword": "패치",
+      "color": "블랙",
+      "size": "M",
+      "material": "폴리에스터",
+      "created_at": "2025-07-04T00:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 26,
+    "fields": {
+      "external_id": "패치_006",
+      "title": "패치 더미 상품 6",
+      "price": "10500",
+      "image_url": "https://example.com/패치6.jpg",
+      "link": "https://example.com/패치/6",
+      "shop": "에이블리",
+      "source_keyword": "패치",
+      "color": "화이트",
+      "size": "L",
+      "material": "스판덱스",
+      "created_at": "2025-07-04T00:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 27,
+    "fields": {
+      "external_id": "패치_007",
+      "title": "패치 더미 상품 7",
+      "price": "10600",
+      "image_url": "https://example.com/패치7.jpg",
+      "link": "https://example.com/패치/7",
+      "shop": "지그재그",
+      "source_keyword": "패치",
+      "color": "핑크",
+      "size": "XL",
+      "material": "나일론",
+      "created_at": "2025-07-04T00:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 28,
+    "fields": {
+      "external_id": "패치_008",
+      "title": "패치 더미 상품 8",
+      "price": "10700",
+      "image_url": "https://example.com/패치8.jpg",
+      "link": "https://example.com/패치/8",
+      "shop": "무신사",
+      "source_keyword": "패치",
+      "color": "베이지",
+      "size": "S",
+      "material": "면",
+      "created_at": "2025-07-04T00:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 29,
+    "fields": {
+      "external_id": "패치_009",
+      "title": "패치 더미 상품 9",
+      "price": "10800",
+      "image_url": "https://example.com/패치9.jpg",
+      "link": "https://example.com/패치/9",
+      "shop": "에이블리",
+      "source_keyword": "패치",
+      "color": "블랙",
+      "size": "M",
+      "material": "폴리에스터",
+      "created_at": "2025-07-04T00:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 30,
+    "fields": {
+      "external_id": "패치_010",
+      "title": "패치 더미 상품 10",
+      "price": "10900",
+      "image_url": "https://example.com/패치10.jpg",
+      "link": "https://example.com/패치/10",
+      "shop": "지그재그",
+      "source_keyword": "패치",
+      "color": "화이트",
+      "size": "L",
+      "material": "스판덱스",
+      "created_at": "2025-07-04T00:00:00Z"
+    }
+  }
+]
