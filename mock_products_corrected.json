@@ -1,0 +1,344 @@
+[
+  {
+    "model": "products.product",
+    "pk": 1,
+    "fields": {
+      "external_id": "129096818",
+      "title": "\uD83E\uDE75당일출고\uD83E\uDE75 2+1 여성 편한 심리스 노와이어 노라인 들뜸없는 브라렛 홑겹 패드 브래지어 브라자 여름 누드 브라 탑 속옷 세트 A B C D 컵",
+      "price": "15900",
+      "image_url": "https://cf.product-image.s.zigzag.kr/original/d/2024/9/4/19464_202409041719510450_49196.jpeg?width=720&height=720&quality=80&format=webp",
+      "link": "https://zigzag.kr/catalog/products/129096818",
+      "shop": "라크네",
+      "source_keyword": "브래지어",
+      "color": "블랙, 스킨",
+      "size": "M, L, XL, S",
+      "material": "나일론",
+      "categories": [1],
+      "subcategories": [2, 3, 4, 10],
+      "created_at": "2025-07-04T00:00:01Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 2,
+    "fields": {
+      "external_id": "162243508",
+      "title": "[자체제작]3cm 매끈볼륨브라 리얼컴포트 볼륨브라 브라단품 노와이어 심리스 옆볼륨 노후크 편한브라",
+      "price": "24500",
+      "image_url": "https://cf.product-image.s.zigzag.kr/original/d/2024/9/24/1478_202409241234570326_85644.jpeg?width=720&height=720&quality=80&format=webp",
+      "link": "https://zigzag.kr/catalog/products/162243508",
+      "shop": "크라시앙",
+      "source_keyword": "브래지어",
+      "color": "블랙, 베이지",
+      "size": "S, M, L",
+      "material": "폴리에스테르, 나일론",
+      "categories": [1],
+      "subcategories": [2],
+      "created_at": "2025-07-04T00:00:02Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 3,
+    "fields": {
+      "external_id": "161121651",
+      "title": "멜로우데이 후크형 브라 1+1",
+      "price": "54430",
+      "image_url": "https://cf.product-image.s.zigzag.kr/original/c/16/112/165/161121651-5246449883811576979.jpeg?width=720&height=720&quality=80&format=webp",
+      "link": "https://zigzag.kr/catalog/products/161121651",
+      "shop": "젝시믹스",
+      "source_keyword": "브래지어",
+      "color": "블랙, 슈가그레이, 쿨그레이, 파스텔피치, 파우더크림, 포그스킨, 로즈블라썸, 밀키블루",
+      "size": "XS, S, M, L, XL, XXL",
+      "material": "나일론",
+      "categories": [1],
+      "subcategories": [2],
+      "created_at": "2025-07-04T00:00:03Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 4,
+    "fields": {
+      "external_id": "109802975",
+      "title": "[마이스킨] 드라마틱 앞후크브라",
+      "price": "24900",
+      "image_url": "https://cf.product-image.s.zigzag.kr/original/c/10/980/297/109802975-9133498632169812369.jpeg?width=720&height=720&quality=80&format=webp",
+      "link": "https://zigzag.kr/catalog/products/109802975",
+      "shop": "뽕브라몰",
+      "source_keyword": "브래지어",
+      "color": "스킨베이지, 모카, 블랙",
+      "size": "70AB, 75AB, 80AB, 85AB",
+      "material": "나일론, 스판덱스",
+      "categories": [1],
+      "subcategories": [2, 9, 19],
+      "created_at": "2025-07-04T00:00:04Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 5,
+    "fields": {
+      "external_id": "142452634",
+      "title": "[수슬리 pick] 누디 오프숄더 브라 단품",
+      "price": "32000",
+      "image_url": "https://cf.product-image.s.zigzag.kr/original/d/2025/6/26/1357_202506261110010296_83904.jpeg?width=720&height=720&quality=80&format=webp",
+      "link": "https://zigzag.kr/catalog/products/142452634",
+      "shop": "도로시와",
+      "source_keyword": "브래지어",
+      "color": "화이트, 베이지, 블랙",
+      "size": "S, M, L, XL",
+      "material": "나일론, 스판덱스",
+      "categories": [1],
+      "subcategories": [1, 9],
+      "created_at": "2025-07-04T00:00:05Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 6,
+    "fields": {
+      "external_id": "122071236",
+      "title": "<패드일체형브라탑/1+1할인/당일발송/무배> 일체형 면 스판 브라 브라탑 노와이어 볼륨패드 스포츠브라 학생 브래지어",
+      "price": "10900",
+      "image_url": "https://cf.product-image.s.zigzag.kr/original/d/2025/2/6/26898_202502061457580671_51869.jpeg?width=720&height=720&quality=80&format=webp",
+      "link": "https://zigzag.kr/catalog/products/122071236",
+      "shop": "브라랄라",
+      "source_keyword": "브래지어",
+      "color": "화이트, 코코아, 그레이, 블랙",
+      "size": "M, L, XL",
+      "material": "면, 스판",
+      "categories": [1],
+      "subcategories": [2, 9],
+      "created_at": "2025-07-04T00:00:06Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 7,
+    "fields": {
+      "external_id": "146871472",
+      "title": "쉬어 브라 서포트 푸쉬업",
+      "price": "15900",
+      "image_url": "https://cf.product-image.s.zigzag.kr/original/d/2024/8/26/6782_202408261350380687_36147.jpeg?width=720&height=720&quality=80&format=webp",
+      "link": "https://zigzag.kr/catalog/products/146871472",
+      "shop": "마른파이브",
+      "source_keyword": "브래지어",
+      "color": "스킨, 블랙",
+      "size": "70AB, 75AB, 75CD, 80AB, 80CD, 85AB, 85CD, 90CD, 95CD",
+      "material": "나일론, 폴리우레탄",
+      "categories": [1],
+      "subcategories": [12],
+      "created_at": "2025-07-04T00:00:07Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 8,
+    "fields": {
+      "external_id": "114226670",
+      "title": "누브라 실리콘 3D (수영복용)",
+      "price": "85000",
+      "image_url": "https://cf.product-image.s.zigzag.kr/original/d/2025/6/26/19367_202506261435190590_29779.jpeg?width=720&height=720&quality=80&format=webp",
+      "link": "https://zigzag.kr/catalog/products/114226670",
+      "shop": "누브라",
+      "source_keyword": "브래지어",
+      "color": "베이지",
+      "size": "A, B, C, D",
+      "material": "실리콘",
+      "categories": [1],
+      "subcategories": [7],
+      "created_at": "2025-07-04T00:00:08Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 9,
+    "fields": {
+      "external_id": "4108081",
+      "title": "LSBR-416 앞후크 브라렛",
+      "price": "23200",
+      "image_url": "https://image.msscdn.net/thumbnails/images/goods_img/20240506/4108081/4108081_17176317870754_big.jpg?w=1200",
+      "link": "https://www.musinsa.com/products/4108081",
+      "shop": "르세렌",
+      "source_keyword": "브래지어",
+      "color": "화이트, 스킨, 그레이, 블랙",
+      "size": "S, M, L, S+, M+, L+",
+      "material": "패브릭, 비스코스, 스판덱스",
+      "categories": [1],
+      "subcategories": [2, 14, 19],
+      "created_at": "2025-07-04T00:00:09Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 10,
+    "fields": {
+      "external_id": "4259448",
+      "title": "라일리 브라렛",
+      "price": "28800",
+      "image_url": "https://image.msscdn.net/thumbnails/images/goods_img/20240718/4259448/4259448_17212963273394_big.jpg?w=1200",
+      "link": "https://www.musinsa.com/products/4259448",
+      "shop": "오끌레르",
+      "source_keyword": "브래지어",
+      "color": "화이트",
+      "size": "S, M, L",
+      "material": "폴리에스테르",
+      "categories": [1],
+      "subcategories": [2, 4, 14],
+      "created_at": "2025-07-04T00:00:10Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 11,
+    "fields": {
+      "external_id": "3188488",
+      "title": "노라인 햄팬티 5종 세트 케이스",
+      "price": "12900",
+      "image_url": "https://image.msscdn.net/thumbnails/images/goods_img/20230329/3188488/3188488_16844721834940_big.jpg?w=1200",
+      "link": "https://www.musinsa.com/products/3188488",
+      "shop": "도씨",
+      "source_keyword": "팬티",
+      "color": "베이지, 스킨, 블랙, 바이올렛, 핑크",
+      "size": "85, 90, 95, 100, 105",
+      "material": "나일론, 폴리에스테르, 폴리우레탄",
+      "categories": [2],
+      "subcategories": [3],
+      "created_at": "2025-07-04T00:00:11Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 12,
+    "fields": {
+      "external_id": "4634939",
+      "title": "[5PACK] 베이직 코튼 삼각팬티_5colors",
+      "price": "32500",
+      "image_url": "https://image.msscdn.net/thumbnails/images/goods_img/20241125/4634939/4634939_17326833367603_big.jpg?w=1200",
+      "link": "https://www.musinsa.com/products/4634939",
+      "shop": "도로시와",
+      "source_keyword": "팬티",
+      "color": "블랙, 화이트, 뉴트럴베이지, 라이트그레이, 차콜",
+      "size": "S, M, L, XL, XXL",
+      "material": "면, 폴리우레탄",
+      "categories": [2],
+      "subcategories": [14],
+      "created_at": "2025-07-04T00:00:12Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 13,
+    "fields": {
+      "external_id": "2285940",
+      "title": "컴포트모션 심리스 여성 드로즈",
+      "price": "12900",
+      "image_url": "https://image.msscdn.net/thumbnails/images/goods_img/20211229/2285940/2285940_1_big.jpg?w=1200",
+      "link": "https://www.musinsa.com/products/2285940",
+      "shop": "발데블랑코",
+      "source_keyword": "팬티",
+      "color": "베이지, 블랙",
+      "size": "90, 95, 100, 105",
+      "material": "나일론, 폴리우레탄",
+      "categories": [2],
+      "subcategories": [15, 16],
+      "created_at": "2025-07-04T00:00:13Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 14,
+    "fields": {
+      "external_id": "156848234",
+      "title": "[삼각/당일출고] 삼각팬티 순면 여성 웨딩 하이웨스트 팬티 속옷 심리스 여자 드로즈 드레스 이너 팬티 2color",
+      "price": "5900",
+      "image_url": "https://cf.product-image.s.zigzag.kr/original/d/2025/1/20/15083_202501201622570551_76824.jpeg?width=720&height=720&quality=80&format=webp",
+      "link": "https://zigzag.kr/catalog/products/156848234",
+      "shop": "라이프롬",
+      "source_keyword": "팬티",
+      "color": "블랙, 베이지",
+      "size": "M, L, XL, 2XL",
+      "material": "나일론, 스판덱스, 면",
+      "categories": [2],
+      "subcategories": [3, 14, 17],
+      "created_at": "2025-07-04T00:00:14Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 15,
+    "fields": {
+      "external_id": "136656297",
+      "title": "[1+1 특가/엣프터]라라트렁크 하이웨스트 임산부 팬티(편한팬티,입소문템,재구매템)",
+      "price": "32120",
+      "image_url": "https://cf.product-image.s.zigzag.kr/original/d/2025/5/20/40776_202505201705570271_77605.jpeg?width=720&height=720&quality=80&format=webp",
+      "link": "https://zigzag.kr/catalog/products/136656297",
+      "shop": "엣프터",
+      "source_keyword": "팬티",
+      "color": "딥 네이비, 진저 옐로우, 스킨 베이지, 파우더 블루, 세이지 그린, 라이트 쿨블랙, 라이트 모브핑크, 라이트 베리페리, 라이트 그린애플, 라이트 버터크림",
+      "size": "FREE, XL, 2XL",
+      "material": "텐셀 라이오셀, 면, 스판",
+      "categories": [2],
+      "subcategories": [15, 17],
+      "created_at": "2025-07-04T00:00:15Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 16,
+    "fields": {
+      "external_id": "161090240",
+      "title": "프리플 하프컵 니플 패치",
+      "price": "15300",
+      "image_url": "https://cf.product-image.s.zigzag.kr/original/d/2025/5/13/6782_202505131358440299_85509.jpeg?width=720&height=720&quality=80&format=webp",
+      "link": "https://zigzag.kr/catalog/products/161090240",
+      "shop": "마른파이브",
+      "source_keyword": "패치",
+      "color": "스킨",
+      "size": "FREE",
+      "material": "실리콘",
+      "categories": [3],
+      "subcategories": [11, 18],
+      "created_at": "2025-07-04T00:00:16Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 17,
+    "fields": {
+      "external_id": "135462412",
+      "title": "당일발송\uD83D\uDE80 1+1할인 [다회용] A-F 양면 누드브라 (빅사이즈 니플패치 웨딩 드레스 오프숄더브라 비키니 누브라 비키니패드 양면접착)",
+      "price": "10100",
+      "image_url": "https://cf.product-image.s.zigzag.kr/original/c/13/546/241/135462412-5035507058116465062.jpeg?width=720&height=720&quality=80&format=webp",
+      "link": "https://zigzag.kr/catalog/products/135462412",
+      "shop": "드레스코드에이치디",
+      "source_keyword": "패치",
+      "color": "스킨",
+      "size": "FREE",
+      "material": "실리콘",
+      "categories": [3],
+      "subcategories": [7, 18, 19],
+      "created_at": "2025-07-04T00:00:17Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 18,
+    "fields": {
+      "external_id": "4203660",
+      "title": "버터브라 실리콘 니플패치",
+      "price": "12900",
+      "image_url": "https://image.msscdn.net/thumbnails/images/goods_img/20240618/4203660/4203660_17186924642556_big.png?w=1200",
+      "link": "https://www.musinsa.com/products/4203660",
+      "shop": "몽잘",
+      "source_keyword": "패치",
+      "color": "스킨",
+      "size": "FREE",
+      "material": "실리콘",
+      "categories": [3],
+      "subcategories": [18],
+      "created_at": "2025-07-04T00:00:18Z"
+    }
+  }
+]
