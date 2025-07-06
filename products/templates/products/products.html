@@ -136,13 +136,13 @@
       }
       /* 카드 */
       .item-card {
-        min-width: 140px;
+        min-width: 170px;
         flex: 0 0 auto;
       }
       .item-img-wrap {
         position: relative;
-        width: 140px;
-        height: 140px;
+        width: 170px;
+        height: 170px;
         border-radius: 8px;
         overflow: hidden;
       }
@@ -193,13 +193,17 @@
         font-size: 12px;
         color: #666;
       }
-      .item-desc {
-        font-size: 12px;
-        color: #333;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
+   .item-desc{
+  font-size:12px;
+  color:#333;
+  display:-webkit-box;          /* 플렉스 비슷한 멀티라인 박스 */
+  -webkit-line-clamp:2;         /* 두 줄까지만!! */
+  -webkit-box-orient:vertical;
+  overflow:hidden;              /* 넘치면 숨기기 */
+  text-overflow:ellipsis;       /* … 표시 */
+  word-break:keep-all;          /* 단어 단위 줄바꿈 */
+}
+
       .divider {
         width: 390px;
         height: 7px;
@@ -307,19 +311,17 @@
 
 
     <!-- 하단 네비 -->
-    <nav class="bottom-nav">
-      <a href="#" class="nav-item active"
-        ><img src="{% static 'products/productimg/home.png' %}" alt="home"
-      /></a>
-      <a href="#" class="nav-item"
-        ><img
-          src="{% static 'products/productimg/review.png' %}"
-          alt="review"
-      /></a>
-      <a href="#" class="nav-item"
-        ><img src="{% static 'products/productimg/user.png' %}" alt="mypage"
-      /></a>
-    </nav>
+<nav class="bottom-nav">
+  <a href="#" class="nav-item active" data-icon="home">
+    <img src="{% static 'products/productimg/home.png' %}" alt="home" />
+  </a>
+  <a href="#" class="nav-item" data-icon="review">
+    <img src="{% static 'products/productimg/review.png' %}" alt="review" />
+  </a>
+  <a href="#" class="nav-item" data-icon="user">
+    <img src="{% static 'products/productimg/user.png' %}" alt="mypage" />
+  </a>
+</nav>
     <!-- 더미데이터 이용-->
     <script>
       const recentViewed = [
@@ -381,6 +383,26 @@
       }
       updateClock();
       setInterval(updateClock, 60000);
+
+      /* bottom nav active 토글 */
+document.querySelectorAll(".nav-item").forEach((item) =>
+  item.addEventListener("click", (e) => {
+    e.preventDefault();                         // SPA 느낌 유지용
+    /* 모든 아이콘 원래 색으로 초기화 */
+    document.querySelectorAll(".nav-item").forEach((el) => {
+      el.classList.remove("active");
+      const icon = el.dataset.icon;
+      el.querySelector("img").src =
+        `{% static 'products/productimg/' %}` + icon + ".png";
+    });
+    /* 선택 아이콘만 빨간색으로!! */
+    item.classList.add("active");
+    const activeIcon = item.dataset.icon;
+    item.querySelector("img").src =
+      `{% static 'products/productimg/' %}` + activeIcon + "_red.png";
+  })
+);
+
     </script>
   </body>
 </html>
