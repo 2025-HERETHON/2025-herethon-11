@@ -136,13 +136,13 @@
       }
       /* 카드 */
       .item-card {
-        min-width: 170px;
+        min-width: 160px;
         flex: 0 0 auto;
       }
       .item-img-wrap {
         position: relative;
-        width: 170px;
-        height: 170px;
+        width: 160px;
+        height: 160px;
         border-radius: 8px;
         overflow: hidden;
       }
@@ -193,17 +193,16 @@
         font-size: 12px;
         color: #666;
       }
-   .item-desc{
-  font-size:12px;
-  color:#333;
-  display:-webkit-box;          /* 플렉스 비슷한 멀티라인 박스 */
-  -webkit-line-clamp:2;         /* 두 줄까지만!! */
-  -webkit-box-orient:vertical;
-  overflow:hidden;              /* 넘치면 숨기기 */
-  text-overflow:ellipsis;       /* … 표시 */
-  word-break:keep-all;          /* 단어 단위 줄바꿈 */
-}
-
+      .item-desc {
+        font-size:12px;
+        color:#333;
+         display:-webkit-box;        
+        -webkit-line-clamp:2;         
+        -webkit-box-orient:vertical;
+        overflow:hidden;              
+        text-overflow:ellipsis;       
+        word-break:keep-all; 
+      }
       .divider {
         width: 390px;
         height: 7px;
@@ -251,6 +250,14 @@
       .page-content {
         padding-bottom: 90px;
       }
+      .nav-icon {
+      width: var(--nav-icon-size);
+      height: var(--nav-icon-size);
+      object-fit: contain;
+      margin-bottom: 4px;
+      transition: transform .2s;
+      }
+     .nav-item.active .nav-icon { transform: scale(1.1); }
     </style>
   </head>
   <body>
@@ -311,17 +318,19 @@
 
 
     <!-- 하단 네비 -->
-<nav class="bottom-nav">
+   <nav class="bottom-nav">
+  <!-- ① data-icon 속성 추가 ② home만 빨간 아이콘로 시작 -->
   <a href="#" class="nav-item active" data-icon="home">
-    <img src="{% static 'products/productimg/home.png' %}" alt="home" />
+    <img src="{% static 'products/productimg/home_red.png' %}" alt="home" class="nav-icon" />홈
   </a>
   <a href="#" class="nav-item" data-icon="review">
-    <img src="{% static 'products/productimg/review.png' %}" alt="review" />
+    <img src="{% static 'products/productimg/review.png' %}" alt="review" class="nav-icon" />리뷰
   </a>
   <a href="#" class="nav-item" data-icon="user">
-    <img src="{% static 'products/productimg/user.png' %}" alt="mypage" />
+    <img src="{% static 'products/productimg/user.png' %}" alt="mypage" class="nav-icon" />마이
   </a>
 </nav>
+
     <!-- 더미데이터 이용-->
     <script>
       const recentViewed = [
@@ -384,24 +393,32 @@
       updateClock();
       setInterval(updateClock, 60000);
 
-      /* bottom nav active 토글 */
-document.querySelectorAll(".nav-item").forEach((item) =>
-  item.addEventListener("click", (e) => {
-    e.preventDefault();                         // SPA 느낌 유지용
-    /* 모든 아이콘 원래 색으로 초기화 */
-    document.querySelectorAll(".nav-item").forEach((el) => {
-      el.classList.remove("active");
-      const icon = el.dataset.icon;
-      el.querySelector("img").src =
-        `{% static 'products/productimg/' %}` + icon + ".png";
+ /* === 바텀 네비게이션 === */
+const STATIC_PATH = "{% static 'products/productimg/' %}";
+const navItems   = document.querySelectorAll(".bottom-nav .nav-item");
+
+navItems.forEach(item => {
+  item.addEventListener("click", e => {
+    e.preventDefault();              
+    /* 1. 모든 아이콘 & 글자 초기화 */
+    navItems.forEach(n => {
+      const base = n.dataset.icon;
+      n.classList.remove("active");
+      n.querySelector("img").src = STATIC_PATH + base + ".png";
     });
-    /* 선택 아이콘만 빨간색으로!! */
+    /* 2. 선택된 아이콘만 빨간색으로 */
+    const base = item.dataset.icon;
     item.classList.add("active");
-    const activeIcon = item.dataset.icon;
-    item.querySelector("img").src =
-      `{% static 'products/productimg/' %}` + activeIcon + "_red.png";
-  })
-);
+    item.querySelector("img").src = STATIC_PATH + base + "_red.png";
+
+    if (base === "home") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      alert("준비 중인 페이지입니다 "); // 추후 링크 연결
+    }
+  });
+});
+
 
     </script>
   </body>
