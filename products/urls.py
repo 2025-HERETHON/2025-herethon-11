@@ -1,7 +1,10 @@
 # products/urls.py
 from django.urls import path
-from .views.home_views import home
+from .views import home, toggle_like  # ← 명확하게 불러오자
 
 urlpatterns = [
-    path('', home, name='home'),  # 이게 있어야 / 로 접속할 수 있어
+    path('', home, name='home'),
+    path('like/<int:product_id>/', toggle_like, name='toggle_like'),
 ]
+
+
