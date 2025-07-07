@@ -167,3 +167,10 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+from decouple import config
+
+SOCIAL_AUTH_GOOGLE_CLIENT_ID = config('GOOGLE_CLIENT_ID')
+SOCIAL_AUTH_GOOGLE_SECRET = config('GOOGLE_SECRET')
+SOCIAL_AUTH_KAKAO_CLIENT_ID = config('KAKAO_CLIENT_ID')
+SOCIAL_AUTH_KAKAO_SECRET = config('KAKAO_SECRET')
