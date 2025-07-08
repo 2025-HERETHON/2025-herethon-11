@@ -154,6 +154,7 @@
         z-index: 0;
       }
       .heart {
+        all: unset;
         position: absolute;
         top: 8px;
         right: 8px;
@@ -299,18 +300,25 @@
 </div>
 <div class="recommend-grid" id="rec-wrap">
   {% for product in rec_items %}
-    <div class="item-card">
-      <div class="item-img-wrap">
-        <img src="{{ product.image_url }}" alt="{{ product.title }}">
-        <span class="heart"></span>
-        <span class="wear"></span>
-      </div>
-      <div class="item-info">
-        <div class="item-price">{{ product.price }}원</div>
-        <div class="item-brand">{{ product.shop }}</div>
-        <div class="item-desc">{{ product.title }}</div>
-      </div>
-    </div>
+<!-- templates 안에 있는 HTML 코드의 추천 상품 카드 부분 -->
+<div class="item-card">
+  <div class="item-img-wrap">
+    <img src="{{ product.image_url }}" alt="{{ product.title }}">
+
+    <form method="POST" action="{% url 'toggle_like' product.id %}">
+      {% csrf_token %}
+      <button type="submit" class="heart {% if user in product.liked_users.all %}liked{% endif %}"></button>
+    </form>
+
+    <span class="wear"></span>
+  </div>
+  <div class="item-info">
+    <div class="item-price">{{ product.price }}원</div>
+    <div class="item-brand">{{ product.shop }}</div>
+    <div class="item-desc">{{ product.title }}</div>
+  </div>
+</div>
+
   {% empty %}
     <p style="padding: 0 15px">추천 상품이 없습니다.</p>
   {% endfor %}
@@ -367,11 +375,11 @@
         .map(makeCard)
         .join("");
       // 하트
-        document.addEventListener("DOMContentLoaded", function () {
-          document.querySelectorAll(".heart").forEach((h) =>
-            h.addEventListener("click", () => h.classList.toggle("liked"))
-          );
-        });
+      //   document.addEventListener("DOMContentLoaded", function () {
+      //     document.querySelectorAll(".heart").forEach((h) =>
+      //       h.addEventListener("click", () => h.classList.toggle("liked"))
+      //     );
+      //   });
 
       /* 착용 제품 */ document
         .querySelectorAll(".wear")
