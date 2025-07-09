@@ -305,11 +305,12 @@
       }
 
       .manual-input input {
-        width: 149px;
+        width: 160px;
         height: 30px;
         padding: 6px;
         border-radius: 6px;
         border: 1px solid #ccc;
+        font-size: 10px;
       }
       .manual-input-input {
         align-items: center;
@@ -388,6 +389,31 @@
         width: 240px;
         height: 56px;
       }
+      #hipAlertOverlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.65);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+      }
+
+      .hip-alert-box {
+        width: 312px;
+        height: 81px;
+        background: white;
+        border-radius: 5px;
+        text-align: center;
+        padding: 20px;
+        font-size: 14px;
+        color: #000;
+        line-height: 20px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+      }
     </style>
   </head>
   <body>
@@ -428,17 +454,28 @@
         </div>
         <div class="measure-panel">
           <div class="result-box" id="cupResult"></div>
-          <button class="measure-btn" onclick="calculateCup(this)">
+          <button
+            class="measure-btn"
+            id="cupMeasureBtn"
+            onclick="calculateCup(this)"
+          >
             사이즈 측정
           </button>
         </div>
         <div class="input-toggle" onclick="toggleManualInput('cup')">
           컵 사이즈 직접 입력
-          <img src="{% static 'account/img/toggle1.png' %}" alt="" id="cupArrow" />
+          <img
+            src="{% static 'account/img/toggle1.png' %}"
+            alt=""
+            id="cupArrow"
+          />
         </div>
         <div class="manual-input-wrapper">
           <div class="manual-input" id="manualCupInput" style="display: none">
-            <input type="text" placeholder="컵 사이즈를 입력해 주세요" />
+            <input
+              type="text"
+              placeholder="컵 사이즈를 입력해 주세요 ex) 75B"
+            />
           </div>
         </div>
       </div>
@@ -458,7 +495,11 @@
         </div>
         <div class="measure-panel" style="align-items: flex-end">
           <div class="result-box" id="hipResult"></div>
-          <button class="measure-btn" onclick="calculateHip(this)">
+          <button
+            class="measure-btn"
+            id="hipMeasureBtn"
+            onclick="calculateHip(this)"
+          >
             사이즈 측정
           </button>
         </div>
@@ -479,10 +520,10 @@
         <strong>키 / 몸무게</strong>
         <div class="input-group">
           <div class="input-box">
-            키: <input type="number" placeholder="0" id="height"/> cm
+            키: <input type="number" placeholder="0" id="height" /> cm
           </div>
           <div class="input-box">
-            몸무게: <input type="number" placeholder="0" id="weight"/> kg
+            몸무게: <input type="number" placeholder="0" id="weight" /> kg
           </div>
         </div>
       </div>
@@ -493,10 +534,18 @@
       <button class="btn save" onclick="saveData()">저장하기</button>
     </div>
 
+    {% comment %} 팝업창 {% endcomment %}
+    <div id="hipAlertOverlay" style="display: none">
+      <div class="hip-alert-box">
+        힙 둘레는 82보다 작거나 117보다<br />클 수 없습니다. 다시 입력해 주세요.
+      </div>
+    </div>
+
     <script>
       document.cookie = "csrftoken={{ csrf_token }}; path=/";
 
-      function getCSRFToken() { //POST요청 보내기 위해 필요
+      function getCSRFToken() {
+        //POST요청 보내기 위해 필요
         const cookieValue = document.cookie
           .split("; ")
           .find((row) => row.startsWith("csrftoken="));
@@ -505,8 +554,13 @@
 
       function calculateCup(btn) {
         const bust = getSelectedValue(document.getElementById("topBust"));
-        const underbust = getSelectedValue(document.getElementById("underBust"));
+        const underbust = getSelectedValue(
+          document.getElementById("underBust")
+        );
         const isPublic = document.getElementById("privacyToggle").checked;
+
+        const manualCup = document.getElementById("manualCupInput");
+        if (manualCup.style.display === "block") return; //사이즈 직접 입력 시 버튼 실행 안되도록
 
         if (!isPublic) {
           document.getElementById("cupResult").innerText = "";
@@ -525,27 +579,37 @@
           },
           body: JSON.stringify({ bust, underbust }),
         })
-        .then(res => res.json())
-        .then(data => {
-          // cup_size 결과 처리
-          document.getElementById("cupResult").innerText = data.cup_size;
-          btn.classList.add("active");
-        });
+          .then((res) => res.json())
+          .then((data) => {
+            // cup_size 결과 처리
+            document.getElementById("cupResult").innerText = data.cup_size;
+            btn.classList.add("active");
+          });
       }
 
-      function calculateHip(btn){
+      function calculateHip(btn) {
         const waist = parseInt(document.getElementById("waistInput").value);
         const hip = parseInt(document.getElementById("hipInput").value);
         const isPublic = document.getElementById("privacyToggle").checked;
+
+        const manualHip = document.getElementById("manualHipInput");
+        if (manualHip.style.display === "block") return; //사이즈 직접 입력 시 버튼 실행 안되도록
 
         if (!isPublic) {
           document.getElementById("hipResult").innerText = "";
           btn.classList.remove("active");
           return;
         }
-        
+
         if (isNaN(waist) || isNaN(hip)) {
           alert("허리와 힙 둘레를 모두 입력해주세요.");
+          return;
+        }
+        if (hip < 82 || hip > 117) {
+          document.getElementById("hipAlertOverlay").style.display = "flex";
+          setTimeout(() => {
+            document.getElementById("hipAlertOverlay").style.display = "none";
+          }, 2000); // 2초 후 자동 닫힘
           return;
         }
 
@@ -560,12 +624,12 @@
           },
           body: JSON.stringify({ waist, hip }),
         })
-        .then(res => res.json())
-        .then(data => {
-          // pelvis_size 결과 처리
-          document.getElementById("hipResult").innerText = data.pelvis_size;
-          btn.classList.add("active");
-        });
+          .then((res) => res.json())
+          .then((data) => {
+            // pelvis_size 결과 처리
+            document.getElementById("hipResult").innerText = data.pelvis_size;
+            btn.classList.add("active");
+          });
       }
 
       function getSelectedValue(el) {
@@ -631,21 +695,25 @@
         inputBox.style.display = isVisible ? "none" : "block";
 
         if (arrow) {
-          arrow.src = isVisible ? "{% static 'account/img/toggle1.png' %}" : "{% static 'account/img/toggle.png' %}"; // ▲ ▼ 토글
+          arrow.src = isVisible
+            ? "{% static 'account/img/toggle1.png' %}"
+            : "{% static 'account/img/toggle.png' %}"; // ▲ ▼ 토글
         }
       }
 
-      document.getElementById("privacyToggle").addEventListener("change", function () {
-        const label = document.getElementById("privacyLabel");
-        const tcontainer = document.querySelector(".toggle-container");
-        if (this.checked) {
-          label.textContent = "공개";
-          tcontainer.classList.add("public");
-        } else {
-          label.textContent = "비공개";
-          tcontainer.classList.remove("public");
-        }
-      });
+      document
+        .getElementById("privacyToggle")
+        .addEventListener("change", function () {
+          const label = document.getElementById("privacyLabel");
+          const tcontainer = document.querySelector(".toggle-container");
+          if (this.checked) {
+            label.textContent = "공개";
+            tcontainer.classList.add("public");
+          } else {
+            label.textContent = "비공개";
+            tcontainer.classList.remove("public");
+          }
+        });
 
       function resetAll() {
         document
@@ -661,7 +729,9 @@
 
       function saveData() {
         const bust = getSelectedValue(document.getElementById("topBust"));
-        const underbust = getSelectedValue(document.getElementById("underBust"));
+        const underbust = getSelectedValue(
+          document.getElementById("underBust")
+        );
         const cup_size = document.getElementById("cupResult").innerText;
         const waist = parseInt(document.getElementById("waistInput").value);
         const hip = parseInt(document.getElementById("hipInput").value);
@@ -670,13 +740,31 @@
         const weight = parseInt(document.getElementById("weight").value);
         const csrfToken = getCSRFToken();
 
-        console.log({ bust, underbust, cup_size, waist, hip, pelvis_size, height, weight });
-        
-        if (!bust || !underbust || !cup_size || !waist || !hip || !pelvis_size || !height || !weight) {
+        console.log({
+          bust,
+          underbust,
+          cup_size,
+          waist,
+          hip,
+          pelvis_size,
+          height,
+          weight,
+        });
+
+        if (
+          !bust ||
+          !underbust ||
+          !cup_size ||
+          !waist ||
+          !hip ||
+          !pelvis_size ||
+          !height ||
+          !weight
+        ) {
           alert("사이즈를 모두 측정한 후 저장하세요.");
           return;
         }
-        
+
         //최종 입력 사이즈 저장
         fetch("/user/save-body-info/", {
           method: "POST",
@@ -684,10 +772,19 @@
             "Content-Type": "application/json",
             "X-CSRFToken": csrfToken,
           },
-          body: JSON.stringify({ bust, underbust, cup_size, waist, hip, height, weight, pelvis_size }),
+          body: JSON.stringify({
+            bust,
+            underbust,
+            cup_size,
+            waist,
+            hip,
+            height,
+            weight,
+            pelvis_size,
+          }),
         })
-          .then(res => res.json())
-          .then(data => {
+          .then((res) => res.json())
+          .then((data) => {
             if (data.message) alert("저장 완료!");
             else alert("오류 발생: " + data.error);
           });
