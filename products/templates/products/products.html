@@ -105,6 +105,7 @@
         font-size: 14px;
       }
       .search-icon {
+        all: unset;
         width: 18px;
         height: 18px;
         background: url("{% static 'products/productimg/black.png' %}")
@@ -370,14 +371,14 @@
         margin: 0 0 6px 16px;
         border-radius: 6px;
         cursor: pointer;
-        background: url("/products/static/products/productimg/wore.png")
+        background: url("{% static 'products/productimg/wore.png' %}");
           center/contain no-repeat;
         border: none;
         color: transparent;
         text-indent: -9999px;
       }
       .tag-btn.outline.loaded {
-        background-image: url("/products/static/products/productimg/wore_red.png");
+        background-image: url("{% static 'products/productimg/wore_red.png' %}");
       }
       .body-info-box {
         margin: 0 auto;
@@ -414,12 +415,12 @@
       .action-btn.reset {
         width: 107px;
         height: 56px;
-        background-image: url("/products/static/products/productimg/reset.png");
+        background-image: url("{% static 'products/productimg/reset.png' %}");
       }
       .action-btn.apply {
         width: 240px;
         height: 56px;
-        background-image: url("/products/static/products/productimg/rec.png");
+        background-image: url("{% static 'products/productimg/rec.png' %}");
       }
 
       /* ── 가격 영역 (디자인 그대로, 겹침 해결) ----------------------------- */

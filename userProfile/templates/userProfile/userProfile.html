@@ -1,4 +1,5 @@
 {% load static %}
+
 <h1>{{ user_name }}님의 찜한 상품</h1>
 
 {% if liked_items %}
@@ -11,3 +12,15 @@
 {% else %}
   <p>찜한 상품이 없습니다.</p>
 {% endif %}
+
+<h2>착용한 상품 목록</h2>
+<ul>
+  {% for worn in worn_products %}
+    <li>
+      <img src="{{ worn.product.image_url }}" alt="{{ worn.product.title }}" width="100">
+      <p>{{ worn.product.title }} ({{ worn.size }}, {{ worn.color }})</p>
+    </li>
+  {% empty %}
+    <li>아직 착용한 상품이 없습니다.</li>
+  {% endfor %}
+</ul>

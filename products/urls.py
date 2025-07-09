@@ -1,10 +1,14 @@
 # products/urls.py
 from django.urls import path
-from .views import home, toggle_like  # ← 명확하게 불러오자
-
+from .views import home, toggle_like
+from .views.wear_views import toggle_wear
+from .views.home_views import product_option_modal, product_search
 urlpatterns = [
     path('', home, name='home'),
     path('like/<int:product_id>/', toggle_like, name='toggle_like'),
+    path('wear/<int:product_id>/', toggle_wear, name='toggle_wear'),
+    path('products/<int:product_id>/options/', product_option_modal, name='product_option_modal'),
+path('search/', product_search, name='product_search'),
 ]
 
 
