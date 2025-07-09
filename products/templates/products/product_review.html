@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>상품 리뷰</title>
+
+    <!-- Pretendard (detail 과 동일) -->
+    <link
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --eve-main: #b40103;
+        --txt-grey: #949494;
+        --phone-w: 390px;
+      }
+
+      /* reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Pretendard", sans-serif;
+      }
+
+      /* 회색 배경 + 390px 폰 */
+      body {
+        background: #888;
+        display: flex;
+        justify-content: center;
+      }
+      .phone {
+        width: var(--phone-w);
+        min-height: 100vh;
+        background: #fff;
+        overflow-y: auto;
+        padding-bottom: 147px;
+      }
+
+      /* ① status-bar (detail.html 과 동일) */
+      .status-bar {
+        position: fixed;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 308px;
+        height: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font: 600 14px/1 Pretendard;
+        z-index: 1000;
+        background: #fff;
+      }
+      .status-icons {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+      .status-icons img {
+        width: 20px;
+        height: 20px;
+        object-fit: contain;
+      }
+      .battery {
+        position: relative;
+        width: 24px;
+        height: 12px;
+        border: 2px solid #000;
+        border-radius: 2px;
+      }
+      .battery::after {
+        content: "";
+        position: absolute;
+        right: -5px;
+        top: 3px;
+        width: 3px;
+        height: 6px;
+        background: #000;
+        border-radius: 1px;
+      }
+      .battery-level {
+        height: 100%;
+        width: 50%;
+        background: #000;
+      }
+
+      /* ② header-bar (← + 제목) 고정 */
+      .header-bar {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: var(--phone-w);
+        height: 48px;
+        background: #fff;
+        border-bottom: 1px solid #eee;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 999;
+      }
+      .header-bar h1 {
+        font: 700 17px;
+      }
+      .back-btn {
+        position: absolute;
+        left: 16px;
+        top: 50%;
+        transform: translateY(-50%) rotate(45deg);
+        width: 9px;
+        height: 10px;
+        border-left: 2px solid #000;
+        border-bottom: 2px solid #000;
+        cursor: pointer;
+      }
+
+      /* ─── 리뷰 요약 ─── */
+      .review-summary {
+        padding: 84px 15px 24px;
+      } /* 20(status)+48(header)+16여유 */
+      .total-count {
+        font: 13px;
+        color: var(--txt-grey);
+        margin-bottom: 8px;
+      }
+      .summary-row {
+        display: flex;
+        gap: 20px;
+      }
+      .score-block {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        min-width: 70px;
+        margin-top: 6px;
+      }
+      .score {
+        font: 700 48px/1 "Pretendard";
+      }
+      .star {
+        font-size: 25px;
+        line-height: 1;
+      }
+      .breakdown {
+        flex: 1;
+        margin-top: 12px;
+      }
+      .break-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 12px;
+        margin: 4px 0;
+      }
+      .break-item .lab {
+        width: 10px;
+        text-align: right;
+      }
+      .bar {
+        flex: 1;
+        height: 4px;
+        background: #eee;
+        border-radius: 2px;
+        position: relative;
+      }
+      .bar::before {
+        content: "";
+        position: absolute;
+        inset: 0 100% 0 0;
+        background: var(--eve-main);
+        border-radius: 2px;
+      }
+      .break-item:nth-child(1) .bar::before {
+        width: 85%;
+      }
+      .break-item:nth-child(2) .bar::before {
+        width: 30%;
+      }
+      .break-item:nth-child(3) .bar::before {
+        width: 8%;
+      }
+      .break-item:nth-child(4) .bar::before {
+        width: 3%;
+      }
+      .break-item:nth-child(5) .bar::before {
+        width: 2%;
+      }
+      .size-stats {
+        font-size: 11px;
+        line-height: 1.6;
+        margin-top: 12px;
+      }
+
+      /* 필터 / 정렬 (그대로) */
+      .filter-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 15px;
+        border-top: 8px solid #f5f5f5;
+        border-bottom: 1px solid #f5f5f5;
+        background: #fff;
+      }
+      .filter-row label {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 14px;
+      }
+      .filter-row input {
+        appearance: none;
+        width: 16px;
+        height: 16px;
+        border: 1px solid #ccc;
+        border-radius: 2px;
+        cursor: pointer;
+        position: relative;
+      }
+      .filter-row input:checked {
+        background: var(--eve-main);
+        border-color: var(--eve-main);
+      }
+      .filter-row input:checked::after {
+        content: "✓";
+        position: absolute;
+        top: -2px;
+        left: 2px;
+        color: #fff;
+        font-size: 14px;
+      }
+      .sort-btn {
+        background: none;
+        border: none;
+        font-size: 14px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+      .sort-btn::after {
+        content: "▾";
+        font-size: 12px;
+      }
+
+      /* 리뷰 아이템 (변경 없음) */
+      .review-item {
+        padding: 20px 15px;
+        border-bottom: 1px solid #f5f5f5;
+        background: #fff;
+      }
+      .review-head {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 10px;
+        align-items: flex-start;
+      }
+      .avatar {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        background: #ddd;
+        flex-shrink: 0;
+      }
+      .head-meta {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+      .top-line {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 13px;
+        font-weight: 600;
+      }
+      .date {
+        margin-left: auto;
+        font-size: 12px;
+        color: var(--txt-grey);
+      }
+      .tag-best {
+        font-size: 11px;
+        color: #fff;
+        background: var(--eve-main);
+        padding: 2px 4px;
+        border-radius: 3px;
+      }
+      .mid-line {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 12px;
+      }
+      .stars {
+        font-size: 14px;
+        color: var(--eve-main);
+      }
+      .like-btn {
+        margin-left: 8px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 12px;
+        color: var(--txt-grey);
+      }
+      .like-btn.on {
+        color: var(--eve-main);
+      }
+      .review-images {
+        display: flex;
+        gap: 6px;
+        margin: 10px 0;
+      }
+      .img-placeholder {
+        width: 88px;
+        height: 88px;
+        background: #eaeaea;
+        border-radius: 6px;
+      }
+      .body-toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 13px;
+        color: var(--eve-main);
+        cursor: pointer;
+        margin: 8px 0;
+      }
+      .body-detail {
+        display: none;
+        font-size: 13px;
+        line-height: 1.5;
+        background: #fafafa;
+        border: 1px solid #f0f0f0;
+        border-radius: 6px;
+        padding: 12px;
+        margin-bottom: 12px;
+      }
+      .option-info {
+        font-size: 13px;
+        line-height: 1.6;
+        margin: 4px 0;
+      }
+      .option-info span {
+        color: var(--txt-grey);
+      }
+      .review-text {
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      .header-bar h1 {
+        /* ← 이미 존재하면 추가 X, 없다면 꼭 추가 */
+        font: 700 17px/1 "Pretendard", sans-serif;
+      }
+
+      /* ③ 하단 고정 바 (detail.html 과 동일) */
+      .stats {
+        font: 12.5px Pretendard;
+        color: var(--txt-grey);
+        text-align: center;
+      }
+      .bottom-bar {
+        position: fixed;
+        left: 50%;
+        bottom: 0;
+        transform: translateX(-50%);
+        width: var(--phone-w);
+        height: 147px;
+        background: #fff;
+        border-top: 1px solid #eee;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 12px;
+        z-index: 1000;
+      }
+
+      .bottom-act {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 0 15px;
+      }
+      .heart {
+        width: 24px;
+        height: 24px;
+        background: url("../../static/products/productimg/disabled%20heart.png")
+          center/contain no-repeat;
+        cursor: pointer;
+      }
+      .heart.on {
+        background-image: url("../../static/products/productimg/red%20heart.png");
+      }
+      .heart-count {
+        font-size: 12px;
+      }
+      .buy-btn {
+        flex: 1;
+        height: 56px;
+        background: var(--eve-main);
+        color: #fff;
+        border: none;
+        border-radius: 30px;
+        font: 600 18px Pretendard;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="phone">
+      <!-- status-bar -->
+      <div class="status-bar">
+        <span id="clock">--:--</span>
+        <div class="status-icons">
+          <img src="../../static/products/productimg/cellular.png" alt="cell" />
+          <img src="../../static/products/productimg/wi-fi.png" alt="wifi" />
+          <div class="battery"><div class="battery-level"></div></div>
+        </div>
+      </div>
+
+      <!-- header-bar (← + 제목) -->
+      <div class="header-bar">
+        <a href="javascript:history.back();" class="back-btn"></a>
+        <h1>상품 리뷰</h1>
+      </div>
+
+      <!-- 리뷰 요약 -->
+      <section class="review-summary">
+        <p class="total-count">전체 리뷰 총 1,230개</p>
+        <div class="summary-row">
+          <div class="score-block">
+            <span class="score">4.7</span><span class="star">★</span>
+          </div>
+          <div class="breakdown">
+            <div class="break-item">
+              <span class="lab">5</span>
+              <div class="bar"></div>
+            </div>
+            <div class="break-item">
+              <span class="lab">4</span>
+              <div class="bar"></div>
+            </div>
+            <div class="break-item">
+              <span class="lab">3</span>
+              <div class="bar"></div>
+            </div>
+            <div class="break-item">
+              <span class="lab">2</span>
+              <div class="bar"></div>
+            </div>
+            <div class="break-item">
+              <span class="lab">1</span>
+              <div class="bar"></div>
+            </div>
+          </div>
+        </div>
+        <p class="size-stats">
+          사이즈가 크게 느껴져요 10%<br />
+          사이즈가 적당해요 85%<br />
+          사이즈가 작게 느껴져요 5%
+        </p>
+      </section>
+
+      <!-- 필터 -->
+      <div class="filter-row">
+        <label
+          ><input type="checkbox" checked /> 내 신체 사이즈와 유사한
+          후기만</label
+        >
+        <button class="sort-btn">좋아요순</button>
+      </div>
+
+      <!-- 리뷰 하나 (샘플) -->
+      <article class="review-item">
+        <div class="review-head">
+          <div class="avatar"></div>
+          <div class="head-meta">
+            <div class="top-line">
+              <span class="badge">만족해요</span
+              ><span class="tag-best">BEST</span>
+              <span class="date">2026.07.12</span>
+            </div>
+            <div class="mid-line">
+              <span class="username">멋쟁이기계사자</span
+              ><span class="stars">★★★★★</span>
+              <button class="like-btn" data-base="85">
+                <img
+                  class="thumb"
+                  src="../../static/products/productimg/thumb.png"
+                  alt="공감"
+                />
+                <span class="cnt">85</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-images">
+          <div class="img-placeholder"></div>
+          <div class="img-placeholder"></div>
+        </div>
+
+        <div class="body-toggle">체형정보 보기 ▾</div>
+        <div class="body-detail">가슴 95 · 허리 78 · 키 180 · 몸무게 73</div>
+
+        <p class="option-info"><span>옵션&nbsp;</span>블랙·M</p>
+        <p class="option-info"><span>사이즈&nbsp;</span>적당해요</p>
+
+        <p class="review-text">
+          운동할 때 자주 입어요. 가볍고 통기성 좋아요. 다음엔 다른 색도 구매
+          예정!
+        </p>
+      </article>
+    </div>
+
+    <!-- 하단 고정 -->
+    <div class="bottom-bar">
+      <div class="stats">24,062명이 이 상품에 만족했어요</div>
+      <div class="bottom-act">
+        <div class="heart" id="wish"></div>
+        <span class="heart-count">5만</span>
+        <button class="buy-btn">구매하기</button>
+      </div>
+    </div>
+
+    <script>
+      /* 시계 */
+      const setClock = () =>
+        (document.getElementById("clock").textContent = new Date()
+          .toTimeString()
+          .slice(0, 5));
+      setClock();
+      setInterval(setClock, 60000);
+
+      /* 찜 하트 */
+      document.getElementById("wish").onclick = (e) =>
+        e.currentTarget.classList.toggle("on");
+
+      /* 좋아요 */
+      document.addEventListener("DOMContentLoaded", () => {
+        /* 모든 따봉 버튼 찾기 */
+        document.querySelectorAll(".like-btn").forEach((btn) => {
+          /* 초기 변수 세팅 */
+          const img = btn.querySelector(".thumb");
+          const cntEl = btn.querySelector(".cnt");
+          const base = parseInt(btn.dataset.base, 10); // data-base 값
+          let liked = false;
+
+          /* 클릭 이벤트! */
+          btn.addEventListener("click", () => {
+            liked = !liked; // 토글
+
+            /* 아이콘 교체 */
+            img.src = liked
+              ? "../../static/products/productimg/thumb_red.png" // ON 이미지
+              : "../../static/products/productimg/thumb.png"; // OFF 이미지
+
+            /* 숫자 증감 */
+            cntEl.textContent = base + (liked ? 1 : 0);
+          });
+        });
+      });
+
+      /* 체형정보 토글 */
+      const tgl = document.querySelector(".body-toggle");
+      const det = document.querySelector(".body-detail");
+      tgl.onclick = () => {
+        const open = det.style.display === "block";
+        det.style.display = open ? "none" : "block";
+        tgl.textContent = `체형정보 ${open ? "보기 ▾" : "접기 ▴"}`;
+      };
+    </script>
+  </body>
+</html>
