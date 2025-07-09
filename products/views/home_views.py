@@ -1,7 +1,7 @@
 # products/views/home_views.py
 
-from django.shortcuts import render
-from products.models import Product
+from django.shortcuts import render, get_object_or_404
+from products.models import Product, WornProduct
 import re
 
 
@@ -83,8 +83,25 @@ def home(request):
                     matched.append(product.id)
             products = products.filter(id__in=matched)
 
+    # 착용한 상품 ID 목록
+    worn_product_ids = []
+    if request.user.is_authenticated:
+        worn_product_ids = list(WornProduct.objects.filter(user=request.user).values_list("product_id", flat=True))
+
     context = {
         "rec_items": products,
         "user_name": request.user.username if request.user.is_authenticated else "비회원",
+        "worn_product_ids": worn_product_ids,  # 👈 추가된 부분
     }
+
     return render(request, "products/products.html", context)
+
+
+# views.py
+def product_option_modal(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    return render(request, "products/option_modal.html", {
+        "product": product,
+        "colors": product.color.split(","),
+        "sizes": product.size.split(","),
+    })

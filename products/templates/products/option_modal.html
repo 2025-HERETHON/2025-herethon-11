@@ -1,0 +1,21 @@
+<!-- 모달 전체를 이 안에 넣을 거야 -->
+<form method="post" action="{% url 'toggle_wear' product.id %}">
+  {% csrf_token %}
+  <h3>착용 옵션 선택</h3>
+
+  <label>컬러</label>
+  <select name="color">
+    {% for color in colors %}
+      <option value="{{ color }}">{{ color }}</option>
+    {% endfor %}
+  </select>
+
+  <label>사이즈</label>
+  <select name="size">
+    {% for size in sizes %}
+      <option value="{{ size }}">{{ size }}</option>
+    {% endfor %}
+  </select>
+
+  <button type="submit">적용하기</button>
+</form>

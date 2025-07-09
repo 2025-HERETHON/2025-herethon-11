@@ -170,6 +170,7 @@
       }
       /* 착용 제품 표시 */
       .wear {
+        all: unset;
         position: absolute;
         left: 8px;
         bottom: 8px;
@@ -310,7 +311,15 @@
       <button type="submit" class="heart {% if user in product.liked_users.all %}liked{% endif %}"></button>
     </form>
 
-    <span class="wear"></span>
+      <!-- 착용 버튼 -->
+<button type="button"
+        class="wear {% if product.id in worn_product_ids %}checked{% endif %}"
+        data-product-id="{{ product.id }}"
+        data-checked="{% if product.id in worn_product_ids %}true{% else %}false{% endif %}"
+        onclick="handleWearButton(this)">
+</button>
+
+
   </div>
   <div class="item-info">
     <div class="item-price">{{ product.price }}원</div>
@@ -323,7 +332,12 @@
     <p style="padding: 0 15px">추천 상품이 없습니다.</p>
   {% endfor %}
 </div>
-
+      <div id="optionModal"
+           style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); z-index: 999;">
+        <div id="optionModalContent"
+             style="background: #fff; margin: 50px auto; padding: 20px; width: 80%; border-radius: 10px;"></div>
+        <button onClick="closeOptionModal()" style="position: absolute; top: 10px; right: 20px;">X</button>
+      </div>
 
     <!-- 하단 네비 -->
    <nav class="bottom-nav">
@@ -364,16 +378,16 @@
         },
       ];
       const makeCard = (p) =>
-        `<div class="item-card"><div class="item-img-wrap"><img src="${
-          p.img
-        }" alt="${
-          p.desc
-        }"><span class="heart"></span><span class="wear"></span></div><div class="item-info"><div class="item-price">${p.price.toLocaleString()}</div><div class="item-brand">${
-          p.brand
-        }</div><div class="item-desc">${p.desc}</div></div></div>`;
+              `<div class="item-card"><div class="item-img-wrap"><img src="${
+                      p.img
+              }" alt="${
+                      p.desc
+              }"><span class="heart"></span><span class="wear"></span></div><div class="item-info"><div class="item-price">${p.price.toLocaleString()}</div><div class="item-brand">${
+                      p.brand
+              }</div><div class="item-desc">${p.desc}</div></div></div>`;
       document.getElementById("recent-wrap").innerHTML = recentViewed
-        .map(makeCard)
-        .join("");
+              .map(makeCard)
+              .join("");
       // 하트
       //   document.addEventListener("DOMContentLoaded", function () {
       //     document.querySelectorAll(".heart").forEach((h) =>
@@ -381,50 +395,109 @@
       //     );
       //   });
 
-      /* 착용 제품 */ document
-        .querySelectorAll(".wear")
-        .forEach((w) =>
-          w.addEventListener("click", () => w.classList.toggle("checked"))
-        );
+      /* 착용 제품 */
+      // document
+      //         .querySelectorAll(".wear")
+      //         .forEach((w) =>
+      //                 w.addEventListener("click", () => w.classList.toggle("checked"))
+      //         );
       /** 사용자 이름 삽입 */
       const userName = "멋사"; // 서버나 로컬Storage 등에서 받아온 값
       const nameSpan = document.getElementById("user-name");
       if (nameSpan) nameSpan.textContent = userName;
 
-      /* 시계 */ function updateClock() {
+      /* 시계 */
+      function updateClock() {
         const d = new Date();
         document.getElementById("clock").textContent = d
-          .toTimeString()
-          .slice(0, 5);
+                .toTimeString()
+                .slice(0, 5);
       }
+
       updateClock();
       setInterval(updateClock, 60000);
 
- /* === 바텀 네비게이션 === */
-const STATIC_PATH = "{% static 'products/productimg/' %}";
-const navItems   = document.querySelectorAll(".bottom-nav .nav-item");
+      /* === 바텀 네비게이션 === */
+      const STATIC_PATH = "{% static 'products/productimg/' %}";
+      const navItems = document.querySelectorAll(".bottom-nav .nav-item");
 
-navItems.forEach(item => {
-  item.addEventListener("click", e => {
-    e.preventDefault();              
-    /* 1. 모든 아이콘 & 글자 초기화 */
-    navItems.forEach(n => {
-      const base = n.dataset.icon;
-      n.classList.remove("active");
-      n.querySelector("img").src = STATIC_PATH + base + ".png";
-    });
-    /* 2. 선택된 아이콘만 빨간색으로 */
-    const base = item.dataset.icon;
-    item.classList.add("active");
-    item.querySelector("img").src = STATIC_PATH + base + "_red.png";
+      navItems.forEach(item => {
+        item.addEventListener("click", e => {
+          e.preventDefault();
+          /* 1. 모든 아이콘 & 글자 초기화 */
+          navItems.forEach(n => {
+            const base = n.dataset.icon;
+            n.classList.remove("active");
+            n.querySelector("img").src = STATIC_PATH + base + ".png";
+          });
+          /* 2. 선택된 아이콘만 빨간색으로 */
+          const base = item.dataset.icon;
+          item.classList.add("active");
+          item.querySelector("img").src = STATIC_PATH + base + "_red.png";
 
-    if (base === "home") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    } else {
-      alert("준비 중인 페이지입니다 "); // 추후 링크 연결
+          if (base === "home") {
+            window.scrollTo({top: 0, behavior: "smooth"});
+          } else {
+            alert("준비 중인 페이지입니다 "); // 추후 링크 연결
+          }
+        });
+      });
+
+
+  function openOptionModal(productId) {
+    fetch(`/products/${productId}/options/`)
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("optionModalContent").innerHTML = html;
+        document.getElementById("optionModal").style.display = "block";
+      });
+  }
+
+  function closeOptionModal() {
+    document.getElementById("optionModal").style.display = "none";
+    document.getElementById("optionModalContent").innerHTML = "";
+  }
+
+function handleWearButton(button) {
+  const productId = button.dataset.productId;
+  const isChecked = button.dataset.checked === "true";
+
+  if (isChecked) {
+    // form 만들어서 제출
+    const form = document.createElement("form");
+    form.method = "POST";
+    form.action = "{% url 'toggle_wear' 0 %}".replace("0", productId);
+
+    const csrfInput = document.createElement("input");
+    csrfInput.type = "hidden";
+    csrfInput.name = "csrfmiddlewaretoken";
+    csrfInput.value = getCookie("csrftoken");
+
+    form.appendChild(csrfInput);
+    document.body.appendChild(form);
+    form.submit();
+  } else {
+    // 착용 안 된 상태면 옵션 모달 띄우기
+    openOptionModal(productId);
+  }
+}
+
+
+function getCookie(name) {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== "") {
+    const cookies = document.cookie.split(";");
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      // "csrftoken=abc123"
+      if (cookie.substring(0, name.length + 1) === name + "=") {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+      }
     }
-  });
-});
+  }
+  return cookieValue;
+}
 
 
     </script>

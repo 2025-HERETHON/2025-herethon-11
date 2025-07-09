@@ -1,6 +1,8 @@
 from django.urls import path
-from . import views  # 또는 views.liked_views로 모듈 분리했다면 거기서 import
+from userProfile.views import user_profile_view
+from products.views.wear_views import worn_products_list
 
 urlpatterns = [
-    path('likes/', views.liked_products, name='liked_products'),
+    path('', user_profile_view, name='user_profile'),
 ]
+
