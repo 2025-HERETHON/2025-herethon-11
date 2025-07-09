@@ -261,6 +261,51 @@
       .nav-item.active {
         color: var(--eve-main);
       }
+      /* 로그아웃 모달 */
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.4);
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+      }
+      .modal-content {
+        background: white;
+        padding: 20px;
+        border-radius: 5px;
+        text-align: center;
+        width: 312px;
+        height: 175px;
+        color: gray;
+        font-size: 15px;
+        justify-content: space-around;
+      }
+      .modal-buttons {
+        margin-top: 35px;
+      }
+      .modal-buttons button {
+        padding: 8px 16px;
+        border-radius: 30px;
+        font-size: 15px;
+        margin: auto;
+        cursor: pointer;
+        width: 130px;
+        height: 48px;
+      }
+      .cancel {
+        border: 1px solid gray;
+        background: #fff;
+      }
+      .confirm {
+        background: var(--eve-main);
+        color: white;
+        border: none;
+      }
     </style>
   </head>
   <body>
@@ -333,6 +378,19 @@
       /></a>
     </nav>
 
+    <!-- 로그아웃 모달 -->
+    <div class="modal" id="logoutModal">
+      <div class="modal-content">
+        <p>로그아웃 하시겠어요?</p>
+        <div class="modal-buttons">
+          <button class="cancel" onclick="hideLogout()">취소</button>
+          <button class="confirm" onclick="alert('로그아웃 처리됨')">
+            로그아웃
+          </button>
+        </div>
+      </div>
+    </div>
+
     <script>
       // 시계
       function updateClock() {
@@ -367,6 +425,13 @@
       document.getElementById("review-wrap").innerHTML = wornProducts
         .map(makeCard)
         .join("");
+
+      function showLogout() {
+        document.getElementById("logoutModal").style.display = "flex";
+      }
+      function hideLogout() {
+        document.getElementById("logoutModal").style.display = "none";
+      }
     </script>
   </body>
 </html>
