@@ -644,7 +644,7 @@
           class="nav-icon"
         />
       </a>
-      <a href="#" class="nav-item" data-icon="review">
+      <a href="review.html" class="nav-item" data-icon="review">
         <img
           src="{% static 'products/productimg/review.png' %}"
           alt="review"
@@ -931,11 +931,15 @@
           item.classList.add("active");
           item.querySelector("img").src = STATIC_PATH + base + "_red.png";
 
-          if (base === "home") {
-            window.scrollTo({ top: 0, behavior: "smooth" });
-          } else {
-            alert("준비 중인 페이지입니다 "); // 추후 링크 연결
-          }
+              if (base === "home") {
+          window.scrollTo({ top: 0, behavior: "smooth" }); // 홈은 스크롤 맨 위
+        } else if (base === "review") {
+          window.location.href = "review.html";            
+        } else if (base === "user") {
+          window.location.href = "mypage.html";           
+        } else {
+          alert("준비 중인 페이지입니다");                  // 그 외에는 알림
+        } 
         });
       });
 
