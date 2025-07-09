@@ -1,0 +1,196 @@
+:root {
+  --eve-main: #b40103;
+  --grey-bg: #f5f5f5;
+  --text-main: #000;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,
+body {
+  /* 모바일 해상도 고정 */
+
+  max-width: 390px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  overflow-x: hidden;
+}
+body {
+  font-family: "Pretendard", sans-serif;
+  background: #fff;
+  overflow-y: auto;
+}
+
+/* ───────────── 상단 고정 바 ───────────── */
+.top-bar {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 390px;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+  z-index: 1000;
+}
+/* 상태바 (시간 · 아이콘) */
+.status-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 15px 0;
+  font: 600 14px/1 Pretendard;
+}
+.status-icons {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.battery {
+  position: relative;
+  width: 24px;
+  height: 12px;
+  border: 2px solid #000;
+  border-radius: 2px;
+}
+.battery::after {
+  content: "";
+  position: absolute;
+  right: -5px;
+  top: 3px;
+  width: 3px;
+  height: 6px;
+  background: #000;
+  border-radius: 1px;
+}
+.battery-level {
+  height: 100%;
+  background: #000;
+  width: 50%;
+}
+/* 페이지 제목 */
+.page-title {
+  text-align: center;
+  font: 700 17px/44px Pretendard;
+  border-top: 6px solid transparent; /* 상태바 높이 여백 */
+  margin: 25px 0 8px; /* ⬅️ 위 14px, 아래 8px → 상단바와 제목 간 넉넉한 간격 */
+}
+
+/* ───────────── 본문 ───────────── */
+.page-content {
+  padding: 130px 0 90px; /* top-bar + bottom-nav 공간 확보 */
+}
+/* 섹션 헤더 */
+.wear-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0 15px 10px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.wear-header .count {
+  color: #949494;
+  font-weight: 400;
+  margin-left: 6px;
+}
+.wear-header .sort {
+  color: #949494;
+  font-weight: 400;
+  font-size: 13px;
+}
+/* 리스트 */
+.review-list {
+  padding: 0 15px;
+}
+.review-item {
+  position: relative;
+  display: flex;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid #eee;
+}
+.review-item img {
+  flex-shrink: 0;
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+.item-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 12px;
+}
+.item-info .title {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+.item-info .opt {
+  color: #666;
+}
+.item-info .price {
+  font-size: 14px;
+  font-weight: 600;
+}
+.btn-write {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: #949494;
+  text-decoration: none;
+}
+
+/* ───────────── 하단 네비 (product.html과 동일) ───────────── */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 390px;
+  height: 70px;
+  background: #fff;
+  border-top: 1px solid #ddd;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 1000;
+}
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 12px;
+  color: #000;
+  text-decoration: none;
+}
+.nav-item img {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 4px;
+  object-fit: contain;
+}
+.nav-item.active {
+  color: var(--eve-main);
+}
+.nav-icon {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  margin-bottom: 4px;
+  transition: transform 0.2s;
+}
+.nav-item.active .nav-icon {
+  transform: scale(1.1); /* ⬅️ 경쾌한 클릭 효과 */
+}
+.wear-header .count {
+  display: block; /* 인라인 → 블록으로 바꿔서 줄바꿈! */
+  margin-top: 2px; /* 간격 살짝 줄게요(원하면 값 조정!) */
+}
