@@ -1,0 +1,549 @@
+:root {
+  --eve-main: #b40103;
+  --grey-bg: #f5f5f5;
+  --text-main: #000;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  /* ⬇️ 폭은 390px까지만, 작은 화면에선 100% */
+  max-width: 390px;
+  width: 100%;
+  /* 큰 화면에서 가운데 배치 */
+  margin-left: auto;
+  margin-right: auto;
+  /* 좌우 스크롤 완전 차단 */
+  overflow-x: hidden;
+}
+
+body {
+  font-family: "Pretendard", sans-serif;
+  background: #fff;
+  width: 390px;
+  margin: 0 auto;
+  overflow-y: auto;
+}
+/* 상태바 */
+.status-bar {
+  position: relative;
+  margin: 20px auto 0;
+  width: 308px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font: 600 14px/1 Pretendard;
+}
+.status-icons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.battery {
+  position: relative;
+  width: 24px;
+  height: 12px;
+  border: 2px solid #000;
+  border-radius: 2px;
+}
+.battery::after {
+  content: "";
+  position: absolute;
+  right: -5px;
+  top: 3px;
+  width: 3px;
+  height: 6px;
+  background: #000;
+  border-radius: 1px;
+}
+.battery-level {
+  height: 100%;
+  background: #000;
+  width: 50%;
+  transition: width 0.3s;
+}
+/* 공통 */
+.logo {
+  text-align: center;
+  font-family: "Prata", serif;
+  font-size: 20px;
+  color: var(--eve-main);
+  margin-top: 20px;
+}
+.search-wrap {
+  margin: 20px auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 365px;
+  height: 39px;
+  padding: 8px 13px;
+  border: 1px solid var(--eve-main);
+  border-radius: 100px;
+}
+.search-wrap input {
+  border: none;
+  flex: 1;
+  outline: none;
+  font-size: 14px;
+}
+.search-icon {
+  all: unset;
+  width: 18px;
+  height: 18px;
+  background: url("{% static 'products/productimg/black.png' %}") center/contain
+    no-repeat;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+.btn-rec {
+  display: block;
+  width: 76px;
+  height: 34px;
+  margin: 0 0 20px 15px;
+  border: none;
+  border-radius: 6px;
+  background: var(--eve-main);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+.section-heading {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-main);
+  margin: 0 0 0 15px;
+}
+.view-all {
+  float: right;
+  margin-right: 15px;
+  margin-top: -21px;
+  font-size: 14px;
+  cursor: pointer;
+}
+/* 가로 스크롤 */
+.scroll-bar {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+  padding: 15px;
+  scroll-behavior: smooth;
+}
+.scroll-bar::-webkit-scrollbar {
+  display: none;
+}
+/* 카드 */
+.item-card {
+  min-width: 160px;
+  flex: 0 0 auto;
+}
+.item-img-wrap {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.item-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: relative;
+  z-index: 0;
+}
+.heart {
+  all: unset;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  font-size: 0;
+  background: url("{% static 'products/productimg/disabled%20heart.png' %}")
+    center/contain no-repeat;
+  z-index: 2;
+}
+.heart.liked {
+  background-image: url("{% static 'products/productimg/red%20heart.png' %}");
+}
+/* 착용 제품 표시 */
+.wear {
+  position: absolute;
+  left: 8px;
+  bottom: 8px;
+  width: 73px;
+  height: 19px;
+  cursor: pointer;
+  font-size: 0;
+  background: url("{% static 'products/productimg/착용제품.png' %}")
+    center/contain no-repeat;
+  z-index: 2;
+}
+.wear.checked {
+  background-image: url("{% static 'products/productimg/착용제품%20표시.png' %}");
+}
+.item-info {
+  margin-top: 6px;
+}
+.item-price {
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+.item-brand {
+  font-size: 12px;
+  color: #666;
+}
+.item-desc {
+  font-size: 12px;
+  color: #333;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: keep-all;
+}
+.divider {
+  width: 390px;
+  height: 7px;
+  background: var(--grey-bg);
+  margin: 20px auto;
+}
+.recommend-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  padding: 15px;
+}
+/* 하단 네비 */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 390px;
+  height: 70px;
+  background: #fff;
+  border-top: 1px solid #ddd;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 999;
+}
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 12px;
+  color: #000;
+  text-decoration: none;
+}
+.nav-item img {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 4px;
+  object-fit: contain;
+}
+.nav-item.active {
+  color: var(--eve-main);
+}
+.page-content {
+  padding-bottom: 90px;
+}
+.nav-icon {
+  width: var(--nav-icon-size);
+  height: var(--nav-icon-size);
+  object-fit: contain;
+  margin-bottom: 4px;
+  transition: transform 0.2s;
+}
+.nav-item.active .nav-icon {
+  transform: scale(1.1);
+}
+/* 공통 색상 변수 */
+:root {
+  --eve-main: #b40103;
+}
+
+/* ▷ 모달 래퍼 · 시트 -------------------------------------------------- */
+.rec-modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  z-index: 1000;
+}
+.rec-modal.show {
+  display: block;
+}
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: #0008;
+}
+
+.modal-sheet {
+  position: absolute;
+  inset: 0;
+  margin: 0 auto;
+  width: 390px;
+  height: 100vh;
+  padding-bottom: 130px;
+  background: #fff;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  -webkit-overflow-scrolling: touch;
+  animation: fadeUp 0.25s ease-out;
+}
+@keyframes fadeUp {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ── 헤더 / 상태바 ----------------------------------------------------- */
+.status-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 15px 0;
+  font: 600 14px Pretendard;
+}
+.status-icons {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.modal-header {
+  position: relative;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+.modal-title {
+  font: 700 17px/20px Pretendard;
+  margin-top: 50px;
+}
+.modal-close {
+  position: absolute;
+  right: 16px;
+  margin-top: 50px;
+  width: 20px;
+  height: 20px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  line-height: 20px;
+  cursor: pointer;
+  color: #949494;
+}
+
+/* ── 체형 불러오기 ----------------------------------------------------- */
+.tag-btn.outline {
+  width: 95px;
+  height: 35px;
+  margin: 0 0 6px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  background: url("{% static 'products/productimg/wore.png' %}") center/contain
+    no-repeat;
+  border: none;
+  color: transparent;
+  text-indent: -9999px;
+}
+.tag-btn.outline.loaded {
+  background-image: url("{% static 'products/productimg/wore_red.png' %}");
+}
+.body-info-box {
+  margin: 0 auto;
+  width: 360px;
+  height: 135px;
+  border: 1px solid #949494;
+  border-radius: 10px;
+}
+
+/* ── 하단 액션 바 ----------------------------------------------------- */
+.action-bar {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 390px;
+  height: 115px;
+  background: #fff;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 12px;
+  z-index: 1001;
+}
+.action-btn {
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.action-btn.reset {
+  width: 107px;
+  height: 56px;
+  background-image: url("{% static 'products/productimg/reset.png' %}");
+}
+.action-btn.apply {
+  width: 240px;
+  height: 56px;
+  background-image: url("{% static 'products/productimg/rec.png' %}");
+}
+
+/* ── 가격 영역 (디자인 그대로, 겹침 해결) ----------------------------- */
+.price-label {
+  font: 600 17px/20px Pretendard;
+  margin: 32px 0 12px 15px;
+}
+
+.price-inputs {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 15px;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+.price-field {
+  position: relative;
+  width: 165px;
+  height: 46px;
+  display: inline-block;
+}
+.price-field:first-child {
+  margin-right: 8px;
+} /* 좌칸 → 여백 8px */
+.price-field input {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #949494;
+  border-radius: 30px;
+  font: 600 14px/46px Pretendard;
+  text-align: right;
+  color: #949494;
+  padding-right: 32px;
+}
+.price-field .unit {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: 600;
+  font-size: 15px;
+  font-family: "Pretendard", sans-serif;
+  pointer-events: none;
+  color: #000;
+  line-height: 1;
+}
+
+.dash {
+  display: inline-block;
+  font: 700 18px/46px Pretendard;
+  margin-right: 8px;
+}
+
+#price-slider {
+  position: relative;
+  margin: 18px auto 0;
+  width: 330px;
+  height: 27px;
+}
+#price-slider .track {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: #b40103;
+  border-radius: 2px;
+  transform: translateY(-50%);
+}
+.handle {
+  position: absolute;
+  top: 50%;
+  width: 32px;
+  height: 32px;
+  border: 2px solid #949494;
+  border-radius: 50%;
+  background: #fff;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  touch-action: none;
+}
+
+/* ── 공통 chips (색상 · 소재 · 타입) ---------------------------------- */
+.block-title {
+  font: 600 17px/20px Pretendard;
+  margin: 32px 0 12px 15px;
+}
+
+.chips {
+  display: grid;
+  grid-template-columns: repeat(3, 113px);
+  grid-auto-rows: 38px;
+  gap: 10px 8px;
+  padding: 0 15px;
+  max-height: 96px;
+  overflow: hidden;
+  transition: max-height 0.25s;
+}
+.chips.open {
+  max-height: none;
+}
+
+.chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 12px;
+  border: 1px solid #949494;
+  border-radius: 5px;
+  background: #fff;
+  cursor: pointer;
+  font: 500 10px/1 Pretendard;
+  color: #949494;
+}
+.chip.selected {
+  border-color: #b40103;
+  color: #b40103;
+}
+
+.circle {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+}
+.circle.border {
+  background: #fff;
+  border: 1px solid #000;
+}
+
+.toggle {
+  display: block;
+  margin: 8px 15px 0 auto;
+  background: none;
+  border: none;
+  font: 500 12px/14px Pretendard;
+  color: #949494;
+  cursor: pointer;
+}
