@@ -1,8 +1,10 @@
 from django.urls import path
-from userProfile.views import user_profile_view
-from products.views.wear_views import worn_products_list
+from . import views  # 또는 views.liked_views로 모듈 분리했다면 거기서 import
 
 urlpatterns = [
-    path('', user_profile_view, name='user_profile'),
+    path('likes/', views.liked_products, name='liked_products'),
+    path('body-size/', views.body_input_view, name='body_input'),
+    path('size-check-cup/', views.size_check_cup, name='size_check_cup'),
+    path('size-check-pelvis/', views.size_check_pelvis, name='size_check_pelvis'),
+    path('save-body-info/', views.save_body_info, name='save_body_info'),
 ]
-

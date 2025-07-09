@@ -105,3 +105,12 @@ def product_option_modal(request, product_id):
         "colors": product.color.split(","),
         "sizes": product.size.split(","),
     })
+
+
+def product_search(request):
+    query = request.GET.get('q', '')
+    products = Product.objects.filter(title__icontains=query) if query else []
+    return render(request, 'products/search_results.html', {
+        'query': query,
+        'products': products
+    })

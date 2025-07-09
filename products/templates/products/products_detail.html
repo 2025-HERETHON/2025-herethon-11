@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>상품정보</title>
+
+    <!-- =========  CSS  ========= -->
+    <style>
+      :root {
+        --eve-main: #b40103;
+        --txt-grey: #949494;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Pretendard", sans-serif;
+      }
+
+      /* 화면 중앙에 390px 폰 프레임 */
+      body {
+        background: #888; /* 데모용 회색 */
+        display: flex;
+        justify-content: center;
+      }
+      .phone {
+        width: 390px;
+        min-height: 100vh; /* 내용 많아지면 늘어남 */
+        background: #fff;
+        overflow-y: auto; /* 세로 스크롤 */
+        padding-bottom: 147px; /* 고정 하단바 피해서 여유 */
+        position: relative;
+      }
+
+      /* ── status-bar ── */
+      .status-bar {
+        position: fixed; /* 스크롤해도 고정 */
+        top: 19px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 308px;
+        height: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font: 600 14px/1 Pretendard;
+        z-index: 1000;
+      }
+      .status-icons {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+      .status-icons img {
+        width: 20px;
+        height: 20px;
+        object-fit: contain;
+      }
+      .battery {
+        position: relative;
+        width: 24px;
+        height: 12px;
+        border: 2px solid #000;
+        border-radius: 2px;
+      }
+      .battery::after {
+        content: "";
+        position: absolute;
+        right: -5px;
+        top: 3px;
+        width: 3px;
+        height: 6px;
+        background: #000;
+        border-radius: 1px;
+      }
+      .battery-level {
+        height: 100%;
+        width: 50%;
+        background: #000;
+      }
+
+      /* ← 뒤로가기  */
+      .back-btn {
+        position: absolute;
+        left: 16px;
+        top: 78px;
+        width: 9px;
+        height: 10px;
+        border-left: 2px solid #000;
+        border-bottom: 2px solid #000;
+        transform: rotate(45deg);
+        cursor: pointer;
+      }
+      /* 타이틀 */
+      .page-title {
+        text-align: center;
+        margin: 73px 0 0;
+        font: 700 17px Pretendard;
+      }
+
+      /* ── 캐러셀 ── */
+      .carousel {
+        margin-top: 34px;
+        position: relative;
+        width: 390px;
+        height: 390px;
+        overflow: hidden;
+      }
+      .carousel img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: absolute;
+        inset: 0;
+        transition: opacity 0.25s;
+      }
+      .carousel img.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+      .dots {
+        display: flex;
+        gap: 5px;
+        justify-content: center;
+        margin: 13px 0;
+      }
+      .dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #ddd;
+        cursor: pointer;
+      }
+      .dot.active {
+        background: #000;
+      }
+
+      /* ── 상품 정보 ── */
+      .info-wrap {
+        padding: 0 15px;
+      }
+      .brand {
+        font: 14px Pretendard;
+        color: var(--txt-grey);
+        margin-bottom: 4px;
+      }
+      .like-wrap {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        float: right;
+      }
+      .like-wrap img {
+        width: 18px;
+        height: 18px;
+      }
+      .product-name {
+        font: 500 15px Pretendard;
+        margin: 12px 0 8px;
+      }
+      .price {
+        float: right;
+        font: 700 20px Pretendard;
+      }
+      .clear {
+        clear: both;
+      }
+      .divider {
+        height: 1px;
+        background: #f5f5f5;
+        margin: 12px -15px;
+      }
+
+      /* ── 옵션 드롭다운 ── */
+      .options {
+        display: flex;
+        gap: 8px;
+        margin-top: 14px;
+      }
+      .dropdown {
+        flex: 1;
+        position: relative;
+      }
+      .drop-btn {
+        width: 100%;
+        height: 42px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 12px;
+        font-size: 14px;
+        cursor: pointer;
+        background: #fff;
+      }
+      .drop-btn::after {
+        content: "▾";
+        font-size: 12px;
+      }
+      .dropdown.open .drop-btn::after {
+        content: "▴";
+      }
+      .option-list {
+        display: none;
+        flex-direction: column;
+        margin-top: 4px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        background: #fff;
+        max-height: 180px;
+        overflow-y: auto;
+      }
+      .dropdown.open .option-list {
+        display: flex;
+      }
+      .option-list button {
+        border: none;
+        background: #fff;
+        height: 40px;
+        text-align: left;
+        padding: 0 12px;
+        font-size: 14px;
+        cursor: pointer;
+      }
+      .option-list button + button {
+        border-top: 1px solid #f0f0f0;
+      }
+      .option-list button:hover {
+        background: #f7f7f7;
+      }
+
+      /* 리뷰 링크 */
+
+      .review-link {
+        float: right;
+        margin: 12px 15px 0 auto; /* 오른쪽 정렬 */
+        font: 14px Pretendard;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        cursor: pointer;
+      }
+
+      /* ── 하단 고정 바 ── */
+      .bottom-bar {
+        position: fixed;
+        left: 50%;
+        bottom: 0;
+        transform: translateX(-50%);
+         width: var(--phone-w);
+        width: 390px;
+        height: 147px;
+        background: #fff;
+        border-top: 1px solid #eee;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 12px;
+        z-index: 1000;
+      }
+      .stats {
+        font: 12px Pretendard;
+        color: var(--txt-grey);
+        text-align: center;
+      }
+      .bottom-act {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 0 15px;
+      }
+      .heart {
+        width: 24px;
+        height: 24px;
+        background: url("../../static/products/productimg/disabled%20heart.png")
+          center/contain no-repeat;
+        cursor: pointer;
+        flex-shrink: 0;
+      }
+      .heart.on {
+        background-image: url("../../static/products/productimg/red%20heart.png");
+      }
+      .heart-count {
+        font: 12px Pretendard;
+      }
+   .buy-btn {
+        flex: 1;
+        height: 56px;
+        background: var(--eve-main);
+        color: #fff;
+        border: none;
+        border-radius: 30px;
+        font: 600 18px Pretendard;
+        cursor: pointer;
+      }
+
+      .product-desc {
+        font: 12px/1.4 Pretendard;
+        color: #666;
+        margin: 8px 0 14px;
+      }
+
+      /* 후기 999+ 링크 전용 */
+.review-link{
+  color: inherit;          /* 부모 글자색 그대로!  */
+  text-decoration: none;   /* 밑줄 제거            */
+}
+
+/* 눌렀을 때(visited) · hover 도 동일하게 */
+.review-link:visited,
+.review-link:hover{
+  color: inherit;
+  text-decoration: none;
+}
+
+    </style>
+  </head>
+
+  <body>
+    <div class="phone">
+      <!-- status-bar / clock -->
+      <div class="status-bar">
+        <span id="clock">--:--</span>
+        <div class="status-icons">
+          <img src="../../static/products/productimg/cellular.png" alt="cell" />
+          <img src="../../static/products/productimg/wi-fi.png" alt="wifi" />
+          <div class="battery"><div class="battery-level"></div></div>
+        </div>
+      </div>
+
+      <a href="javascript:history.back();" class="back-btn"></a>
+      <h1 class="page-title">상품정보</h1>
+
+      <!-- 캐러셀 -->
+      <div class="carousel" id="carousel">
+        <img src="../../static/products/productimg/pic1.jpg" alt="pic1" />
+        <img
+          src="../../static/products/productimg/pic2.jpg"
+          alt="pic2"
+          class="hidden"
+        />
+        <img
+          src="../../static/products/productimg/pic3.jpg"
+          alt="pic3"
+          class="hidden"
+        />
+      </div>
+      <div class="dots" id="dots">
+        <span class="dot active" data-idx="0"></span>
+        <span class="dot" data-idx="1"></span>
+        <span class="dot" data-idx="2"></span>
+      </div>
+
+      <!-- 상품 정보 -->
+      <div class="info-wrap">
+        <div class="brand">
+          마론파이브
+          <span class="like-wrap"
+            ><img
+              src="../../static/products/productimg/red%20heart.png"
+              alt
+            /><span>64.2만</span></span
+          >
+        </div>
+        <div class="product-name">
+          날마다 브라탑 모달 골지 유넥 <span class="price">21,000</span>
+        </div>
+        <div class="clear"></div>
+
+        <p id="prodDesc" style="display: none">
+          컬러는 해당 상품의 사진과 동일하며<br />
+          사이즈는 free인 상품입니다.
+        </p>
+        <div class="options">
+          <div class="dropdown">
+            <!-- 첫 번째: 컬러 -->
+            <div class="drop-btn">컬러 확인하기</div>
+            <div class="option-list">
+              <button type="button">그레이</button>
+              <button type="button">네이비</button>
+            </div>
+          </div>
+          <div class="dropdown">
+            <!-- 두 번째: 사이즈 -->
+            <div class="drop-btn">사이즈 확인하기</div>
+            <div class="option-list">
+              <button type="button">S</button>
+              <button type="button">M</button>
+              <button type="button">L</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 리뷰 -->
+      <!-- 리뷰 999+ 버튼 -->
+<a href="product_review.html" class="review-link">
+  후기&nbsp;<span class="cnt"> > </span>
+</a>
+
+      <!-- 하단 고정바 -->
+      <div class="bottom-bar">
+        <div class="stats">24,062명이 이 상품에 만족했어요</div>
+        <div class="bottom-act">
+          <div class="heart" id="wish"></div>
+          <span class="heart-count">5만</span>
+          <button class="buy-btn">구매하기</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- =========  JS  ========= -->
+    <script>
+      /* 시계 */
+      const setClock = () => {
+        document.getElementById("clock").textContent = new Date()
+          .toTimeString()
+          .slice(0, 5);
+      };
+      setClock();
+      setInterval(setClock, 60000);
+
+      /* 캐러셀 */
+      const imgs = [...document.querySelectorAll("#carousel img")];
+      const dots = [...document.querySelectorAll("#dots .dot")];
+      dots.forEach((dot) => {
+        dot.addEventListener("click", () => {
+          const idx = +dot.dataset.idx;
+          imgs.forEach((img, i) => img.classList.toggle("hidden", i !== idx));
+          dots.forEach((d) => d.classList.toggle("active", d === dot));
+        });
+      });
+
+      /* 찜 하트 */
+      document.getElementById("wish").addEventListener("click", (e) => {
+        e.currentTarget.classList.toggle("on");
+      });
+
+      /* 드롭다운 */
+      document.querySelectorAll(".dropdown").forEach((dd) => {
+        const btn = dd.querySelector(".drop-btn");
+        const list = dd.querySelector(".option-list");
+        btn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          dd.classList.toggle("open");
+        });
+        list.querySelectorAll("button").forEach((opt) => {
+          opt.addEventListener("click", () => {
+            btn.textContent = opt.textContent;
+            dd.classList.remove("open");
+          });
+        });
+      });
+      document.addEventListener("click", () =>
+        document
+          .querySelectorAll(".dropdown.open")
+          .forEach((d) => d.classList.remove("open"))
+      );
+
+      const hasSize = false; // ← 서버 데이터로 판단
+
+      if (!hasSize) {
+        document.getElementById("optionBox").style.display = "none";
+      } else {
+        document.getElementById("prodDesc").style.display = "none";
+      }
+
+      const isFreeSize =
+        new URLSearchParams(location.search).get("free") === "1";
+
+      const prodDesc = document.getElementById("prodDesc");
+      const dropdowns = document.querySelectorAll(".options .dropdown");
+
+      if (isFreeSize) {
+        prodDesc.style.display = "block"; // 안내문 보여줌
+        dropdowns[1].style.display = "none"; // 두 번째 드롭다운(사이즈) 숨김!
+      } else {
+        prodDesc.style.display = "none";
+        dropdowns[1].style.display = "flex"; // 다시 보여줌!
+      }
+    </script>
+  </body>
+</html>
