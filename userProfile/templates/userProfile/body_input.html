@@ -454,7 +454,11 @@
         </div>
         <div class="measure-panel">
           <div class="result-box" id="cupResult"></div>
-          <button class="measure-btn" onclick="calculateCup(this)">
+          <button
+            class="measure-btn"
+            id="cupMeasureBtn"
+            onclick="calculateCup(this)"
+          >
             사이즈 측정
           </button>
         </div>
@@ -491,7 +495,11 @@
         </div>
         <div class="measure-panel" style="align-items: flex-end">
           <div class="result-box" id="hipResult"></div>
-          <button class="measure-btn" onclick="calculateHip(this)">
+          <button
+            class="measure-btn"
+            id="hipMeasureBtn"
+            onclick="calculateHip(this)"
+          >
             사이즈 측정
           </button>
         </div>
@@ -551,6 +559,9 @@
         );
         const isPublic = document.getElementById("privacyToggle").checked;
 
+        const manualCup = document.getElementById("manualCupInput");
+        if (manualCup.style.display === "block") return; //사이즈 직접 입력 시 버튼 실행 안되도록
+
         if (!isPublic) {
           document.getElementById("cupResult").innerText = "";
           btn.classList.remove("active");
@@ -580,6 +591,9 @@
         const waist = parseInt(document.getElementById("waistInput").value);
         const hip = parseInt(document.getElementById("hipInput").value);
         const isPublic = document.getElementById("privacyToggle").checked;
+
+        const manualHip = document.getElementById("manualHipInput");
+        if (manualHip.style.display === "block") return; //사이즈 직접 입력 시 버튼 실행 안되도록
 
         if (!isPublic) {
           document.getElementById("hipResult").innerText = "";
