@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -395,7 +396,7 @@
         <header>
           <div class="bar">
             <div class="title">신체 사이즈</div>
-            <img src="/x.png" alt="exit" />
+            <img src="{% static 'account/img/x.png' %}" alt="exit" />
           </div>
         </header>
         <div class="toggle-wrapper">
@@ -433,7 +434,7 @@
         </div>
         <div class="input-toggle" onclick="toggleManualInput('cup')">
           컵 사이즈 직접 입력
-          <img src="/toggle1.png" alt="" id="cupArrow" />
+          <img src="{% static 'account/img/toggle1.png' %}" alt="" id="cupArrow" />
         </div>
         <div class="manual-input-wrapper">
           <div class="manual-input" id="manualCupInput" style="display: none">
@@ -478,10 +479,10 @@
         <strong>키 / 몸무게</strong>
         <div class="input-group">
           <div class="input-box">
-            키: <input type="number" placeholder="0" /> cm
+            키: <input type="number" placeholder="0" id="height"/> cm
           </div>
           <div class="input-box">
-            몸무게: <input type="number" placeholder="0" /> kg
+            몸무게: <input type="number" placeholder="0" id="weight"/> kg
           </div>
         </div>
       </div>
@@ -493,73 +494,89 @@
     </div>
 
     <script>
+      document.cookie = "csrftoken={{ csrf_token }}; path=/";
+
+      function getCSRFToken() { //POST요청 보내기 위해 필요
+        const cookieValue = document.cookie
+          .split("; ")
+          .find((row) => row.startsWith("csrftoken="));
+        return cookieValue ? cookieValue.split("=")[1] : "";
+      }
+
       function calculateCup(btn) {
-        const topBustEl = document.getElementById("topBust");
-        const underBustEl = document.getElementById("underBust");
+        const bust = getSelectedValue(document.getElementById("topBust"));
+        const underbust = getSelectedValue(document.getElementById("underBust"));
         const isPublic = document.getElementById("privacyToggle").checked;
 
-        const top = getSelectedValue(topBustEl);
-        const under = getSelectedValue(underBustEl);
-        const diff = top - under;
-
-        let cup = "-";
-        if (diff >= 25) cup = "G";
-        else if (diff >= 22.5) cup = "F";
-        else if (diff >= 20) cup = "E";
-        else if (diff >= 17.5) cup = "D";
-        else if (diff >= 15) cup = "C";
-        else if (diff >= 12.5) cup = "B";
-        else if (diff >= 10) cup = "A";
-        else if (diff >= 7.5) cup = "AA";
-
-        if (isPublic) {
-          document.getElementById("cupResult").innerText = under + cup;
-          btn.classList.add("active");
-        } else {
+        if (!isPublic) {
           document.getElementById("cupResult").innerText = "";
           btn.classList.remove("active");
+          return; //사이즈 측정 요청 막음
         }
+
+        const csrfToken = getCSRFToken();
+
+        //가슴 사이즈 측정 요청
+        fetch("/user/size-check-cup/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": csrfToken,
+          },
+          body: JSON.stringify({ bust, underbust }),
+        })
+        .then(res => res.json())
+        .then(data => {
+          // cup_size 결과 처리
+          document.getElementById("cupResult").innerText = data.cup_size;
+          btn.classList.add("active");
+        });
       }
-      function calculateHip(btn) {
+
+      function calculateHip(btn){
         const waist = parseInt(document.getElementById("waistInput").value);
         const hip = parseInt(document.getElementById("hipInput").value);
         const isPublic = document.getElementById("privacyToggle").checked;
 
+        if (!isPublic) {
+          document.getElementById("hipResult").innerText = "";
+          btn.classList.remove("active");
+          return;
+        }
+        
         if (isNaN(waist) || isNaN(hip)) {
           alert("허리와 힙 둘레를 모두 입력해주세요.");
           return;
         }
 
-        let size = "-";
+        const csrfToken = getCSRFToken();
 
-        if (hip >= 82 && hip <= 87) {
-          size = waist <= 60 ? "XS (85) " : "XS (85)";
-        } else if (hip >= 87 && hip <= 92) {
-          size = waist >= 60 && waist <= 65 ? "S (90)" : "S (90) ";
-        } else if (hip >= 92 && hip <= 97) {
-          size = waist >= 65 && waist <= 75 ? "M (95)" : "M (95) ";
-        } else if (hip >= 97 && hip <= 102) {
-          size = waist >= 75 && waist <= 80 ? "L (100)" : "L (100) ";
-        } else if (hip >= 102 && hip <= 107) {
-          size = waist >= 80 && waist <= 85 ? "XL (105)" : "XL (105) ";
-        } else if (hip >= 107 && hip <= 112) {
-          size = waist >= 85 && waist <= 90 ? "XXL (110)" : "XXL (110) ";
-        } else if (hip >= 112 && hip <= 117) {
-          size = waist >= 90 ? "3XL (115) / 사이즈 업 고려" : "3XL (115)";
-        }
-
-        if (isPublic) {
-          document.getElementById("hipResult").innerText = size;
+        //골반 사이즈 측정 요청
+        fetch("/user/size-check-pelvis/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": csrfToken,
+          },
+          body: JSON.stringify({ waist, hip }),
+        })
+        .then(res => res.json())
+        .then(data => {
+          // pelvis_size 결과 처리
+          document.getElementById("hipResult").innerText = data.pelvis_size;
           btn.classList.add("active");
-        } else {
-          document.getElementById("hipResult").innerText = "";
-          btn.classList.remove("active");
-        }
+        });
       }
 
       function getSelectedValue(el) {
+        if (!el) return null;
+        // 선택된 항목을 select-item 클래스에 selected 클래스가 둘 다 붙은 요소로 찾기
         const selected = el.querySelector(".select-item.selected");
-        return selected ? parseInt(selected.innerText) : null;
+        if (!selected) return null;
+
+        // innerText가 숫자가 아닐 수도 있으니 숫자로 변환 시도
+        const val = parseInt(selected.innerText, 10);
+        return isNaN(val) ? null : val;
       }
 
       function createScrollList(id, from, to) {
@@ -614,9 +631,21 @@
         inputBox.style.display = isVisible ? "none" : "block";
 
         if (arrow) {
-          arrow.src = isVisible ? "/toggle1.png" : "/toggle.png"; // ▲ ▼ 토글
+          arrow.src = isVisible ? "{% static 'account/img/toggle1.png' %}" : "{% static 'account/img/toggle.png' %}"; // ▲ ▼ 토글
         }
       }
+
+      document.getElementById("privacyToggle").addEventListener("change", function () {
+        const label = document.getElementById("privacyLabel");
+        const tcontainer = document.querySelector(".toggle-container");
+        if (this.checked) {
+          label.textContent = "공개";
+          tcontainer.classList.add("public");
+        } else {
+          label.textContent = "비공개";
+          tcontainer.classList.remove("public");
+        }
+      });
 
       function resetAll() {
         document
@@ -631,7 +660,37 @@
       }
 
       function saveData() {
-        alert("저장되었습니다.");
+        const bust = getSelectedValue(document.getElementById("topBust"));
+        const underbust = getSelectedValue(document.getElementById("underBust"));
+        const cup_size = document.getElementById("cupResult").innerText;
+        const waist = parseInt(document.getElementById("waistInput").value);
+        const hip = parseInt(document.getElementById("hipInput").value);
+        const pelvis_size = document.getElementById("hipResult").innerText;
+        const height = parseInt(document.getElementById("height").value);
+        const weight = parseInt(document.getElementById("weight").value);
+        const csrfToken = getCSRFToken();
+
+        console.log({ bust, underbust, cup_size, waist, hip, pelvis_size, height, weight });
+        
+        if (!bust || !underbust || !cup_size || !waist || !hip || !pelvis_size || !height || !weight) {
+          alert("사이즈를 모두 측정한 후 저장하세요.");
+          return;
+        }
+        
+        //최종 입력 사이즈 저장
+        fetch("/user/save-body-info/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": csrfToken,
+          },
+          body: JSON.stringify({ bust, underbust, cup_size, waist, hip, height, weight, pelvis_size }),
+        })
+          .then(res => res.json())
+          .then(data => {
+            if (data.message) alert("저장 완료!");
+            else alert("오류 발생: " + data.error);
+          });
       }
     </script>
   </body>

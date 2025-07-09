@@ -1,10 +1,16 @@
 from django.shortcuts import render
+import json
+from django.http import JsonResponse
+from .models import UserProfile
 
 # Create your views here.
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from products.models import Product
+from .models import UserProfile
 from .utils import calculate_bust_size, calculate_pelvis_size
+
+from django.views.decorators.csrf import csrf_exempt  # 개발 중만
 
 @login_required
 def liked_products(request):
@@ -17,27 +23,62 @@ def liked_products(request):
     }
     return render(request, 'userProfile/userProfile.html', context)
 
-
+#body_input.html render
+def body_input_view(request):
+    return render(request, 'userProfile/body_input.html')
 
 #체형 사이즈 측정
-def size_check(request):
-    result = None
-
+#가슴 사이즈 츨정
+@login_required
+def size_check_cup(request):
     if request.method == 'POST':
+        data = json.loads(request.body)
+        bust = int(data.get('bust'))
+        underbust = int(data.get('underbust'))
+        cup_size = calculate_bust_size(bust, underbust)
+        return JsonResponse({'cup_size': cup_size})
+    return JsonResponse({'error': 'POST 요청만 허용'}, status=405)
+
+#골반 사이즈 측정
+@login_required
+def size_check_pelvis(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        waist = int(data.get('waist'))
+        hip = int(data.get('hip'))
+        pelvis_size = calculate_pelvis_size(waist, hip)
+        return JsonResponse({'pelvis_size': pelvis_size})
+    return JsonResponse({'error': 'POST 요청만 허용'}, status=405)
+
+#체형 사이즈 저장
+@login_required
+def save_body_info(request):
+    if request.method == "POST":
         try:
-            bust = float(request.POST.get('bust'))
-            underbust = float(request.POST.get('underbust'))
-            waist = float(request.POST.get('waist'))
-            hip = float(request.POST.get('hip'))
+            data = json.loads(request.body)
+            bust = int(data.get("bust"))
+            underbust = int(data.get("underbust"))
+            cup_size = data.get("cup_size")
+            waist = int(data.get("waist"))
+            hip = int(data.get("hip"))
+            pelvis_size = data.get("pelvis_size")
+            height = int(data.get("height"))
+            weight = int(data.get("weight"))
 
-            cup_result = calculate_bust_size(bust, underbust)
-            pelvis_result = calculate_pelvis_size(waist, hip)
+            # 현재 로그인한 사용자의 프로필 가져오기
+            profile, _ = UserProfile.objects.get_or_create(user=request.user)
 
-            result = {
-                'cup_size': cup_result,
-                'pelvis_size': pelvis_result
-            }
-        except(TypeError, ValueError):
-            result = {"error": "입력값이 잘못되었습니다."}
-        
-    return render(request, '', {'result': result}) #html만 작성하면 됨
+            # 값 저장
+            profile.bust = bust
+            profile.underbust = underbust
+            profile.cup_size = cup_size
+            profile.waist = waist
+            profile.hip = hip
+            profile.pelvis_size = pelvis_size
+            profile.height = height
+            profile.weight = weight
+            profile.save()
+
+            return JsonResponse({"message": "저장 완료"})
+        except Exception as e:
+            return JsonResponse({"error": str(e)}, status=400)
