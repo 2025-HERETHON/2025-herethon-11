@@ -161,6 +161,9 @@ def wear_modal(request, product_id):
     colors = request.GET.get("colors", "").split(",")
     sizes = request.GET.get("sizes", "").split(",")
 
+    print("colors raw:", request.GET.get("colors"))  # 한 번 찍어보자
+    print("parsed colors:", colors)
+
     return render(request, "products/option_modal.html", {
         "product": product,
         "colors": colors,
