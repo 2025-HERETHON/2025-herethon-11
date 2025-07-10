@@ -1,5 +1,5 @@
 (function () {
-  const modal = document.getElementById("wear-modal");
+  const modal = document.getElementById("phone");
   const sheet = document.getElementById("wear-sheet");
   const colorEl = document.getElementById("wear-color");
   const sizeEl = document.getElementById("wear-size");
@@ -38,6 +38,24 @@
     ) {
       modal.classList.remove("show");
       document.body.style.overflow = "auto";
+    }
+  });
+
+  const form = document.querySelector("form.wear-sheet");
+  const optionModal = document.getElementById("optionModal");
+
+  form.addEventListener("submit", (e) => {
+    const color = document.getElementById("wear-color").value.trim();
+    const size = document.getElementById("wear-size").value.trim();
+
+    if (!color || !size) {
+      e.preventDefault(); // 제출 막기
+      optionModal.classList.add("show"); // 모달 보이기
+
+      // 1.5초 후 자동으로 사라지게
+      setTimeout(() => {
+        optionModal.classList.remove("show");
+      }, 1500);
     }
   });
 })();

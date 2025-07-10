@@ -15,7 +15,6 @@
   <body>
     <!-- 휴대폰 뷰포트 -->
     <div id="phone">
-      <!-- ★ 모달 폼 (Django 태그는 그대로 남겨둠) -->
       <form
         method="post"
         action="{% url 'toggle_wear' product.id %}"
@@ -51,6 +50,9 @@
 
         <button type="submit" class="wear-apply">적용하기</button>
       </form>
+      <div class="option-modal" id="optionModal">
+        <div class="option-modal-content">옵션을 선택해주세요.</div>
+      </div>
     </div>
   </body>
 </html>
