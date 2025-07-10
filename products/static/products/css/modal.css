@@ -1,7 +1,7 @@
 /* ─── 가짜 ‘휴대폰 화면’ 래퍼 ─── */
 #phone {
-  display: none;  /* 기본 감춤 */
-  position: fixed;  /* 전체 화면 덮기 */
+  display: none; /* 기본 감춤 */
+  position: fixed; /* 전체 화면 덮기 */
   top: 0;
   left: 0;
   width: 100%;
@@ -14,7 +14,7 @@
 }
 
 #phone.show {
-  display: flex;  /* 모달 띄우기 */
+  display: flex; /* 모달 띄우기 */
 }
 
 /* ─── 모달 카드 ─── */
