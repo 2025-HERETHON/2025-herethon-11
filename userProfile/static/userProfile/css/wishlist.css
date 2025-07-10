@@ -121,8 +121,8 @@
         display: flex;
         border-bottom: 1px solid #eee;
         margin-top: 10px;
-      }
-      .tab {
+        }
+        .tab {
         flex: 1;
         text-align: center;
         padding: 12px 0;
@@ -130,14 +130,14 @@
         font-size: 14px;
         cursor: pointer;
         border-bottom: 2px solid transparent;
-      }
-      .tab.active {
+        }
+        .tab.active {
         border-bottom: none;
         display: flex;
         justify-content: center;
         position: relative;
-      }
-      .tab.active::before {
+        }
+        .tab.active::before {
         content: "";
         position: absolute;
         bottom: 0;
@@ -145,7 +145,7 @@
         border-bottom: 2px solid #000;
         left: 50%;
         transform: translateX(-50%);
-      }
+        }
 
       /* 본문 */
       .page-content {
@@ -217,6 +217,76 @@
         color: #949494;
         text-decoration: none;
       }
+
+      .wishlist-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        padding: 15px;
+        }
+        .item-card {
+        min-width: 160px;
+        }
+        .item-img-wrap {
+        position: relative;
+        width: 160px;
+        height: 160px;
+        border-radius: 8px;
+        overflow: hidden;
+        }
+        .item-img-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: relative;
+        z-index: 0;
+        }
+        .heart {
+        all: unset;
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        background: url("{% static 'products/productimg/red heart.png' %}")
+            center/contain no-repeat;
+        z-index: 2;
+        }
+        .wear {
+        position: absolute;
+        left: 8px;
+        bottom: 8px;
+        width: 73px;
+        height: 19px;
+        background: url("{% static 'products/productimg/착용제품.png' %}")
+            center/contain no-repeat;
+        cursor: pointer;
+        z-index: 2;
+        }
+        .wear.checked {
+        background-image: url("{% static 'products/productimg/착용제품 표시.png' %}");
+        }
+        .item-info {
+        margin-top: 6px;
+        }
+        .item-price {
+        font-weight: 600;
+        margin-bottom: 2px;
+        }
+        .item-brand {
+        font-size: 12px;
+        color: #666;
+        }
+        .item-desc {
+        font-size: 12px;
+        color: #333;
+        display: -webkit-box;
+        /* -webkit-line-clamp: 2; */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        }
 
       /* 하단 네비 */
       .bottom-nav {
