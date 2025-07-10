@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.kakao', #카카오
     'products',
     'userProfile',
+    'review'
 ]
 
 MIDDLEWARE = [

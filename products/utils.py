@@ -29,7 +29,7 @@ def save_product(data):
     external_id = data["id"]
     title = data["title"]
     price = data["price"]
-    image_url = data["image_url"]
+    thumbnail_url = data["thumbnail_url"]
     link = data["link"]
     subcategory_names = data["subcategories"]  # ["노와이어", "앞 후크"] 등
 
@@ -40,7 +40,7 @@ def save_product(data):
         defaults={
             "title": title,
             "price": price,
-            "image_url": image_url,
+            "thumbnail_url": thumbnail_url,
             "link": link,
             "category": category,
         }
