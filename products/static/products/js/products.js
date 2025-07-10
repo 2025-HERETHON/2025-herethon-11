@@ -257,3 +257,36 @@
     resetFilters();
   });
 })();
+document.addEventListener("DOMContentLoaded", () => {
+  const wearButtons = document.querySelectorAll(".wear");
+  const container = document.getElementById("wear-modal-container");
+
+  wearButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const pid = btn.dataset.id;
+      const colors = btn.dataset.colors;
+      const sizes = btn.dataset.sizes;
+
+      fetch(`/products/wear-modal/${pid}/?colors=${colors}&sizes=${sizes}`)
+        .then((response) => response.text())
+        .then((html) => {
+          container.innerHTML = html;
+
+          // DOM에 삽입된 후에 select 해야 적용됨
+          const phone = document.getElementById("phone");
+          phone?.classList.add("show");
+
+          document.body.style.overflow = "hidden";
+
+          // 닫기 버튼도 여기서 등록해야 됨
+          phone.querySelector(".wear-close")?.addEventListener("click", () => {
+            phone.classList.remove("show");
+            document.body.style.overflow = "auto";
+          });
+        });
+    });
+  });
+});
+
+
+

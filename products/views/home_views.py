@@ -1,4 +1,6 @@
 # products/views/home_views.py
+from django.http import Http404
+
 from products.models import RecentlyViewedProduct
 
 from django.shortcuts import render, get_object_or_404
@@ -146,6 +148,23 @@ def product_search(request):
         'selected_color': color,
         'selected_material': material,
         'selected_type': type_,
+    })
+
+
+def wear_modal(request, product_id):
+    try:
+        product = Product.objects.get(id=product_id)
+    except Product.DoesNotExist:
+        raise Http404("상품이 존재하지 않습니다.")
+
+    # GET 파라미터에서 colors, sizes 파싱
+    colors = request.GET.get("colors", "").split(",")
+    sizes = request.GET.get("sizes", "").split(",")
+
+    return render(request, "products/option_modal.html", {
+        "product": product,
+        "colors": colors,
+        "sizes": sizes,
     })
 
 
