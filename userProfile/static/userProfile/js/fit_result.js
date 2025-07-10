@@ -2,12 +2,14 @@ window.addEventListener("DOMContentLoaded", function () {
         const savedImage = localStorage.getItem("profileImage");
         const currentProfile = document.getElementById("currentProfile");
         const previewImg = document.getElementById("previewImg");
+        const mainProfile = document.getElementById("mainProfile");
 
         if (savedImage) {
-        currentProfile.src = savedImage;
-        previewImg.src = savedImage;
+            if (currentProfile) currentProfile.src = savedImage;
+            if (previewImg) previewImg.src = savedImage;
+            if (mainProfile) mainProfile.src = savedImage;
         }
-    });
+        });
       // 시계
       function updateClock() {
         const d = new Date();
@@ -59,23 +61,27 @@ window.addEventListener("DOMContentLoaded", function () {
         document.getElementById("profileModal").style.display = "none";
       }
       function updateProfileImg(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+
         const reader = new FileReader();
         reader.onload = function (e) {
-            document.getElementById("previewImg").src = e.target.result;
+            const dataUrl = e.target.result;
+            document.getElementById("previewImg").src = dataUrl;
         };
-        if (event.target.files[0]) {
-            reader.readAsDataURL(event.target.files[0]);
+        reader.readAsDataURL(file);
         }
-    }
-      function saveProfile() {
+
+        function saveProfile() {
         const previewImg = document.getElementById("previewImg");
         const currentProfile = document.getElementById("currentProfile");
+        const mainProfile = document.getElementById("mainProfile");
 
-        if (previewImg && currentProfile) {
         const newSrc = previewImg.src;
-        currentProfile.src = newSrc;
-        localStorage.setItem("profileImage", newSrc); // ✅ 저장
-        }
+        if (currentProfile) currentProfile.src = newSrc;
+        if (mainProfile) mainProfile.src = newSrc;
+
+        localStorage.setItem("profileImage", newSrc);
 
         hideProfileEdit();
-    }
+        }
