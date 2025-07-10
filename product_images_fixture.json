@@ -1,0 +1,146 @@
+[
+  {
+    "model": "products.productimage",
+    "pk": 1,
+    "fields": {
+      "product": 1,
+      "image_url": "https://cf.product-image.s.zigzag.kr/original/d/2024/9/4/19464_202409041719510450_49196.jpeg?width=720&height=720&quality=80&format=webp"
+    }
+  },
+  {
+    "model": "products.productimage",
+    "pk": 2,
+    "fields": {
+      "product": 2,
+      "image_url": "https://cf.product-image.s.zigzag.kr/original/d/2024/9/24/1478_202409241234570326_85644.jpeg?width=720&height=720&quality=80&format=webp"
+    }
+  },
+  {
+    "model": "products.productimage",
+    "pk": 3,
+    "fields": {
+      "product": 3,
+      "image_url": "https://cf.product-image.s.zigzag.kr/original/c/16/112/165/161121651-5246449883811576979.jpeg?width=720&height=720&quality=80&format=webp"
+    }
+  },
+  {
+    "model": "products.productimage",
+    "pk": 4,
+    "fields": {
+      "product": 4,
+      "image_url": "https://cf.product-image.s.zigzag.kr/original/c/10/980/297/109802975-9133498632169812369.jpeg?width=720&height=720&quality=80&format=webp"
+    }
+  },
+  {
+    "model": "products.productimage",
+    "pk": 5,
+    "fields": {
+      "product": 5,
+      "image_url": "https://cf.product-image.s.zigzag.kr/original/d/2025/6/26/1357_202506261110010296_83904.jpeg?width=720&height=720&quality=80&format=webp"
+    }
+  },
+  {
+    "model": "products.productimage",
+    "pk": 6,
+    "fields": {
+      "product": 6,
+      "image_url": "https://cf.product-image.s.zigzag.kr/original/d/2025/2/6/26898_202502061457580671_51869.jpeg?width=720&height=720&quality=80&format=webp"
+    }
+  },
+  {
+    "model": "products.productimage",
+    "pk": 7,
+    "fields": {
+      "product": 7,
+      "image_url": "https://cf.product-image.s.zigzag.kr/original/d/2024/8/26/6782_202408261350380687_36147.jpeg?width=720&height=720&quality=80&format=webp"
+    }
+  },
+  {
+    "model": "products.productimage",
+    "pk": 8,
+    "fields": {
+      "product": 8,
+      "image_url": "https://cf.product-image.s.zigzag.kr/original/d/2025/6/26/19367_202506261435190590_29779.jpeg?width=720&height=720&quality=80&format=webp"
+    }
+  },
+  {
+    "model": "products.productimage",
+    "pk": 9,
+    "fields": {
+      "product": 9,
+      "image_url": "https://image.msscdn.net/thumbnails/images/goods_img/20240506/4108081/4108081_17176317870754_big.jpg?w=1200"
+    }
+  },
+  {
+    "model": "products.productimage",
+    "pk": 10,
+    "fields": {
+      "product": 10,
+      "image_url": "https://image.msscdn.net/thumbnails/images/goods_img/20240718/4259448/4259448_17212963273394_big.jpg?w=1200"
+    }
+  },
+  {
+    "model": "products.productimage",
+    "pk": 11,
+    "fields": {
+      "product": 11,
+      "image_url": "https://image.msscdn.net/thumbnails/images/goods_img/20230329/3188488/3188488_16844721834940_big.jpg?w=1200"
+    }
+  },
+  {
+    "model": "products.productimage",
+    "pk": 12,
+    "fields": {
+      "product": 12,
+      "image_url": "https://image.msscdn.net/thumbnails/images/goods_img/20241125/4634939/4634939_17326833367603_big.jpg?w=1200"
+    }
+  },
+  {
+    "model": "products.productimage",
+    "pk": 13,
+    "fields": {
+      "product": 13,
+      "image_url": "https://image.msscdn.net/thumbnails/images/goods_img/20211229/2285940/2285940_1_big.jpg?w=1200"
+    }
+  },
+  {
+    "model": "products.productimage",
+    "pk": 14,
+    "fields": {
+      "product": 14,
+      "image_url": "https://cf.product-image.s.zigzag.kr/original/d/2025/1/20/15083_202501201622570551_76824.jpeg?width=720&height=720&quality=80&format=webp"
+    }
+  },
+  {
+    "model": "products.productimage",
+    "pk": 15,
+    "fields": {
+      "product": 15,
+      "image_url": "https://cf.product-image.s.zigzag.kr/original/d/2025/5/20/40776_202505201705570271_77605.jpeg?width=720&height=720&quality=80&format=webp"
+    }
+  },
+  {
+    "model": "products.productimage",
+    "pk": 16,
+    "fields": {
+      "product": 16,
+      "image_url": "https://cf.product-image.s.zigzag.kr/original/d/2025/5/13/6782_202505131358440299_85509.jpeg?width=720&height=720&quality=80&format=webp"
+    }
+  },
+  {
+    "model": "products.productimage",
+    "pk": 17,
+    "fields": {
+      "product": 17,
+      "image_url": "https://cf.product-image.s.zigzag.kr/original/c/13/546/241/135462412-5035507058116465062.jpeg?width=720&height=720&quality=80&format=webp"
+    }
+  },
+  {
+    "model": "products.productimage",
+    "pk": 18,
+    "fields": {
+      "product": 18,
+      "image_url": "https://image.msscdn.net/thumbnails/images/goods_img/20240618/4203660/4203660_17186924642556_big.png?w=1200"
+    }
+  }
+]

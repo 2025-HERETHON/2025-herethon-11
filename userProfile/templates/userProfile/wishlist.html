@@ -57,7 +57,7 @@
             {% for product in wishlist_items %}
             <div class="item-card">
                 <div class="item-img-wrap">
-                <img src="{{ product.image_url }}" alt="{{ product.title }}" />
+                <img src="{{ product.thumbnail_url }}" alt="{{ product.title }}" />
                 <form method="POST" action="{% url 'toggle_like' product.id %}">
                     {% csrf_token %}
                     <button

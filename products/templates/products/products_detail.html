@@ -4,12 +4,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <title>상품정보</title>
-  <link
+    <title>{{ title }}</title>
+    <link
       href="https://fonts.googleapis.com/css2?family=Prata&display=swap"
       rel="stylesheet"
     />
-     <link rel="stylesheet" href="{% static 'products/css/detail.css' %}" />
+    <link rel="stylesheet" href="{% static 'products/css/detail.css' %}" />
     <script src="{% static 'products/js/detail.js' %}" defer></script>
   </head>
 
@@ -25,36 +25,28 @@
         </div>
       </div>
 
-      <a href="javascript:history.back();" class="back-btn"></a>
+      <a href="{% url 'home' %}" class="back-btn"></a>
       <h1 class="page-title">상품정보</h1>
 
       <!-- 캐러셀 -->
       <div class="carousel" id="carousel">
-        <img src="{% static 'products/productimg/pic1.jpg' %}" alt="pic1" />
-        <img src="{% static 'products/productimg/pic2.jpg' %}"
-             alt="pic2"
-             class="hidden" />
-        <img src="{% static 'products/productimg/pic3.jpg' %}"
-             alt="pic3"
-             class="hidden" />
+        {% for img in product.images.all %}
+          <img src="{{ img.image_url }}" alt="product image" class="{% if not forloop.first %}hidden{% endif %}" />
+        {% endfor %}
       </div>
       <div class="dots" id="dots">
-        <span class="dot active" data-idx="0"></span>
-        <span class="dot" data-idx="1"></span>
-        <span class="dot" data-idx="2"></span>
+        {% for img in product.images.all %}
+          <span class="dot {% if forloop.first %}active{% endif %}" data-idx="{{ forloop.counter0 }}"></span>
+        {% endfor %}
       </div>
 
       <!-- 상품 정보 -->
       <div class="info-wrap">
         <div class="brand">
-          마론파이브
-          <span class="like-wrap"
-            ><img src="{% static 'products/productimg/red heart.png' %}" alt="좋아요" />
-            <span>64.2만</span></span
-          >
+          {{ shop }}
         </div>
         <div class="product-name">
-          날마다 브라탑 모달 골지 유넥 <span class="price">21,000</span>
+          {{ title }} <span class="price">{{ price }}원</span>
         </div>
         <div class="clear"></div>
 
@@ -62,43 +54,47 @@
           컬러는 해당 상품의 사진과 동일하며<br />
           사이즈는 free인 상품입니다.
         </p>
+
+        <!-- 옵션 -->
         <div class="options">
           <div class="dropdown">
-            <!-- 첫 번째: 컬러 -->
             <div class="drop-btn">컬러 확인하기</div>
             <div class="option-list">
-              <button type="button">그레이</button>
-              <button type="button">네이비</button>
+              {% for color in colors %}
+              <button type="button">{{ color }}</button>
+              {% endfor %}
             </div>
           </div>
           <div class="dropdown">
-            <!-- 두 번째: 사이즈 -->
             <div class="drop-btn">사이즈 확인하기</div>
             <div class="option-list">
-              <button type="button">S</button>
-              <button type="button">M</button>
-              <button type="button">L</button>
+              {% for size in sizes %}
+              <button type="button">{{ size }}</button>
+              {% endfor %}
             </div>
           </div>
         </div>
 
         <!-- 리뷰 -->
-      <!-- 리뷰 999+ 버튼 -->
-<a href="{% url 'product_review' %}" class="review-link">
-  후기&nbsp;<span class="cnt"> > </span>
-</a>
+        <a href="{% url 'product_review' %}" class="review-link">
+          리뷰&nbsp;<span class="cnt">{{ review_count }}+ ></span>
+        </a>
 
-      <!-- 하단 고정바 -->
-      <div class="bottom-bar">
-        <div class="stats">24,062명이 이 상품에 만족했어요</div>
-        <div class="bottom-act">
-          <div class="heart" id="wish"></div>
-          <span class="heart-count">5만</span>
-          <button class="buy-btn">구매하기</button>
+
+        <!-- 하단 고정바 -->
+        <div class="bottom-bar">
+          <div class="stats">{{ satisfaction_good_count }}명이 이 상품에 만족했어요</div>
+          <div class="bottom-act">
+            <a href="{% url 'detail_toggle_like' product.id %}">
+              <div class="heart {% if is_liked %}on{% endif %}" id="wish"></div>
+            </a>
+            <span class="heart-count">{{ like_count }}</span>
+            <a href="{{ product.link }}" target="_blank">
+              <button class="buy-btn">구매하기</button>
+            </a>
+          </div>
         </div>
       </div>
     </div>
-
-   
   </body>
 </html>

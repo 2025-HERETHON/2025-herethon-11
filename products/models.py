@@ -29,7 +29,7 @@ class Product(models.Model):
     # 상품명, 가격, 이미지 url, 상품 링크, 상점 이름
     title = models.CharField(max_length = 255)
     price = models.IntegerField()
-    image_url = models.URLField()
+    thumbnail_url = models.URLField()
     link = models.URLField()
     shop = models.CharField(max_length = 100, null = True, blank = True)
 
@@ -73,3 +73,19 @@ class WornProduct(models.Model):
         return f"{self.user.username} wore {self.product.title} at {self.created_at}"
 
 
+class RecentlyViewedProduct(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey("Product", on_delete=models.CASCADE)
+    viewed_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        unique_together = ('user', 'product')  # 같은 상품 중복 저장 방지
+        ordering = ['-viewed_at']  # 최근 본 순서로 정렬
+
+
+class ProductImage(models.Model):
+    product = models.ForeignKey('Product', related_name='images', on_delete=models.CASCADE)
+    image_url = models.URLField()
+
+    def __str__(self):
+        return f"{self.product.title} 이미지"

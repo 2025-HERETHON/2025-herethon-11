@@ -1,4 +1,5 @@
 # products/views/home_views.py
+from products.models import RecentlyViewedProduct
 
 from django.shortcuts import render, get_object_or_404
 from products.models import Product, WornProduct
@@ -40,6 +41,11 @@ def home(request):
     materials = request.GET.getlist("material")
     types = request.GET.getlist("type")  # 카테고리 이름
     bra_size = request.GET.get("bra_size")  # 예: 80A
+
+    print("colors:", colors)
+    print("materials:", materials)
+    print("types:", types)
+    print("bra_size:", bra_size)
 
     # 가격 필터 (최소 ~ 최대)
     min_price = request.GET.get("min_price")
@@ -88,10 +94,17 @@ def home(request):
     if request.user.is_authenticated:
         worn_product_ids = list(WornProduct.objects.filter(user=request.user).values_list("product_id", flat=True))
 
+    recent_products = []
+    if request.user.is_authenticated:
+        recent_products = [
+            rv.product for rv in RecentlyViewedProduct.objects.filter(user=request.user)
+        ]
+
     context = {
         "rec_items": products,
         "user_name": request.user.username if request.user.is_authenticated else "비회원",
-        "worn_product_ids": worn_product_ids,  # 👈 추가된 부분
+        "worn_product_ids": worn_product_ids,
+        "recent_products": recent_products,  # 👈 추가됨
     }
 
     return render(request, "products/products.html", context)
@@ -134,3 +147,5 @@ def product_search(request):
         'selected_material': material,
         'selected_type': type_,
     })
+
+

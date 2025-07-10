@@ -1,38 +1,38 @@
 (() => {
-  const recentViewed = [
-    {
-      id: 1,
-      price: 21000,
-      brand: "마론파이브",
-      desc: "날마다 브라탑 모달 곶지 유넥",
-      img: "https://placehold.co/200x200",
-    },
-    {
-      id: 2,
-      price: 12000,
-      brand: "리무브",
-      desc: "모달 멜로우 팬티",
-      img: "https://placehold.co/200x200",
-    },
-    {
-      id: 3,
-      price: 15000,
-      brand: "마론파이브",
-      desc: "쉬어 트렁크 모달 - 블랙",
-      img: "https://placehold.co/200x200",
-    },
-  ];
-  const makeCard = (p) =>
-    `<div class="item-card"><div class="item-img-wrap"><img src="${
-      p.img
-    }" alt="${
-      p.desc
-    }"><span class="heart"></span><span class="wear"></span></div><div class="item-info"><div class="item-price">${p.price.toLocaleString()}</div><div class="item-brand">${
-      p.brand
-    }</div><div class="item-desc">${p.desc}</div></div></div>`;
-  document.getElementById("recent-wrap").innerHTML = recentViewed
-    .map(makeCard)
-    .join("");
+  // const recentViewed = [
+  //   {
+  //     id: 1,
+  //     price: 21000,
+  //     brand: "마론파이브",
+  //     desc: "날마다 브라탑 모달 곶지 유넥",
+  //     img: "https://placehold.co/200x200",
+  //   },
+  //   {
+  //     id: 2,
+  //     price: 12000,
+  //     brand: "리무브",
+  //     desc: "모달 멜로우 팬티",
+  //     img: "https://placehold.co/200x200",
+  //   },
+  //   {
+  //     id: 3,
+  //     price: 15000,
+  //     brand: "마론파이브",
+  //     desc: "쉬어 트렁크 모달 - 블랙",
+  //     img: "https://placehold.co/200x200",
+  //   },
+  // // ];
+  // const makeCard = (p) =>
+  //   `<div class="item-card"><div class="item-img-wrap"><img src="${
+  //     p.img
+  //   }" alt="${
+  //     p.desc
+  //   }"><span class="heart"></span><span class="wear"></span></div><div class="item-info"><div class="item-price">${p.price.toLocaleString()}</div><div class="item-brand">${
+  //     p.brand
+  //   }</div><div class="item-desc">${p.desc}</div></div></div>`;
+  // document.getElementById("recent-wrap").innerHTML = recentViewed
+  //   .map(makeCard)
+  //   .join("");
   // 하트
   //   document.addEventListener("DOMContentLoaded", function () {
   //     document.querySelectorAll(".heart").forEach((h) =>

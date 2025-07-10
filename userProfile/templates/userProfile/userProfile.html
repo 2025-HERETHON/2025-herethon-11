@@ -5,7 +5,7 @@
 {% if liked_items %}
   {% for product in liked_items %}
     <div>
-      <img src="{{ product.image_url }}" alt="{{ product.title }}" width="100">
+      <img src="{{ product.thumbnail_url }}" alt="{{ product.title }}" width="100">
       <p>{{ product.title }} - {{ product.price }}원</p>
     </div>
   {% endfor %}
@@ -17,7 +17,7 @@
 <ul>
   {% for worn in worn_products %}
     <li>
-      <img src="{{ worn.product.image_url }}" alt="{{ worn.product.title }}" width="100">
+      <img src="{{ worn.product.thumbnail_url }}" alt="{{ worn.product.title }}" width="100">
       <p>{{ worn.product.title }} ({{ worn.size }}, {{ worn.color }})</p>
     </li>
   {% empty %}
