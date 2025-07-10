@@ -50,7 +50,7 @@
     <div class="section-heading">최근 열람한 상품</div>
 <div class="scroll-bar" id="recent-wrap">
   {% for product in recent_products %}
-  <div class="item-card" onclick="location.href='{% url 'product_detail' product.id %}'">
+  <div class="item-card" onclick="location.href='{% url 'product_detail' product.id %}?from=home'">
   <div class="item-img-wrap">
     <img src="{{ product.thumbnail_url }}" alt="{{ product.title }}">
   </div>

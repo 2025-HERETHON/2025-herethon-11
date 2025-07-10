@@ -91,6 +91,7 @@ body {
   font-size: 14px;
 }
 .search-icon {
+  all: unset;
   width: 18px;
   height: 18px;
   background: url("/static/products/productimg/black.png") center/contain no-repeat;

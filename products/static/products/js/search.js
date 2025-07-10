@@ -161,3 +161,33 @@ document.addEventListener("DOMContentLoaded", () => {
     .getElementById("btn-apply")
     .addEventListener("click", () => alert("추천 검색 실행!"));
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const wearButtons = document.querySelectorAll(".wear");
+  const container = document.getElementById("wear-modal-container");
+
+  wearButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const pid = btn.dataset.id;
+      const colors = btn.dataset.colors;
+      const sizes = btn.dataset.sizes;
+
+      fetch(`/products/wear-modal/${pid}/?colors=${colors}&sizes=${sizes}`)
+        .then((response) => response.text())
+        .then((html) => {
+          container.innerHTML = html;
+
+          const phone = document.getElementById("phone");
+          phone?.classList.add("show");
+
+          document.body.style.overflow = "hidden";
+
+          phone.querySelector(".wear-close")?.addEventListener("click", () => {
+            phone.classList.remove("show");
+            document.body.style.overflow = "auto";
+          });
+        });
+    });
+  });
+});
+

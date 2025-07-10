@@ -28,7 +28,14 @@
         </div>
       </div>
 
-      <a href="{% url 'home' %}" class="back-btn"></a>
+      {% with request.GET.from as from_page %}
+        {% if from_page == "search" %}
+          <a href="{% url 'product_search' %}?q={{ request.GET.q }}" class="back-btn"></a>
+        {% else %}
+          <a href="{% url 'home' %}" class="back-btn"></a>
+        {% endif %}
+      {% endwith %}
+
       <h1 class="page-title">상품정보</h1>
 
       <!-- 캐러셀 -->
@@ -84,7 +91,7 @@
         </div>
 
         <!-- 리뷰 -->
-        <a href="{% url 'product_review' %}" class="review-link">
+        <a href="{% url 'product_review' product.id %}" class="review-link">
           리뷰&nbsp;<span class="cnt">{{ review_count }}+ ></span>
         </a>
 

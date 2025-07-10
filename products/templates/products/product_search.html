@@ -52,10 +52,10 @@
 
       <div class="recommend-grid" id="rec-wrap">
         {% for product in products %}
-        <div class="item-card">
+        <div class="item-card" onclick="location.href='{% url 'product_detail' product.id %}?from=search&q={{ request.GET.q|urlencode }}'">
           <div class="item-img-wrap">
             <img src="{{ product.thumbnail_url }}" alt="{{ product.title }}" />
-            <form method="POST" action="{% url 'toggle_like' product.id %}">
+            <form method="POST" action="{% url 'toggle_like' product.id %}" onclick="event.stopPropagation()">
               {% csrf_token %}
               <button
                 type="submit"
@@ -70,7 +70,7 @@
             <div class="item-desc">{{ product.title }}</div>
           </div>
         </div>
-        {% empty %}
+                  {% empty %}
         <p style="padding: 0 15px">추천 상품이 없습니다.</p>
         {% endfor %}
       </div>
@@ -293,5 +293,6 @@
         </div>
       </article>
     </section>
+    <div id="wear-modal-container"></div>
   </body>
 </html>
