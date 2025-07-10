@@ -191,3 +191,40 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+function toggleLike(event) {
+  event.stopPropagation();
+
+  const button = event.currentTarget;
+  const productId = button.dataset.productId;
+
+  fetch(`/products/${productId}/like/`, {
+    method: 'POST',
+    headers: {
+      'X-CSRFToken': getCookie('csrftoken'),
+    },
+  })
+    .then(response => {
+      if (!response.ok) throw new Error('Network response was not ok');
+      return response.json();
+    })
+    .then(data => {
+      if (data.status === 'liked') {
+        button.classList.add('liked');
+      } else if (data.status === 'unliked') {
+        button.classList.remove('liked');
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+}
+
+// CSRF 토큰 가져오는 함수
+function getCookie(name) {
+  const cookieValue = document.cookie
+    .split('; ')
+    .find(row => row.startsWith(name + '='));
+  return cookieValue ? decodeURIComponent(cookieValue.split('=')[1]) : null;
+}
+
+

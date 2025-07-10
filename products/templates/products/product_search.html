@@ -55,12 +55,13 @@
         <div class="item-card" onclick="location.href='{% url 'product_detail' product.id %}?from=search&q={{ request.GET.q|urlencode }}'">
           <div class="item-img-wrap">
             <img src="{{ product.thumbnail_url }}" alt="{{ product.title }}" />
-            <form method="POST" action="{% url 'toggle_like' product.id %}" onclick="event.stopPropagation()">
-              {% csrf_token %}
-              <button
-                type="submit"
-                class="heart {% if user in product.liked_users.all %}liked{% endif %}"
-              ></button>
+            <button
+              type="button"
+              class="heart {% if user in product.liked_users.all %}liked{% endif %}"
+              data-product-id="{{ product.id }}"
+              onclick="toggleLike(event)">
+            </button>
+
             </form>
             <span class="wear"></span>
           </div>
