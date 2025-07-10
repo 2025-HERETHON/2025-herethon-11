@@ -1,5 +1,4 @@
 :root {
-  --phone-w: 390px;
   --eve-main: #b40103;
   --grey-bg: #f5f5f5;
   --text-main: #000;
@@ -12,12 +11,16 @@
 html,
 body {
   margin: 0;
+  /* ⬇️ 폭은 390px까지만, 작은 화면에선 100% */
   max-width: 390px;
   width: 100%;
+  /* 큰 화면에서 가운데 배치 */
   margin-left: auto;
   margin-right: auto;
+  /* 좌우 스크롤 완전 차단 */
   overflow-x: hidden;
 }
+
 body {
   font-family: "Pretendard", sans-serif;
   background: #fff;
@@ -25,10 +28,7 @@ body {
   margin: 0 auto;
   overflow-y: auto;
 }
-
-/* status-bar … logo … search-wrap … btn-rec … 카드 … 네비 … */
-/* 👉 형님이 주신 CSS 그대로라 코드 길어서 생략 안 함 */
-/* -------------------------------------------------------------------------- */
+/* 상태바 */
 .status-bar {
   position: relative;
   margin: 20px auto 0;
@@ -66,6 +66,7 @@ body {
   width: 50%;
   transition: width 0.3s;
 }
+/* 공통 */
 .logo {
   text-align: center;
   font-family: "Prata", serif;
@@ -91,10 +92,10 @@ body {
   font-size: 14px;
 }
 .search-icon {
+  all: unset;
   width: 18px;
   height: 18px;
-  background: url("{% static 'products/productimg/black.png' %}") center/contain
-    no-repeat;
+  background: url("/static/products/productimg/black.png") center/contain no-repeat;
   flex-shrink: 0;
   cursor: pointer;
 }
@@ -110,14 +111,34 @@ body {
   font-weight: 600;
   cursor: pointer;
 }
-.recommend-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+.section-heading {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-main);
+  margin: 0 0 0 15px;
+}
+.view-all {
+  float: right;
+  margin-right: 15px;
+  margin-top: -21px;
+  font-size: 14px;
+  cursor: pointer;
+}
+/* 가로 스크롤 */
+.scroll-bar {
+  display: flex;
+  overflow-x: auto;
   gap: 10px;
   padding: 15px;
+  scroll-behavior: smooth;
 }
+.scroll-bar::-webkit-scrollbar {
+  display: none;
+}
+/* 카드 */
 .item-card {
   min-width: 160px;
+  flex: 0 0 auto;
 }
 .item-img-wrap {
   position: relative;
@@ -141,26 +162,27 @@ body {
   width: 20px;
   height: 20px;
   cursor: pointer;
-  background: url("{% static 'products/productimg/disabled heart.png' %}")
-    center/contain no-repeat;
+  font-size: 0;
+  background: url("/static/products/productimg/disabled%20heart.png") center/contain no-repeat;
   z-index: 2;
 }
 .heart.liked {
-  background-image: url("{% static 'products/productimg/red heart.png' %}");
+  background-image: url("/static/products/productimg/red%20heart.png");
 }
+/* 착용 제품 표시 */
 .wear {
   position: absolute;
   left: 8px;
   bottom: 8px;
   width: 73px;
   height: 19px;
-  background: url("{% static 'products/productimg/착용제품.png' %}")
-    center/contain no-repeat;
   cursor: pointer;
+  font-size: 0;
+  background: url("/static/products/productimg/착용제품.png") center/contain no-repeat;
   z-index: 2;
 }
 .wear.checked {
-  background-image: url("{% static 'products/productimg/착용제품 표시.png' %}");
+  background-image: url("/static/products/productimg/착용제품%20표시.png");
 }
 .item-info {
   margin-top: 6px;
@@ -181,7 +203,21 @@ body {
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  word-break: keep-all;
 }
+.divider {
+  width: 390px;
+  height: 7px;
+  background: var(--grey-bg);
+  margin: 20px auto;
+}
+.recommend-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  padding: 15px;
+}
+/* 하단 네비 */
 .bottom-nav {
   position: fixed;
   bottom: 0;
@@ -201,8 +237,8 @@ body {
   flex-direction: column;
   align-items: center;
   font-size: 12px;
-  text-decoration: none;
   color: #000;
+  text-decoration: none;
 }
 .nav-item img {
   width: 40px;
@@ -213,15 +249,25 @@ body {
 .nav-item.active {
   color: var(--eve-main);
 }
+.page-content {
+  padding-bottom: 90px;
+}
 .nav-icon {
   width: var(--nav-icon-size);
   height: var(--nav-icon-size);
+  object-fit: contain;
+  margin-bottom: 4px;
   transition: transform 0.2s;
 }
 .nav-item.active .nav-icon {
   transform: scale(1.1);
 }
-/* ----------------- 모달 스타일 (체형, 가격, chips 전부) ------------------ */
+/* 공통 색상 변수 */
+:root {
+  --eve-main: #b40103;
+}
+
+/* ▷ 모달 래퍼 · 시트 -------------------------------------------------- */
 .rec-modal {
   position: fixed;
   inset: 0;
@@ -236,6 +282,7 @@ body {
   inset: 0;
   background: #0008;
 }
+
 .modal-sheet {
   position: absolute;
   inset: 0;
@@ -244,10 +291,10 @@ body {
   height: 100vh;
   padding-bottom: 130px;
   background: #fff;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   animation: fadeUp 0.25s ease-out;
 }
@@ -260,6 +307,20 @@ body {
     transform: translateY(0);
     opacity: 1;
   }
+}
+
+/* ── 헤더 / 상태바 ----------------------------------------------------- */
+.status-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 15px 0;
+  font: 600 14px Pretendard;
+}
+.status-icons {
+  display: flex;
+  gap: 8px;
+  align-items: center;
 }
 .modal-header {
   position: relative;
@@ -283,24 +344,24 @@ body {
   border: none;
   font-size: 24px;
   line-height: 20px;
-  color: #949494;
   cursor: pointer;
+  color: #949494;
 }
-/* 체형 */
+
+/* ── 체형 불러오기 ----------------------------------------------------- */
 .tag-btn.outline {
   width: 95px;
   height: 35px;
   margin: 0 0 6px 16px;
   border-radius: 6px;
   cursor: pointer;
-  background: url("/products/static/products/productimg/wore.png")
-    center/contain no-repeat;
-  border: 1px solid var(--eve-main);
+  background: url("/static/products/productimg/wore.png") center/contain no-repeat;
+  border: none;
   color: transparent;
   text-indent: -9999px;
 }
 .tag-btn.outline.loaded {
-  background-image: url("/products/static/products/productimg/wore_red.png");
+  background-image: url("/static/products/productimg/wore_red.png");
 }
 .body-info-box {
   margin: 0 auto;
@@ -309,7 +370,8 @@ body {
   border: 1px solid #949494;
   border-radius: 10px;
 }
-/* 액션바 */
+
+/* ── 하단 액션 바 ----------------------------------------------------- */
 .action-bar {
   position: fixed;
   bottom: 0;
@@ -336,26 +398,37 @@ body {
 .action-btn.reset {
   width: 107px;
   height: 56px;
-  background-image: url("/products/static/products/productimg/reset.png");
+  background-image: url("/static/products/productimg/reset.png");
 }
 .action-btn.apply {
   width: 240px;
   height: 56px;
-  background-image: url("/products/static/products/productimg/rec.png");
+  background-image: url("/static/products/productimg/rec.png");
 }
-/* 가격 슬라이더 */
+
+/* ── 가격 영역 (디자인 그대로, 겹침 해결) ----------------------------- */
+.price-label {
+  font: 600 17px/20px Pretendard;
+  margin: 32px 0 12px 15px;
+}
+
 .price-inputs {
   display: flex;
   justify-content: center;
   gap: 8px;
   padding: 0 15px;
+  flex-wrap: nowrap;
   align-items: center;
 }
 .price-field {
   position: relative;
   width: 165px;
   height: 46px;
+  display: inline-block;
 }
+.price-field:first-child {
+  margin-right: 8px;
+} /* 좌칸 → 여백 8px */
 .price-field input {
   width: 100%;
   height: 100%;
@@ -373,14 +446,18 @@ body {
   transform: translateY(-50%);
   font-weight: 600;
   font-size: 15px;
-  color: #000;
+  font-family: "Pretendard", sans-serif;
   pointer-events: none;
+  color: #000;
+  line-height: 1;
 }
+
 .dash {
   display: inline-block;
   font: 700 18px/46px Pretendard;
   margin-right: 8px;
 }
+
 #price-slider {
   position: relative;
   margin: 18px auto 0;
@@ -409,11 +486,13 @@ body {
   cursor: pointer;
   touch-action: none;
 }
-/* 칩 공통 */
+
+/* ── 공통 chips (색상 · 소재 · 타입) ---------------------------------- */
 .block-title {
   font: 600 17px/20px Pretendard;
   margin: 32px 0 12px 15px;
 }
+
 .chips {
   display: grid;
   grid-template-columns: repeat(3, 113px);
@@ -427,6 +506,7 @@ body {
 .chips.open {
   max-height: none;
 }
+
 .chip {
   display: flex;
   align-items: center;
@@ -443,6 +523,7 @@ body {
   border-color: #b40103;
   color: #b40103;
 }
+
 .circle {
   width: 26px;
   height: 26px;
@@ -452,6 +533,7 @@ body {
   background: #fff;
   border: 1px solid #000;
 }
+
 .toggle {
   display: block;
   margin: 8px 15px 0 auto;

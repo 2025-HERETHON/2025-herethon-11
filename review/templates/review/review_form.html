@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,8 +9,8 @@
       href="https://fonts.googleapis.com/css2?family=Prata&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../../static/products/form.css" />
-    <script src="../../static/products/form.js" defer></script>
+    <link rel="stylesheet" href="{% static 'products/css/form.css' %}" />
+    <script src="{% static 'products/js/form.js' %}" defer></script>
   </head>
   <body>
     <!-- 상단 -->
@@ -18,12 +19,12 @@
         <span id="clock">--:--</span>
         <div class="status-icons">
           <img
-            src="../../static/products/productimg/cellular.png"
+            src="{% static 'products/productimg/cellular.png' %}"
             class="icon"
             alt="cellular"
           />
           <img
-            src="../../static/products/productimg/wi-fi.png"
+            src="{% static 'products/productimg/wi-fi.png' %}"
             class="icon"
             alt="wifi"
           />
@@ -33,7 +34,7 @@
         </div>
       </div>
       <div class="page-header">
-        <a href="#" class="btn-back" id="back-btn"><</a>
+        <a href="javascript:history.back();" class="btn-back" id="back-btn"><</a>
         리뷰 작성
       </div>
     </header>
@@ -41,7 +42,7 @@
     <!-- 본문 -->
     <div class="page-content">
       <div class="product-info">
-        <img src="products/productimg/sample1.jpg" alt="상품" />
+        <img src="{% static 'products/productimg/sample1.jpg' %}" alt="상품" />
         <div class="p-text">
           <div class="title">[더잠] 이지핏 스퀘어 브라탑 · 팬티 세트</div>
           <div>블랙 · M</div>
@@ -122,23 +123,23 @@
 
     <!-- 하단 네비 -->
     <nav class="bottom-nav">
-      <a href="product.html" class="nav-item" data-icon="home">
+      <a href="{% url 'home' %}" class="nav-item" data-icon="home">
         <img
-          src="../../static/products/productimg/home.png"
+          src="{% static 'products/productimg/home.png' %}"
           alt="home"
           class="nav-icon"
         />
       </a>
       <a href="#" class="nav-item active" data-icon="review">
         <img
-          src="../../static/products/productimg/review_red.png"
+          src="{% static 'products/productimg/review_red.png' %}"
           alt="review"
           class="nav-icon"
         />
       </a>
       <a href="mypage.html" class="nav-item" data-icon="user">
         <img
-          src="../../static/products/productimg/user.png"
+          src="{% static 'products/productimg/user.png' %}"
           alt="mypage"
           class="nav-icon"
         />

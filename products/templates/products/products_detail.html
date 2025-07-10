@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,8 +9,8 @@
       href="https://fonts.googleapis.com/css2?family=Prata&display=swap"
       rel="stylesheet"
     />
-     <link rel="stylesheet" href="../../static/products/detail.css" />
-    <script src="../../static/products/detail.js" defer></script>
+     <link rel="stylesheet" href="{% static 'products/css/detail.css' %}" />
+    <script src="{% static 'products/js/detail.js' %}" defer></script>
   </head>
 
   <body>
@@ -18,8 +19,8 @@
       <div class="status-bar">
         <span id="clock">--:--</span>
         <div class="status-icons">
-          <img src="../../static/products/productimg/cellular.png" alt="cell" />
-          <img src="../../static/products/productimg/wi-fi.png" alt="wifi" />
+          <img src="{% static 'products/productimg/cellular.png' %}" alt="cell" />
+          <img src="{% static 'products/productimg/wi-fi.png' %}" alt="wifi" />
           <div class="battery"><div class="battery-level"></div></div>
         </div>
       </div>
@@ -29,17 +30,13 @@
 
       <!-- 캐러셀 -->
       <div class="carousel" id="carousel">
-        <img src="../../static/products/productimg/pic1.jpg" alt="pic1" />
-        <img
-          src="../../static/products/productimg/pic2.jpg"
-          alt="pic2"
-          class="hidden"
-        />
-        <img
-          src="../../static/products/productimg/pic3.jpg"
-          alt="pic3"
-          class="hidden"
-        />
+        <img src="{% static 'products/productimg/pic1.jpg' %}" alt="pic1" />
+        <img src="{% static 'products/productimg/pic2.jpg' %}"
+             alt="pic2"
+             class="hidden" />
+        <img src="{% static 'products/productimg/pic3.jpg' %}"
+             alt="pic3"
+             class="hidden" />
       </div>
       <div class="dots" id="dots">
         <span class="dot active" data-idx="0"></span>
@@ -52,10 +49,8 @@
         <div class="brand">
           마론파이브
           <span class="like-wrap"
-            ><img
-              src="../../static/products/productimg/red%20heart.png"
-              alt
-            /><span>64.2만</span></span
+            ><img src="{% static 'products/productimg/red heart.png' %}" alt="좋아요" />
+            <span>64.2만</span></span
           >
         </div>
         <div class="product-name">
@@ -89,7 +84,7 @@
 
         <!-- 리뷰 -->
       <!-- 리뷰 999+ 버튼 -->
-<a href="product_review.html" class="review-link">
+<a href="{% url 'product_review' %}" class="review-link">
   후기&nbsp;<span class="cnt"> > </span>
 </a>
 

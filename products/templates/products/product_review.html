@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -11,8 +12,8 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="../../static/products/p_reiview.css" />
-    <script src="../../static/products/p_reiview.js" defer></script>
+    <link rel="stylesheet" href="{% static 'products/css/p_reiview.css' %}" />
+    <script src="{% static 'products/js/p_reiview.js' %}" defer></script>
   </head>
 
   <body>
@@ -21,8 +22,8 @@
       <div class="status-bar">
         <span id="clock">--:--</span>
         <div class="status-icons">
-          <img src="../../static/products/productimg/cellular.png" alt="cell" />
-          <img src="../../static/products/productimg/wi-fi.png" alt="wifi" />
+          <img src="{% static 'products/productimg/cellular.png' %}" alt="cell" />
+          <img src="{% static 'products/productimg/wi-fi.png' %}" alt="wifi" />
           <div class="battery"><div class="battery-level"></div></div>
         </div>
       </div>
@@ -93,10 +94,9 @@
               <span class="username">멋쟁이기계사자</span
               ><span class="stars">★★★★★</span>
               <button class="like-btn" data-base="85">
-                <img
-                  class="thumb"
-                  src="../../static/products/productimg/thumb.png"
-                  alt="공감"
+                <img class="thumb"
+                     src="{% static 'products/productimg/thumb.png' %}"
+                     alt="공감"
                 />
                 <span class="cnt">85</span>
               </button>

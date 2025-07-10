@@ -8,7 +8,7 @@ urlpatterns = [
     path('like/<int:product_id>/', toggle_like, name='toggle_like'),
     path('wear/<int:product_id>/', toggle_wear, name='toggle_wear'),
     path('products/<int:product_id>/options/', product_option_modal, name='product_option_modal'),
-path('search/', product_search, name='product_search'),
+    path('search/', product_search, name='product_search'),
 ]
 
 
