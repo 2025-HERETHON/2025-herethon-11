@@ -16,11 +16,21 @@ document.getElementById("back-btn").addEventListener("click", (e) => {
 document.querySelectorAll("#satisfaction .option").forEach((btn) =>
   btn.addEventListener("click", () => {
     setActive(btn, "satisfaction");
+
+    // 클릭된 항목의 data-value를 숨겨진 input에 저장
+    const value = btn.dataset.value;  // "good", "soso", "bad"
+    const hiddenInput = document.getElementById("satisfactionInput");
+    if (hiddenInput) hiddenInput.value = value;
   })
 );
 document.querySelectorAll("#size .option").forEach((btn) =>
   btn.addEventListener("click", () => {
     setActive(btn, "size");
+
+    // 클릭된 항목의 data-value를 숨겨진 input에 저장
+    const value = btn.dataset.value; 
+    const hiddenInput = document.getElementById("size_feelInput");
+    if (hiddenInput) hiddenInput.value = value;
   })
 );
 function setActive(btn, groupId) {
@@ -38,6 +48,10 @@ stars.forEach((s) => {
     stars.forEach((st) => {
       st.classList.toggle("filled", parseInt(st.dataset.val) <= val);
     });
+
+    // 선택된 별점 input에 저장
+    const value = s.dataset.val;
+    document.getElementById("ratingInput").value = value;
   });
 });
 
