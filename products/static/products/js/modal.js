@@ -59,3 +59,13 @@
     }
   });
 })();
+
+document.addEventListener("DOMContentLoaded", () => {
+  // 약간의 여백 포함해서 콘텐츠 크기 측정
+  const width = document.documentElement.scrollWidth;
+  const height = document.documentElement.scrollHeight;
+
+  // 창 크기 조정
+  window.resizeTo(width + 20, height + 40);  // 여백 포함 (브라우저 크롬 보정용)
+});
+

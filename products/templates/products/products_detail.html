@@ -98,9 +98,11 @@
               <div class="heart {% if is_liked %}on{% endif %}" id="wish"></div>
             </a>
             <span class="heart-count">{{ like_count }}</span>
-            <a href="{{ product.link }}" target="_blank">
-              <button class="buy-btn">구매하기</button>
-            </a>
+
+            <!-- 수정된 구조 -->
+            <button class="buy-btn" onclick="location.href='{{ product.link }}'">
+              구매하기
+            </button>
           </div>
         </div>
       </div>
