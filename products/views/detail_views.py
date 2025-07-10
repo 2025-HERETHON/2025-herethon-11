@@ -9,6 +9,15 @@ from review.models import Review
 
 def product_detail(request, product_id):
     product = get_object_or_404(Product, id=product_id)
+
+    if request.user.is_authenticated:
+        RecentlyViewedProduct.objects.update_or_create(
+            user=request.user,
+            product=product,
+            defaults={'viewed_at': timezone.now()}
+        )
+
+
     colors = product.color.split(',') if product.color else []
     sizes = product.size.split(',') if product.size else []
 

@@ -38,6 +38,7 @@ def expand_sizes(size_string):
 def home(request):
     products = Product.objects.all()
 
+
     # 필터 값 받기
     colors = request.GET.getlist("color")
     materials = request.GET.getlist("material")
@@ -99,7 +100,10 @@ def home(request):
     recent_products = []
     if request.user.is_authenticated:
         recent_products = [
-            rv.product for rv in RecentlyViewedProduct.objects.filter(user=request.user)
+            rv.product for rv in RecentlyViewedProduct.objects
+                                 .filter(user=request.user)
+                                 .select_related('product')  # 쿼리 최적화 (선택)
+                                 .order_by('-viewed_at')[:5]
         ]
 
     context = {
