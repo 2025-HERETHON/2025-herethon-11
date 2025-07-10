@@ -58,34 +58,34 @@
   setInterval(updateClock, 60000);
 
   /* === 바텀 네비게이션 === */
-  const STATIC_PATH = "{% static 'products/productimg/' %}";
-  const navItems = document.querySelectorAll(".bottom-nav .nav-item");
+  // const STATIC_PATH = "{% static 'products/productimg/' %}";
+  // const navItems = document.querySelectorAll(".bottom-nav .nav-item");
 
-  navItems.forEach((item) => {
-    item.addEventListener("click", (e) => {
-      e.preventDefault();
-      /* 1. 모든 아이콘 & 글자 초기화 */
-      navItems.forEach((n) => {
-        const base = n.dataset.icon;
-        n.classList.remove("active");
-        n.querySelector("img").src = STATIC_PATH + base + ".png";
-      });
-      /* 2. 선택된 아이콘만 빨간색으로 */
-      const base = item.dataset.icon;
-      item.classList.add("active");
-      item.querySelector("img").src = STATIC_PATH + base + "_red.png";
+  // navItems.forEach((item) => {
+  //   item.addEventListener("click", (e) => {
+  //     e.preventDefault();
+  //     /* 1. 모든 아이콘 & 글자 초기화 */
+  //     navItems.forEach((n) => {
+  //       const base = n.dataset.icon;
+  //       n.classList.remove("active");
+  //       n.querySelector("img").src = STATIC_PATH + base + ".png";
+  //     });
+  //     /* 2. 선택된 아이콘만 빨간색으로 */
+  //     const base = item.dataset.icon;
+  //     item.classList.add("active");
+  //     item.querySelector("img").src = STATIC_PATH + base + "_red.png";
 
-      if (base === "home") {
-        window.scrollTo({ top: 0, behavior: "smooth" }); // 홈은 스크롤 맨 위
-      } else if (base === "review") {
-        window.location.href = "review.html";
-      } else if (base === "user") {
-        window.location.href = "mypage.html";
-      } else {
-        alert("준비 중인 페이지입니다"); // 그 외에는 알림
-      }
-    });
-  });
+  //     if (base === "home") {
+  //       window.scrollTo({ top: 0, behavior: "smooth" }); // 홈은 스크롤 맨 위
+  //     } else if (base === "review") {
+  //       window.location.href = "review.html";
+  //     } else if (base === "user") {
+  //       window.location.href = "mypage.html";
+  //     } else {
+  //       alert("준비 중인 페이지입니다"); // 그 외에는 알림
+  //     }
+  //   });
+  // });
 
   /* ───────────────────── 0. 모달 열기 / 닫기 ───────────────────── */
   const btnOpen = document.querySelector(".btn-rec"); // “추천받기” 버튼

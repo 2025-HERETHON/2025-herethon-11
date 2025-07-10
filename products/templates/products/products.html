@@ -113,14 +113,14 @@
           class="nav-icon"
         />
       </a>
-      <a href="../../../review/templates/review/review.html" class="nav-item" data-icon="review">
+      <a href="{% url 'list_review' %}" class="nav-item" data-icon="review">
         <img
           src="{% static 'products/productimg/review.png' %}"
           alt="review"
           class="nav-icon"
         />
       </a>
-      <a href="#" class="nav-item" data-icon="user">
+      <a href="{% url 'mypage' %}" class="nav-item" data-icon="user">
         <img
           src="{% static 'products/productimg/user.png' %}"
           alt="mypage"

@@ -16,7 +16,7 @@ class Review(models.Model):
         ('small', '작게 느껴져요'),
     ]
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE) #리뷰 작성자
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reviews') #리뷰 작성자
     product = models.ForeignKey(Product, on_delete=models.CASCADE) #리뷰 대상 상품
     satisfaction = models.CharField(max_length=10, choices=SATISFACTION_CHOICES) #만족도
     size_feel = models.CharField(max_length=10, choices=SIZE_FEEL_CHOICES) #사이즈
@@ -24,6 +24,7 @@ class Review(models.Model):
     title = models.CharField(max_length=30) #제목
     content = models.TextField(max_length=300) #내용
     created_at = models.DateTimeField(auto_now_add=True)
+    like_users = models.ManyToManyField(User, related_name='liked_reviews', blank=True)
 
     def __str__(self):
         return f"[{self.product}] {self.user.username} - {self.title}"

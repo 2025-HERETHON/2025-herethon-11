@@ -12,7 +12,7 @@ urlpatterns = [
     path('products/<int:product_id>/options/', product_option_modal, name='product_option_modal'),
     path('search/', product_search, name='product_search'),
     path('<int:product_id>/', product_detail, name='product_detail'),# 👈 이거!
-    path('review/', product_review, name='product_review'),
+    path('review/<int:product_id>/', product_review, name='product_review'), #상품별 전체 리뷰 목록
 path('detail-like/<int:product_id>/', detail_toggle_like, name='detail_toggle_like'),  # 상세페이지 전용 토글
 path("products/wear-modal/<int:product_id>/", wear_modal, name="wear_modal"),
 ]
