@@ -50,20 +50,26 @@ def size_check_pelvis(request):
         return JsonResponse({'pelvis_size': pelvis_size})
     return JsonResponse({'error': 'POST 요청만 허용'}, status=405)
 
+def to_int(v):
+    try:
+        return int(v) if v is not None else None
+    except (ValueError, TypeError):
+        return None
+        
 #체형 사이즈 저장
 @login_required
 def save_body_info(request):
     if request.method == "POST":
         try:
             data = json.loads(request.body)
-            bust = int(data.get("bust"))
-            underbust = int(data.get("underbust"))
+            bust = to_int(data.get("bust"))
+            underbust = to_int(data.get("underbust"))
             cup_size = data.get("cup_size")
-            waist = int(data.get("waist"))
-            hip = int(data.get("hip"))
+            waist = to_int(data.get("waist"))
+            hip = to_int(data.get("hip"))
             pelvis_size = data.get("pelvis_size")
-            height = int(data.get("height"))
-            weight = int(data.get("weight"))
+            height = to_int(data.get("height"))
+            weight = to_int(data.get("weight"))
 
             # 현재 로그인한 사용자의 프로필 가져오기
             profile, _ = UserProfile.objects.get_or_create(user=request.user)
