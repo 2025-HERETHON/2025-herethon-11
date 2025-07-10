@@ -9,8 +9,8 @@
       href="https://fonts.googleapis.com/css2?family=Prata&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../../static/products/search.css" />
-    <script src="../../static/products/search.js" defer></script>
+    <link rel="stylesheet" href="{% static 'products/css/search.css' %}" />
+    <script src="{% static 'products/js/search.js' %}" defer></script>
   </head>
   <body>
     <!-- ============================== 본문 ============================== -->
@@ -51,7 +51,7 @@
       <button class="btn-rec">추천받기</button>
 
       <div class="recommend-grid" id="rec-wrap">
-        {% for product in rec_items %}
+        {% for product in products %}
         <div class="item-card">
           <div class="item-img-wrap">
             <img src="{{ product.image_url }}" alt="{{ product.title }}" />

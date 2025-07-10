@@ -1,5 +1,5 @@
-{% load static %}
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -9,10 +9,9 @@
       href="https://fonts.googleapis.com/css2?family=Prata&display=swap"
       rel="stylesheet"
     />
-     <link rel="stylesheet" href="../../static/products/products.css" />
-    <script src="../../static/products/products.js" defer></script>
+    <link rel="stylesheet" href="{% static 'products/css/products.css' %}" />
+    <script src="{% static 'products/js/products.js' %}" defer></script>
   </head>
-   <link rel="stylesheet" href="{% static 'products/products.css' %}" />
   <body>
     <div class="page-content">
       <!-- 상태바 -->
@@ -99,7 +98,7 @@
           class="nav-icon"
         />
       </a>
-      <a href="review.html" class="nav-item" data-icon="review">
+      <a href="../../../review/templates/review/review.html" class="nav-item" data-icon="review">
         <img
           src="{% static 'products/productimg/review.png' %}"
           alt="review"

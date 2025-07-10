@@ -10,8 +10,8 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="../../static/products/review.css" />
-    <script src="../../static/products/review.js" defer></script>
+    <link rel="stylesheet" href="{% static 'review/css/review.css' %}" />
+    <script src="{% static 'review/js/review.js' %}" defer></script>
   </head>
   <body>
     <!-- ===== 상단 고정 영역 ===== -->
@@ -20,12 +20,12 @@
         <span id="clock">--:--</span>
         <div class="status-icons">
           <img
-            src="../../static/products/productimg/cellular.png"
+            src="{% static 'products/productimg/cellular.png' %}"
             class="icon"
             alt="cellular"
           />
           <img
-            src="../../static/products/productimg/wi-fi.png"
+            src="{% static 'products/productimg/wi-fi.png' %}"
             class="icon"
             alt="wifi"
           />
@@ -51,23 +51,23 @@
 
     <!-- ===== 하단 네비 ===== -->
     <nav class="bottom-nav">
-      <a href="product.html" class="nav-item" data-icon="home">
+      <a href="{% url 'home' %}" class="nav-item" data-icon="home">
         <img
-          src="../../static/products/productimg/home.png"
+          src="{% static 'products/productimg/home.png' %}"
           alt="home"
           class="nav-icon"
         />
       </a>
       <a href="#" class="nav-item active" data-icon="review">
         <img
-          src="../../static/products/productimg/review_red.png"
+          src="{% static 'products/productimg/review_red.png' %}"
           alt="review"
           class="nav-icon"
         />
       </a>
-      <a href="mypage.html" class="nav-item" data-icon="user">
+      <a href="{% url 'mypage' %}" class="nav-item" data-icon="user">
         <img
-          src="../../static/products/productimg/user.png"
+          src="{% static 'products/productimg/user.png' %}"
           alt="mypage"
           class="nav-icon"
         />

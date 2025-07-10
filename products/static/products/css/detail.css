@@ -265,13 +265,12 @@ body {
 .heart {
   width: 24px;
   height: 24px;
-  background: url("../../static/products/productimg/disabled%20heart.png")
-    center/contain no-repeat;
+  background: url("/static/products/productimg/disabled%20heart.png") center/contain no-repeat;
   cursor: pointer;
   flex-shrink: 0;
 }
 .heart.on {
-  background-image: url("../../static/products/productimg/red%20heart.png");
+  background-image: url("/static/products/productimg/red%20heart.png");
 }
 .heart-count {
   font: 12px Pretendard;

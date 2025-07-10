@@ -109,8 +109,28 @@ def product_option_modal(request, product_id):
 
 def product_search(request):
     query = request.GET.get('q', '')
-    products = Product.objects.filter(title__icontains=query) if query else []
-    return render(request, 'products/search_results.html', {
+    color = request.GET.get('color')
+    material = request.GET.get('material')
+    type_ = request.GET.get('type')
+
+    products = Product.objects.all()
+
+    # 검색어로 먼저 필터
+    if query:
+        products = products.filter(title__icontains=query)
+
+    # 필터는 선택적으로 적용
+    if color:
+        products = products.filter(color=color)
+    if material:
+        products = products.filter(material=material)
+    if type_:
+        products = products.filter(type=type_)
+
+    return render(request, 'products/product_search.html', {
         'query': query,
-        'products': products
+        'products': products,
+        'selected_color': color,
+        'selected_material': material,
+        'selected_type': type_,
     })
