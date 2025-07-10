@@ -16,7 +16,6 @@ body {
   justify-content: center;
 }
 .phone {
-  position: relative;
   width: 390px;
   min-height: 100vh; /* 내용 많아지면 늘어남 */
   background: #fff;
@@ -27,7 +26,7 @@ body {
 
 /* ── status-bar ── */
 .status-bar {
-  position: absolute; /* 스크롤해도 고정 */
+  position: fixed; /* 스크롤해도 고정 */
   top: 19px;
   left: 50%;
   transform: translateX(-50%);
@@ -39,8 +38,6 @@ body {
   font: 600 14px/1 Pretendard;
   z-index: 1000;
   background-color: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  border-radius: 6px;
 }
 .status-icons {
   display: flex;
@@ -199,7 +196,6 @@ body {
 }
 .option-list {
   display: none;
-  flex-direction: column;
   margin-top: 4px;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -208,17 +204,21 @@ body {
   overflow-y: auto;
 }
 .dropdown.open .option-list {
-  display: flex;
+  display: block;
 }
 .option-list button {
   border: none;
   background: #fff;
-  height: 40px;
+  height: 40px; /* ✅ 높이 고정 */
+  line-height: 40px; /* ✅ 텍스트 세로 중앙 정렬 */
   text-align: left;
   padding: 0 12px;
   font-size: 14px;
   cursor: pointer;
+  width: 100%; /* ✅ 꽉 차게 넓이 지정 */
+  box-sizing: border-box; /* ✅ padding 포함해서 정렬 유지 */
 }
+
 .option-list button + button {
   border-top: 1px solid #f0f0f0;
 }
@@ -244,7 +244,6 @@ body {
   left: 50%;
   bottom: 0;
   transform: translateX(-50%);
-  width: var(--phone-w);
   width: 390px;
   height: 147px;
   background: #fff;
@@ -255,6 +254,7 @@ body {
   gap: 12px;
   z-index: 1000;
 }
+
 .stats {
   font: 12px Pretendard;
   color: var(--txt-grey);
@@ -269,12 +269,13 @@ body {
 .heart {
   width: 24px;
   height: 24px;
-  background: url("/static/products/productimg/disabled%20heart.png") center/contain no-repeat;
+  background: url("../../static/products/productimg/disabled%20heart.png")
+    center/contain no-repeat;
   cursor: pointer;
   flex-shrink: 0;
 }
 .heart.on {
-  background-image: url("/static/products/productimg/red%20heart.png");
+  background-image: url("../../static/products/productimg/red%20heart.png");
 }
 .heart-count {
   font: 12px Pretendard;
@@ -282,10 +283,10 @@ body {
 .buy-btn {
   flex: 1;
   height: 56px;
-  background: var(--eve-main);
-  color: #fff;
   border: none;
   border-radius: 30px;
+  background: var(--eve-main);
+  color: #fff;
   font: 600 18px Pretendard;
   cursor: pointer;
 }
@@ -294,17 +295,4 @@ body {
   font: 12px/1.4 Pretendard;
   color: #666;
   margin: 8px 0 14px;
-}
-
-/* 후기 999+ 링크 전용 */
-.review-link {
-  color: inherit; /* 부모 글자색 그대로!  */
-  text-decoration: none; /* 밑줄 제거            */
-}
-
-/* 눌렀을 때(visited) · hover 도 동일하게 */
-.review-link:visited,
-.review-link:hover {
-  color: inherit;
-  text-decoration: none;
 }
