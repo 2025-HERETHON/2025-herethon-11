@@ -19,7 +19,10 @@
       <div class="status-bar">
         <span id="clock">--:--</span>
         <div class="status-icons">
-          <img src="{% static 'products/productimg/cellular.png' %}" alt="cell" />
+          <img
+            src="{% static 'products/productimg/cellular.png' %}"
+            alt="cell"
+          />
           <img src="{% static 'products/productimg/wi-fi.png' %}" alt="wifi" />
           <div class="battery"><div class="battery-level"></div></div>
         </div>
@@ -31,20 +34,25 @@
       <!-- 캐러셀 -->
       <div class="carousel" id="carousel">
         {% for img in product.images.all %}
-          <img src="{{ img.image_url }}" alt="product image" class="{% if not forloop.first %}hidden{% endif %}" />
+        <img
+          src="{{ img.image_url }}"
+          alt="product image"
+          class="{% if not forloop.first %}hidden{% endif %}"
+        />
         {% endfor %}
       </div>
       <div class="dots" id="dots">
         {% for img in product.images.all %}
-          <span class="dot {% if forloop.first %}active{% endif %}" data-idx="{{ forloop.counter0 }}"></span>
+        <span
+          class="dot {% if forloop.first %}active{% endif %}"
+          data-idx="{{ forloop.counter0 }}"
+        ></span>
         {% endfor %}
       </div>
 
       <!-- 상품 정보 -->
       <div class="info-wrap">
-        <div class="brand">
-          {{ shop }}
-        </div>
+        <div class="brand">{{ shop }}</div>
         <div class="product-name">
           {{ title }} <span class="price">{{ price }}원</span>
         </div>
@@ -80,10 +88,11 @@
           리뷰&nbsp;<span class="cnt">{{ review_count }}+ ></span>
         </a>
 
-
         <!-- 하단 고정바 -->
         <div class="bottom-bar">
-          <div class="stats">{{ satisfaction_good_count }}명이 이 상품에 만족했어요</div>
+          <div class="stats">
+            {{ satisfaction_good_count }}명이 이 상품에 만족했어요
+          </div>
           <div class="bottom-act">
             <a href="{% url 'detail_toggle_like' product.id %}">
               <div class="heart {% if is_liked %}on{% endif %}" id="wish"></div>
