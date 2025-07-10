@@ -161,3 +161,103 @@ document.addEventListener("DOMContentLoaded", () => {
     .getElementById("btn-apply")
     .addEventListener("click", () => alert("추천 검색 실행!"));
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const wearButtons = document.querySelectorAll(".wear");
+  const container = document.getElementById("wear-modal-container");
+
+  wearButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const pid = btn.dataset.id;
+      const colors = btn.dataset.colors;
+      const sizes = btn.dataset.sizes;
+
+      fetch(`/products/wear-modal/${pid}/?colors=${colors}&sizes=${sizes}`)
+        .then((response) => response.text())
+        .then((html) => {
+          container.innerHTML = html;
+
+          const phone = document.getElementById("phone");
+          phone?.classList.add("show");
+
+          document.body.style.overflow = "hidden";
+
+          phone.querySelector(".wear-close")?.addEventListener("click", () => {
+            phone.classList.remove("show");
+            document.body.style.overflow = "auto";
+          });
+        });
+    });
+  });
+});
+
+function toggleLike(event) {
+  event.stopPropagation();
+
+  const button = event.currentTarget;
+  const productId = button.dataset.productId;
+
+  fetch(`/products/${productId}/like/`, {
+    method: 'POST',
+    headers: {
+      'X-CSRFToken': getCookie('csrftoken'),
+    },
+  })
+    .then(response => {
+      if (!response.ok) throw new Error('Network response was not ok');
+      return response.json();
+    })
+    .then(data => {
+      if (data.status === 'liked') {
+        button.classList.add('liked');
+      } else if (data.status === 'unliked') {
+        button.classList.remove('liked');
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+}
+
+// CSRF 토큰 가져오는 함수
+function getCookie(name) {
+  const cookieValue = document.cookie
+    .split('; ')
+    .find(row => row.startsWith(name + '='));
+  return cookieValue ? decodeURIComponent(cookieValue.split('=')[1]) : null;
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll(".wear").forEach((btn) => {
+    btn.addEventListener("click", function (e) {
+      e.stopPropagation(); // 다시 한 번 안전하게
+      const productId = btn.dataset.id;
+      const colors = btn.dataset.colors;
+      const sizes = btn.dataset.sizes;
+
+      // 모달 여는 함수 호출
+      openWearModal(productId, colors, sizes);
+    });
+  });
+});
+
+function openWearModal(productId, colors, sizes) {
+  // 여기에 모달 열기 로직 작성
+  const modal = document.getElementById("wear-modal-container");
+  modal.innerHTML = `
+    <div class="modal">
+      <h2>착용 옵션 선택</h2>
+      <p>상품 ID: ${productId}</p>
+      <p>컬러: ${colors}</p>
+      <p>사이즈: ${sizes}</p>
+      <button onclick="closeWearModal()">닫기</button>
+    </div>
+  `;
+  modal.style.display = "block";
+}
+
+function closeWearModal() {
+  document.getElementById("wear-modal-container").style.display = "none";
+}
+
+

@@ -3,5 +3,14 @@ from django.shortcuts import get_object_or_404, render
 from products.models import Product, RecentlyViewedProduct
 from django.utils import timezone
 
-def product_review(request):
-    return render(request, 'products/product_review.html')
+from review.models import Review
+
+
+def product_review(request, product_id):
+    # 예시 코드
+    product = Product.objects.get(id=product_id)
+    reviews = Review.objects.filter(product=product)
+    return render(request, 'products/review.html', {
+        'product': product,
+        'reviews': reviews
+    })
