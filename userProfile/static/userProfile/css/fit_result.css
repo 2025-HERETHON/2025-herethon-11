@@ -1,4 +1,4 @@
-      :root {
+:root {
         --eve-main: #b40103;
         --grey-bg: #f5f5f5;
         --text-main: #000;
@@ -89,7 +89,7 @@
       .profile-info {
         flex: 1;
       }
-      .profile-container {
+      .profile-container{
         display: flex;
         justify-content: space-between;
       }
@@ -106,12 +106,12 @@
         background: #fff;
         cursor: pointer;
       }
-      .logout {
+      .logout{
         font-size: 13px;
         color: gray;
         cursor: pointer;
       }
-      .logout img {
+      .logout img{
         width: 4.5px;
         height: 9px;
       }
@@ -157,7 +157,7 @@
         font-weight: 600;
         padding-top: 10px;
       }
-      .count-container {
+      .count-container{
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -274,7 +274,7 @@
         font-size: 15px;
         justify-content: space-around;
       }
-      .modal-buttons {
+      .modal-buttons{
         margin-top: 35px;
       }
       .modal-buttons button {
@@ -308,9 +308,9 @@
         justify-content: center;
         align-items: flex-end;
         z-index: 9999;
-      }
+        }
 
-      .profile-content {
+        .profile-content {
         background: #fff;
         width: 390px;
         height: 467px;
@@ -321,38 +321,36 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-      }
-      .profile-edit {
-        /* position: relative; */
+        }
+        .profile-edit {
+        position: relative; /* 기준이 되는 부모 */
         display: flex;
-        justify-content: center;
+        justify-content: center; /* 텍스트 가운데 정렬 */
         align-items: center;
-        text-align: center;
         height: 20px;
         width: 100%;
-      }
-      .profile-title {
+        }
+
+        .profile-title {
         font-weight: bold;
         text-align: center;
-        justify-content: center;
-        display: flex;
-        align-items: center;
-        flex: none;
-      }
-      .profile-img {
-        /* position: absolute;
-            top: 50%;
-            right: 20px; /* 여백 주기 */
-        /* transform: translateY(-50%); */
+        }
+
+        .profile-img {
+        position: absolute;
+        right: 0; /* 오른쪽 끝에 배치 */
+        top: 50%;
+        transform: translateY(-50%);
         cursor: pointer;
-        justify-content: right;
-      }
-      .profile-img img {
+        }
+
+        .profile-img img {
         width: 20px;
         height: 20px;
-      }
+        }
 
-      .profile-image {
+
+        .profile-image {
         width: 84px;
         height: 84px;
         border-radius: 50%;
@@ -361,9 +359,9 @@
         overflow: hidden;
         margin-top: 50px;
         margin-bottom: 20px;
-      }
+        }
 
-      .profile-image label {
+        .profile-image label {
         width: 100%;
         height: 100%;
         border-radius: 50%;
@@ -372,15 +370,15 @@
         display: flex;
         justify-content: center;
         align-items: center;
-      }
+        }
 
-      .profile-image img {
+        .profile-image img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-      }
+        }
 
-      .nickname {
+        .nickname {
         display: flex;
         justify-content: space-around;
         gap: 6px;
@@ -390,23 +388,24 @@
         margin-top: 30px;
         width: 248px;
         border-bottom: 1px solid #f5f5f5;
-      }
+        }
 
-      .nickname span {
+        .nickname span {
         color: #b40103;
         font-weight: 500;
-      }
+        }
 
-      .profile-content button.confirm {
+        .confirms {
         position: absolute;
         bottom: 20px;
-        left: 20px;
-        right: 20px;
-        height: 50px;
+        left: 50%;
+        transform: translateX(-50%);
         border: none;
         border-radius: 30px;
         background: #b40103;
         color: white;
         font-size: 15px;
         cursor: pointer;
-      }
+        width: 350px;
+        height: 51px;
+        }

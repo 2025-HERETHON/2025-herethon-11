@@ -1,9 +1,17 @@
-// 시계
+window.addEventListener("DOMContentLoaded", function () {
+        const savedImage = localStorage.getItem("profileImage");
+        const currentProfile = document.getElementById("currentProfile");
+        const previewImg = document.getElementById("previewImg");
+
+        if (savedImage) {
+        currentProfile.src = savedImage;
+        previewImg.src = savedImage;
+        }
+    });
+      // 시계
       function updateClock() {
         const d = new Date();
-        document.getElementById("clock").textContent = d
-          .toTimeString()
-          .slice(0, 5);
+        document.getElementById("clock").textContent = d.toTimeString().slice(0, 5);
       }
       updateClock();
       setInterval(updateClock, 60000);
@@ -28,9 +36,7 @@
           </div>
           <a href="#" class="btn-write">내 리뷰 보기</a>
         </div>`;
-      document.getElementById("review-wrap").innerHTML = wornProducts
-        .map(makeCard)
-        .join("");
+      document.getElementById("review-wrap").innerHTML = wornProducts.map(makeCard).join("");
 
       function showLogout() {
         document.getElementById("logoutModal").style.display = "flex";
@@ -39,31 +45,37 @@
         document.getElementById("logoutModal").style.display = "none";
       }
       function showProfileEdit() {
+        const savedImage = localStorage.getItem("profileImage");
+        const previewImg = document.getElementById("previewImg");
+        if (savedImage) {
+        previewImg.src = savedImage;
+        } else {
+        previewImg.src = "../../static/products/productimg/user.png";
+        }
         document.getElementById("profileModal").style.display = "flex";
-      }
+    }
+
       function hideProfileEdit() {
         document.getElementById("profileModal").style.display = "none";
       }
       function updateProfileImg(event) {
         const reader = new FileReader();
         reader.onload = function (e) {
-          const previewImg = document.getElementById("previewImg");
-          const currentProfile = document.getElementById("currentProfile");
-
-          if (previewImg) previewImg.src = e.target.result;
-          if (currentProfile) currentProfile.src = e.target.result; // ← 핵심
+            document.getElementById("previewImg").src = e.target.result;
         };
-
         if (event.target.files[0]) {
-          reader.readAsDataURL(event.target.files[0]);
+            reader.readAsDataURL(event.target.files[0]);
         }
-      }
-
+    }
       function saveProfile() {
         const previewImg = document.getElementById("previewImg");
         const currentProfile = document.getElementById("currentProfile");
+
         if (previewImg && currentProfile) {
-          currentProfile.src = previewImg.src;
+        const newSrc = previewImg.src;
+        currentProfile.src = newSrc;
+        localStorage.setItem("profileImage", newSrc); // ✅ 저장
         }
+
         hideProfileEdit();
-      }
+    }
