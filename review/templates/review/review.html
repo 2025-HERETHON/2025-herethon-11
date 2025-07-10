@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -41,7 +42,7 @@
     <div class="page-content">
       <section>
         <div class="wear-header">
-          <div>착용 상품 <span class="count">상품 35개</span></div>
+          <div>착용 상품 <span class="count">{{ review_count }}개</span></div>
           <div class="sort">최신순</div>
         </div>
 
@@ -65,7 +66,7 @@
           class="nav-icon"
         />
       </a>
-      <a href="{% url 'mypage' %}" class="nav-item" data-icon="user">
+      <a href="#" class="nav-item" data-icon="user">
         <img
           src="{% static 'products/productimg/user.png' %}"
           alt="mypage"

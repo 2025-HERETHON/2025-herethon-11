@@ -10,8 +10,6 @@ from products.models import Product
 from .models import UserProfile
 from .utils import calculate_bust_size, calculate_pelvis_size
 
-from django.views.decorators.csrf import csrf_exempt  # 개발 중만
-
 @login_required
 def liked_products(request):
     user = request.user
