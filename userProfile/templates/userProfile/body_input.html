@@ -5,14 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>신체 사이즈</title>
-    <link
-      rel="stylesheet"
-      href="{% static 'userProfile/css/body_input.css' %}"
-    />
-    <script
-      src="{% static 'userProfile/js/body_input.js' %}"
-      defer
-    ></script>
+    <link rel="stylesheet" href="{% static 'userProfile/body_input.css' %}" />
+    <script src="{% static 'userProfile/body_input.js' %}" defer></script>
   </head>
   <body>
     <div class="container">
@@ -20,7 +14,11 @@
         <header>
           <div class="bar">
             <div class="title">신체 사이즈</div>
-            <img src="{% static 'account/img/x.png' %}" alt="exit" />
+            <img
+              src="{% static 'account/img/x.png' %}"
+              alt="exit"
+              onclick="location.href='fit_result.html'"
+            />
           </div>
         </header>
         <div class="toggle-wrapper">
@@ -103,7 +101,11 @@
         </div>
         <div class="input-toggle" onclick="toggleManualInput('hip')">
           골반 사이즈 직접 입력
-          <img src="{% static 'account/img/toggle1.png' %}" alt="" id="hipArrow" />
+          <img
+            src="{% static 'account/img/toggle1.png' %}"
+            alt=""
+            id="hipArrow"
+          />
         </div>
         <div class="manual-input-wrapper">
           <div class="manual-input" id="manualHipInput" style="display: none">
