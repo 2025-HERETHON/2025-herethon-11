@@ -63,7 +63,12 @@
             </button>
 
             </form>
-            <span class="wear"></span>
+            <span class="wear"
+              data-id="{{ product.id }}"
+              data-colors="{{ product.color }}"
+              data-sizes="{{ product.size }}"
+              onclick="event.stopPropagation()"></span>
+
           </div>
           <div class="item-info">
             <div class="item-price">{{ product.price }}원</div>

@@ -227,4 +227,37 @@ function getCookie(name) {
   return cookieValue ? decodeURIComponent(cookieValue.split('=')[1]) : null;
 }
 
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll(".wear").forEach((btn) => {
+    btn.addEventListener("click", function (e) {
+      e.stopPropagation(); // 다시 한 번 안전하게
+      const productId = btn.dataset.id;
+      const colors = btn.dataset.colors;
+      const sizes = btn.dataset.sizes;
+
+      // 모달 여는 함수 호출
+      openWearModal(productId, colors, sizes);
+    });
+  });
+});
+
+function openWearModal(productId, colors, sizes) {
+  // 여기에 모달 열기 로직 작성
+  const modal = document.getElementById("wear-modal-container");
+  modal.innerHTML = `
+    <div class="modal">
+      <h2>착용 옵션 선택</h2>
+      <p>상품 ID: ${productId}</p>
+      <p>컬러: ${colors}</p>
+      <p>사이즈: ${sizes}</p>
+      <button onclick="closeWearModal()">닫기</button>
+    </div>
+  `;
+  modal.style.display = "block";
+}
+
+function closeWearModal() {
+  document.getElementById("wear-modal-container").style.display = "none";
+}
+
 
