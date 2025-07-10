@@ -66,15 +66,20 @@ def home(request):
         except ValueError:
             pass
 
-    # 색상 필터
+    # 색상 필터 (CharField라서 __icontains 반복)
+    colors = [c.strip() for c in request.GET.getlist("color")]
     if colors:
-        products = products.filter(color__in=colors)
+        for color in colors:
+            products = products.filter(color__icontains=color)
 
-    # 소재 필터
+    # 소재 필터 (CharField라서 __icontains 반복)
+    materials = [m.strip() for m in request.GET.getlist("material")]
     if materials:
-        products = products.filter(material__in=materials)
+        for mat in materials:
+            products = products.filter(material__icontains=mat)
 
-    # 카테고리 필터 (ManyToMany → name 기준)
+    # 타입(카테고리) 필터 – 이건 ManyToMany니까 그대로 유지
+    types = request.GET.getlist("type")
     if types:
         products = products.filter(categories__name__in=types).distinct()
 
@@ -105,6 +110,8 @@ def home(request):
                                  .select_related('product')  # 쿼리 최적화 (선택)
                                  .order_by('-viewed_at')[:5]
         ]
+    print("필터 결과 상품 개수:", products.count())
+    print("필터 결과 상품 ID들:", list(products.values_list("id", flat=True)))
 
     context = {
         "rec_items": products,
@@ -127,32 +134,33 @@ def product_option_modal(request, product_id):
 
 
 def product_search(request):
-    query = request.GET.get('q', '')
-    color = request.GET.get('color')
-    material = request.GET.get('material')
-    type_ = request.GET.get('type')
+    query = request.GET.get('q', '').strip()
+    colors = [c.strip() for c in request.GET.getlist('color')]
+    materials = [m.strip() for m in request.GET.getlist('material')]
+    types = [t.strip() for t in request.GET.getlist('type')]
 
     products = Product.objects.all()
 
-    # 검색어로 먼저 필터
     if query:
         products = products.filter(title__icontains=query)
 
-    # 필터는 선택적으로 적용
-    if color:
-        products = products.filter(color=color)
-    if material:
-        products = products.filter(material=material)
-    if type_:
-        products = products.filter(type=type_)
+    for color in colors:
+        products = products.filter(color__icontains=color)
+
+    for material in materials:
+        products = products.filter(material__icontains=material)
+
+    for type_ in types:
+        products = products.filter(categories__name__icontains=type_)
 
     return render(request, 'products/product_search.html', {
         'query': query,
         'products': products,
-        'selected_color': color,
-        'selected_material': material,
-        'selected_type': type_,
+        'selected_colors': colors,
+        'selected_materials': materials,
+        'selected_types': types,
     })
+
 
 
 def wear_modal(request, product_id):
