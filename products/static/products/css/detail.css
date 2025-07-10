@@ -16,6 +16,7 @@ body {
   justify-content: center;
 }
 .phone {
+  position: relative;
   width: 390px;
   min-height: 100vh; /* 내용 많아지면 늘어남 */
   background: #fff;
@@ -26,7 +27,7 @@ body {
 
 /* ── status-bar ── */
 .status-bar {
-  position: fixed; /* 스크롤해도 고정 */
+  position: absolute; /* 스크롤해도 고정 */
   top: 19px;
   left: 50%;
   transform: translateX(-50%);
@@ -37,6 +38,9 @@ body {
   align-items: center;
   font: 600 14px/1 Pretendard;
   z-index: 1000;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border-radius: 6px;
 }
 .status-icons {
   display: flex;
