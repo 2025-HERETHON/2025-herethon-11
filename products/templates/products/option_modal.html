@@ -4,125 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title>착용 옵션 선택</title>
-
-    <style>
-      /* ─── 가짜 ‘휴대폰 화면’ 래퍼 ─── */
-      #phone {
-        position: relative;
-        width: 390px; /* iPhone-13 mini 기준 */
-        margin: 0 auto;
-        height: 100vh;
-        background: rgba(0, 0, 0, 0.55); /* 뒤 어둡게 */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-        font-family: Pretendard, sans-serif;
-      }
-
-      /* ─── 모달 카드 ─── */
-      .wear-sheet {
-        position: relative;
-        width: 312px;
-        height: 296px;
-        background: #fff;
-        border-radius: 8px;
-        padding: 28px 24px 22px;
-        box-sizing: border-box;
-        text-align: center;
-        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-        display: flex;
-        flex-direction: column;
-      }
-
-      .wear-close {
-        position: absolute;
-        right: 14px;
-        top: 12px;
-        border: 0;
-        background: none;
-        font-size: 22px;
-        color: #949494;
-        cursor: pointer;
-      }
-      .wear-title {
-        margin: 0 0 22px;
-        font: 700 17px/1.2 Pretendard;
-      }
-
-      /* ─── 드롭다운 영역 ─── */
-      .wear-selects {
-        display: flex;
-        gap: 24px;
-        justify-content: center;
-      }
-      .select-wrap {
-        width: 130px;
-        height: 124px;
-        border: 1px solid #949494;
-        border-radius: 5px;
-        overflow: hidden;
-        position: relative;
-      }
-      .select-label {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        height: 36px;
-        padding: 0 12px;
-        font: 500 12px Pretendard;
-        color: #949494;
-        background: #fafafa;
-      }
-      .select-label::after {
-        content: "";
-        border: 5px solid transparent;
-        border-top-color: #949494;
-      }
-
-      /* 기본 select 감추고, 리스트 형태 */
-      .select-box {
-        position: absolute;
-        inset: 36px 0 0; /* 아래 88px */
-        width: 100%;
-        height: 88px;
-        border: 0;
-        appearance: none;
-        background: #fff;
-        font: 14px Pretendard;
-        padding: 0;
-        outline: none;
-        overflow-y: auto;
-        scrollbar-width: none; /* Firefox */
-      }
-      .select-box::-webkit-scrollbar {
-        display: none;
-      } /* Chrome */
-
-      .select-box option {
-        height: 29px;
-        line-height: 29px;
-        padding-left: 12px;
-      }
-      .select-box option + option {
-        border-top: 1px solid #d9d9d9;
-      }
-
-      /* ─── 버튼 ─── */
-      .wear-apply {
-        margin: 20px 0 0 auto;
-        justify-content: flex-end;
-        margin-top: auto;
-        width: 110px;
-        height: 42px;
-        border: 0;
-        border-radius: 8px;
-        background: #b40103;
-        color: #fff;
-        font: 600 15px Pretendard;
-        cursor: pointer;
-      }
-    </style>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Prata&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../static/products/modal.css" />
+    <script src="../../static/products/modal.js" defer></script>
   </head>
 
   <body>
@@ -165,50 +52,5 @@
         <button type="submit" class="wear-apply">적용하기</button>
       </form>
     </div>
-    <script>
-      (function () {
-        const modal = document.getElementById("wear-modal");
-        const sheet = document.getElementById("wear-sheet");
-        const colorEl = document.getElementById("wear-color");
-        const sizeEl = document.getElementById("wear-size");
-
-        /* ① 열기 : .wear 아이콘 클릭 */
-        document.body.addEventListener("click", (e) => {
-          const wear = e.target.closest(".wear");
-          if (!wear) return;
-
-          /* data-* 값 가져오기 */
-          const colors = (wear.dataset.colors || "블랙").split(",");
-          const sizes = (wear.dataset.sizes || "Free").split(",");
-          const pid = wear.dataset.id;
-
-          /* 드롭다운 채우기 */
-          colorEl.innerHTML = colors
-            .map((c) => `<option>${c.trim()}</option>`)
-            .join("");
-          sizeEl.innerHTML = sizes
-            .map((s) => `<option>${s.trim()}</option>`)
-            .join("");
-
-          /* action URL 설정 (장고 뷰에 맞춰서!) */
-          sheet.action = `/products/${pid}/toggle_wear/`;
-
-          /* 모달 열기 */
-          modal.classList.add("show");
-          document.body.style.overflow = "hidden";
-        });
-
-        /* ② 닫기 : 배경이나 × 버튼 */
-        modal.addEventListener("click", (e) => {
-          if (
-            e.target.classList.contains("wear-backdrop") ||
-            e.target.classList.contains("wear-close")
-          ) {
-            modal.classList.remove("show");
-            document.body.style.overflow = "auto";
-          }
-        });
-      })();
-    </script>
   </body>
 </html>

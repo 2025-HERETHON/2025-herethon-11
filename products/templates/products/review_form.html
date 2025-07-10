@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EVE – 리뷰 작성</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Prata&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../static/products/form.css" />
+    <script src="../../static/products/form.js" defer></script>
+  </head>
+  <body>
+    <!-- 상단 -->
+    <header class="top-bar">
+      <div class="status-bar">
+        <span id="clock">--:--</span>
+        <div class="status-icons">
+          <img
+            src="../../static/products/productimg/cellular.png"
+            class="icon"
+            alt="cellular"
+          />
+          <img
+            src="../../static/products/productimg/wi-fi.png"
+            class="icon"
+            alt="wifi"
+          />
+          <div class="battery">
+            <div class="battery-level" id="battery-level"></div>
+          </div>
+        </div>
+      </div>
+      <div class="page-header">
+        <a href="#" class="btn-back" id="back-btn"><</a>
+        리뷰 작성
+      </div>
+    </header>
+
+    <!-- 본문 -->
+    <div class="page-content">
+      <div class="product-info">
+        <img src="products/productimg/sample1.jpg" alt="상품" />
+        <div class="p-text">
+          <div class="title">[더잠] 이지핏 스퀘어 브라탑 · 팬티 세트</div>
+          <div>블랙 · M</div>
+          <div class="price">23,000원</div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- 만족도 -->
+      <section class="section">
+        <h3>구매하신 상품은 만족하시나요?</h3>
+        <div class="options" id="satisfaction">
+          <div class="option">만족해요</div>
+          <div class="option">보통이에요</div>
+          <div class="option">별로예요</div>
+        </div>
+      </section>
+
+      <div class="divider"></div>
+
+      <!-- 사이즈 -->
+      <section class="section">
+        <h3>사이즈는 어떤가요?</h3>
+        <div class="options" id="size">
+          <div class="option">크게 느껴져요</div>
+          <div class="option">적당해요</div>
+          <div class="option">작게 느껴져요</div>
+        </div>
+      </section>
+
+      <div class="divider"></div>
+
+      <!-- 별점 -->
+      <section class="section">
+        <h3>상품의 별점을 남겨주세요</h3>
+        <div class="stars" id="stars">
+          <span class="star" data-val="1">★</span>
+          <span class="star" data-val="2">★</span>
+          <span class="star" data-val="3">★</span>
+          <span class="star" data-val="4">★</span>
+          <span class="star" data-val="5">★</span>
+        </div>
+      </section>
+
+      <div class="divider"></div>
+
+      <!-- 제목 / 내용 -->
+      <section class="section">
+        <h3>자세한 리뷰를 작성해주세요</h3>
+
+        <div class="input-wrap">
+          <input
+            type="text"
+            id="title"
+            placeholder="제목은 필수 입력 사항입니다"
+            maxlength="30"
+          />
+          <span class="counter" id="title-count">0 / 30</span>
+        </div>
+
+        <div class="input-wrap">
+          <textarea
+            id="body"
+            placeholder="당신의 몸은 이 속옷을 어떻게 느꼈나요?"
+            maxlength="300"
+          ></textarea>
+          <span class="counter" id="body-count">0 / 300</span>
+        </div>
+      </section>
+
+      <!-- 버튼 -->
+      <div class="btn-area">
+        <button class="btn-primary" id="submit-btn">리뷰 등록하기</button>
+        <button class="btn-secondary" id="save-btn">리뷰 삭제하기</button>
+      </div>
+    </div>
+
+    <!-- 하단 네비 -->
+    <nav class="bottom-nav">
+      <a href="product.html" class="nav-item" data-icon="home">
+        <img
+          src="../../static/products/productimg/home.png"
+          alt="home"
+          class="nav-icon"
+        />
+      </a>
+      <a href="#" class="nav-item active" data-icon="review">
+        <img
+          src="../../static/products/productimg/review_red.png"
+          alt="review"
+          class="nav-icon"
+        />
+      </a>
+      <a href="mypage.html" class="nav-item" data-icon="user">
+        <img
+          src="../../static/products/productimg/user.png"
+          alt="mypage"
+          class="nav-icon"
+        />
+      </a>
+    </nav>
+  </body>
+</html>
