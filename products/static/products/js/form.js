@@ -68,23 +68,23 @@ bodyInput.addEventListener("input", () => {
 });
 
 /* 네비 (review.html 동일) */
-const STATIC_PATH = "../../static/products/productimg/";
-const navItems = document.querySelectorAll(".bottom-nav .nav-item");
-navItems.forEach((item) => {
-  item.addEventListener("click", (e) => {
-    e.preventDefault();
-    navItems.forEach((n) => {
-      const base = n.dataset.icon;
-      n.classList.remove("active");
-      n.querySelector("img").src = STATIC_PATH + base + ".png";
-    });
-    const base = item.dataset.icon;
-    item.classList.add("active");
-    item.querySelector("img").src = STATIC_PATH + base + "_red.png";
-    if (base === "home") {
-      window.location.href = "product.html";
-    } else if (base === "user") {
-      window.location.href = "mypage.html";
-    }
-  });
-});
+// const STATIC_PATH = "../../static/products/productimg/";
+// const navItems = document.querySelectorAll(".bottom-nav .nav-item");
+// navItems.forEach((item) => {
+//   item.addEventListener("click", (e) => {
+//     e.preventDefault();
+//     navItems.forEach((n) => {
+//       const base = n.dataset.icon;
+//       n.classList.remove("active");
+//       n.querySelector("img").src = STATIC_PATH + base + ".png";
+//     });
+//     const base = item.dataset.icon;
+//     item.classList.add("active");
+//     item.querySelector("img").src = STATIC_PATH + base + "_red.png";
+//     if (base === "home") {
+//       window.location.href = "product.html";
+//     } else if (base === "user") {
+//       window.location.href = "mypage.html";
+//     }
+//   });
+// });

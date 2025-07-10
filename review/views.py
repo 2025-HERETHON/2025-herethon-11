@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from products.models import Product
+from products.models import Product, WornProduct
 from .models import Review
 
 # Create your views here.
@@ -35,13 +35,15 @@ def list_review(request):
     reviews = Review.objects.all().order_by('-created_at') 
     #리뷰 개수
     review_count = reviews.count()
-    #작성한 리뷰 상품 목록
-    my_reviews = Review.objects.filter(user=request.user).select_related('product')
-    reviewed_products = [r.product for r in my_reviews]
+    #착용한 상품 목록
+    worn_products = WornProduct.objects.select_related('product').filter(user=request.user)
+    # 착용한 상품 개수
+    worn_product_count = worn_products.count()
+
     return render(request, 'review/review.html', {
         'reviews': reviews,
-        'review_count': review_count,
-        'products': reviewed_products,
+        'worn_product_count': worn_product_count,
+        'products': [wp.product for wp in worn_products],
     })
 
 #리뷰 상세
@@ -71,3 +73,15 @@ def delete_review(request, id):
     review = get_object_or_404(Review, id=review_id, user=request.user)
     review.delete()
     return redirect('list_review')
+
+#리뷰 좋아요
+@login_required
+def likes(request, review_id):
+    review = get_object_or_404(Review, pk=review_id)
+
+    if review.like_users.filter(pk=request.user.pk).exists():
+        review.like_users.remove(request.user)
+    else:
+        review.like_users.add(request.user)
+
+    return redirect('product_review', product_id=review.product.id)

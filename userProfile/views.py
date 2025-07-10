@@ -10,6 +10,10 @@ from products.models import Product
 from .models import UserProfile
 from .utils import calculate_bust_size, calculate_pelvis_size
 
+#나의 서랍 
+def fit_result(request):
+    return render(request, 'userProfile/fit_result.html')
+
 @login_required
 def liked_products(request):
     user = request.user
