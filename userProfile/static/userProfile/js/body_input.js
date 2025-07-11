@@ -13,6 +13,7 @@ document.cookie = "csrftoken={{ csrf_token }}; path=/";
           .then(res => res.json()) 
           .then(data => {
               console.log(data);  // 콘솔로 받은 데이터를 확인
+              console.log(data.is_public);
               if (data) {
                   //사이즈 공개 여부
                   // 1. 공개 여부 (is_public) 반영
