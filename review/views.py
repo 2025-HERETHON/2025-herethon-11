@@ -7,26 +7,49 @@ from .models import Review
 
 #리뷰 등록
 @login_required
-def create_review(request):
+def create_review(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+
+    #이미 쓴 리뷰가 있는지 확인
+    try:
+        review = Review.objects.get(user=request.user, product=product)
+    except Review.DoesNotExist:
+        review = None
+
     if request.method == 'POST':
-        product = get_object_or_404(Product, id=product_id)
         satisfaction = request.POST.get('satisfaction')
         size_feel = request.POST.get('size_feel')
         rating = request.POST.get('rating')
         title = request.POST.get('title')
         content = request.POST.get('content')
 
-        Review.objects.create(
-            user=request.user,
-            product=product,
-            satisfaction=satisfaction,
-            size_feel=size_feel,
-            rating=rating,
-            title=title,
-            content=content,
-        )
-        return redirect('list_review') #리뷰 작성 후 목록 페이지로 이동
-    return render(request, 'review/review_form.html', {'product': product})
+        if review:
+            # 기존 리뷰 수정
+            review.satisfaction = satisfaction
+            review.size_feel = size_feel
+            review.rating = rating
+            review.title = title
+            review.content = content
+            review.save()
+        else:
+            # 새 리뷰 생성
+            Review.objects.create(
+                user=request.user,
+                product=product,
+                satisfaction=satisfaction,
+                size_feel=size_feel,
+                rating=rating,
+                title=title,
+                content=content,
+            )
+        return redirect('list_review')
+    
+    context = {
+        'product': product,
+        'review': review,
+    }
+    #리뷰 작성 후 목록 페이지로 이동
+    return render(request, 'review/review_form.html', context)
 
 #모든 리뷰 가져오기
 @login_required
@@ -43,7 +66,7 @@ def list_review(request):
     return render(request, 'review/review.html', {
         'reviews': reviews,
         'worn_product_count': worn_product_count,
-        'wron_product': [wp.product for wp in worn_products],
+        'worn_products': worn_products,
     })
 
 #리뷰 상세

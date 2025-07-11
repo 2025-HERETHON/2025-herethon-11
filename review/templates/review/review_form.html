@@ -58,11 +58,11 @@
       <section class="section">
         <h3>구매하신 상품은 만족하시나요?</h3>
         <div class="options" id="satisfaction">
-          <div class="option">만족해요</div>
-          <div class="option">보통이에요</div>
-          <div class="option">별로예요</div>
+          <div class="option" data-value="good">만족해요</div>
+          <div class="option" data-value="soso">보통이에요</div>
+          <div class="option" data-value="bad">별로예요</div>
         </div>
-        <input type="hidden" name="satisfaction" id="satisfactionInput" />
+        <input type="hidden" name="satisfaction" id="satisfactionInput" value="{{ review.satisfaction|default_if_none:'' }}"/>
       </section>
 
       <div class="divider"></div>
@@ -71,11 +71,11 @@
       <section class="section">
         <h3>사이즈는 어떤가요?</h3>
         <div class="options" id="size">
-          <div class="option">크게 느껴져요</div>
-          <div class="option">적당해요</div>
-          <div class="option">작게 느껴져요</div>
+          <div class="option" data-value="big">크게 느껴져요</div>
+          <div class="option" data-value="normal">적당해요</div>
+          <div class="option" data-value="small">작게 느껴져요</div>
         </div>
-        <input type="hidden" name="size_feel" id="size_feelInput" />
+        <input type="hidden" name="size_feel" id="size_feelInput" value="{{ review.size_feel|default_if_none:'' }}" />
       </section>
 
       <div class="divider"></div>
@@ -90,7 +90,7 @@
           <span class="star" data-val="4">★</span>
           <span class="star" data-val="5">★</span>
         </div>
-        <input type="hidden" name="rating" id="ratingInput" />
+        <input type="hidden" name="rating" id="ratingInput" value="{{ review.rating|default_if_none:'' }}" />
       </section>
 
       <div class="divider"></div>
@@ -106,6 +106,7 @@
             name="title"
             placeholder="제목은 필수 입력 사항입니다"
             maxlength="30"
+            value="{{ review.title|default_if_none:'' }}"
           />
           <span class="counter" id="title-count">0 / 30</span>
         </div>
@@ -116,7 +117,7 @@
             name="content"
             placeholder="당신의 몸은 이 속옷을 어떻게 느꼈나요?"
             maxlength="300"
-          ></textarea>
+          >{{ review.content|default_if_none:'' }}</textarea>
           <span class="counter" id="body-count">0 / 300</span>
         </div>
       </section>

@@ -40,6 +40,31 @@ function setActive(btn, groupId) {
   btn.classList.add("active");
 }
 
+/*작성한 리뷰 불러오기 */
+document.addEventListener('DOMContentLoaded', function() {
+  // --- 만족도 초기화 ---
+  const satisfactionValue = document.getElementById('satisfactionInput').value;
+  if (satisfactionValue) {
+    const btn = document.querySelector(`#satisfaction .option[data-value="${satisfactionValue}"]`);
+    if (btn) setActive(btn, "satisfaction");
+  }
+
+  // --- 사이즈 초기화 ---
+  const sizeValue = document.getElementById('size_feelInput').value;
+  if (sizeValue) {
+    const btn = document.querySelector(`#size .option[data-value="${sizeValue}"]`);
+    if (btn) setActive(btn, "size");
+  }
+
+  // --- 별점 초기화 ---
+  const ratingValue = document.getElementById('ratingInput').value;
+  if (ratingValue) {
+    stars.forEach((st) => {
+      st.classList.toggle("filled", parseInt(st.dataset.val) <= parseInt(ratingValue));
+    });
+  }
+});
+
 /* 별점 */
 const stars = document.querySelectorAll(".star");
 stars.forEach((s) => {
