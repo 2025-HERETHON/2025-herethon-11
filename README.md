@@ -4,7 +4,10 @@
 
 <br/>
 <br/>
-<img src="/2025-herethon-11/products/static/products/productimg/readme.png">
+<img src="products/static/products/productimg/readme.png">
+
+<br/>
+<br/>
 
 ## 📙 서비스 소개
 
@@ -13,14 +16,16 @@
 ### 내 몸이 기준이 되는 여성 주체형 속옷 추천 플랫폼
 
 <br/>
-<img src="/2025-herethon-11/products/static/products/productimg/readme1.png">
-
+<img src="products/static/products/productimg/readme1.png">
 <br/>
 <br/>
 
 ## ProtoType
 
-<img src="/2025-herethon-11/products/static/products/productimg/readme2.png">
+<img src="products/static/products/productimg/readme2.png">
+
+<br/>
+<br/>
 
 ## 🔧 기술 스택
 
