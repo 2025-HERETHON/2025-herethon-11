@@ -19,64 +19,60 @@
   </head>
   <body>
     <!-- ============================== 본문 ============================== -->
-    <div class="page-content">
-      {% include './header.html' %}
 
+    <header class="top-bar">
+      {% include "products/header.html" %}
       <h1 class="logo">EVE</h1>
+    </header>
 
-      <form
-        action="{% url 'product_search' %}"
-        method="get"
-        class="search-wrap"
+    <form action="{% url 'product_search' %}" method="get" class="search-wrap">
+      <input
+        type="text"
+        name="q"
+        value="{{ request.GET.q|default_if_none:'' }}"
+        placeholder="원하는 상품을 검색하세요"
+      />
+      <button type="submit" class="search-icon" aria-label="search"></button>
+    </form>
+
+    <button class="btn-rec">추천받기</button>
+
+    <div class="recommend-grid" id="rec-wrap">
+      {% for product in products %}
+      <div
+        class="item-card"
+        onclick="location.href='{% url 'product_detail' product.id %}?from=search&q={{ request.GET.q|urlencode }}'"
       >
-        <input
-          type="text"
-          name="q"
-          value="{{ request.GET.q|default_if_none:'' }}"
-          placeholder="원하는 상품을 검색하세요"
-        />
-        <button type="submit" class="search-icon" aria-label="search"></button>
-      </form>
+        <div class="item-img-wrap">
+          <img src="{{ product.thumbnail_url }}" alt="{{ product.title }}" />
+          <button
+            type="button"
+            class="heart {% if user in product.liked_users.all %}liked{% endif %}"
+            data-product-id="{{ product.id }}"
+            onclick="toggleLike(event)"
+          ></button>
 
-      <button class="btn-rec">추천받기</button>
-
-      <div class="recommend-grid" id="rec-wrap">
-        {% for product in products %}
-        <div
-          class="item-card"
-          onclick="location.href='{% url 'product_detail' product.id %}?from=search&q={{ request.GET.q|urlencode }}'"
-        >
-          <div class="item-img-wrap">
-            <img src="{{ product.thumbnail_url }}" alt="{{ product.title }}" />
-            <button
-              type="button"
-              class="heart {% if user in product.liked_users.all %}liked{% endif %}"
-              data-product-id="{{ product.id }}"
-              onclick="toggleLike(event)"
-            ></button>
-
-            <span
-              class="wear"
-              data-id="{{ product.id }}"
-              data-colors="{{ product.color }}"
-              data-sizes="{{ product.size }}"
-              onclick="event.stopPropagation()"
-            ></span>
-          </div>
-          <div class="item-info">
-            <div class="item-price">{{ product.price }}원</div>
-            <div class="item-brand">{{ product.shop }}</div>
-            <div class="item-desc">{{ product.title }}</div>
-          </div>
+          <span
+            class="wear"
+            data-id="{{ product.id }}"
+            data-colors="{{ product.color }}"
+            data-sizes="{{ product.size }}"
+            onclick="event.stopPropagation()"
+          ></span>
         </div>
-        {% empty %}
-        <p style="padding: 0 15px">추천 상품이 없습니다.</p>
-        {% endfor %}
+        <div class="item-info">
+          <div class="item-price">{{ product.price }}원</div>
+          <div class="item-brand">{{ product.shop }}</div>
+          <div class="item-desc">{{ product.title }}</div>
+        </div>
       </div>
-
-      <!-- 하단 네비 -->
-      {% include './nav.html' %}
+      {% empty %}
+      <p style="padding: 0 15px">추천 상품이 없습니다.</p>
+      {% endfor %}
     </div>
+
+    <!-- 하단 네비 -->
+    {% include './nav.html' %}
 
     <!-- ============================== 모달 ============================== -->
     <section id="rec-modal" class="rec-modal">

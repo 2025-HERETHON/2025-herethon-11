@@ -30,42 +30,39 @@ body {
 }
 /* 상태바 */
 .status-bar {
-  position: relative;
-  margin: 20px auto 0;
-  width: 308px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font: 600 14px/1 Pretendard;
-}
-.status-icons {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.battery {
-  position: relative;
-  width: 24px;
-  height: 12px;
-  border: 2px solid #000;
-  border-radius: 2px;
-}
-.battery::after {
-  content: "";
-  position: absolute;
-  right: -5px;
-  top: 3px;
-  width: 3px;
-  height: 6px;
-  background: #000;
-  border-radius: 1px;
-}
-.battery-level {
-  height: 100%;
-  background: #000;
-  width: 50%;
-  transition: width 0.3s;
-}
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 18px 15px 0;
+        font: 600 14px/1 Pretendard;
+      }
+      .status-icons {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+      .battery {
+        position: relative;
+        width: 24px;
+        height: 12px;
+        border: 2px solid #000;
+        border-radius: 2px;
+      }
+      .battery::after {
+        content: "";
+        position: absolute;
+        right: -5px;
+        top: 3px;
+        width: 3px;
+        height: 6px;
+        background: #000;
+        border-radius: 1px;
+      }
+      .battery-level {
+        height: 100%;
+        background: #000;
+        width: 50%;
+      }
 /* 공통 */
 .logo {
   text-align: center;
