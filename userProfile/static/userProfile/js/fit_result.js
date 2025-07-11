@@ -28,17 +28,17 @@
         price: 23000,
       });
 
-      const makeCard = (p) => `
-        <div class="review-item">
-          <img src="${p.img}" alt="${p.title}" />
-          <div class="item-info">
-            <div class="title">[${p.brand}] ${p.title}</div>
-            <div class="opt">${p.color} · ${p.size}</div>
-            <div class="price">${p.price.toLocaleString()}원</div>
-          </div>
-          <a href="#" class="btn-write">내 리뷰 보기</a>
-        </div>`;
-      document.getElementById("review-wrap").innerHTML = wornProducts.map(makeCard).join("");
+      // const makeCard = (p) => `
+      //   <div class="review-item">
+      //     <img src="${p.img}" alt="${p.title}" />
+      //     <div class="item-info">
+      //       <div class="title">[${p.brand}] ${p.title}</div>
+      //       <div class="opt">${p.color} · ${p.size}</div>
+      //       <div class="price">${p.price.toLocaleString()}원</div>
+      //     </div>
+      //     <a href="#" class="btn-write">내 리뷰 보기</a>
+      //   </div>`;
+      // document.getElementById("review-wrap").innerHTML = wornProducts.map(makeCard).join("");
 
       function showLogout() {
         document.getElementById("logoutModal").style.display = "flex";

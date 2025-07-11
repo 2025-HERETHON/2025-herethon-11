@@ -58,10 +58,10 @@
       </div>
 
       <div class="tabs">
-        <div class="tab active" onclick="location.href='fit_result.html'">
+        <div class="tab active" onclick="location.href='{% url 'mypage' %}'">
           착용 제품
         </div>
-        <div class="tab" onclick="location.href='wishlist.html'">찜 목록</div>
+        <div class="tab" onclick="location.href='{% url 'wish-list' %}'">찜 목록</div>
       </div>
     </header>
 
@@ -71,11 +71,26 @@
         <div class="wear-header">
           <div>전체 상품</div>
           <div class="count-container">
-            <span class="count">상품 35개</span>
+            <span class="count">상품 {{ worn_product_count }}개</span>
             <div class="sort">최신순</div>
           </div>
         </div>
-        <div class="review-list" id="review-wrap"><!-- JS 카드 삽입 --></div>
+        <div class="review-list" id="review-wrap">
+          <!-- JS 카드 삽입 -->
+           {% for wp in wron_products %}
+           <div class="review-item">
+            <img src="{{ wp.product.shop }}" alt="{{ wp.product.title }}" />
+            <div class="item-info">
+              <div class="title">[{{ wp.product.shop }}] {{ wp.product.title }}</div>
+              <div class="opt">{{ wp.color }} · {{ wp.size }}</div>
+              <div class="price">{{ wp.product.price }}원</div>
+            </div>
+            <a href="{% url 'create_review' wp.id %}" class="btn-write">내 리뷰 보기</a>
+          </div>
+           {% empty %}
+            <p style="padding: 0 15px">착용한 상품이 없습니다.</p>
+            {% endfor %}
+        </div>
       </section>
     </div>
 
@@ -106,16 +121,17 @@
     </div>
 
     <!-- [1] 모달 바깥: 실제 현재 프로필 -->
-    <img
+    <!-- <img
       id="currentProfile"
       src="{% static 'products/productimg/profile.png' %}"
       alt="프로필"
       style="width: 84px; height: 84px; border-radius: 50%"
-    />
+    /> -->
 
     <!-- [2] 프로필 수정 모달 -->
     <form method="POST" action="{% url 'update-profile' %}" enctype="multipart/form-data">
     {% csrf_token %}
+    <input type="hidden" name="next" value="{{ request.path }}">
       <div class="profile-modal" id="profileModal">
       <div class="profile-content">
         <div class="profile-edit">
