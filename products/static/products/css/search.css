@@ -26,22 +26,37 @@ body {
   overflow-y: auto;
 }
 
-/* status-bar … logo … search-wrap … btn-rec … 카드 … 네비 … */
-/* 👉 형님이 주신 CSS 그대로라 코드 길어서 생략 안 함 */
+
 /* -------------------------------------------------------------------------- */
+/* 상단 고정바 */
+.top-bar {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 390px;
+  margin: 0 auto;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+  z-index: 1000;
+}
+.top-bar > * {
+  max-width: 390px;
+  width: 100%;
+  margin: 0 auto;
+}
 .status-bar {
-  position: relative;
-  margin: 20px auto 0;
-  width: 308px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  /* padding: 18px 15px 0; */
   font: 600 14px/1 Pretendard;
 }
 .status-icons {
   display: flex;
-  align-items: center;
   gap: 8px;
+  align-items: center;
 }
 .battery {
   position: relative;
@@ -64,7 +79,6 @@ body {
   height: 100%;
   background: #000;
   width: 50%;
-  transition: width 0.3s;
 }
 .logo {
   text-align: center;

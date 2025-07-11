@@ -38,6 +38,7 @@
         align-items: center;
         padding: 18px 15px 0;
         font: 600 14px/1 Pretendard;
+        border: none;
       }
       .status-icons {
         display: flex;
