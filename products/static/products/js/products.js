@@ -218,38 +218,38 @@
     // TODO: reset 로직이 필요하면 여기에서 입력칸, 칩, 슬라이더 값 초기화
   });
   document.getElementById("btn-apply").addEventListener("click", (e) => {
-  e.currentTarget.classList.toggle("active");
+    e.currentTarget.classList.toggle("active");
 
-  // 1. 선택된 칩들 추출
-  const getSelectedValues = (wrapId) =>
-    Array.from(document.querySelectorAll(`#${wrapId} .chip.selected`)).map(
-      (el) => el.dataset.color || el.textContent.trim()
-    );
+    // 1. 선택된 칩들 추출
+    const getSelectedValues = (wrapId) =>
+      Array.from(document.querySelectorAll(`#${wrapId} .chip.selected`)).map(
+        (el) => el.dataset.color || el.textContent.trim()
+      );
 
-  const colors = getSelectedValues("color-wrap");
-  const materials = getSelectedValues("mat-wrap");
-  const types = getSelectedValues("type-wrap");
+    const colors = getSelectedValues("color-wrap");
+    const materials = getSelectedValues("mat-wrap");
+    const types = getSelectedValues("type-wrap");
 
-  // 2. 가격값 추출 (쉼표 제거)
-  const minPriceRaw = document.getElementById("price-min").value;
-  const maxPriceRaw = document.getElementById("price-max").value;
-  const onlyNum = (s) => s.replace(/[^\d]/g, "");
+    // 2. 가격값 추출 (쉼표 제거)
+    const minPriceRaw = document.getElementById("price-min").value;
+    const maxPriceRaw = document.getElementById("price-max").value;
+    const onlyNum = (s) => s.replace(/[^\d]/g, "");
 
-  const min_price = onlyNum(minPriceRaw);
-  const max_price = onlyNum(maxPriceRaw);
+    const min_price = onlyNum(minPriceRaw);
+    const max_price = onlyNum(maxPriceRaw);
 
-  // 3. 쿼리 파라미터 구성
-  const params = new URLSearchParams();
+    // 3. 쿼리 파라미터 구성
+    const params = new URLSearchParams();
 
-  colors.forEach((c) => params.append("color", c));
-  materials.forEach((m) => params.append("material", m));
-  types.forEach((t) => params.append("type", t));
-  if (min_price) params.append("min_price", min_price);
-  if (max_price) params.append("max_price", max_price);
+    colors.forEach((c) => params.append("color", c));
+    materials.forEach((m) => params.append("material", m));
+    types.forEach((t) => params.append("type", t));
+    if (min_price) params.append("min_price", min_price);
+    if (max_price) params.append("max_price", max_price);
 
-  // 4. 페이지 리로드 (GET 방식)
-  window.location.href = "?" + params.toString();
-});
+    // 4. 페이지 리로드 (GET 방식)
+    window.location.href = "?" + params.toString();
+  });
 
   function resetFilters() {
     /* 1. 칩 선택 해제 + 랩퍼 닫기 + 토글 글자 복원 */
@@ -271,7 +271,7 @@
 
     /* 2. 가격 슬라이더 & 입력값 초기화 */
     vMin = MIN; // 0
-    vMax = 236000; // 원하는 기본값
+    vMax = 500000; // 원하는 기본값
     render(); // 기존 슬라이더 함수 → 핸들·input 동기화
 
     /* 3. 체형 불러오기 버튼·칸 초기화(필요하면) */
@@ -369,7 +369,69 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+const handleMin = document.getElementById("handle-min");
+const handleMax = document.getElementById("handle-max");
+const beforeBar = document.querySelector(".track-before");
+const rangeBar = document.querySelector(".track-range");
+const afterBar = document.querySelector(".track-after");
 
+updateTrack(); // 시작하자마자 호출!!
 
+function updateTrack() {
+  const min = parseFloat(handleMin.style.left);
+  const max = parseFloat(handleMax.style.left);
 
+  const trackBefore = document.querySelector(".track-before");
+  const trackRange = document.querySelector(".track-range");
+  const trackAfter = document.querySelector(".track-after");
 
+  trackBefore.style.left = "0";
+  trackBefore.style.width = min + "px";
+
+  trackRange.style.left = min + "px";
+  trackRange.style.width = max - min + "px";
+
+  trackAfter.style.left = max + "px";
+  trackAfter.style.right = "0";
+  trackAfter.style.width = `calc(100% - ${max}px)`;
+}
+
+// 💡 handle 움직일 때마다 이 함수 호출해줘야 해!
+handleMin.addEventListener("mousedown", dragStart);
+handleMax.addEventListener("mousedown", dragStart);
+
+// 드래그 끝나거나 이동 시 마다 updateTrack() 호출하면 돼!!!
+function dragStart(e) {
+  const handle = e.target;
+
+  function onMouseMove(e) {
+    const slider = document.getElementById("price-slider");
+    const sliderRect = slider.getBoundingClientRect();
+    const x = e.clientX - sliderRect.left;
+
+    // 핸들 이동 범위 제한
+    let left = Math.max(0, Math.min(x, slider.offsetWidth));
+
+    // 두 핸들 위치 비교해서 겹치지 않도록 제한!
+    if (handle === handleMin) {
+      const maxLeft = parseInt(handleMax.style.left);
+      left = Math.min(left, maxLeft - 10); // 겹치지 않도록 약간 간격 둠
+    } else {
+      const minLeft = parseInt(handleMin.style.left);
+      left = Math.max(left, minLeft + 10); // 반대쪽도 마찬가지!
+    }
+
+    handle.style.left = left + "px";
+
+    updateTrack(); //
+  }
+
+  function onMouseUp() {
+    document.removeEventListener("mousemove", onMouseMove);
+    document.removeEventListener("mouseup", onMouseUp);
+  }
+
+  // 드래그 중일 때 계속 추적
+  document.addEventListener("mousemove", onMouseMove);
+  document.addEventListener("mouseup", onMouseUp);
+}

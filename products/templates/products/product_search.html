@@ -69,22 +69,34 @@
         {% endfor %}
       </div>
 
+      <!-- 하단 네비 -->
       <nav class="bottom-nav">
-        <a href="{% url 'home' %}" class="nav-item active" data-icon="home">
+        <!-- ① data-icon 속성 추가 ② home만 빨간 아이콘로 시작 -->
+        <a href="#" class="nav-item active" data-icon="home" data-url="/">
           <img
             src="{% static 'products/productimg/home_red.png' %}"
             alt="home"
             class="nav-icon"
           />
         </a>
-        <a href="#" class="nav-item" data-icon="review">
+        <a
+          href="{% url 'list_review' %}"
+          class="nav-item"
+          data-icon="review"
+          data-url="{% url 'list_review' %}"
+        >
           <img
             src="{% static 'products/productimg/review.png' %}"
             alt="review"
             class="nav-icon"
           />
         </a>
-        <a href="#" class="nav-item" data-icon="user">
+        <a
+          href="{% url 'mypage' %}"
+          class="nav-item"
+          data-icon="user"
+          data-url="{% url 'mypage' %}"
+        >
           <img
             src="{% static 'products/productimg/user.png' %}"
             alt="mypage"
