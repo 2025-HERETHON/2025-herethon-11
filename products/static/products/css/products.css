@@ -365,7 +365,7 @@ body {
   text-indent: -9999px;
 }
 .tag-btn.outline.loaded {
-  background-image: url("/static/products/productimg/wore_red.png");
+    background-image: url("../../../static/products/productimg/wore_red.png") !important;
 }
 .body-info-box.show {
   margin: 0 auto;
@@ -378,6 +378,11 @@ body {
 .body-info-box {
   display: none;
 }
+.info p {
+   margin: 4px 0;
+   line-height: 1.5;
+   font-size: 14px;
+ }
 /* ── 하단 액션 바 ----------------------------------------------------- */
 .action-bar {
   position: fixed;

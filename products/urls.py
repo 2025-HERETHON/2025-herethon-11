@@ -19,6 +19,8 @@ path("products/wear-modal/<int:product_id>/", wear_modal, name="wear_modal"),
     path('search/filter/', search_filter, name='search_filter'),
     path('products/review/<int:product_id>/like/', review_product_toggle_like, name='product_like_toggle'),
 path("api/user/body/", get_user_body_info, name="user_body_info"),
+# urls.py
+
 
 ]
 
