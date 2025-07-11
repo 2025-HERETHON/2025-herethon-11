@@ -93,17 +93,30 @@ bodyInput.addEventListener("input", () => {
 });
 
 /*리뷰 작성 폼 제출(유효성 검사) */
-document.getElementById('submit-btn').addEventListener('click', function (e) {
+function create_review() {
   const satisfaction = document.getElementById('satisfactionInput').value;
   const sizeFeel = document.getElementById('size_feelInput').value;
   const rating = document.getElementById('ratingInput').value;
   const title = document.getElementById('title').value;
-
+// 필수 항목 검사
   if (!satisfaction || !sizeFeel || !rating || !title.trim()) {
     alert('만족도, 사이즈, 별점, 제목은 모두 필수 항목입니다.');
-    e.preventDefault();  // 폼 제출 막기
+    return;  // 폼 제출 막기
   }
-});
+  // 폼 제출
+  const form = document.getElementById('review-form');
+  form.submit();  // 폼 제출
+}
+
+/*리뷰 삭제 */
+function delete_review() {
+  // 삭제 확인 다이얼로그
+  if (confirm("리뷰를 정말 삭제하시겠습니까?")) {
+    // 삭제 폼 제출
+    const deleteForm = document.getElementById('delete-review-form');
+    deleteForm.submit();  // 삭제 폼 제출
+  }
+}
 
 /* 네비 (review.html 동일) */
 // const STATIC_PATH = "../../static/products/productimg/";
