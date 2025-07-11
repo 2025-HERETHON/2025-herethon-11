@@ -4,16 +4,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="csrf-token" content="{{ csrf_token }}">
+    <meta name="csrf-token" content="{{ csrf_token }}" />
     <title>신체 사이즈</title>
-    <link rel="stylesheet" href="{% static 'userProfile/css/body_input.css' %}" />
+    <link
+      rel="stylesheet"
+      href="{% static 'userProfile/css/body_input.css' %}"
+    />
     <script>
       const STATIC_IMG_URL = "{% static 'account/img/' %}";
     </script>
     <script src="{% static 'userProfile/js/body_input.js' %}" defer></script>
   </head>
   <body>
-    {% include "products/header.html" %}
+    {% comment %} 상단 부분 {% endcomment %}
+    <header class="top-bar">{% include "products/header.html" %}</header>
 
     <div class="container">
       <div class="toggle-container">

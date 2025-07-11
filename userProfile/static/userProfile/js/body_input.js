@@ -1,4 +1,11 @@
 document.cookie = "csrftoken={{ csrf_token }}; path=/";
+      // 시계
+      function updateClock() {
+        const d = new Date();
+        document.getElementById("clock").textContent = d.toTimeString().slice(0, 5);
+      }
+      updateClock();
+      setInterval(updateClock, 60000);
 
       function getCSRFToken() {
         const tokenMeta = document.querySelector('meta[name="csrf-token"]');
