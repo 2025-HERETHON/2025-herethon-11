@@ -59,12 +59,12 @@
         <div class="wear-header">
           <div>전체 상품</div>
           <div class="count-container">
-            <span class="count">상품 10개</span>
+            <span class="count">상품 {{ liked_items_count }}개</span>
             <div class="sort">최신순</div>
           </div>
         </div>
         <div class="wishlist-grid" id="wishlist-wrap">
-          {% for product in wishlist_items %}
+          {% for product in liked_items %}
           <div class="item-card">
             <div class="item-img-wrap">
               <img

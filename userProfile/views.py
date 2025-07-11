@@ -48,10 +48,16 @@ def wish_list(request):
         profile_image = None
         nickname = user.username
 
+    #좋아요한 상품 가져오기
+    liked_items = user.liked_products.all()
+    liked_items_count = liked_items.count()
+
     context = {
         'user': user,
         'profile_image': profile_image,
         'nickname': nickname,
+        'liked_items': liked_items,
+        'liked_items_count': liked_items_count, 
     }
     return render(request, 'userProfile/wishlist.html', context)
 
