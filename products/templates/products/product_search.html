@@ -15,22 +15,7 @@
   <body>
     <!-- ============================== 본문 ============================== -->
     <div class="page-content">
-      <div class="status-bar">
-        <span id="clock">--:--</span>
-        <div class="status-icons">
-          <img
-            src="{% static 'products/productimg/cellular.png' %}"
-            class="icon"
-            alt="cellular"
-          />
-          <img
-            src="{% static 'products/productimg/wi-fi.png' %}"
-            class="icon"
-            alt="wifi"
-          />
-          <div class="battery"><div class="battery-level"></div></div>
-        </div>
-      </div>
+      {% include './header.html' %}
 
       <h1 class="logo">EVE</h1>
 
@@ -52,22 +37,26 @@
 
       <div class="recommend-grid" id="rec-wrap">
         {% for product in products %}
-        <div class="item-card" onclick="location.href='{% url 'product_detail' product.id %}?from=search&q={{ request.GET.q|urlencode }}'">
+        <div
+          class="item-card"
+          onclick="location.href='{% url 'product_detail' product.id %}?from=search&q={{ request.GET.q|urlencode }}'"
+        >
           <div class="item-img-wrap">
             <img src="{{ product.thumbnail_url }}" alt="{{ product.title }}" />
             <button
               type="button"
               class="heart {% if user in product.liked_users.all %}liked{% endif %}"
               data-product-id="{{ product.id }}"
-              onclick="toggleLike(event)">
-            </button>
+              onclick="toggleLike(event)"
+            ></button>
 
-            <span class="wear"
+            <span
+              class="wear"
               data-id="{{ product.id }}"
               data-colors="{{ product.color }}"
               data-sizes="{{ product.size }}"
-              onclick="event.stopPropagation()"></span>
-
+              onclick="event.stopPropagation()"
+            ></span>
           </div>
           <div class="item-info">
             <div class="item-price">{{ product.price }}원</div>
@@ -75,7 +64,7 @@
             <div class="item-desc">{{ product.title }}</div>
           </div>
         </div>
-                  {% empty %}
+        {% empty %}
         <p style="padding: 0 15px">추천 상품이 없습니다.</p>
         {% endfor %}
       </div>
@@ -110,22 +99,7 @@
       <div class="modal-backdrop"></div>
       <article class="modal-sheet flex-col">
         <!-- 상태바 (모달용) -->
-        <div class="status-bar">
-          <span id="clock-modal">--:--</span>
-          <div class="status-icons">
-            <img
-              src="{% static 'products/productimg/cellular.png' %}"
-              class="icon"
-              alt="cellular"
-            />
-            <img
-              src="{% static 'products/productimg/wi-fi.png' %}"
-              class="icon"
-              alt="wifi"
-            />
-            <div class="battery"><div class="battery-level"></div></div>
-          </div>
-        </div>
+        {% include './header.html' %}
 
         <header class="modal-header">
           <h2 class="modal-title">추천받기</h2>
@@ -241,60 +215,72 @@
         </section>
 
         <!-- 소재 -->
-<section id="mat-sec" class="filter block">
-  <h3 class="block-title">소재</h3>
-  <div id="mat-wrap" class="chips">
-    <button class="chip" data-material="모달">모달</button>
-    <button class="chip" data-material="면">면</button>
-    <button class="chip" data-material="비스코스">비스코스</button>
-    <button class="chip" data-material="폴리에스테르">폴리에스테르</button>
-    <button class="chip" data-material="텐셀">텐셀</button>
-    <button class="chip" data-material="합성섬유">합성섬유</button>
-    <button class="chip" data-material="오가닉 코튼">오가닉 코튼</button>
+        <section id="mat-sec" class="filter block">
+          <h3 class="block-title">소재</h3>
+          <div id="mat-wrap" class="chips">
+            <button class="chip" data-material="모달">모달</button>
+            <button class="chip" data-material="면">면</button>
+            <button class="chip" data-material="비스코스">비스코스</button>
+            <button class="chip" data-material="폴리에스테르">
+              폴리에스테르
+            </button>
+            <button class="chip" data-material="텐셀">텐셀</button>
+            <button class="chip" data-material="합성섬유">합성섬유</button>
+            <button class="chip" data-material="오가닉 코튼">
+              오가닉 코튼
+            </button>
 
-    <!-- more -->
-    <button class="chip more" data-material="무봉제 가공">무봉제 가공</button>
-    <button class="chip more" data-material="레이온">레이온</button>
-    <button class="chip more" data-material="스판덱스">스판덱스</button>
-    <button class="chip more" data-material="실크">실크</button>
-    <button class="chip more" data-material="폴리우레탄">폴리우레탄</button>
-    <button class="chip more" data-material="나일론">나일론</button>
-    <button class="chip more" data-material="파워넷">파워넷</button>
-    <button class="chip more" data-material="마이크로 화이버">마이크로 화이버</button>
-    <button class="chip more" data-material="기타">기타</button>
-  </div>
-  <button id="mat-toggle" class="toggle">소재 전체보기</button>
-</section>
-
-
+            <!-- more -->
+            <button class="chip more" data-material="무봉제 가공">
+              무봉제 가공
+            </button>
+            <button class="chip more" data-material="레이온">레이온</button>
+            <button class="chip more" data-material="스판덱스">스판덱스</button>
+            <button class="chip more" data-material="실크">실크</button>
+            <button class="chip more" data-material="폴리우레탄">
+              폴리우레탄
+            </button>
+            <button class="chip more" data-material="나일론">나일론</button>
+            <button class="chip more" data-material="파워넷">파워넷</button>
+            <button class="chip more" data-material="마이크로 화이버">
+              마이크로 화이버
+            </button>
+            <button class="chip more" data-material="기타">기타</button>
+          </div>
+          <button id="mat-toggle" class="toggle">소재 전체보기</button>
+        </section>
 
         <!-- 타입 -->
-        <<section id="type-sec" class="filter block">
-        <h3 class="block-title">타입</h3>
-        <div id="type-wrap" class="chips">
-          <button class="chip" data-value="노와이어">노와이어</button>
-          <button class="chip" data-value="브라렛">브라렛</button>
-          <button class="chip" data-value="노라인">노라인</button>
-          <button class="chip" data-value="볼륨패드">볼륨패드</button>
-          <button class="chip" data-value="누브라">누브라</button>
-          <button class="chip" data-value="푸쉬업">푸쉬업</button>
-          <button class="chip" data-value="사각">사각</button>
-          <button class="chip" data-value="와이어">와이어</button>
-          <button class="chip" data-value="앞 후크">앞 후크</button>
-          <!-- more -->
-          <button class="chip more" data-value="니플패치">니플패치</button>
-          <button class="chip more" data-value="볼륨업">볼륨업</button>
-          <button class="chip more" data-value="홑겹">홑겹</button>
-          <button class="chip more" data-value="하프컵">하프컵</button>
-          <button class="chip more" data-value="삼각">삼각</button>
-          <button class="chip more" data-value="사각">사각</button>
-          <button class="chip more" data-value="드로즈">드로즈</button>
-          <button class="chip more" data-value="하이웨스트">하이웨스트</button>
-          <button class="chip more" data-value="오프숄더 브라">오프숄더 브라</button>
-        </div>
-        <button id="type-toggle" class="toggle">타입 전체보기</button>
-      </section>
 
+        <section id="type-sec" class="filter block">
+          <h3 class="block-title">타입</h3>
+          <div id="type-wrap" class="chips">
+            <button class="chip" data-value="노와이어">노와이어</button>
+            <button class="chip" data-value="브라렛">브라렛</button>
+            <button class="chip" data-value="노라인">노라인</button>
+            <button class="chip" data-value="볼륨패드">볼륨패드</button>
+            <button class="chip" data-value="누브라">누브라</button>
+            <button class="chip" data-value="푸쉬업">푸쉬업</button>
+            <button class="chip" data-value="사각">사각</button>
+            <button class="chip" data-value="와이어">와이어</button>
+            <button class="chip" data-value="앞 후크">앞 후크</button>
+            <!-- more -->
+            <button class="chip more" data-value="니플패치">니플패치</button>
+            <button class="chip more" data-value="볼륨업">볼륨업</button>
+            <button class="chip more" data-value="홑겹">홑겹</button>
+            <button class="chip more" data-value="하프컵">하프컵</button>
+            <button class="chip more" data-value="삼각">삼각</button>
+            <button class="chip more" data-value="사각">사각</button>
+            <button class="chip more" data-value="드로즈">드로즈</button>
+            <button class="chip more" data-value="하이웨스트">
+              하이웨스트
+            </button>
+            <button class="chip more" data-value="오프숄더 브라">
+              오프숄더 브라
+            </button>
+          </div>
+          <button id="type-toggle" class="toggle">타입 전체보기</button>
+        </section>
 
         <!-- 액션바 -->
         <div class="action-bar">

@@ -1,0 +1,12 @@
+{% load static %}
+<nav class="bottom-nav">
+  <a href="{% url 'home' %}" class="nav-item">
+    <img src="{% static 'products/productimg/home.png' %}" />
+  </a>
+  <a href="{% url 'list_review' %}" class="nav-item">
+    <img src="{% static 'products/productimg/review.png' %}" />
+  </a>
+  <a href="#" class="nav-item">
+    <img src="{% static 'products/productimg/user.png' %}" />
+  </a>
+</nav>
