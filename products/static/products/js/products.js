@@ -218,9 +218,39 @@
     // TODO: reset 로직이 필요하면 여기에서 입력칸, 칩, 슬라이더 값 초기화
   });
   document.getElementById("btn-apply").addEventListener("click", (e) => {
-    e.currentTarget.classList.toggle("active");
-    // TODO: 추천 검색 실행 로직
-  });
+  e.currentTarget.classList.toggle("active");
+
+  // 1. 선택된 칩들 추출
+  const getSelectedValues = (wrapId) =>
+    Array.from(document.querySelectorAll(`#${wrapId} .chip.selected`)).map(
+      (el) => el.dataset.color || el.textContent.trim()
+    );
+
+  const colors = getSelectedValues("color-wrap");
+  const materials = getSelectedValues("mat-wrap");
+  const types = getSelectedValues("type-wrap");
+
+  // 2. 가격값 추출 (쉼표 제거)
+  const minPriceRaw = document.getElementById("price-min").value;
+  const maxPriceRaw = document.getElementById("price-max").value;
+  const onlyNum = (s) => s.replace(/[^\d]/g, "");
+
+  const min_price = onlyNum(minPriceRaw);
+  const max_price = onlyNum(maxPriceRaw);
+
+  // 3. 쿼리 파라미터 구성
+  const params = new URLSearchParams();
+
+  colors.forEach((c) => params.append("color", c));
+  materials.forEach((m) => params.append("material", m));
+  types.forEach((t) => params.append("type", t));
+  if (min_price) params.append("min_price", min_price);
+  if (max_price) params.append("max_price", max_price);
+
+  // 4. 페이지 리로드 (GET 방식)
+  window.location.href = "?" + params.toString();
+});
+
   function resetFilters() {
     /* 1. 칩 선택 해제 + 랩퍼 닫기 + 토글 글자 복원 */
     ["color", "mat", "type"].forEach((k) => {
@@ -287,6 +317,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+
 
 
 

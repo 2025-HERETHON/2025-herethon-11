@@ -62,7 +62,6 @@
               onclick="toggleLike(event)">
             </button>
 
-            </form>
             <span class="wear"
               data-id="{{ product.id }}"
               data-colors="{{ product.color }}"
@@ -167,70 +166,70 @@
           <h3 class="block-title">색상</h3>
           <div id="color-wrap" class="chips">
             <!-- 기본 6 -->
-            <button class="chip" data-color="black">
+            <button class="chip" data-value="블랙">
               <span class="circle" style="background: #000"></span>블랙
             </button>
-            <button class="chip" data-color="white">
+            <button class="chip" data-value="화이트">
               <span class="circle border"></span>화이트
             </button>
-            <button class="chip" data-color="brown">
+            <button class="chip" data-value="브라운">
               <span class="circle" style="background: #7a5c4a"></span>브라운
             </button>
-            <button class="chip" data-color="gray">
+            <button class="chip" data-value="그레이">
               <span class="circle" style="background: #b3b3b3"></span>그레이
             </button>
-            <button class="chip" data-color="beige">
+            <button class="chip" data-value="베이지">
               <span class="circle" style="background: #f3e0c9"></span>베이지
             </button>
-            <button class="chip" data-color="khaki">
+            <button class="chip" data-value="카키">
               <span class="circle" style="background: #40625c"></span>카키
             </button>
             <!-- 추가 색상 (more) -->
-            <button class="chip more" data-color="light pink">
+            <button class="chip more" data-value="라이트핑크">
               <span class="circle" style="background: #fadce5"></span>라이트핑크
             </button>
-            <button class="chip more" data-color="dpink">
+            <button class="chip more" data-value="딥핑크">
               <span class="circle" style="background: #d96a7b"></span>딥핑크
             </button>
-            <button class="chip more" data-color="lilac">
+            <button class="chip more" data-value="라일락">
               <span class="circle" style="background: #d8c7e3"></span>라일락
             </button>
-            <button class="chip more" data-color="red">
+            <button class="chip more" data-value="레드">
               <span class="circle" style="background: #b22222"></span>레드
             </button>
-            <button class="chip more" data-color="burgundy">
+            <button class="chip more" data-value="버건디">
               <span class="circle" style="background: #6e1e2a"></span>버건디
             </button>
-            <button class="chip more" data-color="coral">
+            <button class="chip more" data-value="코랄">
               <span class="circle" style="background: #ff8f7e"></span>코랄
             </button>
-            <button class="chip more" data-color="lyellow">
+            <button class="chip more" data-value="라이트 옐로우">
               <span class="circle" style="background: #fff7c2"></span>라이트
               옐로우
             </button>
-            <button class="chip more" data-color="mint">
+            <button class="chip more" data-value="민트">
               <span class="circle" style="background: #d4f2db"></span>민트
             </button>
-            <button class="chip more" data-color="olive">
+            <button class="chip more" data-value="올리브">
               <span class="circle" style="background: #a2a77f"></span>올리브
             </button>
-            <button class="chip more" data-color="lblue">
+            <button class="chip more" data-value="라이트 블루">
               <span class="circle" style="background: #bfd9ff"></span>라이트
               블루
             </button>
-            <button class="chip more" data-color="navy">
+            <button class="chip more" data-value="네이비">
               <span class="circle" style="background: #2c3e50"></span>네이비
             </button>
-            <button class="chip more" data-color="charcoal">
+            <button class="chip more" data-value="차콜">
               <span class="circle" style="background: #444"></span>차콜
             </button>
-            <button class="chip more" data-color="ivory">
+            <button class="chip more" data-value="아이보리">
               <span class="circle" style="background: #f8f4ea"></span>아이보리
             </button>
-            <button class="chip more" data-color="cbluegreen">
+            <button class="chip more" data-value="블루그린">
               <span class="circle" style="background: #3d6b6b"></span>블루그린
             </button>
-            <button class="chip more" data-color="etc">
+            <button class="chip more" data-value="etc">
               <span
                 class="circle"
                 style="background: #fff; border: 1px solid #ccc"
@@ -242,55 +241,60 @@
         </section>
 
         <!-- 소재 -->
-        <section id="mat-sec" class="filter block">
-          <h3 class="block-title">소재</h3>
-          <div id="mat-wrap" class="chips">
-            <button class="chip">모달</button><button class="chip">면</button
-            ><button class="chip">비스코스</button>
-            <button class="chip">폴리에스테르</button
-            ><button class="chip">텐셀</button
-            ><button class="chip">합성섬유</button>
-            <button class="chip">오가닉 코튼</button>
-            <!-- more -->
-            <button class="chip more">무봉제 가공</button
-            ><button class="chip more">레이온</button
-            ><button class="chip more">스판덱스</button>
-            <button class="chip more">실크</button
-            ><button class="chip more">폴리우레탄</button
-            ><button class="chip more">나일론</button>
-            <button class="chip more">파워넷</button
-            ><button class="chip more">마이크로 화이버</button
-            ><button class="chip more">기타</button>
-          </div>
-          <button id="mat-toggle" class="toggle">소재 전체보기</button>
-        </section>
+<section id="mat-sec" class="filter block">
+  <h3 class="block-title">소재</h3>
+  <div id="mat-wrap" class="chips">
+    <button class="chip" data-material="모달">모달</button>
+    <button class="chip" data-material="면">면</button>
+    <button class="chip" data-material="비스코스">비스코스</button>
+    <button class="chip" data-material="폴리에스테르">폴리에스테르</button>
+    <button class="chip" data-material="텐셀">텐셀</button>
+    <button class="chip" data-material="합성섬유">합성섬유</button>
+    <button class="chip" data-material="오가닉 코튼">오가닉 코튼</button>
+
+    <!-- more -->
+    <button class="chip more" data-material="무봉제 가공">무봉제 가공</button>
+    <button class="chip more" data-material="레이온">레이온</button>
+    <button class="chip more" data-material="스판덱스">스판덱스</button>
+    <button class="chip more" data-material="실크">실크</button>
+    <button class="chip more" data-material="폴리우레탄">폴리우레탄</button>
+    <button class="chip more" data-material="나일론">나일론</button>
+    <button class="chip more" data-material="파워넷">파워넷</button>
+    <button class="chip more" data-material="마이크로 화이버">마이크로 화이버</button>
+    <button class="chip more" data-material="기타">기타</button>
+  </div>
+  <button id="mat-toggle" class="toggle">소재 전체보기</button>
+</section>
+
+
 
         <!-- 타입 -->
-        <section id="type-sec" class="filter block">
-          <h3 class="block-title">타입</h3>
-          <div id="type-wrap" class="chips">
-            <button class="chip">노와이어</button
-            ><button class="chip">브라렛</button
-            ><button class="chip">노라인</button>
-            <button class="chip">볼륨패드</button
-            ><button class="chip">누브라</button
-            ><button class="chip">푸쉬업</button>
-            <button class="chip">사각</button
-            ><button class="chip">와이어</button
-            ><button class="chip">앞 후크</button>
-            <!-- more -->
-            <button class="chip more">니플패치</button
-            ><button class="chip more">볼륨업</button
-            ><button class="chip more">홑겹</button>
-            <button class="chip more">하프컵</button
-            ><button class="chip more">삼각</button
-            ><button class="chip more">사각</button>
-            <button class="chip more">드로즈</button
-            ><button class="chip more">하이웨스트</button
-            ><button class="chip more">오프숄더 브라</button>
-          </div>
-          <button id="type-toggle" class="toggle">타입 전체보기</button>
-        </section>
+        <<section id="type-sec" class="filter block">
+        <h3 class="block-title">타입</h3>
+        <div id="type-wrap" class="chips">
+          <button class="chip" data-value="노와이어">노와이어</button>
+          <button class="chip" data-value="브라렛">브라렛</button>
+          <button class="chip" data-value="노라인">노라인</button>
+          <button class="chip" data-value="볼륨패드">볼륨패드</button>
+          <button class="chip" data-value="누브라">누브라</button>
+          <button class="chip" data-value="푸쉬업">푸쉬업</button>
+          <button class="chip" data-value="사각">사각</button>
+          <button class="chip" data-value="와이어">와이어</button>
+          <button class="chip" data-value="앞 후크">앞 후크</button>
+          <!-- more -->
+          <button class="chip more" data-value="니플패치">니플패치</button>
+          <button class="chip more" data-value="볼륨업">볼륨업</button>
+          <button class="chip more" data-value="홑겹">홑겹</button>
+          <button class="chip more" data-value="하프컵">하프컵</button>
+          <button class="chip more" data-value="삼각">삼각</button>
+          <button class="chip more" data-value="사각">사각</button>
+          <button class="chip more" data-value="드로즈">드로즈</button>
+          <button class="chip more" data-value="하이웨스트">하이웨스트</button>
+          <button class="chip more" data-value="오프숄더 브라">오프숄더 브라</button>
+        </div>
+        <button id="type-toggle" class="toggle">타입 전체보기</button>
+      </section>
+
 
         <!-- 액션바 -->
         <div class="action-bar">
