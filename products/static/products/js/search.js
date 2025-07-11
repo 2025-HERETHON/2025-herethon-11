@@ -18,32 +18,32 @@ document.addEventListener("DOMContentLoaded", () => {
   const STATIC_PATH = "{% static 'products/productimg/' %}";
   const HOME_URL = "{% url 'home' %}";
   document.querySelectorAll(".bottom-nav .nav-item").forEach((item) => {
-    item.addEventListener("click", (e) => {
-      e.preventDefault(); // ⛔ 기본 <a href> 동작 막음
-      const base = item.dataset.icon;
-      const url = item.dataset.url;
+  item.addEventListener("click", (e) => {
+    e.preventDefault();
 
-      // 하단 네비 아이콘 바꾸는 부분
-      document.querySelectorAll(".bottom-nav .nav-item").forEach((n) => {
-        const b = n.dataset.icon;
-        const active = n === item;
-        n.classList.toggle("active", active);
-        n.querySelector("img").src =
-          STATIC_PATH + b + (active ? "_red.png" : ".png");
-      });
+    const base = item.dataset.icon;
+    const url = item.dataset.url || "/"; // ⭐ url이 없으면 "/"로 기본값 지정
 
-      // 각 버튼별 페이지 이동 로직
-      if (base === "home") {
-        if (location.pathname !== url && location.pathname !== "/") {
-          location.href = url;
-        } else {
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        }
-      } else {
-        location.href = url; // ⭐ 바로 이동 가능!!!!
-      }
+    document.querySelectorAll(".bottom-nav .nav-item").forEach((n) => {
+      const b = n.dataset.icon;
+      const active = n === item;
+      n.classList.toggle("active", active);
+      n.querySelector("img").src =
+        STATIC_PATH + b + (active ? "_red.png" : ".png");
     });
+
+    if (base === "home") {
+      if (location.pathname !== url && location.pathname !== "/") {
+        location.href = url;
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    } else {
+      location.href = url;
+    }
   });
+});
+
 
   /* 초기화/추천 */
   const reset = () => {

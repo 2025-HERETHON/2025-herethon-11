@@ -1,5 +1,5 @@
-{% load static %}
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -52,7 +52,6 @@
             onclick="toggleLike(event)"
           ></button>
 
-<<<<<<< HEAD
           <span
             class="wear"
             data-id="{{ product.id }}"
@@ -65,36 +64,6 @@
           <div class="item-price">{{ product.price }}원</div>
           <div class="item-brand">{{ product.shop }}</div>
           <div class="item-desc">{{ product.title }}</div>
-=======
-      <div class="recommend-grid" id="rec-wrap">
-        {% for product in products %}
-        <div
-          class="item-card"
-          onclick="location.href='{% url 'product_detail' product.id %}?from=search&q={{ request.GET.q|urlencode }}'"
-        >
-          <div class="item-img-wrap">
-            <img src="{{ product.thumbnail_url }}" alt="{{ product.title }}" />
-            <button
-              type="button"
-              class="heart {% if user in product.liked_users.all %}liked{% endif %}"
-              data-product-id="{{ product.id }}"
-              onclick="toggleLike(event)"
-            ></button>
-
-            <span
-              class="wear"
-              data-id="{{ product.id }}"
-              data-colors="{{ product.color }}"
-              data-sizes="{{ product.size }}"
-              onclick="event.stopPropagation()"
-            ></span>
-          </div>
-          <div class="item-info">
-            <div class="item-price">{{ product.price }}원</div>
-            <div class="item-brand">{{ product.shop }}</div>
-            <div class="item-desc">{{ product.title }}</div>
-          </div>
->>>>>>> 4b889c4 ([perf] FE_ 검색 화면 수정)
         </div>
       </div>
       {% empty %}
@@ -119,15 +88,12 @@
 
         <section class="block">
           <button id="btn-body" class="tag-btn outline">체형 불러오기</button>
-          <div
-            id="body-info"
-            class="body-info-box {% if request.session.body_loaded %}show{% endif %}"
-          >
-            <p><strong>닉네임:</strong> {{ user_profile.nickname }}</p>
-            <p><strong>컵 사이즈:</strong> {{ user_profile.cup_size }}</p>
-            <p><strong>골반 사이즈:</strong> {{ user_profile.pelvis_size }}</p>
-            <p><strong>키:</strong> {{ user_profile.height }}cm</p>
-            <p><strong>몸무게:</strong> {{ user_profile.weight }}kg</p>
+          <div id="body-info" class="body-info-box {% if request.session.body_loaded %}show{% endif %}">
+                <p><strong>닉네임:</strong> {{ user_profile.nickname }}</p>
+                <p><strong>컵 사이즈:</strong> {{ user_profile.cup_size }}</p>
+                <p><strong>골반 사이즈:</strong> {{ user_profile.pelvis_size }}</p>
+                <p><strong>키:</strong> {{ user_profile.height }}cm</p>
+                <p><strong>몸무게:</strong> {{ user_profile.weight }}kg</p>
           </div>
         </section>
 
@@ -307,19 +273,10 @@
           <button id="btn-apply" class="action-btn apply"></button>
         </div>
         <!-- 숨겨진 값 저장용 -->
-        <input type="hidden" id="hidden-cup-size" value="" />
-        <input type="hidden" id="hidden-pelvis-size" value="" />
+        <input type="hidden" id="hidden-cup-size" value="">
+        <input type="hidden" id="hidden-pelvis-size" value="">
 
-        <!-- 모달 내 체형 표시 영역 -->
-        <div id="body-info" class="body-info-box">
-          <div><strong>키:</strong></div>
-          <div><strong>몸무게:</strong></div>
-          <div id="cup-size-field"><strong>브라 사이즈:</strong></div>
-          <div id="pelvis-size-field"><strong>골반 사이즈:</strong></div>
-        </div>
 
-        <!-- 체형 불러오기 버튼 -->
-        <button id="load-body-btn">체형 불러오기</button>
       </article>
     </section>
     <div id="wear-modal-container"></div>
