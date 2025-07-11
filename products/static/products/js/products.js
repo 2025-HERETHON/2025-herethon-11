@@ -318,6 +318,34 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".heart").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault(); // 폼 전송 막기
+      e.stopPropagation(); // 카드 클릭 막기
+
+      const form = btn.closest("form");
+      const url = form.action;
+      const csrftoken = form.querySelector("[name=csrfmiddlewaretoken]").value;
+
+      fetch(url, {
+        method: "POST",
+        headers: {
+          "X-CSRFToken": csrftoken,
+          "X-Requested-With": "XMLHttpRequest",
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.status === "liked") {
+            btn.classList.add("liked");
+          } else {
+            btn.classList.remove("liked");
+          }
+        });
+    });
+  });
+});
 
 
 
