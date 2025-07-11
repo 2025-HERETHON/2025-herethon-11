@@ -92,6 +92,19 @@ bodyInput.addEventListener("input", () => {
     bodyInput.value.length + " / 300";
 });
 
+/*리뷰 작성 폼 제출(유효성 검사) */
+document.getElementById('submit-btn').addEventListener('click', function (e) {
+  const satisfaction = document.getElementById('satisfactionInput').value;
+  const sizeFeel = document.getElementById('size_feelInput').value;
+  const rating = document.getElementById('ratingInput').value;
+  const title = document.getElementById('title').value;
+
+  if (!satisfaction || !sizeFeel || !rating || !title.trim()) {
+    alert('만족도, 사이즈, 별점, 제목은 모두 필수 항목입니다.');
+    e.preventDefault();  // 폼 제출 막기
+  }
+});
+
 /* 네비 (review.html 동일) */
 // const STATIC_PATH = "../../static/products/productimg/";
 // const navItems = document.querySelectorAll(".bottom-nav .nav-item");
