@@ -1,3 +1,5 @@
+fit_result.js
+
 // window.addEventListener("DOMContentLoaded", function () {
 //         const savedImage = localStorage.getItem("profileImage");
 //         const currentProfile = document.getElementById("currentProfile");
