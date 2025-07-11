@@ -50,7 +50,8 @@
   const nameSpan = document.getElementById("user-name");
   if (nameSpan) nameSpan.textContent = userName;
 
-  /* 시계 */ function updateClock() {
+  // 시계
+  function updateClock() {
     const d = new Date();
     document.getElementById("clock").textContent = d.toTimeString().slice(0, 5);
   }
