@@ -101,9 +101,24 @@
       <div class="modal-backdrop"></div>
       <article class="modal-sheet flex-col">
         <!-- 상태바(홈과 동일) -->
-        <header class="top-bar">
-          {% include "./header.html" %}</header>
-        
+        <div class="status-bar">
+          <span id="clock-modal">--:--</span>
+          <div class="status-icons">
+            <img
+              src="{% static 'products/productimg/cellular.png' %}"
+              class="icon"
+              alt="cellular"
+            />
+            <img
+              src="{% static 'products/productimg/wi-fi.png' %}"
+              class="icon"
+              alt="wifi"
+            />
+            <div class="battery">
+              <div class="battery-level" id="battery-level-modal"></div>
+            </div>
+          </div>
+        </div>
 
         <!-- 헤더 -->
         <header class="modal-header">

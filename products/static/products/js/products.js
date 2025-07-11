@@ -52,11 +52,13 @@
 
   // 시계
   function updateClock() {
-    const d = new Date();
-    document.getElementById("clock").textContent = d.toTimeString().slice(0, 5);
-  }
-  updateClock();
-  setInterval(updateClock, 60000);
+        const d = new Date();
+        document.getElementById("clock").textContent = d.toTimeString().slice(0, 5);
+      }
+      updateClock();
+      setInterval(updateClock, 60000);
+
+
 
   /* === 바텀 네비게이션 === */
   // const STATIC_PATH = "{% static 'products/productimg/' %}";
@@ -117,12 +119,19 @@
   }
 
   /* 상태바 시계 */
-  setInterval(() => {
-    const d = new Date();
-    document.getElementById("clock-modal").textContent = d
-      .toTimeString()
-      .slice(0, 5);
-  }, 1000 * 60);
+  // setInterval(() => {
+  //   const d = new Date();
+  //   document.getElementById("clock-modal").textContent = d
+  //     .toTimeString()
+  //     .slice(0, 5);
+  // }, 1000 * 60);
+  // function updateClock() {
+  //       const d = new Date();
+  //       document.getElementById("clock").textContent = d.toTimeString().slice(0, 5);
+  //     }
+  //     updateClock();
+  //     setInterval(updateClock, 60000);
+
 
   /* 체형 불러오기 버튼 색상 전환 */
   document.getElementById("btn-body").addEventListener("click", (e) => {
