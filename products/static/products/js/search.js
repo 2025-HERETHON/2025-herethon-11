@@ -17,8 +17,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const HOME_URL = "{% url 'home' %}";
   document.querySelectorAll(".bottom-nav .nav-item").forEach((item) => {
     item.addEventListener("click", (e) => {
-      e.preventDefault();
+      e.preventDefault(); // ⛔ 기본 <a href> 동작 막음
       const base = item.dataset.icon;
+      const url = item.dataset.url;
+
+      // 하단 네비 아이콘 바꾸는 부분
       document.querySelectorAll(".bottom-nav .nav-item").forEach((n) => {
         const b = n.dataset.icon;
         const active = n === item;
@@ -26,14 +29,16 @@ document.addEventListener("DOMContentLoaded", () => {
         n.querySelector("img").src =
           STATIC_PATH + b + (active ? "_red.png" : ".png");
       });
+
+      // 각 버튼별 페이지 이동 로직
       if (base === "home") {
-        if (location.pathname !== HOME_URL && location.pathname !== "/") {
-          location.href = HOME_URL;
+        if (location.pathname !== url && location.pathname !== "/") {
+          location.href = url;
         } else {
           window.scrollTo({ top: 0, behavior: "smooth" });
         }
       } else {
-        alert("준비 중인 페이지입니다 🛠️");
+        location.href = url; // ⭐ 바로 이동 가능!!!!
       }
     });
   });
@@ -159,15 +164,17 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("btn-reset").addEventListener("click", reset);
 });
 document.getElementById("btn-apply").addEventListener("click", () => {
-  const selectedColors = [...document.querySelectorAll("#color-wrap .chip.selected")].map(
-    (el) => el.dataset.value
-  );
-  const selectedMaterials = [...document.querySelectorAll("#mat-wrap .chip.selected")].map(
-    (el) => el.dataset.material
-  ).filter(Boolean);
-  const selectedTypes = [...document.querySelectorAll("#type-wrap .chip.selected")].map(
-    (el) => el.dataset.value
-  );
+  const selectedColors = [
+    ...document.querySelectorAll("#color-wrap .chip.selected"),
+  ].map((el) => el.dataset.value);
+  const selectedMaterials = [
+    ...document.querySelectorAll("#mat-wrap .chip.selected"),
+  ]
+    .map((el) => el.dataset.material)
+    .filter(Boolean);
+  const selectedTypes = [
+    ...document.querySelectorAll("#type-wrap .chip.selected"),
+  ].map((el) => el.dataset.value);
 
   const braSize = document.querySelector('input[name="bra_size"]')?.value || "";
 
@@ -187,7 +194,6 @@ document.getElementById("btn-apply").addEventListener("click", () => {
 
   window.location.href = `/search/filter/?${params.toString()}`;
 });
-
 
 document.addEventListener("DOMContentLoaded", () => {
   const wearButtons = document.querySelectorAll(".wear");
@@ -225,33 +231,33 @@ function toggleLike(event) {
   const productId = button.dataset.productId;
   console.log("찜 누름 ✅", productId);
   fetch(`/products/${productId}/like/`, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'X-CSRFToken': getCookie('csrftoken'),
+      "X-CSRFToken": getCookie("csrftoken"),
     },
   })
-    .then(response => {
-      if (!response.ok) throw new Error('Network response was not ok');
+    .then((response) => {
+      if (!response.ok) throw new Error("Network response was not ok");
       return response.json();
     })
-    .then(data => {
-      if (data.status === 'liked') {
-        button.classList.add('liked');
-      } else if (data.status === 'unliked') {
-        button.classList.remove('liked');
+    .then((data) => {
+      if (data.status === "liked") {
+        button.classList.add("liked");
+      } else if (data.status === "unliked") {
+        button.classList.remove("liked");
       }
     })
-    .catch(error => {
-      console.error('Error:', error);
+    .catch((error) => {
+      console.error("Error:", error);
     });
 }
 
 // CSRF 토큰 가져오는 함수
 function getCookie(name) {
   const cookieValue = document.cookie
-    .split('; ')
-    .find(row => row.startsWith(name + '='));
-  return cookieValue ? decodeURIComponent(cookieValue.split('=')[1]) : null;
+    .split("; ")
+    .find((row) => row.startsWith(name + "="));
+  return cookieValue ? decodeURIComponent(cookieValue.split("=")[1]) : null;
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -286,5 +292,3 @@ function openWearModal(productId, colors, sizes) {
 function closeWearModal() {
   document.getElementById("wear-modal-container").style.display = "none";
 }
-
-

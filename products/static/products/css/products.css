@@ -478,6 +478,41 @@ body {
   border-radius: 2px;
   transform: translateY(-50%);
 }
+.track {
+  position: relative;
+  height: 6px;
+  border-radius: 3px;
+  background-color: transparent; /* 배경색 없애야 안 겹침! */
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.track-before,
+.track-range,
+.track-after {
+  position: absolute;
+  top: 50%;
+  height: 8px;
+  transform: translateY(-50%);
+  border-radius: 4px;
+}
+
+/* 색상 지정 */
+.track-before {
+  left: 0;
+  background-color: #ccc; /* 왼쪽 트랙 색 */
+}
+
+.track-range {
+  background-color: #a52a2a; /* 선택된 범위 색 */
+}
+
+.track-after {
+  right: 0;
+  background-color: #ccc; /* 오른쪽 트랙 색 */
+}
+
 .handle {
   position: absolute;
   top: 50%;
@@ -488,6 +523,7 @@ body {
   background: #fff;
   transform: translate(-50%, -50%);
   cursor: pointer;
+  z-index: 2;
   touch-action: none;
 }
 

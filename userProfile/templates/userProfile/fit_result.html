@@ -9,7 +9,10 @@
       href="https://fonts.googleapis.com/css2?family=Prata&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="{% static 'userProfile/css/fit_result.css' %}" />
+    <link
+      rel="stylesheet"
+      href="{% static 'userProfile/css/fit_result.css' %}"
+    />
     <script src="{% static 'userProfile/js/fit_result.js' %}" defer></script>
   </head>
   <body>
@@ -20,20 +23,21 @@
 
       <div class="profile-box">
         {% if profile_image %}
-            <img src="{{ profile_image.url }}" alt="프로필" />
+        <img id="mainProfile" src="{{ profile_image.url }}" alt="프로필" />
         {% else %}
-            <img src="{% static 'account/img/profile.png' %}" alt="기본 프로필 이미지" />
+        <img
+          id="mainProfile"
+          src="{% static 'account/img/profile.png' %}"
+          alt="기본 프로필 이미지"
+        />
         {% endif %}
         <div class="profile-info">
           <div class="profile-container">
             <h2>{{ nickname }}</h2>
             <div class="logout" onclick="showLogout()">
               로그아웃
-              <img
-                src="{% static 'account/img/toggler.png' %}"
-                alt=""
-              />
-
+              <img src="{% static 'account/img/toggler.png' %}" alt="" />
+            </div>
           </div>
           <button onclick="showProfileEdit()">프로필 수정</button>
           <button onclick="location.href='{% url 'body_input' %}'">
@@ -46,7 +50,9 @@
         <div class="tab active" onclick="location.href='{% url 'mypage' %}'">
           착용 제품
         </div>
-        <div class="tab" onclick="location.href='{% url 'wish-list' %}'">찜 목록</div>
+        <div class="tab" onclick="location.href='{% url 'wish-list' %}'">
+          찜 목록
+        </div>
       </div>
     </header>
 
@@ -62,19 +68,23 @@
         </div>
         <div class="review-list" id="review-wrap">
           <!-- JS 카드 삽입 -->
-           {% for wp in wron_products %}
-           <div class="review-item">
+          {% for wp in wron_products %}
+          <div class="review-item">
             <img src="{{ wp.product.shop }}" alt="{{ wp.product.title }}" />
             <div class="item-info">
-              <div class="title">[{{ wp.product.shop }}] {{ wp.product.title }}</div>
+              <div class="title">
+                [{{ wp.product.shop }}] {{ wp.product.title }}
+              </div>
               <div class="opt">{{ wp.color }} · {{ wp.size }}</div>
               <div class="price">{{ wp.product.price }}원</div>
             </div>
-            <a href="{% url 'create_review' wp.id %}" class="btn-write">내 리뷰 보기</a>
+            <a href="{% url 'create_review' wp.id %}" class="btn-write"
+              >내 리뷰 보기</a
+            >
           </div>
-           {% empty %}
-            <p style="padding: 0 15px">착용한 상품이 없습니다.</p>
-            {% endfor %}
+          {% empty %}
+          <p style="padding: 0 15px">착용한 상품이 없습니다.</p>
+          {% endfor %}
         </div>
       </section>
     </div>
@@ -98,7 +108,10 @@
         <p>로그아웃 하시겠어요?</p>
         <div class="modal-buttons">
           <button class="cancel" onclick="hideLogout()">취소</button>
-          <button class="confirm" onclick="location.href='{% url 'account_logout' %}'">
+          <button
+            class="confirm"
+            onclick="location.href='{% url 'account_logout' %}'"
+          >
             로그아웃
           </button>
         </div>
@@ -113,64 +126,68 @@
     /> -->
 
     <!-- [2] 프로필 수정 모달 -->
-    <form method="POST" action="{% url 'update-profile' %}" enctype="multipart/form-data">
-    {% csrf_token %}
-    <input type="hidden" name="next" value="{{ request.path }}">
+    <form
+      method="POST"
+      action="{% url 'update-profile' %}"
+      enctype="multipart/form-data"
+    >
+      {% csrf_token %}
+      <input type="hidden" name="next" value="{{ request.path }}" />
       <div class="profile-modal" id="profileModal">
-      <div class="profile-content">
-        <div class="profile-edit">
-          <div class="profile-title">프로필 수정</div>
-          <div class="profile-img">
-            <img
-              src="{% static 'account/img/x.png' %}"
-              alt="닫기"
-              onclick="hideProfileEdit()"
+        <div class="profile-content">
+          <div class="profile-edit">
+            <div class="profile-title">프로필 수정</div>
+            <div class="profile-img">
+              <img
+                src="{% static 'account/img/x.png' %}"
+                alt="닫기"
+                onclick="hideProfileEdit()"
+              />
+            </div>
+          </div>
+
+          <div class="profile-image">
+            <label for="upload">
+              {% if profile_image %}
+              <img id="previewImg" src="{{ profile_image.url }}" alt="프로필" />
+              {% else %}
+              <img
+                id="previewImg"
+                src="{% static 'account/img/profile.png' %}"
+                alt="기본 프로필 이미지"
+              />
+              {% endif %}
+            </label>
+            <input
+              type="file"
+              id="upload"
+              name="profile_image"
+              accept="image/*"
+              onchange="updateProfileImg(event)"
+              style="display: none"
             />
           </div>
-        </div>
 
-        <div class="profile-image">
-          <label for="upload">
-            {% if profile_image %}
-            <img
-              id="previewImg"
-              src="{{ profile_image.url }}"
-              alt="프로필"
+          <div class="nickname">
+            <div>닉네임</div>
+
+            <input
+              type="text"
+              id="nicknameInput"
+              name="nickname"
+              value="{{ nickname }}"
+              maxlength="10"
+              oninput="updateCharCount()"
+              class="nickname-input"
             />
-            {% else %}
-            <img id="previewImg" src="{% static 'account/img/profile.png' %}" alt="기본 프로필 이미지" />
-            {% endif %}
-          </label>
-          <input
-            type="file"
-            id="upload"
-            name="profile_image"
-            accept="image/*"
-            onchange="updateProfileImg(event)"
-            style="display: none"
-          />
+            <div><span id="charCount">0</span> / 10</div>
+          </div>
 
+          <button class="confirms" onclick="saveProfile()">
+            수정 내용 저장
+          </button>
         </div>
-
-        <div class="nickname">
-          <div>닉네임</div>
-
-          <input
-            type="text"
-            id="nicknameInput"
-            name="nickname"
-            value="{{ nickname }}"
-            maxlength="10"
-            oninput="updateCharCount()"
-            class="nickname-input"
-          />
-          <div><span id="charCount">0</span> / 10</div>
-
-        </div>
-
-        <button class="confirms" onclick="saveProfile()">수정 내용 저장</button>
       </div>
-    </div>
     </form>
   </body>
 </html>
