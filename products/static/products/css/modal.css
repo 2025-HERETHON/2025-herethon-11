@@ -1,7 +1,7 @@
 /* ─── 가짜 ‘휴대폰 화면’ 래퍼 ─── */
 #phone {
-  display: none;  /* 기본 감춤 */
-  position: fixed;  /* 전체 화면 덮기 */
+  display: none; /* 기본 감춤 */
+  position: fixed; /* 전체 화면 덮기 */
   top: 0;
   left: 0;
   width: 100%;
@@ -14,7 +14,7 @@
 }
 
 #phone.show {
-  display: flex;  /* 모달 띄우기 */
+  display: flex; /* 모달 띄우기 */
 }
 
 /* ─── 모달 카드 ─── */
@@ -97,12 +97,17 @@
 } /* Chrome */
 
 .select-box option {
-  height: 29px;
-  line-height: 29px;
-  padding-left: 12px;
+  display: flex; /* 옵션도 플렉스 컨테이너로 */
+  align-items: center; /* 세로 중앙에 텍스트 오게 */
+  height: 35px; /* 기존 높이 유지 */
+  line-height: normal;
+  padding: 1px 12px; /* line-height 초기화 */
 }
 .select-box option + option {
   border-top: 1px solid #d9d9d9;
+}
+.select-box option:last-of-type {
+  border-bottom: 1px solid #d9d9d9;
 }
 
 /* ─── 버튼 ─── */

@@ -95,7 +95,8 @@ body {
   all: unset;
   width: 18px;
   height: 18px;
-  background: url("/static/products/productimg/black.png") center/contain no-repeat;
+  background: url("/static/products/productimg/black.png") center/contain
+    no-repeat;
   flex-shrink: 0;
   cursor: pointer;
 }
@@ -137,7 +138,7 @@ body {
 }
 /* 카드 */
 .item-card {
-  min-width: 160px;
+  width: 160px;
   flex: 0 0 auto;
 }
 .item-img-wrap {
@@ -163,7 +164,8 @@ body {
   height: 20px;
   cursor: pointer;
   font-size: 0;
-  background: url("/static/products/productimg/disabled%20heart.png") center/contain no-repeat;
+  background: url("/static/products/productimg/disabled%20heart.png")
+    center/contain no-repeat;
   z-index: 2;
 }
 .heart.liked {
@@ -178,7 +180,8 @@ body {
   height: 19px;
   cursor: pointer;
   font-size: 0;
-  background: url("/static/products/productimg/착용제품.png") center/contain no-repeat;
+  background: url("/static/products/productimg/착용제품.png") center/contain
+    no-repeat;
   z-index: 2;
 }
 .wear.checked {
@@ -355,7 +358,8 @@ body {
   margin: 0 0 6px 16px;
   border-radius: 6px;
   cursor: pointer;
-  background: url("/static/products/productimg/wore.png") center/contain no-repeat;
+  background: url("/static/products/productimg/wore.png") center/contain
+    no-repeat;
   border: none;
   color: transparent;
   text-indent: -9999px;
