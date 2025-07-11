@@ -195,11 +195,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
   wearButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
-      const pid = btn.dataset.id;
+      const productId = btn.dataset.id;
+
+      if (btn.classList.contains("checked")) {
+        // ✅ 해제 처리
+        btn.classList.remove("checked");
+
+        fetch(`/wear/${productId}/`, {
+          method: "POST",
+          headers: {
+            "X-CSRFToken": getCookie("csrftoken"),
+            "Content-Type": "application/json",
+            "X-Requested-With": "XMLHttpRequest",
+          },
+          body: JSON.stringify({ action: "unwear" }),
+        });
+
+        return;
+      }
+
+      // ✅ 착용 모달 열기
       const colors = btn.dataset.colors;
       const sizes = btn.dataset.sizes;
 
-      fetch(`/products/wear-modal/${pid}/?colors=${colors}&sizes=${sizes}`)
+      fetch(`/products/wear-modal/${productId}/?colors=${colors}&sizes=${sizes}`)
         .then((response) => response.text())
         .then((html) => {
           container.innerHTML = html;
@@ -217,6 +236,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
 
 function toggleLike(event) {
   event.stopPropagation();
@@ -254,37 +274,39 @@ function getCookie(name) {
   return cookieValue ? decodeURIComponent(cookieValue.split('=')[1]) : null;
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  document.querySelectorAll(".wear").forEach((btn) => {
-    btn.addEventListener("click", function (e) {
-      e.stopPropagation(); // 다시 한 번 안전하게
-      const productId = btn.dataset.id;
-      const colors = btn.dataset.colors;
-      const sizes = btn.dataset.sizes;
+// 모달 form에서 착용 적용할 때 fetch 처리
+document.addEventListener("submit", (e) => {
+  const form = e.target.closest(".wear-sheet");
+  if (!form) return; // 모달 form이 아닐 경우 무시
+  e.preventDefault();
 
-      // 모달 여는 함수 호출
-      openWearModal(productId, colors, sizes);
-    });
+  const modal = document.getElementById("phone");
+  const productId = form.action.split("/wear/")[1].replace("/", "");
+  const color = form.querySelector('select[name="color"]')?.value;
+  const size = form.querySelector('select[name="size"]')?.value;
+
+  if (!color || !size) {
+    const optModal = document.getElementById("optionModal");
+    optModal.style.display = "block";
+    setTimeout(() => {
+      optModal.style.display = "none";
+    }, 1500);
+    return;
+  }
+
+  fetch(`/wear/${productId}/`, {
+    method: "POST",
+    headers: {
+      "X-CSRFToken": getCookie("csrftoken"),
+      "X-Requested-With": "XMLHttpRequest",
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: new URLSearchParams({ color, size }),
+  }).then(() => {
+    document.querySelector(`.wear[data-id="${productId}"]`)?.classList.add("checked");
+    modal.classList.remove("show");
+    document.body.style.overflow = "auto";
   });
 });
-
-function openWearModal(productId, colors, sizes) {
-  // 여기에 모달 열기 로직 작성
-  const modal = document.getElementById("wear-modal-container");
-  modal.innerHTML = `
-    <div class="modal">
-      <h2>착용 옵션 선택</h2>
-      <p>상품 ID: ${productId}</p>
-      <p>컬러: ${colors}</p>
-      <p>사이즈: ${sizes}</p>
-      <button onclick="closeWearModal()">닫기</button>
-    </div>
-  `;
-  modal.style.display = "block";
-}
-
-function closeWearModal() {
-  document.getElementById("wear-modal-container").style.display = "none";
-}
 
 

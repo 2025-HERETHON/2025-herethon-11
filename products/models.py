@@ -58,7 +58,7 @@ class Product(models.Model):
 # 착용했던 상품 DB
 class WornProduct(models.Model):
     # 착용한 유저, 상품 fk
-    user = models.ForeignKey(User, on_delete = models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='worn_products')
     product = models.ForeignKey(Product, on_delete = models.CASCADE)
 
     # 착용했던 상품 DB 등록 시각

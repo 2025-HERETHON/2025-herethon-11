@@ -2,9 +2,9 @@
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.http import JsonResponse
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 
-from products.models import Product
+from products.models import Product, WornProduct
 from products.views.home_views import expand_sizes
 
 
@@ -28,6 +28,11 @@ def search_filter(request):
     max_price = request.GET.get("max_price")
 
     products = Product.objects.all()
+
+    if request.user.is_authenticated:
+        worn_products = Product.objects.filter(wornproduct__user=request.user)
+    else:
+        worn_products = []
 
     print("이거 설마")
     if query:
@@ -84,6 +89,31 @@ def search_filter(request):
         'selected_colors': colors,
         'selected_materials': materials,
         'selected_types': types,
+        "worn_products": worn_products,
     })
 
+@login_required
+def toggle_wear(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    user = request.user
+
+    if request.method == "POST":
+        selected_size = request.POST.get("size")
+        selected_color = request.POST.get("color")
+
+        try:
+            # 해제: 이미 착용된 상태 → 삭제
+            worn = WornProduct.objects.get(user=user, product=product)
+            worn.delete()
+        except WornProduct.DoesNotExist:
+            # 등록: 옵션이 전달된 경우에만 저장
+            if selected_size and selected_color:
+                WornProduct.objects.create(
+                    user=user,
+                    product=product,
+                    size=selected_size,
+                    color=selected_color,
+                )
+
+    return redirect(request.META.get('HTTP_REFERER', 'search'))
 

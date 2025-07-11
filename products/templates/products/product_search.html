@@ -35,7 +35,7 @@
       <h1 class="logo">EVE</h1>
 
       <form
-        action="{% url 'product_search' %}"
+        action="{% url 'search_filter' %}"
         method="get"
         class="search-wrap"
       >
@@ -62,11 +62,14 @@
               onclick="toggleLike(event)">
             </button>
 
-            <span class="wear"
-              data-id="{{ product.id }}"
-              data-colors="{{ product.color }}"
-              data-sizes="{{ product.size }}"
-              onclick="event.stopPropagation()"></span>
+            <span class="wear {% if product in worn_products %}checked{% endif %}"
+                  data-id="{{ product.id }}"
+                  data-colors="{{ product.color }}"
+                  data-sizes="{{ product.size }}"
+                  onclick="event.stopPropagation()">
+            </span>
+
+
 
           </div>
           <div class="item-info">
