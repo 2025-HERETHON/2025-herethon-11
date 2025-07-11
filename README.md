@@ -93,7 +93,7 @@
 │ ├─ tests.py
 │ ├─ urls.py
 │ └─ views.py
-├─ userProfile # 프로필 관련 앱
+├─ 📁 userProfile # 프로필 관련 앱
 │ ├─ __init__.py
 │ ├─ admin.py
 │ ├─ apps.py
