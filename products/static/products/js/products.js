@@ -293,6 +293,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   wearButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
+      if (!btn.classList.contains("checked")) return;
       const pid = btn.dataset.id;
       const colors = btn.dataset.colors;
       const sizes = btn.dataset.sizes;

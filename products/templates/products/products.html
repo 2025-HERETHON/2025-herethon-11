@@ -84,12 +84,13 @@
     class="heart {% if user in product.liked_users.all %}liked{% endif %}"
   ></button>
 </form>
-    <span class="wear"
+    <span class="wear {% if product.id in worn_product_ids %}checked{% endif %}"
       data-id="{{ product.id }}"
       data-colors="{{ product.color }}"
       data-sizes="{{ product.size }}"
       onclick="event.stopPropagation()"
     ></span>
+
   </div>
         <div class="item-info">
           <div class="item-price">{{ product.price }}원</div>
