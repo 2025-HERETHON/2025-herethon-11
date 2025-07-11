@@ -55,7 +55,7 @@ def create_review(request, product_id):
 @login_required
 def list_review(request):
     #모든 리뷰
-    reviews = Review.objects.all().order_by('-created_at') 
+    reviews = Review.objects.all().order_by('created_at') 
     #리뷰 개수
     review_count = reviews.count()
     #착용한 상품 목록

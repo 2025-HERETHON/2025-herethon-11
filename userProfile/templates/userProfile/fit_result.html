@@ -86,7 +86,7 @@
               <div class="opt">{{ wp.color }} · {{ wp.size }}</div>
               <div class="price">{{ wp.product.price }}원</div>
             </div>
-            <a href="{% url 'create_review' wp.id %}" class="btn-write"
+            <a href="{% url 'create_review' wp.product.id %}" class="btn-write"
               >내 리뷰 보기</a
             >
           </div>
