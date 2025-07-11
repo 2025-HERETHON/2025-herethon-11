@@ -46,7 +46,7 @@
       w.addEventListener("click", () => w.classList.toggle("checked"))
     );
   /** 사용자 이름 삽입 */
-  const userName = "멋사"; // 서버나 로컬Storage 등에서 받아온 값
+  const userName = ""; // 서버나 로컬Storage 등에서 받아온 값
   const nameSpan = document.getElementById("user-name");
   if (nameSpan) nameSpan.textContent = userName;
 

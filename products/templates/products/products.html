@@ -57,7 +57,13 @@
     <div class="divider"></div>
     <!-- 추천 -->
     <div class="section-heading" style="margin-top: 20px">
-      <span id="user-name">{{ user_name }}</span>님을 위한 추천 상품
+  {% if user_profile and user_profile.nickname %}
+    {{ user_profile.nickname }}님을 위한 추천 상품
+  {% elif request.user.is_authenticated %}
+    {{ request.user.username }}님을 위한 추천 상품
+  {% else %}
+    비회원님을 위한 추천 상품
+  {% endif %}
     </div>
     <div class="recommend-grid" id="rec-wrap">
       {% for product in rec_items %}
