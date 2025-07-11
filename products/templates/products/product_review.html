@@ -24,7 +24,8 @@
 
       <!-- header-bar (← + 제목) -->
       <div class="header-bar">
-        <a href="javascript:history.back();" class="back-btn"></a>
+        <!-- 리뷰 페이지 내 백 버튼 -->
+<a href="{% url 'product_detail' product.id %}" class="back-btn"></a>
         <h1>상품 리뷰</h1>
       </div>
 
@@ -169,10 +170,13 @@
     <div class="bottom-bar">
       <div class="stats">{{ satisfied_count|default:"0" }}명이 이 상품에 만족했어요</div>
       <div class="bottom-act">
-        <div class="heart" id="wish"></div>
-        <span class="heart-count">{{ satisfied_count|default:"0" }}</span>
-        <button class="buy-btn">구매하기</button>
+        <div class="heart {% if is_liked %}on{% endif %}" id="wish"></div>
+        <span class="heart-count">{{ product.liked_users.count }}</span>
+        <a href="{{ product.link }}" target="_blank" class="buy-btn">구매하기</a>
       </div>
     </div>
+  <script>
+    const productId = {{ product.id }};
+  </script>
   </body>
 </html>

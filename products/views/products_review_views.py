@@ -1,5 +1,9 @@
+from django.contrib.auth.decorators import login_required
 from django.db.models import Count, Avg
+from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
+from django.views.decorators.http import require_POST
+
 from products.models import Product, WornProduct
 from review.models import Review
 
@@ -25,7 +29,12 @@ def product_review(request, product_id):
             review.worn_size = None
 
     total_reviews = reviews.count()
-    satisfied_count = sum(review.like_users.count() for review in reviews)
+
+    # ✅ 찜(좋아요) 수 총합 (템플릿에 쓰려면 넘겨야 함)
+    total_likes = sum(review.like_users.count() for review in reviews)
+
+    # ✅ 만족한 사람 수 (satisfaction='good')
+    satisfied_count = reviews.filter(satisfaction='good').count()
 
     # 평균 평점 계산
     rating_avg = (
@@ -63,7 +72,8 @@ def product_review(request, product_id):
     if rating_percent is None:
         rating_percent = {}
 
-    print("rating_breakdown:", list(rating_breakdown))
+    is_liked = request.user.is_authenticated and product.liked_users.filter(pk=request.user.pk).exists()
+
 
     return render(request, 'products/product_review.html', {
         'product': product,
@@ -73,7 +83,27 @@ def product_review(request, product_id):
         'size_feel_percent': size_feel_percent,
         'rating_avg': rating_avg,
         'rating_percent': rating_percent,
+        'total_likes': total_likes,  # 필요하면 템플릿에서 쓸 수 있게 넘김
+        'user': request.user,
+        'is_liked': is_liked,
     })
 
+@require_POST
+@login_required
+def review_product_toggle_like(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    user = request.user
+
+    if user in product.liked_users.all():
+        product.liked_users.remove(user)
+        liked = False
+    else:
+        product.liked_users.add(user)
+        liked = True
+
+    return JsonResponse({
+        'liked': liked,
+        'like_count': product.liked_users.count(),
+    })
 
 

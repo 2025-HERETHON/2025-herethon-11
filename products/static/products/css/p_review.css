@@ -164,6 +164,20 @@ body {
   top: 0;
 }
 
+.buy-btn {
+  display: flex; /* ← 중요: 텍스트 수직 가운데 정렬 */
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-decoration: none;  /* 링크 밑줄 제거 */
+  padding: 12px 20px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
 /*.bar::before {*/
 /*  content: "";*/
 /*  position: absolute;*/

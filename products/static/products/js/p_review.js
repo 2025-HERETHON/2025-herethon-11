@@ -43,3 +43,45 @@ tgl.onclick = () => {
   det.style.display = open ? "none" : "block";
   tgl.textContent = `체형정보 ${open ? "보기 ▾" : "접기 ▴"}`;
 };
+
+document.addEventListener('DOMContentLoaded', function () {
+  const heartEl = document.getElementById('wish');
+  const heartCountEl = document.querySelector('.heart-count');
+
+  if (!heartEl) return;
+
+  heartEl.addEventListener('click', function () {
+    fetch('/products/review/' + productId + '/like/', {
+      method: 'POST',
+      headers: {
+        'X-CSRFToken': getCookie('csrftoken'),
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.liked) {
+          heartEl.classList.add('on');
+        } else {
+          heartEl.classList.remove('on');
+        }
+        heartCountEl.textContent = data.like_count;
+      })
+      .catch((err) => console.error('찜 오류:', err));
+  });
+
+  // CSRF 토큰 가져오기 함수
+  function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+      const cookies = document.cookie.split(';');
+      for (let cookie of cookies) {
+        cookie = cookie.trim();
+        if (cookie.startsWith(name + '=')) {
+          cookieValue = decodeURIComponent(cookie.slice(name.length + 1));
+          break;
+        }
+      }
+    }
+    return cookieValue;
+  }
+});
