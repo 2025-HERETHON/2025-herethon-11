@@ -8,4 +8,5 @@ urlpatterns = [
     path('size-check-cup/', views.size_check_cup, name='size_check_cup'),
     path('size-check-pelvis/', views.size_check_pelvis, name='size_check_pelvis'),
     path('save-body-info/', views.save_body_info, name='save_body_info'),
+    path('update-profile', views.update_profile, name='update-profile'),
 ]

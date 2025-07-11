@@ -6,6 +6,12 @@ from django.db import models
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    #사용자 정보
+    nickname = models.CharField(max_length=10, unique=True, null=True, blank=True)
+    profile_image = models.ImageField(upload_to='profile_images/', null=True, blank=True)
+
+    #체형 정보
     bust = models.IntegerField(null=True, blank=True)         # 윗가슴
     underbust = models.IntegerField(null=True, blank=True)    # 밑가슴
     cup_size = models.CharField(max_length=15, null=True, blank=True) #가슴 사이즈

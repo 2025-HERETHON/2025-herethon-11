@@ -1,18 +1,55 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import json
 from django.http import JsonResponse
 from .models import UserProfile
-
-# Create your views here.
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from products.models import Product
-from .models import UserProfile
 from .utils import calculate_bust_size, calculate_pelvis_size
 
+# Create your views here.
+
 #나의 서랍 
+@login_required
 def fit_result(request):
-    return render(request, 'userProfile/fit_result.html')
+    user = request.user
+
+    try:
+        profile_image = user.userprofile.profile_image
+        nickname = user.userprofile.nickname
+    except UserProfile.DoesNotExist: #프로필/닉네임 설정 안했을 때 
+        profile_image = None
+        nickname = user.username
+
+    context = {
+        'user' : user,
+        'profile_image' : profile_image,
+        'nickname' : nickname,
+    }
+    return render(request, 'userProfile/fit_result.html', context)
+
+#프로필 수정
+@login_required
+def update_profile(request):
+    user = request.user
+    profile, created = UserProfile.objects.get_or_create(user=user) 
+
+    if request.method == 'POST':
+        nickname = request.POST.get('nickname', '').strip()
+        profile_image = request.FILES.get('profile_image')
+
+        if nickname:
+            profile.nickname = nickname
+        if profile_image:
+            profile.profile_image = profile_image
+        profile.save()
+
+        return redirect('mypage')
+    context = {
+        'nickname': profile.nickname,
+        'profile_image': profile.profile_image,
+    }
+    return render(request, 'userProfile/fit_result.html', context)
 
 @login_required
 def liked_products(request):
