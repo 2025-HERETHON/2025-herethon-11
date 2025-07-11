@@ -35,21 +35,17 @@
           </div>
           <div class="sort">최신순</div>
         </div>
-        {% for wp in worn_products %}
-        <div class="review-item">
-          <img src="{{ wp.product.shop }}" alt="{{ wp.product.title }}" />
-          <div class="item-info">
-            <div class="title">
-              [{{ wp.product.shop }}] {{ wp.product.title }}
-            </div>
-            <div class="opt">{{ wp.color }} · {{ wp.size }}</div>
-            <div class="price">{{ wp.product.price }}원</div>
-          </div>
-          <a href="{% url 'create_review' wp.product.id %}" class="btn-write"
-            >리뷰 작성</a
-          >
-        </div>
-        {% endfor %}
+{% for wp in worn_products %}
+  <div class="review-item">
+    <img src="{{ wp.product.thumbnail_url }}" alt="{{ wp.product.title }}" />
+    <div class="item-info">
+      <div class="title">[{{ wp.product.shop }}] {{ wp.product.title }}</div>
+      <div class="opt">{{ wp.color }} · {{ wp.size }}</div>
+      <div class="price">{{ wp.product.price }}원</div>
+    </div>
+    <a href="{% url 'create_review' wp.product.id %}" class="btn-write">리뷰 작성</a>
+  </div>
+{% endfor %}
 
         <div class="review-list" id="review-wrap"></div>
       </section>
