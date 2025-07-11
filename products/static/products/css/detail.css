@@ -237,6 +237,9 @@ body {
   gap: 6px;
   cursor: pointer;
 }
+a.review-link {
+  text-decoration: none !important;
+}
 
 /* ── 하단 고정 바 ── */
 .bottom-bar {
