@@ -442,11 +442,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const bodyInfo = document.getElementById("body-info");
 
   btnBody?.addEventListener("click", () => {
-    const url = new URL(window.location.href);
-    const isVisible = bodyInfo.classList.contains("show");
-
-    url.searchParams.set("body_loaded", isVisible ? "0" : "1");
-    window.location.href = url.toString(); // 새로고침 + session 반영
+    // 단순히 toggle만 수행
+    bodyInfo.classList.toggle("show");
+    btnBody.classList.toggle("loaded");
   });
 });
+document.addEventListener("DOMContentLoaded", () => {
+  const btnBody = document.getElementById("btn-body");
+  console.log("✅ btn-body 연결:", btnBody); // 콘솔에 무조건 떠야 해!!!
 
+  btnBody?.addEventListener("click", () => {
+    console.log("🔥 버튼 클릭됨!");
+    btnBody.classList.toggle("loaded");
+    console.log("✅ 현재 클래스:", btnBody.className);
+  });
+});
