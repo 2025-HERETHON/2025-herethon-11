@@ -1,3 +1,5 @@
+let vMin = 0;
+let vMax = 236000;
 document.addEventListener("DOMContentLoaded", () => {
   /* 시계 */
   function updateClock() {
@@ -62,8 +64,6 @@ document.addEventListener("DOMContentLoaded", () => {
     MAX = 500000,
     STEP = 1000,
     SLIDER_W = 330;
-  let vMin = 0,
-    vMax = 236000;
   const hMin = document.getElementById("handle-min"),
     hMax = document.getElementById("handle-max"),
     iMin = document.getElementById("price-min"),
@@ -157,10 +157,37 @@ document.addEventListener("DOMContentLoaded", () => {
       .scrollTo({ top: 0, behavior: "smooth" });
   };
   document.getElementById("btn-reset").addEventListener("click", reset);
-  document
-    .getElementById("btn-apply")
-    .addEventListener("click", () => alert("추천 검색 실행!"));
 });
+document.getElementById("btn-apply").addEventListener("click", () => {
+  const selectedColors = [...document.querySelectorAll("#color-wrap .chip.selected")].map(
+    (el) => el.dataset.value
+  );
+  const selectedMaterials = [...document.querySelectorAll("#mat-wrap .chip.selected")].map(
+    (el) => el.dataset.material
+  ).filter(Boolean);
+  const selectedTypes = [...document.querySelectorAll("#type-wrap .chip.selected")].map(
+    (el) => el.dataset.value
+  );
+
+  const braSize = document.querySelector('input[name="bra_size"]')?.value || "";
+
+  const params = new URLSearchParams();
+
+  // 🔥 여기에 검색어 추가
+  const q = new URLSearchParams(window.location.search).get("q");
+  if (q) params.append("q", q);
+
+  selectedColors.forEach((c) => params.append("color", c));
+  selectedMaterials.forEach((m) => params.append("material", m));
+  selectedTypes.forEach((t) => params.append("type", t));
+  if (braSize) params.append("bra_size", braSize);
+
+  params.append("min_price", vMin);
+  params.append("max_price", vMax);
+
+  window.location.href = `/search/filter/?${params.toString()}`;
+});
+
 
 document.addEventListener("DOMContentLoaded", () => {
   const wearButtons = document.querySelectorAll(".wear");
@@ -196,7 +223,7 @@ function toggleLike(event) {
 
   const button = event.currentTarget;
   const productId = button.dataset.productId;
-
+  console.log("찜 누름 ✅", productId);
   fetch(`/products/${productId}/like/`, {
     method: 'POST',
     headers: {
