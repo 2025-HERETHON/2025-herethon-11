@@ -1,12 +1,12 @@
 {% load static %}
 <nav class="bottom-nav">
-  <a href="{% url 'home' %}" class="nav-item">
-    <img src="{% static 'products/productimg/home.png' %}" />
+  <a href="{% url 'home' %}" class="nav-item" data-icon="home">
+    <img src="{% static 'products/productimg/home.png' %}" class="nav-icon" />
   </a>
-  <a href="{% url 'list_review' %}" class="nav-item">
-    <img src="{% static 'products/productimg/review.png' %}" />
+  <a href="{% url 'list_review' %}" class="nav-item" data-icon="review">
+    <img src="{% static 'products/productimg/review.png' %}" class="nav-icon" />
   </a>
-  <a href="#" class="nav-item">
-    <img src="{% static 'products/productimg/user.png' %}" />
+  <a href="{% url 'mypage' %}" class="nav-item" data-icon="user">
+    <img src="{% static 'products/productimg/user.png' %}" class="nav-icon" />
   </a>
 </nav>
