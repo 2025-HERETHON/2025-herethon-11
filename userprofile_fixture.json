@@ -1,0 +1,602 @@
+[
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "username": "user1",
+      "email": "user1@example.com",
+      "password": "pbkdf2_sha256$260000$example$hash",
+      "is_active": true
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+      "username": "user2",
+      "email": "user2@example.com",
+      "password": "pbkdf2_sha256$260000$example$hash",
+      "is_active": true
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 3,
+    "fields": {
+      "username": "user3",
+      "email": "user3@example.com",
+      "password": "pbkdf2_sha256$260000$example$hash",
+      "is_active": true
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 4,
+    "fields": {
+      "username": "user4",
+      "email": "user4@example.com",
+      "password": "pbkdf2_sha256$260000$example$hash",
+      "is_active": true
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 5,
+    "fields": {
+      "username": "user5",
+      "email": "user5@example.com",
+      "password": "pbkdf2_sha256$260000$example$hash",
+      "is_active": true
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 6,
+    "fields": {
+      "username": "user6",
+      "email": "user6@example.com",
+      "password": "pbkdf2_sha256$260000$example$hash",
+      "is_active": true
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 7,
+    "fields": {
+      "username": "user7",
+      "email": "user7@example.com",
+      "password": "pbkdf2_sha256$260000$example$hash",
+      "is_active": true
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 8,
+    "fields": {
+      "username": "user8",
+      "email": "user8@example.com",
+      "password": "pbkdf2_sha256$260000$example$hash",
+      "is_active": true
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 9,
+    "fields": {
+      "username": "user9",
+      "email": "user9@example.com",
+      "password": "pbkdf2_sha256$260000$example$hash",
+      "is_active": true
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 10,
+    "fields": {
+      "username": "user10",
+      "email": "user10@example.com",
+      "password": "pbkdf2_sha256$260000$example$hash",
+      "is_active": true
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 11,
+    "fields": {
+      "username": "user11",
+      "email": "user11@example.com",
+      "password": "pbkdf2_sha256$260000$example$hash",
+      "is_active": true
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 12,
+    "fields": {
+      "username": "user12",
+      "email": "user12@example.com",
+      "password": "pbkdf2_sha256$260000$example$hash",
+      "is_active": true
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 13,
+    "fields": {
+      "username": "user13",
+      "email": "user13@example.com",
+      "password": "pbkdf2_sha256$260000$example$hash",
+      "is_active": true
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 14,
+    "fields": {
+      "username": "user14",
+      "email": "user14@example.com",
+      "password": "pbkdf2_sha256$260000$example$hash",
+      "is_active": true
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 15,
+    "fields": {
+      "username": "user15",
+      "email": "user15@example.com",
+      "password": "pbkdf2_sha256$260000$example$hash",
+      "is_active": true
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 16,
+    "fields": {
+      "username": "user16",
+      "email": "user16@example.com",
+      "password": "pbkdf2_sha256$260000$example$hash",
+      "is_active": true
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 17,
+    "fields": {
+      "username": "user17",
+      "email": "user17@example.com",
+      "password": "pbkdf2_sha256$260000$example$hash",
+      "is_active": true
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 18,
+    "fields": {
+      "username": "user18",
+      "email": "user18@example.com",
+      "password": "pbkdf2_sha256$260000$example$hash",
+      "is_active": true
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 19,
+    "fields": {
+      "username": "user19",
+      "email": "user19@example.com",
+      "password": "pbkdf2_sha256$260000$example$hash",
+      "is_active": true
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 20,
+    "fields": {
+      "username": "user20",
+      "email": "user20@example.com",
+      "password": "pbkdf2_sha256$260000$example$hash",
+      "is_active": true
+    }
+  },
+  {
+    "model": "userProfile.userProfile",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "nickname": "닉네임1",
+      "profile_image": null,
+      "bust": 90,
+      "underbust": 73,
+      "cup_size": "D",
+      "waist": 69,
+      "hip": 88,
+      "pelvis_size": "M",
+      "height": 151,
+      "weight": 63,
+      "is_manual_cup": true,
+      "is_manual_pelvis": true,
+      "is_public": true
+    }
+  },
+  {
+    "model": "userProfile.userProfile",
+    "pk": 2,
+    "fields": {
+      "user": 2,
+      "nickname": "닉네임2",
+      "profile_image": null,
+      "bust": 86,
+      "underbust": 83,
+      "cup_size": "A",
+      "waist": 67,
+      "hip": 97,
+      "pelvis_size": "S",
+      "height": 165,
+      "weight": 48,
+      "is_manual_cup": true,
+      "is_manual_pelvis": true,
+      "is_public": true
+    }
+  },
+  {
+    "model": "userProfile.userProfile",
+    "pk": 3,
+    "fields": {
+      "user": 3,
+      "nickname": "닉네임3",
+      "profile_image": null,
+      "bust": 82,
+      "underbust": 78,
+      "cup_size": "C",
+      "waist": 64,
+      "hip": 87,
+      "pelvis_size": "L",
+      "height": 156,
+      "weight": 65,
+      "is_manual_cup": false,
+      "is_manual_pelvis": true,
+      "is_public": false
+    }
+  },
+  {
+    "model": "userProfile.userProfile",
+    "pk": 4,
+    "fields": {
+      "user": 4,
+      "nickname": "닉네임4",
+      "profile_image": null,
+      "bust": 90,
+      "underbust": 80,
+      "cup_size": "C",
+      "waist": 64,
+      "hip": 93,
+      "pelvis_size": "M",
+      "height": 152,
+      "weight": 58,
+      "is_manual_cup": false,
+      "is_manual_pelvis": false,
+      "is_public": false
+    }
+  },
+  {
+    "model": "userProfile.userProfile",
+    "pk": 5,
+    "fields": {
+      "user": 5,
+      "nickname": "닉네임5",
+      "profile_image": null,
+      "bust": 93,
+      "underbust": 85,
+      "cup_size": "B",
+      "waist": 74,
+      "hip": 86,
+      "pelvis_size": "L",
+      "height": 172,
+      "weight": 47,
+      "is_manual_cup": true,
+      "is_manual_pelvis": true,
+      "is_public": true
+    }
+  },
+  {
+    "model": "userProfile.userProfile",
+    "pk": 6,
+    "fields": {
+      "user": 6,
+      "nickname": "닉네임6",
+      "profile_image": null,
+      "bust": 87,
+      "underbust": 83,
+      "cup_size": "B",
+      "waist": 61,
+      "hip": 90,
+      "pelvis_size": "S",
+      "height": 157,
+      "weight": 50,
+      "is_manual_cup": true,
+      "is_manual_pelvis": false,
+      "is_public": true
+    }
+  },
+  {
+    "model": "userProfile.userProfile",
+    "pk": 7,
+    "fields": {
+      "user": 7,
+      "nickname": "닉네임7",
+      "profile_image": null,
+      "bust": 86,
+      "underbust": 77,
+      "cup_size": "D",
+      "waist": 71,
+      "hip": 98,
+      "pelvis_size": "L",
+      "height": 162,
+      "weight": 65,
+      "is_manual_cup": false,
+      "is_manual_pelvis": true,
+      "is_public": false
+    }
+  },
+  {
+    "model": "userProfile.userProfile",
+    "pk": 8,
+    "fields": {
+      "user": 8,
+      "nickname": "닉네임8",
+      "profile_image": null,
+      "bust": 89,
+      "underbust": 84,
+      "cup_size": "D",
+      "waist": 62,
+      "hip": 86,
+      "pelvis_size": "L",
+      "height": 160,
+      "weight": 57,
+      "is_manual_cup": false,
+      "is_manual_pelvis": false,
+      "is_public": false
+    }
+  },
+  {
+    "model": "userProfile.userProfile",
+    "pk": 9,
+    "fields": {
+      "user": 9,
+      "nickname": "닉네임9",
+      "profile_image": null,
+      "bust": 85,
+      "underbust": 83,
+      "cup_size": "C",
+      "waist": 64,
+      "hip": 89,
+      "pelvis_size": "S",
+      "height": 168,
+      "weight": 58,
+      "is_manual_cup": true,
+      "is_manual_pelvis": true,
+      "is_public": true
+    }
+  },
+  {
+    "model": "userProfile.userProfile",
+    "pk": 10,
+    "fields": {
+      "user": 10,
+      "nickname": "닉네임10",
+      "profile_image": null,
+      "bust": 87,
+      "underbust": 85,
+      "cup_size": "C",
+      "waist": 66,
+      "hip": 88,
+      "pelvis_size": "L",
+      "height": 175,
+      "weight": 60,
+      "is_manual_cup": false,
+      "is_manual_pelvis": false,
+      "is_public": false
+    }
+  },
+  {
+    "model": "userProfile.userProfile",
+    "pk": 11,
+    "fields": {
+      "user": 11,
+      "nickname": "닉네임11",
+      "profile_image": null,
+      "bust": 92,
+      "underbust": 78,
+      "cup_size": "A",
+      "waist": 65,
+      "hip": 98,
+      "pelvis_size": "L",
+      "height": 165,
+      "weight": 58,
+      "is_manual_cup": true,
+      "is_manual_pelvis": true,
+      "is_public": true
+    }
+  },
+  {
+    "model": "userProfile.userProfile",
+    "pk": 12,
+    "fields": {
+      "user": 12,
+      "nickname": "닉네임12",
+      "profile_image": null,
+      "bust": 89,
+      "underbust": 85,
+      "cup_size": "C",
+      "waist": 71,
+      "hip": 100,
+      "pelvis_size": "S",
+      "height": 153,
+      "weight": 63,
+      "is_manual_cup": false,
+      "is_manual_pelvis": false,
+      "is_public": false
+    }
+  },
+  {
+    "model": "userProfile.userProfile",
+    "pk": 13,
+    "fields": {
+      "user": 13,
+      "nickname": "닉네임13",
+      "profile_image": null,
+      "bust": 94,
+      "underbust": 77,
+      "cup_size": "D",
+      "waist": 73,
+      "hip": 90,
+      "pelvis_size": "L",
+      "height": 153,
+      "weight": 61,
+      "is_manual_cup": false,
+      "is_manual_pelvis": false,
+      "is_public": true
+    }
+  },
+  {
+    "model": "userProfile.userProfile",
+    "pk": 14,
+    "fields": {
+      "user": 14,
+      "nickname": "닉네임14",
+      "profile_image": null,
+      "bust": 80,
+      "underbust": 84,
+      "cup_size": "B",
+      "waist": 64,
+      "hip": 98,
+      "pelvis_size": "S",
+      "height": 163,
+      "weight": 46,
+      "is_manual_cup": false,
+      "is_manual_pelvis": true,
+      "is_public": false
+    }
+  },
+  {
+    "model": "userProfile.userProfile",
+    "pk": 15,
+    "fields": {
+      "user": 15,
+      "nickname": "닉네임15",
+      "profile_image": null,
+      "bust": 82,
+      "underbust": 82,
+      "cup_size": "D",
+      "waist": 72,
+      "hip": 100,
+      "pelvis_size": "L",
+      "height": 154,
+      "weight": 62,
+      "is_manual_cup": true,
+      "is_manual_pelvis": true,
+      "is_public": false
+    }
+  },
+  {
+    "model": "userProfile.userProfile",
+    "pk": 16,
+    "fields": {
+      "user": 16,
+      "nickname": "닉네임16",
+      "profile_image": null,
+      "bust": 82,
+      "underbust": 79,
+      "cup_size": "B",
+      "waist": 66,
+      "hip": 90,
+      "pelvis_size": "S",
+      "height": 158,
+      "weight": 57,
+      "is_manual_cup": false,
+      "is_manual_pelvis": false,
+      "is_public": false
+    }
+  },
+  {
+    "model": "userProfile.userProfile",
+    "pk": 17,
+    "fields": {
+      "user": 17,
+      "nickname": "닉네임17",
+      "profile_image": null,
+      "bust": 80,
+      "underbust": 84,
+      "cup_size": "C",
+      "waist": 75,
+      "hip": 98,
+      "pelvis_size": "S",
+      "height": 167,
+      "weight": 55,
+      "is_manual_cup": true,
+      "is_manual_pelvis": true,
+      "is_public": false
+    }
+  },
+  {
+    "model": "userProfile.userProfile",
+    "pk": 18,
+    "fields": {
+      "user": 18,
+      "nickname": "닉네임18",
+      "profile_image": null,
+      "bust": 93,
+      "underbust": 74,
+      "cup_size": "B",
+      "waist": 60,
+      "hip": 85,
+      "pelvis_size": "L",
+      "height": 157,
+      "weight": 60,
+      "is_manual_cup": true,
+      "is_manual_pelvis": false,
+      "is_public": false
+    }
+  },
+  {
+    "model": "userProfile.userProfile",
+    "pk": 19,
+    "fields": {
+      "user": 19,
+      "nickname": "닉네임19",
+      "profile_image": null,
+      "bust": 84,
+      "underbust": 75,
+      "cup_size": "B",
+      "waist": 66,
+      "hip": 86,
+      "pelvis_size": "M",
+      "height": 170,
+      "weight": 63,
+      "is_manual_cup": true,
+      "is_manual_pelvis": true,
+      "is_public": false
+    }
+  },
+  {
+    "model": "userProfile.userProfile",
+    "pk": 20,
+    "fields": {
+      "user": 20,
+      "nickname": "닉네임20",
+      "profile_image": null,
+      "bust": 92,
+      "underbust": 75,
+      "cup_size": "B",
+      "waist": 73,
+      "hip": 97,
+      "pelvis_size": "L",
+      "height": 160,
+      "weight": 51,
+      "is_manual_cup": true,
+      "is_manual_pelvis": true,
+      "is_public": true
+    }
+  }
+]
