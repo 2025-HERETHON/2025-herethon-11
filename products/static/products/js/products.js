@@ -287,13 +287,35 @@
     resetFilters();
   });
 })();
+
+function getCSRFToken() {
+  const tokenInput = document.querySelector("[name=csrfmiddlewaretoken]");
+  return tokenInput ? tokenInput.value : "";
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const wearButtons = document.querySelectorAll(".wear");
   const container = document.getElementById("wear-modal-container");
 
   wearButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
-      if (!btn.classList.contains("checked")) return;
+      if (!btn.classList.contains("checked")) {
+        btn.classList.remove("checked");
+
+        // 서버에 해제 요청
+        fetch(`/wear/${btn.dataset.id}/`, {
+          method: "POST",
+          headers: {
+            "X-CSRFToken": getCSRFToken(),
+            "Content-Type": "application/json",
+            "X-Requested-With": "XMLHttpRequest",
+          },
+          body: JSON.stringify({ action: "unwear" }),
+        });
+
+        return;
+      }
+
       const pid = btn.dataset.id;
       const colors = btn.dataset.colors;
       const sizes = btn.dataset.sizes;
