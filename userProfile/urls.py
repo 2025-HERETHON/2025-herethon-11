@@ -9,4 +9,5 @@ urlpatterns = [
     path('size-check-pelvis/', views.size_check_pelvis, name='size_check_pelvis'),
     path('save-body-info/', views.save_body_info, name='save_body_info'),
     path('update-profile', views.update_profile, name='update-profile'),
+    path('wish-list', views.wish_list, name='wish-list'),
 ]

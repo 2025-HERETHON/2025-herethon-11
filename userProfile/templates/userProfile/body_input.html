@@ -4,11 +4,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="csrf-token" content="{{ csrf_token }}">
     <title>신체 사이즈</title>
-    <link
-      rel="stylesheet"
-      href="{% static 'userProfile/css/body_input.css' %}"
-    />
+    <link rel="stylesheet" href="{% static 'userProfile/css/body_input.css' %}" />
+    <script>
+      const STATIC_IMG_URL = "{% static 'account/img/' %}";
+    </script>
     <script src="{% static 'userProfile/js/body_input.js' %}" defer></script>
   </head>
   <body>
@@ -22,7 +23,7 @@
             <img
               src="{% static 'account/img/x.png' %}"
               alt="exit"
-              onclick="location.href='fit_result.html'"
+              onclick="location.href='{% url 'mypage' %}'"
             />
           </div>
         </header>

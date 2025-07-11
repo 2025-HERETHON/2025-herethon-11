@@ -4,8 +4,9 @@ from django.http import JsonResponse
 from .models import UserProfile
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
-from products.models import Product
+from products.models import Product, WornProduct
 from .utils import calculate_bust_size, calculate_pelvis_size
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 
@@ -17,16 +18,44 @@ def fit_result(request):
     try:
         profile_image = user.userprofile.profile_image
         nickname = user.userprofile.nickname
+       
+
     except UserProfile.DoesNotExist: #프로필/닉네임 설정 안했을 때 
         profile_image = None
         nickname = user.username
+
+     #착용한 상품 목록
+    worn_products = WornProduct.objects.select_related('product').filter(user=user)
+    # 착용한 상품 개수
+    worn_product_count = worn_products.count()
 
     context = {
         'user' : user,
         'profile_image' : profile_image,
         'nickname' : nickname,
+        'worn_product_count': worn_product_count,
+        'wron_products': [wp.product for wp in worn_products],
     }
     return render(request, 'userProfile/fit_result.html', context)
+
+#위시리스트
+@login_required
+def wish_list(request):
+    user = request.user
+
+    try:
+        profile_image = user.userprofile.profile_image
+        nickname = user.userprofile.nickname
+    except UserProfile.DoesNotExist:
+        profile_image = None
+        nickname = user.username
+
+    context = {
+        'user': user,
+        'profile_image': profile_image,
+        'nickname': nickname,
+    }
+    return render(request, 'userProfile/wishlist.html', context)
 
 #프로필 수정
 @login_required
@@ -44,7 +73,10 @@ def update_profile(request):
             profile.profile_image = profile_image
         profile.save()
 
-        return redirect('mypage')
+        # 수정 후 돌아갈 경로 설정
+        next_url = request.POST.get('next', 'mypage')
+        return redirect(next_url)
+
     context = {
         'nickname': profile.nickname,
         'profile_image': profile.profile_image,
@@ -68,6 +100,7 @@ def body_input_view(request):
 
 #체형 사이즈 측정
 #가슴 사이즈 츨정
+@csrf_exempt
 @login_required
 def size_check_cup(request):
     if request.method == 'POST':
@@ -79,6 +112,7 @@ def size_check_cup(request):
     return JsonResponse({'error': 'POST 요청만 허용'}, status=405)
 
 #골반 사이즈 측정
+@csrf_exempt
 @login_required
 def size_check_pelvis(request):
     if request.method == 'POST':
@@ -96,6 +130,7 @@ def to_int(v):
         return None
         
 #체형 사이즈 저장
+@csrf_exempt
 @login_required
 def save_body_info(request):
     if request.method == "POST":
