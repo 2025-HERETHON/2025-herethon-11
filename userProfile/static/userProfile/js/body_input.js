@@ -1,11 +1,8 @@
 document.cookie = "csrftoken={{ csrf_token }}; path=/";
 
       function getCSRFToken() {
-        //POST요청 보내기 위해 필요
-        const cookieValue = document.cookie
-          .split("; ")
-          .find((row) => row.startsWith("csrftoken="));
-        return cookieValue ? cookieValue.split("=")[1] : "";
+        const tokenMeta = document.querySelector('meta[name="csrf-token"]');
+        return tokenMeta ? tokenMeta.getAttribute("content") : "";
       }
 
       function calculateCup(btn) {
@@ -151,9 +148,9 @@ document.cookie = "csrftoken={{ csrf_token }}; path=/";
         inputBox.style.display = isVisible ? "none" : "block";
 
         if (arrow) {
-          arrow.src = isVisible
-            ? "{% static 'account/img/toggle1.png' %}"
-            : "{% static 'account/img/toggle.png' %}"; // ▲ ▼ 토글
+         arrow.src = isVisible
+          ? STATIC_IMG_URL + "toggle1.png"
+          : STATIC_IMG_URL + "toggle.png";
         }
       }
 
@@ -184,16 +181,26 @@ document.cookie = "csrftoken={{ csrf_token }}; path=/";
       }
 
       function saveData() {
-        const bust = getSelectedValue(document.getElementById("topBust"));
-        const underbust = getSelectedValue(
-          document.getElementById("underBust")
-        );
-        const cup_size = document.getElementById("cupResult").innerText;
-        const waist = parseInt(document.getElementById("waistInput").value);
-        const hip = parseInt(document.getElementById("hipInput").value);
-        const pelvis_size = document.getElementById("hipResult").innerText;
+        const cup_size_self = document.querySelector("#manualCupInput input").value.trim();
+        const cup_size_auto = document.getElementById("cupResult").innerText.trim();
+        const cup_size = cup_size_self !== "" ? cup_size_self : cup_size_auto;
+
+        const pelvis_size_self = document.querySelector("#manualHipInput input").value.trim();
+        const pelvis_size_auto = document.getElementById("hipResult").innerText.trim();
+        const pelvis_size = pelvis_size_self !== "" ? pelvis_size_self : pelvis_size_auto;
+
+        const isManualCup = cup_size_self !== "";
+        const isManualPelvis = pelvis_size_self !== "";
+
+        const bust = isManualCup ? null : getSelectedValue(document.getElementById("topBust"));
+        const underbust = isManualCup ? null : getSelectedValue(document.getElementById("underBust"));
+
+        const waist = isManualPelvis ? null : parseInt(document.getElementById("waistInput").value);
+        const hip = isManualPelvis ? null : parseInt(document.getElementById("hipInput").value);
+
         const height = parseInt(document.getElementById("height").value);
         const weight = parseInt(document.getElementById("weight").value);
+
         const csrfToken = getCSRFToken();
 
         console.log({
@@ -207,17 +214,27 @@ document.cookie = "csrftoken={{ csrf_token }}; path=/";
           weight,
         });
 
-        if (
-          !bust ||
-          !underbust ||
-          !cup_size ||
-          !waist ||
-          !hip ||
-          !pelvis_size ||
-          !height ||
-          !weight
-        ) {
-          alert("사이즈를 모두 측정한 후 저장하세요.");
+        //유효성 체크
+        if (!cup_size) {
+          alert("컵 사이즈를 입력하거나 측정해 주세요.");
+          return;
+        }
+        if (!isManualCup && (!bust || !underbust)) {
+          alert("윗가슴/밑가슴 둘레를 입력해 주세요.");
+          return;
+        }
+
+        if (!pelvis_size) {
+          alert("골반 사이즈를 입력하거나 측정해 주세요.");
+          return;
+        }
+        if (!isManualPelvis && (isNaN(waist) || isNaN(hip))) {
+          alert("허리/힙 둘레를 입력해 주세요.");
+          return;
+        }
+
+        if (isNaN(height) || isNaN(weight)) {
+          alert("키와 몸무게를 입력해 주세요.");
           return;
         }
 
@@ -232,11 +249,11 @@ document.cookie = "csrftoken={{ csrf_token }}; path=/";
             bust,
             underbust,
             cup_size,
+            pelvis_size,
             waist,
             hip,
             height,
             weight,
-            pelvis_size,
           }),
         })
           .then((res) => res.json())
