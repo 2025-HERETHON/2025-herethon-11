@@ -10,7 +10,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 
-#나의 서랍 
+#나의 서랍(프로필 정보, 착용한 제품)
 @login_required
 def fit_result(request):
     user = request.user
@@ -38,7 +38,7 @@ def fit_result(request):
     }
     return render(request, 'userProfile/fit_result.html', context)
 
-#위시리스트
+#위시리스트 페이지(프로필 정보)
 @login_required
 def wish_list(request):
     user = request.user
