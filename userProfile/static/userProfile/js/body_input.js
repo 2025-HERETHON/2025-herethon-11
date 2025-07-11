@@ -7,6 +7,99 @@ document.cookie = "csrftoken={{ csrf_token }}; path=/";
       updateClock();
       setInterval(updateClock, 60000);
 
+      /*작성한 체형 사이즈 불러오기 */
+      document.addEventListener('DOMContentLoaded', () => {
+      fetch("/user/body-size/")  // GET
+          .then(res => res.json()) 
+          .then(data => {
+              console.log(data);  // 콘솔로 받은 데이터를 확인
+              if (data) {
+                  //사이즈 공개 여부
+                  // 1. 공개 여부 (is_public) 반영
+                  const privacyToggle = document.getElementById("privacyToggle");
+                  const label = document.getElementById("privacyLabel");
+                  const tcontainer = document.querySelector(".toggle-container");
+
+                  // is_public 값에 따라 체크박스 상태 설정
+                  privacyToggle.checked = data.is_public !== undefined ? data.is_public : false;
+                  
+                  // 체크박스 상태에 따른 label 텍스트 변경
+                  if (privacyToggle.checked) {
+                    label.textContent = "공개";
+                    tcontainer.classList.add("public");  // 공개 상태인 경우
+                  } else {
+                    label.textContent = "비공개";
+                    tcontainer.classList.remove("public");  // 비공개 상태인 경우
+                  }
+                  
+                  // 1. 컵 사이즈: 자동/직접 입력인지 판단
+                  if (data.is_manual_cup) {
+                      document.getElementById("manualCupInput").style.display = "block";  // 수동 입력란 보이기
+                      document.getElementById("manualCupInput").querySelector("input").value = data.cup_size || '';
+                      document.getElementById("cupResult").style.display = "block";  // 자동 계산 결과 숨기기
+                  } else {
+                      //자동 계산
+                      const cupSize = data.cup_size || '';
+                      const bust = data.bust || '';
+                      const underbust = data.underbust || '';
+                      setDialValue(cupSize, bust, underbust); 
+                      document.getElementById("cupResult").innerText = cupSize;  // 자동 계산된 값 표시
+                      document.getElementById("manualCupInput").style.display = "none";  // 수동 입력란 숨기기
+                  }
+
+                  // 2. 골반 둘레: 자동/수동 입력인지 판단
+                  if (data.is_manual_pelvis) {
+                      //수동 계산
+                      document.getElementById("manualHipInput").style.display = "block";
+                      document.getElementById("manualHipInput").querySelector("input").value = data.pelvis_size || '';
+                      document.getElementById("hipResult").style.display = "block";  // 자동 계산 결과 숨기기
+                  } else {
+                      //자동 계산
+                      document.getElementById("hipResult").innerText = data.pelvis_size || '';  // 자동 계산된 값 표시
+                      document.getElementById("manualHipInput").style.display = "none";  // 수동 입력란 숨기기
+                  }
+
+                  // 나머지 데이터 입력
+                  document.getElementById("waistInput").value = data.waist || '';
+                  document.getElementById("hipInput").value = data.hip || '';
+                  document.getElementById("height").value = data.height || '';
+                  document.getElementById("weight").value = data.weight || '';
+              }
+          })
+          .catch(error => console.error('Error fetching data:', error));
+      });
+
+
+      //다이얼 초기화 함수: 받아온 cup_size에  맞는 다이얼 값 설정
+      function setDialValue(cupSize, bust, underbust) {
+      const dial = document.getElementById('topBust');  // 윗가슴 다이얼을 나타내는 `ul` 요소
+      const allItems = dial.querySelectorAll('li');  // 다이얼 항목들
+      
+      const bustStr = String(bust).trim(); 
+      const targetItem = Array.from(allItems).find(item => item.textContent.trim() === bustStr);
+
+      // 해당 항목이 있으면 선택 상태로 만들어서 중앙으로 스크롤
+      if (targetItem) {
+          targetItem.classList.add('selected');
+          const scrollTop = targetItem.offsetTop - (dial.offsetHeight / 2) + (targetItem.offsetHeight / 2); // 중앙으로 조정
+          dial.scrollTo({ top: scrollTop, behavior: "smooth" });
+      }
+
+      const underDial = document.getElementById('underBust');  // 밑가슴 다이얼을 나타내는 `ul` 요소
+      const underItems = underDial.querySelectorAll('li');  // 다이얼 항목들
+
+      const underbustStr = String(underbust).trim(); 
+      const underTargetItem = Array.from(underItems).find(item => item.textContent.trim() === underbustStr);
+
+      // 해당 항목이 있으면 선택 상태로 만들어서 중앙으로 스크롤
+      if (underTargetItem) {
+          underTargetItem.classList.add('selected');
+          const scrollTop = underTargetItem.offsetTop - (underDial.offsetHeight / 2) + (underTargetItem.offsetHeight / 2); // 중앙으로 조정
+          underDial.scrollTo({ top: scrollTop, behavior: "smooth" });
+      }
+      }
+
+
       function getCSRFToken() {
         const tokenMeta = document.querySelector('meta[name="csrf-token"]');
         return tokenMeta ? tokenMeta.getAttribute("content") : "";
@@ -20,12 +113,10 @@ document.cookie = "csrftoken={{ csrf_token }}; path=/";
         const isPublic = document.getElementById("privacyToggle").checked;
 
         const manualCup = document.getElementById("manualCupInput");
-        if (manualCup.style.display === "block") return; //사이즈 직접 입력 시 버튼 실행 안되도록
-
         if (!isPublic) {
           document.getElementById("cupResult").innerText = "";
           btn.classList.remove("active");
-          return; //사이즈 측정 요청 막음
+          return;  // 사이즈 측정 요청 막음
         }
 
         const csrfToken = getCSRFToken();
@@ -53,7 +144,6 @@ document.cookie = "csrftoken={{ csrf_token }}; path=/";
         const isPublic = document.getElementById("privacyToggle").checked;
 
         const manualHip = document.getElementById("manualHipInput");
-        if (manualHip.style.display === "block") return; //사이즈 직접 입력 시 버튼 실행 안되도록
 
         if (!isPublic) {
           document.getElementById("hipResult").innerText = "";
@@ -134,10 +224,10 @@ document.cookie = "csrftoken={{ csrf_token }}; path=/";
         });
 
         // 초기 강조 위치 설정 (중간 숫자)
-        setTimeout(() => {
-          el.scrollTop = liHeight * 1; // 두 번째 항목이 중앙에 오게
-          el.querySelectorAll("li")[2]?.classList.add("selected");
-        }, 100);
+        // setTimeout(() => {
+        //   el.scrollTop = liHeight * 1; // 두 번째 항목이 중앙에 오게
+        //   el.querySelectorAll("li")[2]?.classList.add("selected");
+        // }, 100);
       }
 
       createScrollList("topBust", 55, 110);
@@ -158,6 +248,23 @@ document.cookie = "csrftoken={{ csrf_token }}; path=/";
          arrow.src = isVisible
           ? STATIC_IMG_URL + "toggle1.png"
           : STATIC_IMG_URL + "toggle.png";
+        }
+
+         // 자동 계산이 활성화되었을 때 다이얼에 맞는 값을 세팅
+         if (type === "cup" && !isVisible) {
+            const cupResultElement = document.getElementById("cupResult");
+            if (cupResultElement) {
+                const cupSize = cupResultElement.innerText;
+                setDialValue(cupSize); // 다이얼에 선택된 값으로 업데이트
+            }
+        }
+
+        if (type === "hip" && !isVisible) {
+            const pelvisResultElement = document.getElementById("pelvisResult");
+            if (pelvisResultElement) {
+                const pelvisSize = pelvisResultElement.innerText.trim();
+                document.getElementById("manualHipInput").querySelector("input").value = pelvisSize; // 자동 계산된 값 설정
+            }
         }
       }
 
@@ -208,6 +315,8 @@ document.cookie = "csrftoken={{ csrf_token }}; path=/";
         const height = parseInt(document.getElementById("height").value);
         const weight = parseInt(document.getElementById("weight").value);
 
+        const isPublic = document.getElementById("privacyToggle").checked; //공개 여부
+
         const csrfToken = getCSRFToken();
 
         console.log({
@@ -219,6 +328,7 @@ document.cookie = "csrftoken={{ csrf_token }}; path=/";
           pelvis_size,
           height,
           weight,
+          isPublic,
         });
 
         //유효성 체크
@@ -261,6 +371,9 @@ document.cookie = "csrftoken={{ csrf_token }}; path=/";
             hip,
             height,
             weight,
+            is_manual_cup: isManualCup,  // 자동 계산이면 false, 수동이면 true
+            is_manual_pelvis: isManualPelvis,  // 자동 계산이면 false, 수동이면 true
+            is_public: isPublic,
           }),
         })
           .then((res) => res.json())

@@ -43,7 +43,7 @@ def create_review(request, product_id):
                 content=content,
             )
 
-        return redirect('reviews:list_review')
+        return redirect('list_review')
 
     context = {
         'product': product,
