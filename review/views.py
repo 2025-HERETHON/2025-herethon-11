@@ -43,7 +43,7 @@ def list_review(request):
     return render(request, 'review/review.html', {
         'reviews': reviews,
         'worn_product_count': worn_product_count,
-        'products': [wp.product for wp in worn_products],
+        'wron_product': [wp.product for wp in worn_products],
     })
 
 #리뷰 상세

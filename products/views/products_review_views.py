@@ -10,7 +10,7 @@ def product_review(request, product_id):
     # 예시 코드
     product = Product.objects.get(id=product_id)
     reviews = Review.objects.filter(product=product)
-    return render(request, 'products/review.html', {
+    return render(request, 'products/product_review.html', {
         'product': product,
         'reviews': reviews
     })
