@@ -100,9 +100,9 @@ const wornProducts = [
 // });
 
 /* JS 맨 아래쪽 정도에 추가 */
-document.querySelectorAll(".btn-write").forEach((btn) => {
-  btn.addEventListener("click", (e) => {
-    e.preventDefault(); // a 태그 기본 이동 막고
-    window.location.href = "review_form.html"; // 작성 페이지로 GO!
-  });
-});
+// document.querySelectorAll(".btn-write").forEach((btn) => {
+//   btn.addEventListener("click", (e) => {
+//     e.preventDefault(); // a 태그 기본 이동 막고
+//     window.location.href = "review_form.html"; // 작성 페이지로 GO!
+//   });
+// });
