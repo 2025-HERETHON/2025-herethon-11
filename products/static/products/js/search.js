@@ -1,5 +1,7 @@
 let vMin = 0;
 let vMax = 236000;
+// 제일 위에 추가!
+let isBodyDataLoaded = false;
 document.addEventListener("DOMContentLoaded", () => {
   /* 시계 */
   function updateClock() {
@@ -59,10 +61,18 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.style.overflow = "auto";
   }
 
-  /* 체형 버튼 */
-  document.getElementById("btn-body").addEventListener("click", (e) => {
-    e.currentTarget.classList.toggle("loaded");
-  });
+//   /* 체형 버튼 */
+// document.getElementById("btn-body").addEventListener("click", () => {
+//   const url = new URL(window.location.href);
+//   url.searchParams.set("body_loaded", "1");
+//
+//   // 👇 강제로 /search/filter/ 경로로 맞춰줘야 함!
+//   url.pathname = "/search/filter/";
+//
+//   window.location.href = url.toString();
+// });
+
+
 
   /* 가격 슬라이더 */
   const MIN = 0,
@@ -163,37 +173,41 @@ document.addEventListener("DOMContentLoaded", () => {
   };
   document.getElementById("btn-reset").addEventListener("click", reset);
 });
-document.getElementById("btn-apply").addEventListener("click", () => {
-  const selectedColors = [
-    ...document.querySelectorAll("#color-wrap .chip.selected"),
-  ].map((el) => el.dataset.value);
-  const selectedMaterials = [
-    ...document.querySelectorAll("#mat-wrap .chip.selected"),
-  ]
-    .map((el) => el.dataset.material)
-    .filter(Boolean);
-  const selectedTypes = [
-    ...document.querySelectorAll("#type-wrap .chip.selected"),
-  ].map((el) => el.dataset.value);
-
-  const braSize = document.querySelector('input[name="bra_size"]')?.value || "";
-
-  const params = new URLSearchParams();
-
-  // 🔥 여기에 검색어 추가
-  const q = new URLSearchParams(window.location.search).get("q");
-  if (q) params.append("q", q);
-
-  selectedColors.forEach((c) => params.append("color", c));
-  selectedMaterials.forEach((m) => params.append("material", m));
-  selectedTypes.forEach((t) => params.append("type", t));
-  if (braSize) params.append("bra_size", braSize);
-
-  params.append("min_price", vMin);
-  params.append("max_price", vMax);
-
-  window.location.href = `/search/filter/?${params.toString()}`;
-});
+// document.getElementById("btn-apply").addEventListener("click", () => {
+//   const selectedColors = [
+//     ...document.querySelectorAll("#color-wrap .chip.selected"),
+//   ].map((el) => el.dataset.value);
+//   const selectedMaterials = [
+//     ...document.querySelectorAll("#mat-wrap .chip.selected"),
+//   ]
+//     .map((el) => el.dataset.material)
+//     .filter(Boolean);
+//   const selectedTypes = [
+//     ...document.querySelectorAll("#type-wrap .chip.selected"),
+//   ].map((el) => el.dataset.value);
+//
+//   const braSize = document.querySelector('input[name="bra_size"]')?.value || "";
+//
+//   const params = new URLSearchParams();
+//
+//   // 🔥 여기에 검색어 추가
+//   const q = new URLSearchParams(window.location.search).get("q");
+//   if (q) params.append("q", q);
+//
+//   selectedColors.forEach((c) => params.append("color", c));
+//   selectedMaterials.forEach((m) => params.append("material", m));
+//   selectedTypes.forEach((t) => params.append("type", t));
+//   if (braSize) params.append("bra_size", braSize);
+//
+//   params.append("min_price", vMin);
+//   params.append("max_price", vMax);
+//
+// if (isBodyDataLoaded && document.getElementById("body-info").children.length > 0) {
+//   params.append("body_loaded", "1");
+// }
+//
+//   window.location.href = `/search/filter/?${params.toString()}`;
+// });
 
 document.addEventListener("DOMContentLoaded", () => {
   const wearButtons = document.querySelectorAll(".wear");
@@ -292,3 +306,114 @@ function openWearModal(productId, colors, sizes) {
 function closeWearModal() {
   document.getElementById("wear-modal-container").style.display = "none";
 }
+
+ /* 체형 정보 불러오기 */
+  document.getElementById("btn-body").addEventListener("click", async () => {
+    try {
+      const res = await fetch("/api/user/body/");
+      const data = await res.json();
+
+      const info = document.getElementById("body-info");
+      info.innerHTML = `
+        <div><strong>키:</strong> ${data.height}cm</div>
+        <div><strong>몸무게:</strong> ${data.weight}kg</div>
+        <div><strong>브라 사이즈:</strong> ${data.cup_size}</div>
+        <div><strong>골반 사이즈:</strong> ${data.pelvis_size}</div>
+      `;
+
+      if (data.height && data.weight && data.cup_size && data.pelvis_size) {
+        isBodyDataLoaded = true;
+        document.getElementById("btn-body").classList.add("loaded");
+      } else {
+        alert("체형 정보가 불완전해요. 필터링을 적용하지 않습니다.");
+      }
+    } catch (err) {
+      console.error("체형 정보 로딩 실패:", err);
+    }
+  });
+
+  /* 적용 버튼 */
+  document.getElementById("btn-apply").addEventListener("click", () => {
+    const selectedColors = [...document.querySelectorAll("#color-wrap .chip.selected")].map(el => el.dataset.value);
+    const selectedMaterials = [...document.querySelectorAll("#mat-wrap .chip.selected")].map(el => el.dataset.material).filter(Boolean);
+    const selectedTypes = [...document.querySelectorAll("#type-wrap .chip.selected")].map(el => el.dataset.value);
+    const braSize = document.querySelector('input[name="bra_size"]')?.value || "";
+
+    const params = new URLSearchParams();
+    const q = new URLSearchParams(window.location.search).get("q");
+    if (q) params.append("q", q);
+    selectedColors.forEach(c => params.append("color", c));
+    selectedMaterials.forEach(m => params.append("material", m));
+    selectedTypes.forEach(t => params.append("type", t));
+    if (braSize) params.append("bra_size", braSize);
+    params.append("min_price", vMin);
+    params.append("max_price", vMax);
+
+    if (isBodyDataLoaded) {
+      params.append("body_loaded", "1");
+    }
+
+    window.location.href = `/search/filter/?${params.toString()}`;
+  });
+
+  document.addEventListener("DOMContentLoaded", function () {
+  const loadBodyBtn = document.querySelector("#load-body-btn");
+  const cupSizeField = document.querySelector("#cup-size-field");
+  const pelvisSizeField = document.querySelector("#pelvis-size-field");
+  const hiddenCupSize = document.querySelector("#hidden-cup-size");
+  const hiddenPelvisSize = document.querySelector("#hidden-pelvis-size");
+
+  if (loadBodyBtn) {
+    loadBodyBtn.addEventListener("click", function () {
+      fetch("/get-user-body/")
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.cup_size) {
+            cupSizeField.textContent = data.cup_size;
+            hiddenCupSize.value = data.cup_size;
+          }
+          if (data.pelvis_size) {
+            pelvisSizeField.textContent = data.pelvis_size;
+            hiddenPelvisSize.value = data.pelvis_size;
+          }
+
+          // 필터 다시 적용
+          const url = new URL(window.location.href);
+          url.searchParams.set("body_loaded", "1");
+          if (data.cup_size) url.searchParams.set("bra_size", data.cup_size);
+          window.location.href = url.toString();
+        });
+    });
+  }
+
+  // 모달 열 때 hidden 값이 있으면 다시 표시
+  const savedCup = hiddenCupSize?.value;
+  const savedPelvis = hiddenPelvisSize?.value;
+  if (savedCup) cupSizeField.textContent = savedCup;
+  if (savedPelvis) pelvisSizeField.textContent = savedPelvis;
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const recModal = document.getElementById("rec-modal");
+  const btnRec = document.querySelector(".btn-rec");
+  console.log("recModal:", recModal);
+  console.log("btnRec:", btnRec);
+
+  btnRec.addEventListener("click", () => {
+    console.log("추천받기 버튼 클릭됨");
+    if (recModal) {
+      recModal.classList.add("show");
+      document.body.style.overflow = "hidden";
+    } else {
+      console.error("recModal 요소 없음");
+    }
+  });
+});
+
+
+
+
+
+
+
+
