@@ -1,15 +1,15 @@
-window.addEventListener("DOMContentLoaded", function () {
-        const savedImage = localStorage.getItem("profileImage");
-        const currentProfile = document.getElementById("currentProfile");
-        const previewImg = document.getElementById("previewImg");
-        const mainProfile = document.getElementById("mainProfile");
+// window.addEventListener("DOMContentLoaded", function () {
+//         const savedImage = localStorage.getItem("profileImage");
+//         const currentProfile = document.getElementById("currentProfile");
+//         const previewImg = document.getElementById("previewImg");
+//         const mainProfile = document.getElementById("mainProfile");
 
-        if (savedImage) {
-            if (currentProfile) currentProfile.src = savedImage;
-            if (previewImg) previewImg.src = savedImage;
-            if (mainProfile) mainProfile.src = savedImage;
-        }
-        });
+//         if (savedImage) {
+//             if (currentProfile) currentProfile.src = savedImage;
+//             if (previewImg) previewImg.src = savedImage;
+//             if (mainProfile) mainProfile.src = savedImage;
+//         }
+//         });
       // 시계
       function updateClock() {
         const d = new Date();
@@ -47,13 +47,13 @@ window.addEventListener("DOMContentLoaded", function () {
         document.getElementById("logoutModal").style.display = "none";
       }
       function showProfileEdit() {
-        const savedImage = localStorage.getItem("profileImage");
-        const previewImg = document.getElementById("previewImg");
-        if (savedImage) {
-        previewImg.src = savedImage;
-        } else {
-        previewImg.src = "../../static/products/productimg/user.png";
-        }
+        // const savedImage = localStorage.getItem("profileImage");
+        // const previewImg = document.getElementById("previewImg");
+        // if (savedImage) {
+        // previewImg.src = savedImage;
+        // } else {
+        // previewImg.src = "/static/account/img/profile.png";
+        // }
         document.getElementById("profileModal").style.display = "flex";
     }
 
@@ -81,7 +81,19 @@ window.addEventListener("DOMContentLoaded", function () {
         if (currentProfile) currentProfile.src = newSrc;
         if (mainProfile) mainProfile.src = newSrc;
 
-        localStorage.setItem("profileImage", newSrc);
+        // localStorage.setItem("profileImage", newSrc);
 
         hideProfileEdit();
         }
+
+        //닉네임 수정시 글자수 세기
+        function updateCharCount() {
+          const input = document.getElementById("nicknameInput");
+          const count = document.getElementById("charCount");
+          count.textContent = input.value.length;
+        }
+
+        // 페이지 로드 시 초기값도 계산해줌
+        document.addEventListener("DOMContentLoaded", () => {
+          updateCharCount();
+        });
