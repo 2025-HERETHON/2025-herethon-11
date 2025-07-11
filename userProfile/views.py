@@ -23,7 +23,7 @@ def fit_result(request):
         nickname = user.username
 
      #착용한 상품 목록
-    worn_products = WornProduct.objects.select_related('product').filter(user=request.user)
+    worn_products = WornProduct.objects.select_related('product').filter(user=request.user).order_by('created_at')
     # 착용한 상품 개수
     worn_product_count = worn_products.count()
 
