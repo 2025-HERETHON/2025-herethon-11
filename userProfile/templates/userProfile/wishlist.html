@@ -11,7 +11,6 @@
     />
     <link rel="stylesheet" href="{% static 'userProfile/css/wishlist.css' %}" />
     <script src="{% static 'userProfile/js/wishlist.js' %}" defer></script>
-
   </head>
   <body>
     <!-- 상단 -->
@@ -20,18 +19,27 @@
       <h1 class="page-title">나의서랍</h1>
 
       <div class="profile-box">
-         {% if profile_image %}
-            <img id="mainProfile" src="{{ profile_image.url }}" alt="프로필" />
+        {% if profile_image %}
+        <img id="mainProfile" src="{{ profile_image.url }}" alt="프로필" />
         {% else %}
-            <img id="mainProfile" src="{% static 'account/img/profile.png' %}" alt="기본 프로필 이미지" />
+        <img
+          id="mainProfile"
+          src="{% static 'account/img/profile.png' %}"
+          alt="기본 프로필 이미지"
+        />
         {% endif %}
         <div class="profile-info">
-            <div class="profile-container">
+          <div class="profile-container">
             <h2>{{ nickname }}</h2>
-            <div class="logout" onclick="showLogout()">로그아웃 <img src="{% static 'account/img/toggler.png' %}" alt=""></div>
+            <div class="logout" onclick="showLogout()">
+              로그아웃
+              <img src="{% static 'account/img/toggler.png' %}" alt="" />
             </div>
-            <button onclick="showProfileEdit()">프로필 수정</button>
-            <button onclick="location.href='{% url 'body_input' %}'">신체 사이즈 입력</button>
+          </div>
+          <button onclick="showProfileEdit()">프로필 수정</button>
+          <button onclick="location.href='{% url 'body_input' %}'">
+            신체 사이즈 입력
+          </button>
         </div>
       </div>
 
@@ -39,7 +47,9 @@
         <div class="tab" onclick="location.href='{% url 'mypage' %}'">
           착용 제품
         </div>
-        <div class="tab active" onclick="location.href='{% url 'wish-list' %}'">찜 목록</div>
+        <div class="tab active" onclick="location.href='{% url 'wish-list' %}'">
+          찜 목록
+        </div>
       </div>
     </header>
 
@@ -47,36 +57,38 @@
     <div class="page-content">
       <section>
         <div class="wear-header">
-          <div>전체 상품</div> 
-            <div class="count-container">
-                <span class="count">상품 10개</span> 
-                <div class="sort">최신순</div>
-            </div>    
+          <div>전체 상품</div>
+          <div class="count-container">
+            <span class="count">상품 10개</span>
+            <div class="sort">최신순</div>
+          </div>
         </div>
         <div class="wishlist-grid" id="wishlist-wrap">
-            {% for product in wishlist_items %}
-            <div class="item-card">
-                <div class="item-img-wrap">
-                <img src="{{ product.thumbnail_url }}" alt="{{ product.title }}" />
-                <form method="POST" action="{% url 'toggle_like' product.id %}">
-                    {% csrf_token %}
-                    <button
-                    type="submit"
-                    class="heart liked"
-                    ></button>
-                </form>
-                <span class="wear {% if product.is_worn %}checked{% endif %}"></span>
-                </div>
-                <div class="item-info">
-                <div class="item-price">{{ product.price }}원</div>
-                <div class="item-brand">{{ product.shop }}</div>
-                <div class="item-desc">{{ product.title }}</div>
-                </div>
+          {% for product in wishlist_items %}
+          <div class="item-card">
+            <div class="item-img-wrap">
+              <img
+                src="{{ product.thumbnail_url }}"
+                alt="{{ product.title }}"
+              />
+              <form method="POST" action="{% url 'toggle_like' product.id %}">
+                {% csrf_token %}
+                <button type="submit" class="heart liked"></button>
+              </form>
+              <span
+                class="wear {% if product.is_worn %}checked{% endif %}"
+              ></span>
             </div>
-            {% empty %}
-            <p style="padding: 0 15px">찜한 상품이 없습니다.</p>
-            {% endfor %}
+            <div class="item-info">
+              <div class="item-price">{{ product.price }}원</div>
+              <div class="item-brand">{{ product.shop }}</div>
+              <div class="item-desc">{{ product.title }}</div>
             </div>
+          </div>
+          {% empty %}
+          <p style="padding: 0 15px">찜한 상품이 없습니다.</p>
+          {% endfor %}
+        </div>
       </section>
     </div>
 
@@ -88,66 +100,78 @@
         <p>로그아웃 하시겠어요?</p>
         <div class="modal-buttons">
           <button class="cancel" onclick="hideLogout()">취소</button>
-          <button class="confirm" onclick="location.href='{% url 'account_logout' %}'">
+          <button
+            class="confirm"
+            onclick="location.href='{% url 'account_logout' %}'"
+          >
             로그아웃
           </button>
         </div>
       </div>
     </div>
-    
+
     <!-- 프로필 모달 창 -->
-    <form method="POST" action="{% url 'update-profile' %}" enctype="multipart/form-data">
-    {% csrf_token %}
-    <input type="hidden" name="next" value="{{ request.path }}">
-    <div class="profile-modal" id="profileModal">
-      <div class="profile-content">
-        <div class="profile-edit">
-        <div class="profile-title">프로필 수정</div>
-        <div class="profile-img">
-            <img  src="{% static 'account/img/x.png' %}" alt="닫기" onclick="hideProfileEdit()" />
-        </div>
-        </div>
+    <form
+      method="POST"
+      action="{% url 'update-profile' %}"
+      enctype="multipart/form-data"
+    >
+      {% csrf_token %}
+      <input type="hidden" name="next" value="{{ request.path }}" />
+      <div class="profile-modal" id="profileModal">
+        <div class="profile-content">
+          <div class="profile-edit">
+            <div class="profile-title">프로필 수정</div>
+            <div class="profile-img">
+              <img
+                src="{% static 'account/img/x.png' %}"
+                alt="닫기"
+                onclick="hideProfileEdit()"
+              />
+            </div>
+          </div>
 
-         <div class="profile-image">
-          <label for="upload">
-            {% if profile_image %}
-            <img
-              id="previewImg"
-              src="{{ profile_image.url }}"
-              alt="프로필"
+          <div class="profile-image">
+            <label for="upload">
+              {% if profile_image %}
+              <img id="previewImg" src="{{ profile_image.url }}" alt="프로필" />
+              {% else %}
+              <img
+                id="previewImg"
+                src="{% static 'account/img/profile.png' %}"
+                alt="기본 프로필 이미지"
+              />
+              {% endif %}
+            </label>
+            <input
+              type="file"
+              id="upload"
+              name="profile_image"
+              accept="image/*"
+              onchange="updateProfileImg(event)"
+              style="display: none"
             />
-            {% else %}
-            <img id="previewImg" src="{% static 'account/img/profile.png' %}" alt="기본 프로필 이미지" />
-            {% endif %}
-          </label>
-          <input
-            type="file"
-            id="upload"
-            name="profile_image"
-            accept="image/*"
-            onchange="updateProfileImg(event)"
-            style="display: none"
-          />
-        </div>
+          </div>
 
-        <div class="nickname">
-          <div>닉네임</div>
-          <input
-            type="text"
-            id="nicknameInput"
-            name="nickname"
-            value="{{ nickname }}"
-            maxlength="10"
-            oninput="updateCharCount()"
-            class="nickname-input"
-          />
-          <div><span id="charCount">0</span> / 10</div>
-        </div>
+          <div class="nickname">
+            <div>닉네임</div>
+            <input
+              type="text"
+              id="nicknameInput"
+              name="nickname"
+              value="{{ nickname }}"
+              maxlength="10"
+              oninput="updateCharCount()"
+              class="nickname-input"
+            />
+            <div><span id="charCount">0</span> / 10</div>
+          </div>
 
-        <button class="confirms" onclick="saveProfile()">수정 내용 저장</button>
+          <button class="confirms" onclick="saveProfile()">
+            수정 내용 저장
+          </button>
+        </div>
       </div>
-    </div>
     </form>
-    
   </body>
 </html>
