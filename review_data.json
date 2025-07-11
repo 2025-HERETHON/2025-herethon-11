@@ -1,0 +1,64 @@
+[
+  {
+    "model": "review.review",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "product": 10,
+      "satisfaction": "good",
+      "size_feel": "normal",
+      "rating": 5,
+      "title": "아주 좋아요",
+      "content": "배송도 빠르고 착용감도 좋아요!",
+      "created_at": "2025-07-10T12:00:00Z",
+      "like_users": []
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 2,
+    "fields": {
+      "user": 1,
+      "product": 10,
+      "satisfaction": "soso",
+      "size_feel": "big",
+      "rating": 4,
+      "title": "무난했어요",
+      "content": "조금 크긴 했는데 괜찮았어요.",
+      "created_at": "2025-07-10T13:00:00Z",
+      "like_users": [1]
+    }
+  },
+
+    {
+    "model": "review.review",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "product": 1,
+      "satisfaction": "good",
+      "size_feel": "normal",
+      "rating": 5,
+      "title": "아주 좋아요",
+      "content": "배송도 빠르고 착용감도 좋아요!",
+      "created_at": "2025-07-10T12:00:00Z",
+      "like_users": []
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 2,
+    "fields": {
+      "user": 1,
+      "product": 1,
+      "satisfaction": "soso",
+      "size_feel": "big",
+      "rating": 4,
+      "title": "무난했어요",
+      "content": "조금 크긴 했는데 괜찮았어요.",
+      "created_at": "2025-07-10T13:00:00Z",
+      "like_users": [1]
+    }
+  }
+]
+

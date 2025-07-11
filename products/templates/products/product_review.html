@@ -30,7 +30,7 @@
       <!-- 리뷰 요약 -->
       <section class="review-summary">
         <p class="total-count">
-          전체 리뷰 총 {{ total_reviews|default:"0" }}개
+          전체 리뷰 총 {{ total_reviews }}개
         </p>
         <div class="summary-row">
           <div class="score-block">
@@ -127,66 +127,20 @@
         </div>
 
         <p class="option-info">
-          <span>옵션&nbsp;</span>{{ review.product.color }}·{{
-          review.product.size }}
-        </p>
-        <p class="option-info">
-          <span>사이즈&nbsp;</span>{{ review.get_size_feel_display }}
+          <span>옵션&nbsp;</span>{{ review.worn_color }} · {{ review.worn_size }}
         </p>
 
         <p class="review-text">{{ review.title }} {{ review.content }}</p>
       </article>
       {% endfor %}
-
-      <!-- 리뷰 하나 (샘플) -->
-      <article class="review-item">
-        <div class="review-head">
-          <div class="avatar"></div>
-          <div class="head-meta">
-            <div class="top-line">
-              <span class="badge">만족해요</span
-              ><span class="tag-best">BEST</span>
-              <span class="date">2026.07.12</span>
-            </div>
-            <div class="mid-line">
-              <span class="username">멋쟁이기계사자</span
-              ><span class="stars">★★★★★</span>
-              <button class="like-btn" data-base="85">
-                <img
-                  class="thumb"
-                  src="{% static 'products/productimg/thumb.png' %}"
-                  alt="공감"
-                />
-                <span class="cnt">85</span>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="review-images">
-          <div class="img-placeholder"></div>
-          <div class="img-placeholder"></div>
-        </div>
-
-        <div class="body-toggle">체형정보 보기 ▾</div>
-        <div class="body-detail">가슴 95 · 허리 78 · 키 180 · 몸무게 73</div>
-
-        <p class="option-info"><span>옵션&nbsp;</span>블랙·M</p>
-        <p class="option-info"><span>사이즈&nbsp;</span>적당해요</p>
-
-        <p class="review-text">
-          운동할 때 자주 입어요. 가볍고 통기성 좋아요. 다음엔 다른 색도 구매
-          예정!
-        </p>
-      </article>
     </div>
 
     <!-- 하단 고정 -->
     <div class="bottom-bar">
-      <div class="stats">24,062명이 이 상품에 만족했어요</div>
+      <div class="stats">{{ satisfied_count|default:"0" }}명이 이 상품에 만족했어요</div>
       <div class="bottom-act">
         <div class="heart" id="wish"></div>
-        <span class="heart-count">5만</span>
+        <span class="heart-count">{{ satisfied_count|default:"0" }}</span>
         <button class="buy-btn">구매하기</button>
       </div>
     </div>
