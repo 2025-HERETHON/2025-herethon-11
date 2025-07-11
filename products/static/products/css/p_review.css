@@ -169,7 +169,7 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  text-decoration: none;  /* 링크 밑줄 제거 */
+  text-decoration: none; /* 링크 밑줄 제거 */
   padding: 12px 20px;
   background-color: black;
   color: white;
@@ -268,6 +268,10 @@ body {
   gap: 10px;
   margin-bottom: 10px;
   align-items: flex-start;
+}
+p.review-head {
+  font-size: 14px;
+  line-height: 1.5;
 }
 .avatar {
   width: 34px;
