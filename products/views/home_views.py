@@ -3,6 +3,7 @@ from django.http import Http404
 from django.db.models import Q
 from products.models import Product, WornProduct, RecentlyViewedProduct
 import re
+from userProfile.models import UserProfile
 
 # 컵 조합을 실제 사이즈 리스트로 확장하는 함수
 def expand_sizes(size_string):
@@ -27,12 +28,10 @@ def home(request):
     colors = [c.strip() for c in request.GET.getlist("color")]
     materials = [m.strip() for m in request.GET.getlist("material")]
     types = request.GET.getlist("type")
-    bra_size = request.GET.get("bra_size")
 
     print("colors:", colors)
     print("materials:", materials)
     print("types:", types)
-    print("bra_size:", bra_size)
 
     # 색상 필터 (OR 조건)
     if colors:
@@ -53,14 +52,58 @@ def home(request):
             Q(subcategories__name__in=types)
         ).distinct()
 
-    # 브라 사이즈 필터 (브래지어 타입일 때만 적용)
-    if "브래지어" in types and bra_size:
-        matched = []
-        for product in products:
-            expanded_sizes = expand_sizes(product.size)
-            if bra_size in expanded_sizes:
-                matched.append(product.id)
-        products = products.filter(id__in=matched)
+    # 체형 정보 가져오기
+    user_profile = None
+    if request.user.is_authenticated:
+        try:
+            user_profile = UserProfile.objects.get(user=request.user)
+        except UserProfile.DoesNotExist:
+            pass
+
+    # 🔻 사이즈 기반 추천 필터링 (브라 + 팬티 합집합)
+    matched_ids = set()
+
+    # 🔹 1. 유저가 버튼 눌렀는지 확인
+    # 체형 필터 활성화 여부 확인
+    body_loaded = request.GET.get("body_loaded")
+    if body_loaded == "1":
+        request.session["body_loaded"] = True
+    elif body_loaded == "0":
+        request.session["body_loaded"] = False
+
+    # 세션에서 불러오기
+    is_body_loaded = request.session.get("body_loaded", False)
+
+    bra_matched_ids = set()
+    panty_matched_ids = set()
+
+    # 🔹 2. 사이즈 데이터 있으면 적용
+    bra_size = request.GET.get("bra_size")
+    if not bra_size and user_profile and user_profile.cup_size:
+        bra_size = user_profile.cup_size.strip()
+
+    if is_body_loaded:
+        # 브라
+        if bra_size:
+            for product in products:
+                if product.categories.filter(name="브래지어").exists():
+                    if bra_size in expand_sizes(product.size):
+                        bra_matched_ids.add(product.id)
+
+        # 팬티
+        if user_profile and user_profile.pelvis_size:
+            match = re.match(r"([A-Z]+)", user_profile.pelvis_size.strip())
+            if match:
+                hip_size_code = match.group(1)
+                for product in products:
+                    if product.categories.filter(name="팬티").exists():
+                        if product.size and hip_size_code in product.size:
+                            panty_matched_ids.add(product.id)
+
+        # 🔸 브라나 팬티 중 하나라도 만족한 상품 전체 필터링
+        matched_ids = bra_matched_ids.union(panty_matched_ids)
+        if matched_ids:
+            products = products.filter(id__in=matched_ids)
 
     # 가격 필터
     min_price = request.GET.get("min_price")
@@ -103,8 +146,10 @@ def home(request):
         "user_name": request.user.username if request.user.is_authenticated else "비회원",
         "worn_product_ids": worn_product_ids,
         "recent_products": recent_products,
+        "user_profile": user_profile
     }
     return render(request, "products/products.html", context)
+
 
 
 
@@ -152,6 +197,7 @@ def product_search(request):
         'selected_colors': colors,
         'selected_materials': materials,
         'selected_types': types,
+
     })
 
 
