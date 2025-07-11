@@ -11,6 +11,11 @@
     />
     <link rel="stylesheet" href="{% static 'products/css/products.css' %}" />
     <script src="{% static 'products/js/products.js' %}" defer></script>
+    {% comment %} nav.js 추가 부분 {% endcomment %}
+    <script>
+      window.STATIC_PATH = "{% static 'products/productimg/' %}";
+    </script>
+    <script src="{% static 'products/js/nav.js' %}" defer></script>
   </head>
   <body>
     <div class="page-content">
@@ -89,30 +94,7 @@
     </div>
 
     <!-- 하단 네비 -->
-    <nav class="bottom-nav">
-      <!-- ① data-icon 속성 추가 ② home만 빨간 아이콘로 시작 -->
-      <a href="#" class="nav-item active" data-icon="home">
-        <img
-          src="{% static 'products/productimg/home_red.png' %}"
-          alt="home"
-          class="nav-icon"
-        />
-      </a>
-      <a href="{% url 'list_review' %}" class="nav-item" data-icon="review">
-        <img
-          src="{% static 'products/productimg/review.png' %}"
-          alt="review"
-          class="nav-icon"
-        />
-      </a>
-      <a href="{% url 'mypage' %}" class="nav-item" data-icon="user">
-        <img
-          src="{% static 'products/productimg/user.png' %}"
-          alt="mypage"
-          class="nav-icon"
-        />
-      </a>
-    </nav>
+    {% include './nav.html' %}
 
     <!-- ✅ 추천받기 모달 (absolute 좌표 ZERO) -->
     <section id="rec-modal" class="rec-modal">
