@@ -287,12 +287,35 @@
     resetFilters();
   });
 })();
+
+function getCSRFToken() {
+  const tokenInput = document.querySelector("[name=csrfmiddlewaretoken]");
+  return tokenInput ? tokenInput.value : "";
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const wearButtons = document.querySelectorAll(".wear");
   const container = document.getElementById("wear-modal-container");
 
   wearButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
+      if (!btn.classList.contains("checked")) {
+        btn.classList.remove("checked");
+
+        // 서버에 해제 요청
+        fetch(`/wear/${btn.dataset.id}/`, {
+          method: "POST",
+          headers: {
+            "X-CSRFToken": getCSRFToken(),
+            "Content-Type": "application/json",
+            "X-Requested-With": "XMLHttpRequest",
+          },
+          body: JSON.stringify({ action: "unwear" }),
+        });
+
+        return;
+      }
+
       const pid = btn.dataset.id;
       const colors = btn.dataset.colors;
       const sizes = btn.dataset.sizes;
@@ -318,6 +341,34 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".heart").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault(); // 폼 전송 막기
+      e.stopPropagation(); // 카드 클릭 막기
+
+      const form = btn.closest("form");
+      const url = form.action;
+      const csrftoken = form.querySelector("[name=csrfmiddlewaretoken]").value;
+
+      fetch(url, {
+        method: "POST",
+        headers: {
+          "X-CSRFToken": csrftoken,
+          "X-Requested-With": "XMLHttpRequest",
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.status === "liked") {
+            btn.classList.add("liked");
+          } else {
+            btn.classList.remove("liked");
+          }
+        });
+    });
+  });
+});
 
 
 
