@@ -15,22 +15,7 @@
   <body>
     <!-- 상단 -->
     <header class="top-bar">
-      <div class="status-bar">
-        <span id="clock">--:--</span>
-        <div class="status-icons">
-          <img
-            src="{% static 'products/productimg/cellular.png' %}"
-            class="icon"
-          />
-          <img
-            src="{% static 'products/productimg/wi-fi.png' %}"
-            class="icon"
-          />
-          <div class="battery">
-            <div class="battery-level" id="battery-level"></div>
-          </div>
-        </div>
-      </div>
+      {% include "products/header.html" %}
       <h1 class="page-title">나의서랍</h1>
 
       <div class="profile-box">
@@ -48,7 +33,7 @@
                 src="{% static 'account/img/toggler.png' %}"
                 alt=""
               />
-            </div>
+
           </div>
           <button onclick="showProfileEdit()">프로필 수정</button>
           <button onclick="location.href='{% url 'body_input' %}'">
@@ -104,7 +89,6 @@
         </div>
       </div>
     </div>
-
     <!-- [1] 모달 바깥: 실제 현재 프로필 -->
     <img
       id="currentProfile"
@@ -129,7 +113,6 @@
           </div>
         </div>
 
-        <!-- 이미지 미리보기 -->
         <div class="profile-image">
           <label for="upload">
             {% if profile_image %}
@@ -150,10 +133,12 @@
             onchange="updateProfileImg(event)"
             style="display: none"
           />
+
         </div>
 
         <div class="nickname">
           <div>닉네임</div>
+
           <input
             type="text"
             id="nicknameInput"
@@ -164,9 +149,10 @@
             class="nickname-input"
           />
           <div><span id="charCount">0</span> / 10</div>
+
         </div>
 
-        <button class="confirm" onclick="saveProfile()">수정 내용 저장</button>
+        <button class="confirms" onclick="saveProfile()">수정 내용 저장</button>
       </div>
     </div>
     </form>

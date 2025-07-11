@@ -16,25 +16,15 @@
   <body>
     <div class="phone">
       <!-- status-bar / clock -->
-      <div class="status-bar">
-        <span id="clock">--:--</span>
-        <div class="status-icons">
-          <img
-            src="{% static 'products/productimg/cellular.png' %}"
-            alt="cell"
-          />
-          <img src="{% static 'products/productimg/wi-fi.png' %}" alt="wifi" />
-          <div class="battery"><div class="battery-level"></div></div>
-        </div>
-      </div>
-
-      {% with request.GET.from as from_page %}
-        {% if from_page == "search" %}
-          <a href="{% url 'product_search' %}?q={{ request.GET.q }}" class="back-btn"></a>
-        {% else %}
-          <a href="{% url 'home' %}" class="back-btn"></a>
-        {% endif %}
-      {% endwith %}
+      {% include './header.html' %} {% with request.GET.from as from_page %} {%
+      if from_page == "search" %}
+      <a
+        href="{% url 'product_search' %}?q={{ request.GET.q }}"
+        class="back-btn"
+      ></a>
+      {% else %}
+      <a href="{% url 'home' %}" class="back-btn"></a>
+      {% endif %} {% endwith %}
 
       <h1 class="page-title">상품정보</h1>
 
@@ -107,7 +97,10 @@
             <span class="heart-count">{{ like_count }}</span>
 
             <!-- 수정된 구조 -->
-            <button class="buy-btn" onclick="location.href='{{ product.link }}'">
+            <button
+              class="buy-btn"
+              onclick="location.href='{{ product.link }}'"
+            >
               구매하기
             </button>
           </div>

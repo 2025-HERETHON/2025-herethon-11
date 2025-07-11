@@ -15,24 +15,7 @@
   <body>
     <div class="page-content">
       <!-- 상태바 -->
-      <div class="status-bar">
-        <span id="clock">--:--</span>
-        <div class="status-icons">
-          <img
-            src="{% static 'products/productimg/cellular.png' %}"
-            class="icon"
-            alt="cellular"
-          /><img
-            id="wifi"
-            src="{% static 'products/productimg/wi-fi.png' %}"
-            class="icon"
-            alt="wifi"
-          />
-          <div class="battery">
-            <div class="battery-level" id="battery-level"></div>
-          </div>
-        </div>
-      </div>
+      {% include './header.html' %}
       <h1 class="logo">EVE</h1>
       <form
         action="{% url 'product_search' %}"

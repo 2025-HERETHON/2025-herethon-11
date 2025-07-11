@@ -5,10 +5,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>신체 사이즈</title>
-    <link rel="stylesheet" href="{% static 'userProfile/css/body_input.css' %}" />
+    <link
+      rel="stylesheet"
+      href="{% static 'userProfile/css/body_input.css' %}"
+    />
     <script src="{% static 'userProfile/js/body_input.js' %}" defer></script>
   </head>
   <body>
+    {% include "products/header.html" %}
+
     <div class="container">
       <div class="toggle-container">
         <header>
