@@ -19,14 +19,7 @@
   <body>
     <div class="phone">
       <!-- status-bar -->
-      <div class="status-bar">
-        <span id="clock">--:--</span>
-        <div class="status-icons">
-          <img src="{% static 'products/productimg/cellular.png' %}" alt="cell" />
-          <img src="{% static 'products/productimg/wi-fi.png' %}" alt="wifi" />
-          <div class="battery"><div class="battery-level"></div></div>
-        </div>
-      </div>
+      {% include './header.html' %}
 
       <!-- header-bar (← + 제목) -->
       <div class="header-bar">
@@ -36,7 +29,9 @@
 
       <!-- 리뷰 요약 -->
       <section class="review-summary">
-        <p class="total-count">전체 리뷰 총 {{ total_reviews|default:"0" }}개</p>
+        <p class="total-count">
+          전체 리뷰 총 {{ total_reviews|default:"0" }}개
+        </p>
         <div class="summary-row">
           <div class="score-block">
             <span class="score">4.7</span><span class="star">★</span>
@@ -97,15 +92,18 @@
               <form method="POST" action="{% url 'likes' review.id %}">
                 {% csrf_token %}
                 <button type="submit" class="like-btn" data-base="85">
-                  {% if user in review.like_users.all %} <!--좋아요한 경우-->
-                  <img class="thumb"
-                      src="{% static 'products/productimg/thumb_red.png' %}"
-                      alt="공감"
+                  {% if user in review.like_users.all %}
+                  <!--좋아요한 경우-->
+                  <img
+                    class="thumb"
+                    src="{% static 'products/productimg/thumb_red.png' %}"
+                    alt="공감"
                   />
                   {% else %}<!--좋아요 취소 경우-->
-                  <img class="thumb"
-                      src="{% static 'products/productimg/thumb.png' %}"
-                      alt="공감"
+                  <img
+                    class="thumb"
+                    src="{% static 'products/productimg/thumb.png' %}"
+                    alt="공감"
                   />
                   {% endif %}
                 </button>
@@ -122,18 +120,21 @@
 
         <div class="body-toggle">체형정보 보기 ▾</div>
         <div class="body-detail">
-          가슴 {{ review.user.userprofile.cup_size }} · 
-          골반 {{ review.user.userprofile.pelvis_size }} · 
-          키 {{ review.user.userprofile.height }} · 
-          몸무게 {{ review.user.userprofile.weight }}</div>
+          가슴 {{ review.user.userprofile.cup_size }} · 골반 {{
+          review.user.userprofile.pelvis_size }} · 키 {{
+          review.user.userprofile.height }} · 몸무게 {{
+          review.user.userprofile.weight }}
+        </div>
 
-        <p class="option-info"><span>옵션&nbsp;</span>{{ review.product.color }}·{{ review.product.size }}</p>
-        <p class="option-info"><span>사이즈&nbsp;</span>{{ review.get_size_feel_display }}</p>
-
-        <p class="review-text">
-          {{ review.title }}
-          {{ review.content }}
+        <p class="option-info">
+          <span>옵션&nbsp;</span>{{ review.product.color }}·{{
+          review.product.size }}
         </p>
+        <p class="option-info">
+          <span>사이즈&nbsp;</span>{{ review.get_size_feel_display }}
+        </p>
+
+        <p class="review-text">{{ review.title }} {{ review.content }}</p>
       </article>
       {% endfor %}
 
@@ -151,9 +152,10 @@
               <span class="username">멋쟁이기계사자</span
               ><span class="stars">★★★★★</span>
               <button class="like-btn" data-base="85">
-                <img class="thumb"
-                     src="{% static 'products/productimg/thumb.png' %}"
-                     alt="공감"
+                <img
+                  class="thumb"
+                  src="{% static 'products/productimg/thumb.png' %}"
+                  alt="공감"
                 />
                 <span class="cnt">85</span>
               </button>
