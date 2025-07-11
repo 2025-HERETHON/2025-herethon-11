@@ -125,6 +125,7 @@
 
   /* 체형 불러오기 버튼 색상 전환 */
   document.getElementById("btn-body").addEventListener("click", (e) => {
+    e.stopPropagation();
     e.currentTarget.classList.toggle("loaded");
   });
 
@@ -435,3 +436,17 @@ function dragStart(e) {
   document.addEventListener("mousemove", onMouseMove);
   document.addEventListener("mouseup", onMouseUp);
 }
+// products.js
+document.addEventListener("DOMContentLoaded", () => {
+  const btnBody = document.getElementById("btn-body");
+  const bodyInfo = document.getElementById("body-info");
+
+  btnBody?.addEventListener("click", () => {
+    const url = new URL(window.location.href);
+    const isVisible = bodyInfo.classList.contains("show");
+
+    url.searchParams.set("body_loaded", isVisible ? "0" : "1");
+    window.location.href = url.toString(); // 새로고침 + session 반영
+  });
+});
+

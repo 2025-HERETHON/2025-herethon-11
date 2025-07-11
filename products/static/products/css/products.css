@@ -367,14 +367,17 @@ body {
 .tag-btn.outline.loaded {
   background-image: url("/static/products/productimg/wore_red.png");
 }
-.body-info-box {
+.body-info-box.show {
   margin: 0 auto;
   width: 360px;
   height: 135px;
   border: 1px solid #949494;
   border-radius: 10px;
+  display: block;
 }
-
+.body-info-box {
+  display: none;
+}
 /* ── 하단 액션 바 ----------------------------------------------------- */
 .action-bar {
   position: fixed;
