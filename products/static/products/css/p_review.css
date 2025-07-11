@@ -152,29 +152,40 @@ body {
   background: #eee;
   border-radius: 2px;
   position: relative;
+  overflow: hidden;
 }
-.bar::before {
-  content: "";
-  position: absolute;
-  inset: 0 100% 0 0;
+
+.bar-fill {
+  height: 100%;
   background: var(--eve-main);
   border-radius: 2px;
+  position: absolute;
+  left: 0;
+  top: 0;
 }
-.break-item:nth-child(1) .bar::before {
-  width: 85%;
-}
-.break-item:nth-child(2) .bar::before {
-  width: 30%;
-}
-.break-item:nth-child(3) .bar::before {
-  width: 8%;
-}
-.break-item:nth-child(4) .bar::before {
-  width: 3%;
-}
-.break-item:nth-child(5) .bar::before {
-  width: 2%;
-}
+
+/*.bar::before {*/
+/*  content: "";*/
+/*  position: absolute;*/
+/*  inset: 0 100% 0 0;*/
+/*  background: var(--eve-main);*/
+/*  border-radius: 2px;*/
+/*}*/
+/*.break-item:nth-child(1) .bar::before {*/
+/*  width: 85%;*/
+/*}*/
+/*.break-item:nth-child(2) .bar::before {*/
+/*  width: 30%;*/
+/*}*/
+/*.break-item:nth-child(3) .bar::before {*/
+/*  width: 8%;*/
+/*}*/
+/*.break-item:nth-child(4) .bar::before {*/
+/*  width: 3%;*/
+/*}*/
+/*.break-item:nth-child(5) .bar::before {*/
+/*  width: 2%;*/
+/*}*/
 .size-stats {
   font-size: 11px;
   line-height: 1.6;

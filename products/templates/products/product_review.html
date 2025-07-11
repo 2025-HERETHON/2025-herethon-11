@@ -1,5 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
+{% load custom_filters %}
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
@@ -34,30 +35,47 @@
         </p>
         <div class="summary-row">
           <div class="score-block">
-            <span class="score">4.7</span><span class="star">★</span>
+            <span class="score">{{ rating_avg }}</span><span class="star">★</span>
           </div>
-          <div class="breakdown">
-            <div class="break-item">
-              <span class="lab">5</span>
-              <div class="bar"></div>
-            </div>
-            <div class="break-item">
-              <span class="lab">4</span>
-              <div class="bar"></div>
-            </div>
-            <div class="break-item">
-              <span class="lab">3</span>
-              <div class="bar"></div>
-            </div>
-            <div class="break-item">
-              <span class="lab">2</span>
-              <div class="bar"></div>
-            </div>
-            <div class="break-item">
-              <span class="lab">1</span>
-              <div class="bar"></div>
-            </div>
-          </div>
+<!--          <div class="breakdown">-->
+<!--            <div class="break-item">-->
+<!--              <span class="lab">5</span>-->
+<!--              <div class="bar"></div>-->
+<!--            </div>-->
+<!--            <div class="break-item">-->
+<!--              <span class="lab">4</span>-->
+<!--              <div class="bar"></div>-->
+<!--            </div>-->
+<!--            <div class="break-item">-->
+<!--              <span class="lab">3</span>-->
+<!--              <div class="bar"></div>-->
+<!--            </div>-->
+<!--            <div class="break-item">-->
+<!--              <span class="lab">2</span>-->
+<!--              <div class="bar"></div>-->
+<!--            </div>-->
+<!--            <div class="break-item">-->
+<!--              <span class="lab">1</span>-->
+<!--              <div class="bar"></div>-->
+<!--            </div>-->
+<!--          </div>-->
+        <div class="breakdown">
+          {% with rating_percent as rating_dict %}
+            {% for star in "5,4,3,2,1"|cut:"," %}
+              {% with star|to_int as star_num %}
+                <div class="break-item">
+                  <span class="lab">{{ star_num }}</span>
+                <div class="bar">
+                  <div class="bar-fill" style="width: {{ rating_dict|dict_get:star }}%;">
+                  </div>
+                </div>
+
+                </div>
+              {% endwith %}
+            {% endfor %}
+          {% endwith %}
+        </div>
+
         </div>
         <p class="size-stats">
           사이즈가 크게 느껴져요 {{ size_feel_percent.big|default:"0" }}%<br />
@@ -87,7 +105,16 @@
             </div>
             <div class="mid-line">
               <span class="username">{{ review.user.username }}</span
-              ><span class="stars">{{ review.rating }}점</span>
+              ><span class="stars">
+                {% for i in "12345" %}
+                  {% if forloop.counter <= review.rating %}
+                    ★
+                  {% else %}
+                    ☆
+                  {% endif %}
+                {% endfor %}
+              </span>
+
               <!--좋아요-->
               <form method="POST" action="{% url 'likes' review.id %}">
                 {% csrf_token %}
@@ -129,8 +156,11 @@
         <p class="option-info">
           <span>옵션&nbsp;</span>{{ review.worn_color }} · {{ review.worn_size }}
         </p>
-
-        <p class="review-text">{{ review.title }} {{ review.content }}</p>
+        <p class="option-info">
+          <span>사이즈&nbsp;</span>{{ review.get_size_feel_display }}
+        </p>
+        <p class="review-head">{{ review.title }}</p>
+        <p class="review-text">{{ review.content }}</p>
       </article>
       {% endfor %}
     </div>
