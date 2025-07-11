@@ -130,11 +130,13 @@
         <section class="block">
           <button id="btn-body" class="tag-btn outline">체형 불러오기</button>
           <div id="body-info" class="body-info-box {% if request.session.body_loaded %}show{% endif %}">
-                <p><strong>닉네임:</strong> {{ user_profile.nickname }}</p>
+              <div class="info">
+            <p><strong>닉네임:</strong> {{ user_profile.nickname }}</p>
                 <p><strong>컵 사이즈:</strong> {{ user_profile.cup_size }}</p>
                 <p><strong>골반 사이즈:</strong> {{ user_profile.pelvis_size }}</p>
                 <p><strong>키:</strong> {{ user_profile.height }}cm</p>
                 <p><strong>몸무게:</strong> {{ user_profile.weight }}kg</p>
+                </div>  
           </div>
         </section>
 
