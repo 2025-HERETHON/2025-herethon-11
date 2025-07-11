@@ -126,7 +126,11 @@ def body_size(request):
         pelvis_size = request.POST.get('pelvis_size')
         height = request.POST.get('height')
         weight = request.POST.get('weight')
-        is_public = request.POST.get('is_public') == 'on'
+        is_public = request.POST.get('is_public')
+        if is_public == 'on':  # 체크박스가 체크된 경우
+            userprofile.is_public = True
+        else:
+            userprofile.is_public = False
 
         if userprofile:
             userprofile.is_manual_cup = is_manual_cup
@@ -231,6 +235,7 @@ def save_body_info(request):
             weight = data.get("weight", None)
             is_manual_cup = data.get('is_manual_cup', False)  # 기본값 False
             is_manual_pelvis = data.get('is_manual_pelvis', False)  # 기본값 False
+            is_public = data.get('is_public', False)
 
             # 현재 로그인한 사용자의 프로필 가져오기 (없으면 새로 생성)
             profile, created = UserProfile.objects.get_or_create(user=request.user)
@@ -246,6 +251,7 @@ def save_body_info(request):
             profile.weight = weight if weight is not None else None
             profile.is_manual_cup = is_manual_cup
             profile.is_manual_pelvis = is_manual_pelvis
+            profile.is_public = is_public
 
             # 프로필 저장
             profile.save()
