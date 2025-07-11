@@ -21,6 +21,13 @@ class UserProfile(models.Model):
     height = models.IntegerField(null=True, blank=True)
     weight = models.IntegerField(null=True, blank=True)
 
+    #수동 입력 여부
+    is_manual_cup = models.BooleanField(default=False) #false: 자동입력/ true: 직접입력
+    is_manual_pelvis = models.BooleanField(default=False)
+
+    #체형 공개 여부
+    is_public = models.BooleanField(default=False)
+
     def __str__(self):
         return f"{self.user.username}의 프로필"
 

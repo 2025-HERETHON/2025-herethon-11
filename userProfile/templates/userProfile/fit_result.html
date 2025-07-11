@@ -76,9 +76,9 @@
         </div>
         <div class="review-list" id="review-wrap">
           <!-- JS 카드 삽입 -->
-          {% for wp in wron_products %}
+          {% for wp in worn_products %}
           <div class="review-item">
-            <img src="{{ wp.product.shop }}" alt="{{ wp.product.title }}" />
+            <img src="{{ wp.product.thumbnail_url }}" alt="{{ wp.product.title }}" />
             <div class="item-info">
               <div class="title">
                 [{{ wp.product.shop }}] {{ wp.product.title }}
