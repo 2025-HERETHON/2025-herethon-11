@@ -142,5 +142,85 @@
       "product": 18,
       "image_url": "https://image.msscdn.net/thumbnails/images/goods_img/20240618/4203660/4203660_17186924642556_big.png?w=1200"
     }
+  },
+  {
+    "model": "products.productimage",
+    "pk": 19,
+    "fields": {
+      "product": 19,
+      "image_url": "https://cf.product-image.s.zigzag.kr/original/d/2025/4/23/42115_202504231148180481_68868.png?width=720&height=720&quality=80&format=webp"
+    }
+  },
+    {
+    "model": "products.productimage",
+    "pk": 20,
+    "fields": {
+      "product": 19,
+      "image_url": "https://cf.product-image.s.zigzag.kr/original/d/2025/3/24/42115_202503241609150391_89441.png?width=720&height=720&quality=80&format=webp"
+    }
+  },
+  {
+    "model": "products.productimage",
+    "pk": 21,
+    "fields": {
+      "product": 20,
+      "image_url": "https://cf.product-image.s.zigzag.kr/original/d/2025/1/22/6782_202501221654510022_16353.jpeg?width=720&height=720&quality=80&format=webp"
+    }
+  },
+    {
+    "model": "products.productimage",
+    "pk": 22,
+    "fields": {
+      "product": 21,
+      "image_url": "https://image.msscdn.net/thumbnails/images/goods_img/20250401/4972088/4972088_17478166894598_big.jpg?w=1200"
+    }
+  },
+      {
+    "model": "products.productimage",
+    "pk": 23,
+    "fields": {
+      "product": 21,
+      "image_url": "https://image.msscdn.net/thumbnails/images/prd_img/20250401/4972088/detail_4972088_17434823603803_big.jpg?w=1200"
+    }
+  },
+  {
+    "model": "products.productimage",
+    "pk": 24,
+    "fields": {
+      "product": 21,
+      "image_url": "https://image.msscdn.net/thumbnails/images/prd_img/20250401/4972088/detail_4972088_17434823606999_big.jpg?w=1200"
+    }
+  },
+    {
+    "model": "products.productimage",
+    "pk": 25,
+    "fields": {
+      "product": 22,
+      "image_url": "https://image.msscdn.net/thumbnails/images/goods_img/20240118/3805488/3805488_17223287361865_big.jpg?w=1200"
+    }
+  },
+  {
+    "model": "products.productimage",
+    "pk": 26,
+    "fields": {
+      "product": 23,
+      "image_url": "https://image.msscdn.net/thumbnails/images/goods_img/20210305/1829767/1829767_17165354883671_big.jpg?w=1200"
+    }
+  },
+    {
+    "model": "products.productimage",
+    "pk": 27,
+    "fields": {
+      "product": 24,
+      "image_url": "https://cf.product-image.s.zigzag.kr/original/d/2025/5/13/6782_202505131402110319_35635.jpeg?width=720&height=720&quality=80&format=webp"
+    }
+  },
+    {
+    "model": "products.productimage",
+    "pk": 28,
+    "fields": {
+      "product": 25,
+      "image_url": "https://cf.product-image.s.zigzag.kr/original/d/2025/4/11/4557_202504111807330265_41169.jpeg?width=720&height=720&quality=80&format=webp"
+    }
   }
 ]

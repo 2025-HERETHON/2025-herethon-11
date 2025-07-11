@@ -363,5 +363,138 @@
       "subcategories": [18],
       "created_at": "2025-07-04T00:00:18Z"
     }
+  },
+    {
+    "model": "products.product",
+    "pk": 19,
+    "fields": {
+      "external_id": "161500091",
+      "title": "듀오 심리스 두 종류 어깨끈 유형 노와이어 브라 패드가 붙어있어 세탁이 편안한 노라인 브라(BR-011C/012C)",
+      "price": "13410",
+      "thumbnail_url": "https://cf.product-image.s.zigzag.kr/original/d/2025/4/23/42115_202504231148180481_68868.png?width=720&height=720&quality=80&format=webp",
+      "link": "https://zigzag.kr/catalog/products/161500091",
+      "shop": "하성민기업",
+      "source_keyword": "브래지어",
+      "color": "베이지, 블랙, 바닐라베이지, 실크베이지, 라이트블루",
+      "size": "S, M, L, XL",
+      "material": "면",
+      "categories": [1],
+      "subcategories": [2],
+      "created_at": "2025-07-04T00:00:19Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 20,
+    "fields": {
+      "external_id": "147232897",
+      "title": "쉬어 브라 오프숄더 논슬립",
+      "price": "23900",
+      "thumbnail_url": "https://cf.product-image.s.zigzag.kr/original/d/2025/1/22/6782_202501221654510022_16353.jpeg?width=720&height=720&quality=80&format=webp",
+      "link": "https://zigzag.kr/catalog/products/147232897",
+      "shop": "마른파이브",
+      "source_keyword": "브래지어",
+      "color": "블랙, 스킨",
+      "size": "S, M, L, XL",
+      "material": "면",
+      "categories": [1],
+      "subcategories": [1],
+      "created_at": "2025-07-04T00:00:20Z"
+    }
+  },
+    {
+    "model": "products.product",
+    "pk": 21,
+    "fields": {
+      "external_id": "4972088",
+      "title": "러버스 노와이어 브라(FI4BAH1123FEPK)",
+      "price": "32000",
+      "thumbnail_url": "https://image.msscdn.net/thumbnails/images/goods_img/20250401/4972088/4972088_17478166894598_big.jpg?w=1200",
+      "link": "https://www.musinsa.com/products/4972088",
+      "shop": "휠라언더웨어",
+      "source_keyword": "브래지어",
+      "color": "PALEPINK",
+      "size": "90, 95, 100",
+      "material": "면",
+      "categories": [1],
+      "subcategories": [2],
+      "created_at": "2025-07-06T00:00:21Z"
+    }
+  },
+      {
+    "model": "products.product",
+    "pk": 22,
+    "fields": {
+      "external_id": "3805488",
+      "title": "여성 컴피 컬러 스트라이프 트렁크 3종",
+      "price": "25900",
+      "thumbnail_url": "https://image.msscdn.net/thumbnails/images/goods_img/20240118/3805488/3805488_17223287361865_big.jpg?w=1200",
+      "link": "https://www.musinsa.com/products/3805488",
+      "shop": "푸마 바디웨어",
+      "source_keyword": "팬티",
+      "color": "PMFYIBMG2/00",
+      "size": "90, 95, 100, 105",
+      "material": "면",
+      "categories": [2],
+      "subcategories": [15],
+      "created_at": "2025-07-06T00:00:22Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 23,
+    "fields": {
+      "external_id": "1829767",
+      "title": "[DAILY] 데일리 노와이어 브라렛 팬티 세트 - 블랙",
+      "price": "22400",
+      "thumbnail_url": "https://image.msscdn.net/thumbnails/images/goods_img/20210305/1829767/1829767_17165354883671_big.jpg?w=1200",
+      "link": "https://www.musinsa.com/products/1829767",
+      "shop": "휘게 언더웨어",
+      "source_keyword": "브래지어",
+      "color": "ALL",
+      "size": "S, M, L",
+      "material": "스판",
+      "categories": [1],
+      "subcategories": [2, 4, 8],
+      "created_at": "2025-07-06T00:00:23Z"
+    }
+  },
+    {
+    "model": "products.product",
+    "pk": 24,
+    "fields": {
+      "external_id": "146872258",
+      "title": "두프리 실리콘 누드브라 - 슬림",
+      "price": "15300",
+      "thumbnail_url": "https://cf.product-image.s.zigzag.kr/original/d/2025/5/13/6782_202505131402110319_35635.jpeg?width=720&height=720&quality=80&format=webp",
+      "link": "https://zigzag.kr/catalog/products/146872258",
+      "shop": "마른파이브",
+      "source_keyword": "누브라",
+      "color": "스킨",
+      "size": "A,B,C/D,D/E",
+      "material": "실리콘",
+      "categories": [3],
+      "subcategories": [7],
+      "created_at": "2025-07-05T00:00:03Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 25,
+    "fields": {
+      "external_id": "159977199",
+      "title": "듀얼쿨 튜브탑 1+1",
+      "price": "61900",
+      "thumbnail_url": "https://cf.product-image.s.zigzag.kr/original/d/2025/4/11/4557_202504111807330265_41169.jpeg?width=720&height=720&quality=80&format=webp",
+      "link": "https://zigzag.kr/catalog/products/159977199",
+      "shop": "컴포트랩",
+      "source_keyword": "브래지어",
+      "color": "아이보리+아이보리,블랙+아이보리,블랙+쿨베이지",
+      "size": "85,90,95,100,105",
+      "material": "면",
+      "categories": [1],
+      "subcategories": [2,4],
+      "created_at": "2025-07-07T00:00:01Z"
+    }
   }
 ]

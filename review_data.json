@@ -3,62 +3,2341 @@
     "model": "review.review",
     "pk": 1,
     "fields": {
-      "user": 1,
-      "product": 10,
-      "satisfaction": "good",
-      "size_feel": "normal",
-      "rating": 5,
-      "title": "아주 좋아요",
-      "content": "배송도 빠르고 착용감도 좋아요!",
-      "created_at": "2025-07-10T12:00:00Z",
-      "like_users": []
+      "user": 14,
+      "product": 1,
+      "satisfaction": "soso",
+      "size_feel": "small",
+      "rating": 3,
+      "title": "잘 맞아요",
+      "content": "하루 종일 착용해도 편했어요.",
+      "created_at": "2025-07-08T12:00:00Z",
+      "like_users": [
+        17,
+        16
+      ]
     }
   },
   {
     "model": "review.review",
     "pk": 2,
     "fields": {
-      "user": 1,
-      "product": 10,
-      "satisfaction": "soso",
-      "size_feel": "big",
-      "rating": 4,
-      "title": "무난했어요",
-      "content": "조금 크긴 했는데 괜찮았어요.",
-      "created_at": "2025-07-10T13:00:00Z",
-      "like_users": [1]
+      "user": 2,
+      "product": 1,
+      "satisfaction": "good",
+      "size_feel": "normal",
+      "rating": 3,
+      "title": "아주 좋아요",
+      "content": "사이즈가 좀 애매하네요.",
+      "created_at": "2025-07-05T19:00:00Z",
+      "like_users": [
+        13
+      ]
     }
   },
-
-    {
+  {
     "model": "review.review",
-    "pk": 1,
+    "pk": 3,
     "fields": {
-      "user": 1,
+      "user": 11,
       "product": 1,
       "satisfaction": "good",
       "size_feel": "normal",
       "rating": 5,
-      "title": "아주 좋아요",
+      "title": "잘 맞아요",
       "content": "배송도 빠르고 착용감도 좋아요!",
-      "created_at": "2025-07-10T12:00:00Z",
+      "created_at": "2025-07-02T07:00:00Z",
+      "like_users": [
+        18,
+        10
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 4,
+    "fields": {
+      "user": 13,
+      "product": 1,
+      "satisfaction": "good",
+      "size_feel": "big",
+      "rating": 5,
+      "title": "아주 좋아요",
+      "content": "부드럽고 편했어요!",
+      "created_at": "2025-07-10T15:00:00Z",
+      "like_users": [
+        9,
+        13,
+        19
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 5,
+    "fields": {
+      "user": 13,
+      "product": 1,
+      "satisfaction": "good",
+      "size_feel": "small",
+      "rating": 5,
+      "title": "잘 맞아요",
+      "content": "부드럽고 편했어요!",
+      "created_at": "2025-07-09T19:00:00Z",
       "like_users": []
     }
   },
   {
     "model": "review.review",
-    "pk": 2,
+    "pk": 6,
+    "fields": {
+      "user": 11,
+      "product": 1,
+      "satisfaction": "bad",
+      "size_feel": "normal",
+      "rating": 3,
+      "title": "재구매 의사 있어요",
+      "content": "기대보단 평범했어요.",
+      "created_at": "2025-07-02T16:00:00Z",
+      "like_users": [
+        7
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 7,
+    "fields": {
+      "user": 15,
+      "product": 1,
+      "satisfaction": "bad",
+      "size_feel": "big",
+      "rating": 3,
+      "title": "아주 좋아요",
+      "content": "색상이 화면과 조금 달랐어요.",
+      "created_at": "2025-07-08T05:00:00Z",
+      "like_users": [
+        11,
+        6
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 8,
+    "fields": {
+      "user": 19,
+      "product": 1,
+      "satisfaction": "soso",
+      "size_feel": "small",
+      "rating": 3,
+      "title": "별로였어요",
+      "content": "조금 크긴 했는데 괜찮았어요.",
+      "created_at": "2025-07-01T08:00:00Z",
+      "like_users": [
+        7,
+        14,
+        13
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 9,
+    "fields": {
+      "user": 19,
+      "product": 1,
+      "satisfaction": "soso",
+      "size_feel": "small",
+      "rating": 4,
+      "title": "아주 좋아요",
+      "content": "이건 진짜 강추입니다!",
+      "created_at": "2025-07-02T14:00:00Z",
+      "like_users": []
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 10,
+    "fields": {
+      "user": 6,
+      "product": 1,
+      "satisfaction": "bad",
+      "size_feel": "normal",
+      "rating": 5,
+      "title": "별로였어요",
+      "content": "이건 진짜 강추입니다!",
+      "created_at": "2025-07-08T08:00:00Z",
+      "like_users": [
+        4,
+        6
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 11,
+    "fields": {
+      "user": 18,
+      "product": 1,
+      "satisfaction": "good",
+      "size_feel": "big",
+      "rating": 5,
+      "title": "그럭저럭이에요",
+      "content": "배송도 빠르고 착용감도 좋아요!",
+      "created_at": "2025-07-03T10:00:00Z",
+      "like_users": []
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 12,
+    "fields": {
+      "user": 2,
+      "product": 1,
+      "satisfaction": "bad",
+      "size_feel": "big",
+      "rating": 3,
+      "title": "아주 좋아요",
+      "content": "색상이 화면과 조금 달랐어요.",
+      "created_at": "2025-07-10T17:00:00Z",
+      "like_users": [
+        6,
+        3
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 13,
+    "fields": {
+      "user": 16,
+      "product": 1,
+      "satisfaction": "good",
+      "size_feel": "normal",
+      "rating": 3,
+      "title": "재구매 의사 있어요",
+      "content": "사이즈가 좀 애매하네요.",
+      "created_at": "2025-07-03T19:00:00Z",
+      "like_users": [
+        8,
+        19
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 14,
+    "fields": {
+      "user": 20,
+      "product": 1,
+      "satisfaction": "bad",
+      "size_feel": "big",
+      "rating": 5,
+      "title": "그럭저럭이에요",
+      "content": "이건 진짜 강추입니다!",
+      "created_at": "2025-07-07T22:00:00Z",
+      "like_users": [
+        18,
+        4,
+        15
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 15,
+    "fields": {
+      "user": 12,
+      "product": 1,
+      "satisfaction": "bad",
+      "size_feel": "big",
+      "rating": 3,
+      "title": "그럭저럭이에요",
+      "content": "하루 종일 착용해도 편했어요.",
+      "created_at": "2025-07-02T17:00:00Z",
+      "like_users": [
+        18,
+        5,
+        7
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 16,
+    "fields": {
+      "user": 8,
+      "product": 2,
+      "satisfaction": "good",
+      "size_feel": "small",
+      "rating": 3,
+      "title": "별로였어요",
+      "content": "조금 크긴 했는데 괜찮았어요.",
+      "created_at": "2025-07-06T16:00:00Z",
+      "like_users": [
+        14,
+        13,
+        10
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 17,
+    "fields": {
+      "user": 20,
+      "product": 2,
+      "satisfaction": "soso",
+      "size_feel": "big",
+      "rating": 3,
+      "title": "그럭저럭이에요",
+      "content": "배송도 빠르고 착용감도 좋아요!",
+      "created_at": "2025-07-02T19:00:00Z",
+      "like_users": [
+        13,
+        9,
+        10
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 18,
+    "fields": {
+      "user": 16,
+      "product": 2,
+      "satisfaction": "soso",
+      "size_feel": "small",
+      "rating": 4,
+      "title": "재구매 의사 있어요",
+      "content": "하루 종일 착용해도 편했어요.",
+      "created_at": "2025-07-10T00:00:00Z",
+      "like_users": [
+        1,
+        16
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 19,
+    "fields": {
+      "user": 12,
+      "product": 2,
+      "satisfaction": "good",
+      "size_feel": "big",
+      "rating": 3,
+      "title": "재구매 의사 있어요",
+      "content": "핏이 예쁘고 만족합니다.",
+      "created_at": "2025-07-04T13:00:00Z",
+      "like_users": [
+        1
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 20,
+    "fields": {
+      "user": 18,
+      "product": 2,
+      "satisfaction": "soso",
+      "size_feel": "normal",
+      "rating": 5,
+      "title": "재구매 의사 있어요",
+      "content": "기대보단 평범했어요.",
+      "created_at": "2025-07-06T05:00:00Z",
+      "like_users": []
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 21,
+    "fields": {
+      "user": 16,
+      "product": 3,
+      "satisfaction": "soso",
+      "size_feel": "small",
+      "rating": 4,
+      "title": "재구매 의사 있어요",
+      "content": "이건 진짜 강추입니다!",
+      "created_at": "2025-07-10T06:00:00Z",
+      "like_users": [
+        3,
+        12
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 22,
+    "fields": {
+      "user": 7,
+      "product": 3,
+      "satisfaction": "soso",
+      "size_feel": "big",
+      "rating": 5,
+      "title": "재구매 의사 있어요",
+      "content": "이건 진짜 강추입니다!",
+      "created_at": "2025-07-10T20:00:00Z",
+      "like_users": [
+        5,
+        7,
+        16
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 23,
+    "fields": {
+      "user": 2,
+      "product": 3,
+      "satisfaction": "soso",
+      "size_feel": "normal",
+      "rating": 3,
+      "title": "재구매 의사 있어요",
+      "content": "기대보단 평범했어요.",
+      "created_at": "2025-07-01T23:00:00Z",
+      "like_users": [
+        3,
+        17
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 24,
+    "fields": {
+      "user": 18,
+      "product": 3,
+      "satisfaction": "good",
+      "size_feel": "small",
+      "rating": 5,
+      "title": "재구매 의사 있어요",
+      "content": "사이즈가 좀 애매하네요.",
+      "created_at": "2025-07-02T06:00:00Z",
+      "like_users": []
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 25,
+    "fields": {
+      "user": 13,
+      "product": 3,
+      "satisfaction": "soso",
+      "size_feel": "normal",
+      "rating": 4,
+      "title": "아주 좋아요",
+      "content": "기대보단 평범했어요.",
+      "created_at": "2025-07-02T13:00:00Z",
+      "like_users": [
+        3
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 26,
+    "fields": {
+      "user": 11,
+      "product": 4,
+      "satisfaction": "bad",
+      "size_feel": "normal",
+      "rating": 4,
+      "title": "별로였어요",
+      "content": "조금 크긴 했는데 괜찮았어요.",
+      "created_at": "2025-07-01T00:00:00Z",
+      "like_users": [
+        14
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 27,
+    "fields": {
+      "user": 7,
+      "product": 4,
+      "satisfaction": "good",
+      "size_feel": "small",
+      "rating": 5,
+      "title": "아주 좋아요",
+      "content": "사이즈가 좀 애매하네요.",
+      "created_at": "2025-07-04T18:00:00Z",
+      "like_users": [
+        16,
+        1,
+        10
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 28,
+    "fields": {
+      "user": 11,
+      "product": 4,
+      "satisfaction": "good",
+      "size_feel": "normal",
+      "rating": 5,
+      "title": "재구매 의사 있어요",
+      "content": "이건 진짜 강추입니다!",
+      "created_at": "2025-07-07T00:00:00Z",
+      "like_users": [
+        8,
+        19
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 29,
+    "fields": {
+      "user": 18,
+      "product": 4,
+      "satisfaction": "soso",
+      "size_feel": "small",
+      "rating": 5,
+      "title": "아주 좋아요",
+      "content": "핏이 예쁘고 만족합니다.",
+      "created_at": "2025-07-04T03:00:00Z",
+      "like_users": [
+        1
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 30,
+    "fields": {
+      "user": 13,
+      "product": 4,
+      "satisfaction": "good",
+      "size_feel": "normal",
+      "rating": 5,
+      "title": "그럭저럭이에요",
+      "content": "배송도 빠르고 착용감도 좋아요!",
+      "created_at": "2025-07-09T04:00:00Z",
+      "like_users": [
+        8,
+        20
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 31,
+    "fields": {
+      "user": 2,
+      "product": 5,
+      "satisfaction": "good",
+      "size_feel": "normal",
+      "rating": 3,
+      "title": "그럭저럭이에요",
+      "content": "하루 종일 착용해도 편했어요.",
+      "created_at": "2025-07-07T08:00:00Z",
+      "like_users": [
+        9,
+        4
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 32,
+    "fields": {
+      "user": 17,
+      "product": 5,
+      "satisfaction": "good",
+      "size_feel": "small",
+      "rating": 4,
+      "title": "잘 맞아요",
+      "content": "이건 진짜 강추입니다!",
+      "created_at": "2025-07-07T14:00:00Z",
+      "like_users": [
+        14,
+        19
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 33,
+    "fields": {
+      "user": 6,
+      "product": 5,
+      "satisfaction": "soso",
+      "size_feel": "big",
+      "rating": 3,
+      "title": "그럭저럭이에요",
+      "content": "부드럽고 편했어요!",
+      "created_at": "2025-07-02T13:00:00Z",
+      "like_users": [
+        4,
+        7
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 34,
     "fields": {
       "user": 1,
-      "product": 1,
+      "product": 5,
+      "satisfaction": "bad",
+      "size_feel": "normal",
+      "rating": 3,
+      "title": "그럭저럭이에요",
+      "content": "색상이 화면과 조금 달랐어요.",
+      "created_at": "2025-07-10T01:00:00Z",
+      "like_users": []
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 35,
+    "fields": {
+      "user": 13,
+      "product": 5,
+      "satisfaction": "soso",
+      "size_feel": "big",
+      "rating": 3,
+      "title": "아주 좋아요",
+      "content": "배송도 빠르고 착용감도 좋아요!",
+      "created_at": "2025-07-09T07:00:00Z",
+      "like_users": [
+        19,
+        14
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 36,
+    "fields": {
+      "user": 5,
+      "product": 6,
+      "satisfaction": "good",
+      "size_feel": "small",
+      "rating": 4,
+      "title": "별로였어요",
+      "content": "핏이 예쁘고 만족합니다.",
+      "created_at": "2025-07-07T06:00:00Z",
+      "like_users": [
+        13,
+        16,
+        12
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 37,
+    "fields": {
+      "user": 8,
+      "product": 6,
+      "satisfaction": "bad",
+      "size_feel": "small",
+      "rating": 4,
+      "title": "잘 맞아요",
+      "content": "색상이 화면과 조금 달랐어요.",
+      "created_at": "2025-07-03T15:00:00Z",
+      "like_users": []
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 38,
+    "fields": {
+      "user": 14,
+      "product": 6,
+      "satisfaction": "bad",
+      "size_feel": "big",
+      "rating": 4,
+      "title": "아주 좋아요",
+      "content": "가성비 좋아요!",
+      "created_at": "2025-07-01T20:00:00Z",
+      "like_users": []
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 39,
+    "fields": {
+      "user": 2,
+      "product": 6,
       "satisfaction": "soso",
       "size_feel": "big",
       "rating": 4,
-      "title": "무난했어요",
+      "title": "재구매 의사 있어요",
+      "content": "배송도 빠르고 착용감도 좋아요!",
+      "created_at": "2025-07-01T05:00:00Z",
+      "like_users": [
+        13,
+        14
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 40,
+    "fields": {
+      "user": 5,
+      "product": 6,
+      "satisfaction": "bad",
+      "size_feel": "small",
+      "rating": 5,
+      "title": "아주 좋아요",
       "content": "조금 크긴 했는데 괜찮았어요.",
+      "created_at": "2025-07-09T12:00:00Z",
+      "like_users": [
+        11,
+        5
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 41,
+    "fields": {
+      "user": 1,
+      "product": 7,
+      "satisfaction": "soso",
+      "size_feel": "normal",
+      "rating": 5,
+      "title": "아주 좋아요",
+      "content": "하루 종일 착용해도 편했어요.",
+      "created_at": "2025-07-03T18:00:00Z",
+      "like_users": [
+        12,
+        17
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 42,
+    "fields": {
+      "user": 13,
+      "product": 7,
+      "satisfaction": "good",
+      "size_feel": "big",
+      "rating": 5,
+      "title": "아주 좋아요",
+      "content": "하루 종일 착용해도 편했어요.",
+      "created_at": "2025-07-06T10:00:00Z",
+      "like_users": [
+        5
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 43,
+    "fields": {
+      "user": 9,
+      "product": 7,
+      "satisfaction": "bad",
+      "size_feel": "big",
+      "rating": 5,
+      "title": "그럭저럭이에요",
+      "content": "이건 진짜 강추입니다!",
       "created_at": "2025-07-10T13:00:00Z",
-      "like_users": [1]
+      "like_users": [
+        5,
+        12
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 44,
+    "fields": {
+      "user": 20,
+      "product": 7,
+      "satisfaction": "good",
+      "size_feel": "big",
+      "rating": 4,
+      "title": "그럭저럭이에요",
+      "content": "하루 종일 착용해도 편했어요.",
+      "created_at": "2025-07-01T16:00:00Z",
+      "like_users": [
+        10,
+        20
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 45,
+    "fields": {
+      "user": 11,
+      "product": 7,
+      "satisfaction": "good",
+      "size_feel": "big",
+      "rating": 5,
+      "title": "아주 좋아요",
+      "content": "핏이 예쁘고 만족합니다.",
+      "created_at": "2025-07-04T19:00:00Z",
+      "like_users": [
+        11,
+        9
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 46,
+    "fields": {
+      "user": 16,
+      "product": 8,
+      "satisfaction": "good",
+      "size_feel": "big",
+      "rating": 4,
+      "title": "별로였어요",
+      "content": "조금 크긴 했는데 괜찮았어요.",
+      "created_at": "2025-07-02T00:00:00Z",
+      "like_users": [
+        5,
+        16,
+        4
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 47,
+    "fields": {
+      "user": 13,
+      "product": 8,
+      "satisfaction": "bad",
+      "size_feel": "normal",
+      "rating": 5,
+      "title": "잘 맞아요",
+      "content": "하루 종일 착용해도 편했어요.",
+      "created_at": "2025-07-03T10:00:00Z",
+      "like_users": [
+        17,
+        10
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 48,
+    "fields": {
+      "user": 7,
+      "product": 8,
+      "satisfaction": "bad",
+      "size_feel": "big",
+      "rating": 5,
+      "title": "재구매 의사 있어요",
+      "content": "핏이 예쁘고 만족합니다.",
+      "created_at": "2025-07-02T20:00:00Z",
+      "like_users": [
+        4
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 49,
+    "fields": {
+      "user": 10,
+      "product": 8,
+      "satisfaction": "good",
+      "size_feel": "normal",
+      "rating": 3,
+      "title": "별로였어요",
+      "content": "사이즈가 좀 애매하네요.",
+      "created_at": "2025-07-09T09:00:00Z",
+      "like_users": [
+        5,
+        8
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 50,
+    "fields": {
+      "user": 16,
+      "product": 8,
+      "satisfaction": "good",
+      "size_feel": "small",
+      "rating": 4,
+      "title": "별로였어요",
+      "content": "이건 진짜 강추입니다!",
+      "created_at": "2025-07-04T11:00:00Z",
+      "like_users": [
+        3,
+        5,
+        7
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 51,
+    "fields": {
+      "user": 7,
+      "product": 9,
+      "satisfaction": "bad",
+      "size_feel": "small",
+      "rating": 3,
+      "title": "잘 맞아요",
+      "content": "배송도 빠르고 착용감도 좋아요!",
+      "created_at": "2025-07-07T16:00:00Z",
+      "like_users": []
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 52,
+    "fields": {
+      "user": 15,
+      "product": 9,
+      "satisfaction": "good",
+      "size_feel": "big",
+      "rating": 5,
+      "title": "재구매 의사 있어요",
+      "content": "가성비 좋아요!",
+      "created_at": "2025-07-04T12:00:00Z",
+      "like_users": [
+        10,
+        12,
+        9
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 53,
+    "fields": {
+      "user": 1,
+      "product": 9,
+      "satisfaction": "bad",
+      "size_feel": "small",
+      "rating": 5,
+      "title": "잘 맞아요",
+      "content": "색상이 화면과 조금 달랐어요.",
+      "created_at": "2025-07-03T07:00:00Z",
+      "like_users": []
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 54,
+    "fields": {
+      "user": 14,
+      "product": 9,
+      "satisfaction": "bad",
+      "size_feel": "small",
+      "rating": 4,
+      "title": "재구매 의사 있어요",
+      "content": "배송도 빠르고 착용감도 좋아요!",
+      "created_at": "2025-07-05T15:00:00Z",
+      "like_users": [
+        14
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 55,
+    "fields": {
+      "user": 1,
+      "product": 9,
+      "satisfaction": "good",
+      "size_feel": "big",
+      "rating": 3,
+      "title": "그럭저럭이에요",
+      "content": "하루 종일 착용해도 편했어요.",
+      "created_at": "2025-07-02T02:00:00Z",
+      "like_users": []
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 56,
+    "fields": {
+      "user": 15,
+      "product": 10,
+      "satisfaction": "soso",
+      "size_feel": "small",
+      "rating": 5,
+      "title": "그럭저럭이에요",
+      "content": "가성비 좋아요!",
+      "created_at": "2025-07-05T21:00:00Z",
+      "like_users": [
+        6,
+        7
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 57,
+    "fields": {
+      "user": 3,
+      "product": 10,
+      "satisfaction": "soso",
+      "size_feel": "normal",
+      "rating": 4,
+      "title": "재구매 의사 있어요",
+      "content": "가성비 좋아요!",
+      "created_at": "2025-07-07T22:00:00Z",
+      "like_users": [
+        12,
+        16,
+        2
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 58,
+    "fields": {
+      "user": 1,
+      "product": 10,
+      "satisfaction": "soso",
+      "size_feel": "big",
+      "rating": 3,
+      "title": "별로였어요",
+      "content": "사이즈가 좀 애매하네요.",
+      "created_at": "2025-07-10T13:00:00Z",
+      "like_users": [
+        15,
+        1
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 59,
+    "fields": {
+      "user": 10,
+      "product": 10,
+      "satisfaction": "good",
+      "size_feel": "small",
+      "rating": 5,
+      "title": "별로였어요",
+      "content": "사이즈가 좀 애매하네요.",
+      "created_at": "2025-07-07T19:00:00Z",
+      "like_users": [
+        18,
+        10,
+        11
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 60,
+    "fields": {
+      "user": 16,
+      "product": 10,
+      "satisfaction": "bad",
+      "size_feel": "small",
+      "rating": 4,
+      "title": "별로였어요",
+      "content": "핏이 예쁘고 만족합니다.",
+      "created_at": "2025-07-03T15:00:00Z",
+      "like_users": [
+        9,
+        2,
+        12
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 61,
+    "fields": {
+      "user": 7,
+      "product": 11,
+      "satisfaction": "good",
+      "size_feel": "small",
+      "rating": 5,
+      "title": "별로였어요",
+      "content": "핏이 예쁘고 만족합니다.",
+      "created_at": "2025-07-07T21:00:00Z",
+      "like_users": [
+        7
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 62,
+    "fields": {
+      "user": 17,
+      "product": 11,
+      "satisfaction": "soso",
+      "size_feel": "big",
+      "rating": 4,
+      "title": "별로였어요",
+      "content": "배송도 빠르고 착용감도 좋아요!",
+      "created_at": "2025-07-01T18:00:00Z",
+      "like_users": [
+        14,
+        6,
+        13
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 63,
+    "fields": {
+      "user": 12,
+      "product": 11,
+      "satisfaction": "bad",
+      "size_feel": "normal",
+      "rating": 4,
+      "title": "잘 맞아요",
+      "content": "조금 크긴 했는데 괜찮았어요.",
+      "created_at": "2025-07-02T04:00:00Z",
+      "like_users": [
+        2,
+        9,
+        17
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 64,
+    "fields": {
+      "user": 11,
+      "product": 11,
+      "satisfaction": "good",
+      "size_feel": "normal",
+      "rating": 3,
+      "title": "그럭저럭이에요",
+      "content": "하루 종일 착용해도 편했어요.",
+      "created_at": "2025-07-01T04:00:00Z",
+      "like_users": [
+        12,
+        2
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 65,
+    "fields": {
+      "user": 14,
+      "product": 11,
+      "satisfaction": "bad",
+      "size_feel": "normal",
+      "rating": 5,
+      "title": "별로였어요",
+      "content": "하루 종일 착용해도 편했어요.",
+      "created_at": "2025-07-05T09:00:00Z",
+      "like_users": [
+        12,
+        3
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 66,
+    "fields": {
+      "user": 15,
+      "product": 12,
+      "satisfaction": "bad",
+      "size_feel": "small",
+      "rating": 4,
+      "title": "재구매 의사 있어요",
+      "content": "색상이 화면과 조금 달랐어요.",
+      "created_at": "2025-07-06T18:00:00Z",
+      "like_users": []
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 67,
+    "fields": {
+      "user": 1,
+      "product": 12,
+      "satisfaction": "soso",
+      "size_feel": "small",
+      "rating": 5,
+      "title": "잘 맞아요",
+      "content": "조금 크긴 했는데 괜찮았어요.",
+      "created_at": "2025-07-02T08:00:00Z",
+      "like_users": []
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 68,
+    "fields": {
+      "user": 12,
+      "product": 12,
+      "satisfaction": "bad",
+      "size_feel": "big",
+      "rating": 5,
+      "title": "재구매 의사 있어요",
+      "content": "하루 종일 착용해도 편했어요.",
+      "created_at": "2025-07-01T09:00:00Z",
+      "like_users": []
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 69,
+    "fields": {
+      "user": 20,
+      "product": 12,
+      "satisfaction": "bad",
+      "size_feel": "big",
+      "rating": 5,
+      "title": "그럭저럭이에요",
+      "content": "부드럽고 편했어요!",
+      "created_at": "2025-07-04T00:00:00Z",
+      "like_users": [
+        2,
+        3,
+        6
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 70,
+    "fields": {
+      "user": 20,
+      "product": 12,
+      "satisfaction": "bad",
+      "size_feel": "small",
+      "rating": 5,
+      "title": "재구매 의사 있어요",
+      "content": "하루 종일 착용해도 편했어요.",
+      "created_at": "2025-07-08T19:00:00Z",
+      "like_users": []
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 71,
+    "fields": {
+      "user": 7,
+      "product": 13,
+      "satisfaction": "good",
+      "size_feel": "normal",
+      "rating": 3,
+      "title": "잘 맞아요",
+      "content": "배송도 빠르고 착용감도 좋아요!",
+      "created_at": "2025-07-08T08:00:00Z",
+      "like_users": []
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 72,
+    "fields": {
+      "user": 9,
+      "product": 13,
+      "satisfaction": "soso",
+      "size_feel": "small",
+      "rating": 4,
+      "title": "아주 좋아요",
+      "content": "사이즈가 좀 애매하네요.",
+      "created_at": "2025-07-09T10:00:00Z",
+      "like_users": [
+        9
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 73,
+    "fields": {
+      "user": 15,
+      "product": 13,
+      "satisfaction": "bad",
+      "size_feel": "big",
+      "rating": 4,
+      "title": "재구매 의사 있어요",
+      "content": "부드럽고 편했어요!",
+      "created_at": "2025-07-02T12:00:00Z",
+      "like_users": [
+        10,
+        8
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 74,
+    "fields": {
+      "user": 19,
+      "product": 13,
+      "satisfaction": "bad",
+      "size_feel": "normal",
+      "rating": 3,
+      "title": "잘 맞아요",
+      "content": "기대보단 평범했어요.",
+      "created_at": "2025-07-10T00:00:00Z",
+      "like_users": []
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 75,
+    "fields": {
+      "user": 10,
+      "product": 13,
+      "satisfaction": "good",
+      "size_feel": "small",
+      "rating": 3,
+      "title": "아주 좋아요",
+      "content": "조금 크긴 했는데 괜찮았어요.",
+      "created_at": "2025-07-02T00:00:00Z",
+      "like_users": [
+        20,
+        19
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 76,
+    "fields": {
+      "user": 6,
+      "product": 14,
+      "satisfaction": "bad",
+      "size_feel": "big",
+      "rating": 5,
+      "title": "재구매 의사 있어요",
+      "content": "기대보단 평범했어요.",
+      "created_at": "2025-07-01T22:00:00Z",
+      "like_users": []
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 77,
+    "fields": {
+      "user": 3,
+      "product": 14,
+      "satisfaction": "good",
+      "size_feel": "normal",
+      "rating": 4,
+      "title": "그럭저럭이에요",
+      "content": "핏이 예쁘고 만족합니다.",
+      "created_at": "2025-07-07T18:00:00Z",
+      "like_users": [
+        13
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 78,
+    "fields": {
+      "user": 11,
+      "product": 14,
+      "satisfaction": "soso",
+      "size_feel": "big",
+      "rating": 5,
+      "title": "재구매 의사 있어요",
+      "content": "사이즈가 좀 애매하네요.",
+      "created_at": "2025-07-02T05:00:00Z",
+      "like_users": [
+        10,
+        2,
+        20
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 79,
+    "fields": {
+      "user": 17,
+      "product": 14,
+      "satisfaction": "good",
+      "size_feel": "small",
+      "rating": 5,
+      "title": "재구매 의사 있어요",
+      "content": "색상이 화면과 조금 달랐어요.",
+      "created_at": "2025-07-06T00:00:00Z",
+      "like_users": []
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 80,
+    "fields": {
+      "user": 6,
+      "product": 14,
+      "satisfaction": "soso",
+      "size_feel": "big",
+      "rating": 5,
+      "title": "잘 맞아요",
+      "content": "색상이 화면과 조금 달랐어요.",
+      "created_at": "2025-07-07T21:00:00Z",
+      "like_users": [
+        3
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 81,
+    "fields": {
+      "user": 7,
+      "product": 15,
+      "satisfaction": "bad",
+      "size_feel": "normal",
+      "rating": 3,
+      "title": "그럭저럭이에요",
+      "content": "하루 종일 착용해도 편했어요.",
+      "created_at": "2025-07-05T05:00:00Z",
+      "like_users": [
+        2
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 82,
+    "fields": {
+      "user": 12,
+      "product": 15,
+      "satisfaction": "good",
+      "size_feel": "small",
+      "rating": 5,
+      "title": "잘 맞아요",
+      "content": "이건 진짜 강추입니다!",
+      "created_at": "2025-07-01T12:00:00Z",
+      "like_users": [
+        17
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 83,
+    "fields": {
+      "user": 15,
+      "product": 15,
+      "satisfaction": "soso",
+      "size_feel": "small",
+      "rating": 5,
+      "title": "아주 좋아요",
+      "content": "배송도 빠르고 착용감도 좋아요!",
+      "created_at": "2025-07-07T16:00:00Z",
+      "like_users": [
+        11,
+        9
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 84,
+    "fields": {
+      "user": 5,
+      "product": 15,
+      "satisfaction": "good",
+      "size_feel": "normal",
+      "rating": 4,
+      "title": "별로였어요",
+      "content": "색상이 화면과 조금 달랐어요.",
+      "created_at": "2025-07-09T21:00:00Z",
+      "like_users": [
+        13
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 85,
+    "fields": {
+      "user": 17,
+      "product": 15,
+      "satisfaction": "soso",
+      "size_feel": "small",
+      "rating": 4,
+      "title": "잘 맞아요",
+      "content": "핏이 예쁘고 만족합니다.",
+      "created_at": "2025-07-03T23:00:00Z",
+      "like_users": [
+        5,
+        20,
+        4
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 86,
+    "fields": {
+      "user": 4,
+      "product": 16,
+      "satisfaction": "soso",
+      "size_feel": "big",
+      "rating": 4,
+      "title": "별로였어요",
+      "content": "핏이 예쁘고 만족합니다.",
+      "created_at": "2025-07-07T02:00:00Z",
+      "like_users": [
+        4
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 87,
+    "fields": {
+      "user": 2,
+      "product": 16,
+      "satisfaction": "bad",
+      "size_feel": "small",
+      "rating": 5,
+      "title": "아주 좋아요",
+      "content": "기대보단 평범했어요.",
+      "created_at": "2025-07-08T10:00:00Z",
+      "like_users": [
+        12,
+        1,
+        15
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 88,
+    "fields": {
+      "user": 15,
+      "product": 16,
+      "satisfaction": "soso",
+      "size_feel": "big",
+      "rating": 3,
+      "title": "그럭저럭이에요",
+      "content": "기대보단 평범했어요.",
+      "created_at": "2025-07-08T07:00:00Z",
+      "like_users": [
+        14,
+        17,
+        18
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 89,
+    "fields": {
+      "user": 5,
+      "product": 16,
+      "satisfaction": "soso",
+      "size_feel": "small",
+      "rating": 4,
+      "title": "별로였어요",
+      "content": "이건 진짜 강추입니다!",
+      "created_at": "2025-07-01T14:00:00Z",
+      "like_users": [
+        13,
+        16
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 90,
+    "fields": {
+      "user": 6,
+      "product": 16,
+      "satisfaction": "soso",
+      "size_feel": "big",
+      "rating": 3,
+      "title": "재구매 의사 있어요",
+      "content": "배송도 빠르고 착용감도 좋아요!",
+      "created_at": "2025-07-04T12:00:00Z",
+      "like_users": [
+        1,
+        6
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 91,
+    "fields": {
+      "user": 13,
+      "product": 17,
+      "satisfaction": "good",
+      "size_feel": "big",
+      "rating": 3,
+      "title": "별로였어요",
+      "content": "색상이 화면과 조금 달랐어요.",
+      "created_at": "2025-07-01T06:00:00Z",
+      "like_users": []
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 92,
+    "fields": {
+      "user": 2,
+      "product": 17,
+      "satisfaction": "good",
+      "size_feel": "big",
+      "rating": 5,
+      "title": "잘 맞아요",
+      "content": "조금 크긴 했는데 괜찮았어요.",
+      "created_at": "2025-07-05T14:00:00Z",
+      "like_users": [
+        8,
+        6,
+        12
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 93,
+    "fields": {
+      "user": 16,
+      "product": 17,
+      "satisfaction": "soso",
+      "size_feel": "big",
+      "rating": 5,
+      "title": "잘 맞아요",
+      "content": "색상이 화면과 조금 달랐어요.",
+      "created_at": "2025-07-07T17:00:00Z",
+      "like_users": [
+        18,
+        6
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 94,
+    "fields": {
+      "user": 14,
+      "product": 17,
+      "satisfaction": "bad",
+      "size_feel": "small",
+      "rating": 3,
+      "title": "별로였어요",
+      "content": "색상이 화면과 조금 달랐어요.",
+      "created_at": "2025-07-05T06:00:00Z",
+      "like_users": [
+        5,
+        15,
+        17
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 95,
+    "fields": {
+      "user": 6,
+      "product": 17,
+      "satisfaction": "good",
+      "size_feel": "big",
+      "rating": 3,
+      "title": "그럭저럭이에요",
+      "content": "부드럽고 편했어요!",
+      "created_at": "2025-07-07T18:00:00Z",
+      "like_users": [
+        17,
+        4,
+        7
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 96,
+    "fields": {
+      "user": 14,
+      "product": 18,
+      "satisfaction": "bad",
+      "size_feel": "normal",
+      "rating": 3,
+      "title": "잘 맞아요",
+      "content": "하루 종일 착용해도 편했어요.",
+      "created_at": "2025-07-07T15:00:00Z",
+      "like_users": [
+        2,
+        4,
+        16
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 97,
+    "fields": {
+      "user": 16,
+      "product": 18,
+      "satisfaction": "soso",
+      "size_feel": "small",
+      "rating": 3,
+      "title": "잘 맞아요",
+      "content": "조금 크긴 했는데 괜찮았어요.",
+      "created_at": "2025-07-07T07:00:00Z",
+      "like_users": []
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 98,
+    "fields": {
+      "user": 17,
+      "product": 18,
+      "satisfaction": "good",
+      "size_feel": "normal",
+      "rating": 4,
+      "title": "재구매 의사 있어요",
+      "content": "배송도 빠르고 착용감도 좋아요!",
+      "created_at": "2025-07-04T08:00:00Z",
+      "like_users": []
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 99,
+    "fields": {
+      "user": 20,
+      "product": 18,
+      "satisfaction": "soso",
+      "size_feel": "small",
+      "rating": 3,
+      "title": "잘 맞아요",
+      "content": "기대보단 평범했어요.",
+      "created_at": "2025-07-05T01:00:00Z",
+      "like_users": []
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 100,
+    "fields": {
+      "user": 16,
+      "product": 18,
+      "satisfaction": "soso",
+      "size_feel": "small",
+      "rating": 4,
+      "title": "잘 맞아요",
+      "content": "핏이 예쁘고 만족합니다.",
+      "created_at": "2025-07-02T14:00:00Z",
+      "like_users": []
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 101,
+    "fields": {
+      "user": 5,
+      "product": 19,
+      "satisfaction": "good",
+      "size_feel": "small",
+      "rating": 4,
+      "title": "그럭저럭이에요",
+      "content": "부드럽고 편했어요!",
+      "created_at": "2025-07-01T00:00:00Z",
+      "like_users": [
+        5,
+        20
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 102,
+    "fields": {
+      "user": 1,
+      "product": 19,
+      "satisfaction": "good",
+      "size_feel": "small",
+      "rating": 4,
+      "title": "그럭저럭이에요",
+      "content": "사이즈가 좀 애매하네요.",
+      "created_at": "2025-07-07T07:00:00Z",
+      "like_users": [
+        11,
+        7
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 103,
+    "fields": {
+      "user": 6,
+      "product": 19,
+      "satisfaction": "soso",
+      "size_feel": "normal",
+      "rating": 3,
+      "title": "별로였어요",
+      "content": "부드럽고 편했어요!",
+      "created_at": "2025-07-07T18:00:00Z",
+      "like_users": [
+        12
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 104,
+    "fields": {
+      "user": 10,
+      "product": 19,
+      "satisfaction": "good",
+      "size_feel": "normal",
+      "rating": 3,
+      "title": "잘 맞아요",
+      "content": "부드럽고 편했어요!",
+      "created_at": "2025-07-05T02:00:00Z",
+      "like_users": [
+        2
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 105,
+    "fields": {
+      "user": 16,
+      "product": 19,
+      "satisfaction": "soso",
+      "size_feel": "small",
+      "rating": 4,
+      "title": "그럭저럭이에요",
+      "content": "기대보단 평범했어요.",
+      "created_at": "2025-07-10T08:00:00Z",
+      "like_users": [
+        5
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 106,
+    "fields": {
+      "user": 14,
+      "product": 20,
+      "satisfaction": "good",
+      "size_feel": "big",
+      "rating": 5,
+      "title": "잘 맞아요",
+      "content": "핏이 예쁘고 만족합니다.",
+      "created_at": "2025-07-09T19:00:00Z",
+      "like_users": [
+        4
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 107,
+    "fields": {
+      "user": 14,
+      "product": 20,
+      "satisfaction": "bad",
+      "size_feel": "normal",
+      "rating": 5,
+      "title": "아주 좋아요",
+      "content": "핏이 예쁘고 만족합니다.",
+      "created_at": "2025-07-10T01:00:00Z",
+      "like_users": [
+        15,
+        5,
+        11
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 108,
+    "fields": {
+      "user": 14,
+      "product": 20,
+      "satisfaction": "bad",
+      "size_feel": "normal",
+      "rating": 3,
+      "title": "별로였어요",
+      "content": "하루 종일 착용해도 편했어요.",
+      "created_at": "2025-07-01T21:00:00Z",
+      "like_users": []
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 109,
+    "fields": {
+      "user": 10,
+      "product": 20,
+      "satisfaction": "good",
+      "size_feel": "normal",
+      "rating": 5,
+      "title": "그럭저럭이에요",
+      "content": "사이즈가 좀 애매하네요.",
+      "created_at": "2025-07-02T14:00:00Z",
+      "like_users": [
+        12
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 110,
+    "fields": {
+      "user": 18,
+      "product": 20,
+      "satisfaction": "bad",
+      "size_feel": "normal",
+      "rating": 5,
+      "title": "재구매 의사 있어요",
+      "content": "하루 종일 착용해도 편했어요.",
+      "created_at": "2025-07-10T04:00:00Z",
+      "like_users": [
+        4
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 111,
+    "fields": {
+      "user": 2,
+      "product": 21,
+      "satisfaction": "good",
+      "size_feel": "normal",
+      "rating": 3,
+      "title": "아주 좋아요",
+      "content": "기대보단 평범했어요.",
+      "created_at": "2025-07-02T13:00:00Z",
+      "like_users": [
+        1
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 112,
+    "fields": {
+      "user": 7,
+      "product": 21,
+      "satisfaction": "soso",
+      "size_feel": "small",
+      "rating": 4,
+      "title": "아주 좋아요",
+      "content": "부드럽고 편했어요!",
+      "created_at": "2025-07-05T13:00:00Z",
+      "like_users": [
+        15,
+        20,
+        14
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 113,
+    "fields": {
+      "user": 9,
+      "product": 21,
+      "satisfaction": "good",
+      "size_feel": "normal",
+      "rating": 4,
+      "title": "아주 좋아요",
+      "content": "기대보단 평범했어요.",
+      "created_at": "2025-07-06T08:00:00Z",
+      "like_users": [
+        9,
+        16
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 114,
+    "fields": {
+      "user": 16,
+      "product": 21,
+      "satisfaction": "bad",
+      "size_feel": "small",
+      "rating": 4,
+      "title": "그럭저럭이에요",
+      "content": "기대보단 평범했어요.",
+      "created_at": "2025-07-06T11:00:00Z",
+      "like_users": [
+        12,
+        3,
+        15
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 115,
+    "fields": {
+      "user": 6,
+      "product": 21,
+      "satisfaction": "soso",
+      "size_feel": "big",
+      "rating": 5,
+      "title": "별로였어요",
+      "content": "기대보단 평범했어요.",
+      "created_at": "2025-07-04T02:00:00Z",
+      "like_users": [
+        7,
+        18
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 116,
+    "fields": {
+      "user": 9,
+      "product": 22,
+      "satisfaction": "soso",
+      "size_feel": "small",
+      "rating": 5,
+      "title": "별로였어요",
+      "content": "사이즈가 좀 애매하네요.",
+      "created_at": "2025-07-02T04:00:00Z",
+      "like_users": []
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 117,
+    "fields": {
+      "user": 3,
+      "product": 22,
+      "satisfaction": "soso",
+      "size_feel": "big",
+      "rating": 4,
+      "title": "재구매 의사 있어요",
+      "content": "하루 종일 착용해도 편했어요.",
+      "created_at": "2025-07-08T11:00:00Z",
+      "like_users": [
+        18
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 118,
+    "fields": {
+      "user": 12,
+      "product": 22,
+      "satisfaction": "soso",
+      "size_feel": "normal",
+      "rating": 4,
+      "title": "그럭저럭이에요",
+      "content": "색상이 화면과 조금 달랐어요.",
+      "created_at": "2025-07-01T00:00:00Z",
+      "like_users": []
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 119,
+    "fields": {
+      "user": 13,
+      "product": 22,
+      "satisfaction": "bad",
+      "size_feel": "normal",
+      "rating": 3,
+      "title": "아주 좋아요",
+      "content": "하루 종일 착용해도 편했어요.",
+      "created_at": "2025-07-04T23:00:00Z",
+      "like_users": [
+        3,
+        8,
+        15
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 120,
+    "fields": {
+      "user": 5,
+      "product": 22,
+      "satisfaction": "good",
+      "size_feel": "big",
+      "rating": 3,
+      "title": "잘 맞아요",
+      "content": "기대보단 평범했어요.",
+      "created_at": "2025-07-07T23:00:00Z",
+      "like_users": [
+        11,
+        17
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 121,
+    "fields": {
+      "user": 11,
+      "product": 23,
+      "satisfaction": "bad",
+      "size_feel": "normal",
+      "rating": 3,
+      "title": "잘 맞아요",
+      "content": "하루 종일 착용해도 편했어요.",
+      "created_at": "2025-07-04T23:00:00Z",
+      "like_users": [
+        13
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 122,
+    "fields": {
+      "user": 17,
+      "product": 23,
+      "satisfaction": "bad",
+      "size_feel": "big",
+      "rating": 3,
+      "title": "잘 맞아요",
+      "content": "핏이 예쁘고 만족합니다.",
+      "created_at": "2025-07-01T20:00:00Z",
+      "like_users": [
+        13,
+        7,
+        9
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 123,
+    "fields": {
+      "user": 18,
+      "product": 23,
+      "satisfaction": "bad",
+      "size_feel": "normal",
+      "rating": 4,
+      "title": "그럭저럭이에요",
+      "content": "사이즈가 좀 애매하네요.",
+      "created_at": "2025-07-03T13:00:00Z",
+      "like_users": [
+        9,
+        14,
+        5
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 124,
+    "fields": {
+      "user": 1,
+      "product": 23,
+      "satisfaction": "good",
+      "size_feel": "big",
+      "rating": 5,
+      "title": "아주 좋아요",
+      "content": "기대보단 평범했어요.",
+      "created_at": "2025-07-08T11:00:00Z",
+      "like_users": []
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 125,
+    "fields": {
+      "user": 14,
+      "product": 23,
+      "satisfaction": "bad",
+      "size_feel": "normal",
+      "rating": 4,
+      "title": "아주 좋아요",
+      "content": "부드럽고 편했어요!",
+      "created_at": "2025-07-08T12:00:00Z",
+      "like_users": []
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 126,
+    "fields": {
+      "user": 3,
+      "product": 24,
+      "satisfaction": "bad",
+      "size_feel": "small",
+      "rating": 4,
+      "title": "잘 맞아요",
+      "content": "배송도 빠르고 착용감도 좋아요!",
+      "created_at": "2025-07-07T18:00:00Z",
+      "like_users": []
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 127,
+    "fields": {
+      "user": 13,
+      "product": 24,
+      "satisfaction": "good",
+      "size_feel": "big",
+      "rating": 4,
+      "title": "아주 좋아요",
+      "content": "핏이 예쁘고 만족합니다.",
+      "created_at": "2025-07-03T20:00:00Z",
+      "like_users": [
+        9,
+        14
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 128,
+    "fields": {
+      "user": 10,
+      "product": 24,
+      "satisfaction": "good",
+      "size_feel": "small",
+      "rating": 3,
+      "title": "재구매 의사 있어요",
+      "content": "색상이 화면과 조금 달랐어요.",
+      "created_at": "2025-07-08T13:00:00Z",
+      "like_users": [
+        20,
+        6
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 129,
+    "fields": {
+      "user": 10,
+      "product": 24,
+      "satisfaction": "soso",
+      "size_feel": "small",
+      "rating": 4,
+      "title": "아주 좋아요",
+      "content": "조금 크긴 했는데 괜찮았어요.",
+      "created_at": "2025-07-05T00:00:00Z",
+      "like_users": [
+        15
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 130,
+    "fields": {
+      "user": 8,
+      "product": 24,
+      "satisfaction": "bad",
+      "size_feel": "big",
+      "rating": 4,
+      "title": "그럭저럭이에요",
+      "content": "이건 진짜 강추입니다!",
+      "created_at": "2025-07-05T20:00:00Z",
+      "like_users": []
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 131,
+    "fields": {
+      "user": 19,
+      "product": 25,
+      "satisfaction": "soso",
+      "size_feel": "normal",
+      "rating": 5,
+      "title": "잘 맞아요",
+      "content": "하루 종일 착용해도 편했어요.",
+      "created_at": "2025-07-05T12:00:00Z",
+      "like_users": [
+        11
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 132,
+    "fields": {
+      "user": 16,
+      "product": 25,
+      "satisfaction": "bad",
+      "size_feel": "small",
+      "rating": 4,
+      "title": "별로였어요",
+      "content": "가성비 좋아요!",
+      "created_at": "2025-07-03T05:00:00Z",
+      "like_users": [
+        11,
+        10,
+        7
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 133,
+    "fields": {
+      "user": 18,
+      "product": 25,
+      "satisfaction": "bad",
+      "size_feel": "small",
+      "rating": 4,
+      "title": "잘 맞아요",
+      "content": "조금 크긴 했는데 괜찮았어요.",
+      "created_at": "2025-07-07T17:00:00Z",
+      "like_users": []
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 134,
+    "fields": {
+      "user": 7,
+      "product": 25,
+      "satisfaction": "good",
+      "size_feel": "normal",
+      "rating": 5,
+      "title": "별로였어요",
+      "content": "가성비 좋아요!",
+      "created_at": "2025-07-03T20:00:00Z",
+      "like_users": [
+        5,
+        9,
+        18
+      ]
+    }
+  },
+  {
+    "model": "review.review",
+    "pk": 135,
+    "fields": {
+      "user": 15,
+      "product": 25,
+      "satisfaction": "soso",
+      "size_feel": "big",
+      "rating": 5,
+      "title": "그럭저럭이에요",
+      "content": "이건 진짜 강추입니다!",
+      "created_at": "2025-07-04T22:00:00Z",
+      "like_users": [
+        18,
+        14,
+        5
+      ]
     }
   }
 ]
-
