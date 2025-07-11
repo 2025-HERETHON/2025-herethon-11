@@ -22,7 +22,7 @@ class Review(models.Model):
     size_feel = models.CharField(max_length=10, choices=SIZE_FEEL_CHOICES) #사이즈
     rating = models.PositiveSmallIntegerField()  # 별점 1~5
     title = models.CharField(max_length=30) #제목
-    content = models.TextField(max_length=300) #내용
+    content = models.TextField(max_length=300, blank=True) #내용
     created_at = models.DateTimeField(auto_now_add=True)
     like_users = models.ManyToManyField(User, related_name='liked_reviews', blank=True)
 
