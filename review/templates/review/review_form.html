@@ -52,7 +52,7 @@
 
       <div class="divider"></div>
       
-      <form method="POST" action="{% if is_update %}{% url 'update_review' review.id %}{% else %}{% url 'create_review' product.id %}{% endif %}">
+      <form method="POST" id="review-form" action="{% if review %}{% url 'update_review' review.id %}{% else %}{% url 'create_review' product.id %}{% endif %}">
       {% csrf_token %}
       <!-- 만족도 -->
       <section class="section">
@@ -124,10 +124,25 @@
 
       <!-- 버튼 -->
       <div class="btn-area">
-        <button type="submit" class="btn-primary" id="submit-btn">리뷰 등록하기</button>
-        <button type="button" class="btn-secondary" id="save-btn">리뷰 삭제하기</button>
+        <button type="button" class="btn-primary" id="submit-btn" onclick="create_review()">리뷰 등록하기</button>
+        {% if review %} 
+        <button type="button" class="btn-secondary" id="save-btn" onclick="delete_review()">리뷰 삭제하기</button>
+        {%endif%}
       </div>
       </form>
+
+      {% if review %}
+      <form method="POST" id="delete-review-form" action="{% url 'delete_review' review.id %}" style="display: none;">
+        {% csrf_token %}
+      </form>
+      {% endif %}
+
+      <!-- {% if review %} 
+      <form method="POST" action="{% url 'delete_review' review.id %}">
+        {% csrf_token %}
+        <button type="submit" class="btn-secondary">리뷰 삭제</button>
+      </form>
+      {%endif%} -->
     </div>
 
     <!-- 하단 네비 -->

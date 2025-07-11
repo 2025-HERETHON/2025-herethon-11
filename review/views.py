@@ -10,11 +10,11 @@ from .models import Review
 def create_review(request, product_id):
     product = get_object_or_404(Product, id=product_id)
 
-    #이미 쓴 리뷰가 있는지 확인
+    # 이미 쓴 리뷰가 있는지 확인
     try:
         review = Review.objects.get(user=request.user, product=product)
     except Review.DoesNotExist:
-        review = None
+        review = None  # 리뷰가 없는 경우 None 할당
 
     if request.method == 'POST':
         satisfaction = request.POST.get('satisfaction')
@@ -42,13 +42,13 @@ def create_review(request, product_id):
                 title=title,
                 content=content,
             )
-        return redirect('list_review')
-    
+
+        return redirect('reviews:list_review')
+
     context = {
         'product': product,
-        'review': review,
+        'review': review,  # 리뷰 객체가 없으면 None, 있으면 리뷰 객체 전달
     }
-    #리뷰 작성 후 목록 페이지로 이동
     return render(request, 'review/review_form.html', context)
 
 #모든 리뷰 가져오기
@@ -77,7 +77,7 @@ def detail_review(request, review_id):
 #리뷰 수정
 @login_required
 def update_review(request, id):
-    review = get_object_or_404(Review, id=review_id, user=request.user)
+    review = get_object_or_404(Review, id=id, user=request.user)
 
     if request.method == 'POST':
         review.satisfaction = request.POST.get('satisfaction')
@@ -88,13 +88,21 @@ def update_review(request, id):
         review.save()
         return redirect('list_review')
 
-    return render(request, 'review/review_form.html', {'review': review, 'is_update': True})
+    return render(request, 'review/review_form.html', {'review': review})
 
-#리뷰 삭제
+#리뷰 삭제-내용 초기화
 @login_required
 def delete_review(request, id):
-    review = get_object_or_404(Review, id=review_id, user=request.user)
-    review.delete()
+    review = get_object_or_404(Review, id=id, user=request.user)
+    
+    if request.method == 'POST':
+        review.satisfaction=''
+        review.size_feel=''
+        review.rating=0
+        review.title=''
+        review.content=''
+        review.save()
+
     return redirect('list_review')
 
 #리뷰 좋아요
