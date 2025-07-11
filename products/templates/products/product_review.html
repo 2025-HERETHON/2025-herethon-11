@@ -97,7 +97,14 @@
       {% for review in reviews %}
       <article class="review-item">
         <div class="review-head">
-          <div class="avatar"></div>
+          <div class="avatar">
+            {% if review.user.userprofile.profile_image %}
+              <img src="{{ review.user.userprofile.profile_image.url }}" alt="프로필 이미지" />
+            {% else %}
+              <img src="{% static 'products/productimg/default_profile.png' %}" alt="기본 프로필" />
+            {% endif %}
+          </div>
+
           <div class="head-meta">
             <div class="top-line">
               <span class="badge">{{ review.get_satisfaction_display }}</span
@@ -141,18 +148,23 @@
           </div>
         </div>
 
-        <div class="review-images">
-          <div class="img-placeholder"></div>
-          <div class="img-placeholder"></div>
-        </div>
+<!--        <div class="review-images">-->
+<!--          <div class="img-placeholder"></div>-->
+<!--          <div class="img-placeholder"></div>-->
+<!--        </div>-->
 
         <div class="body-toggle">체형정보 보기 ▾</div>
-        <div class="body-detail">
-          가슴 {{ review.user.userprofile.cup_size }} · 골반 {{
-          review.user.userprofile.pelvis_size }} · 키 {{
-          review.user.userprofile.height }} · 몸무게 {{
-          review.user.userprofile.weight }}
+         <div class="body-detail">
+          {% if review.user.userprofile %}
+            가슴 {{ review.user.userprofile.cup_size }} ·
+            골반 {{ review.user.userprofile.pelvis_size }} ·
+            키 {{ review.user.userprofile.height }} ·
+            몸무게 {{ review.user.userprofile.weight }}
+          {% else %}
+            체형 정보 없음
+          {% endif %}
         </div>
+
 
         <p class="option-info">
           <span>옵션&nbsp;</span>{{ review.worn_color }} · {{ review.worn_size }}
